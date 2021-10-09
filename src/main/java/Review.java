@@ -24,12 +24,17 @@ public class Review {
 
     @Override
     public String toString() {
-        return String.format("Rating:\t%s/%s\n" +
-                             "Review:\t%s", this.rating, 5, this.review);
-    }
+        return String.format("""
+                User:\t%s
+                Rating:\t%s/%s
+                Review:\t%s""", this.reviewer.name, this.rating, 5, this.review);
+    } // TODO: Make sure a 'name' attribute exists in User class (or its subclasses)
 
     public static void main(String[] args) {
-        Review test = new Review(new User(), "Fantastic place!", 4);
-        System.out.println(test);
+        Review detailIncluded = new Review(new User(), "Fantastic place!", 4);
+        System.out.println(detailIncluded);
+
+        Review detailExcluded = new Review(new User(), 4);
+        System.out.println(detailExcluded);
     }
 }
