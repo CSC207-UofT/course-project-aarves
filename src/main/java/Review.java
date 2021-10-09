@@ -8,9 +8,12 @@ public class Review {
         this.reviewer = reviewer;
         this.review = review;
         this.rating = rating;
-        // TODO: Add a getter method for the User (likely RegisteredUser) such that a list of their reviews is returned
-        //       to create reviewId (based off the review-to-be's index in the list).
-        this.reviewId = reviewer.getReviews().size();
+        if (reviewer.getReviews() != null) {
+            this.reviewId = reviewer.getReviews().size();
+        } else {
+            this.reviewId = 1;
+        }
+
     }
 
     public Review(RegisteredUser reviewer, int rating) {
