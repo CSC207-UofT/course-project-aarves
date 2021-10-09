@@ -24,6 +24,14 @@ gradle-app.setting
 .idea/**/dictionaries
 .idea/**/shelf
 
+# My own stuff
+.idea/compiler.xml
+.idea/jarRepositories.xml
+.idea/misc.xml
+.idea/runConfigurations.xml
+.idea/vcs.xml
+/.idea/modules/Project.test.iml
+
 # AWS User-specific
 .idea/**/aws.xml
 
@@ -88,3 +96,11 @@ fabric.properties
 
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
+
+# Pesky Gradle Stuff
+desktop.ini
+gradlew
+gradlew.bat
+
+/gradle/wrapper/gradle-wrapper.properties
+/gradle/wrapper/gradle-wrapper.jar
