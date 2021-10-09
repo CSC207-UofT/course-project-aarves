@@ -20,7 +20,7 @@ public class ExampleTest {
     }
 
     @Test(timeout = 50)
-    public void TestEnhanceBagsTrue() {
+    public void TestExample() {
         assertTrue(ac instanceof AccountCreator);
     }
 }
