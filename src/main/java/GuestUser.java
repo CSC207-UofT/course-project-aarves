@@ -1,2 +1,2 @@
-public class GuestUser {
+public class GuestUser extends User {
 }
