@@ -15,6 +15,14 @@ public class RegisteredUser extends User {
         return this.password;
     }
 
+    public ArrayList<Review> getReviews() {
+        return this.reviews;
+    }
+
+    public ArrayList<Location> getBookmarks() {
+        return this.getBookmarks();
+    }
+
     // TODO: add review to location
     public void addReview(String review, int rating) {
         reviews.add(new Review(this, review, rating));
