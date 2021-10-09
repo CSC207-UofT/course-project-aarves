@@ -15,8 +15,8 @@ public class AccountManager {
     }
 
     public boolean correctLogin(String username, String password){
-        String storedpassword = accounts.get(username).getPassword();
-        return storedpassword.equals(password);
+        String storedPassword = accounts.get(username).getPassword();
+        return storedPassword.equals(password);
     }
 
 }
