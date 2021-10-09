@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class RegisteredUser extends User {
     private ArrayList<Review> reviews;
+    private ArrayList<Location> bookmarks;
     private String username;
     private String password;
 
@@ -14,30 +15,44 @@ public class RegisteredUser extends User {
         return this.password;
     }
 
-    /**
-     * TODO: add review (needs to communicate with location storing reviews too)
-     */
+    public ArrayList<Review> getReviews() {
+        return this.reviews;
+    }
 
-    /**
-     * TODO: delete review (needs to communicate with location storing reviews too)
-     */
+    public ArrayList<Location> getBookmarks() {
+        return this.getBookmarks();
+    }
 
-    /**
-     * TODO: view reviews
-     */
+    // TODO: add review to location
+    public void addReview(String review, int rating) {
+        reviews.add(new Review(this, review, rating));
+    }
 
-    /**
-     * TODO: add bookmark
-     */
+    // TODO: add review to location
+    // TODO: should reviews have an identifier to be able to delete the reviews?
+    public void deleteReview(String review, int rating) {
 
+    }
 
-    /**
-     * TODO: delete bookmarks
-     */
+    // TODO: this needs to output something
+    public void viewReviews() {
 
-    /**
-     * TODO: view bookmarks
-     */
+    }
+
+    public void addBookmark(Location loc) {
+        this.bookmarks.add(loc);
+    }
+
+    public void deleteBookmark(Location loc) {
+        this.bookmarks.remove(loc);
+    }
+
+     // TODO: Not sure if should keep output here, can move somewhere later.
+     // TODO:Need Location subclasses done first though, to get their attributes.
+
+    public void viewBookmarks() {
+
+    }
 
 
 }
