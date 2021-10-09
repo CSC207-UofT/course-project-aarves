@@ -1,6 +1,4 @@
-## Replace this README.md!
+## Team AARVES Project (Project Name TBD)
 
-This is a standard README.md file for you to replace. You'll want to include your own content here!
-
-MD (Markdown) files use [Markdown formatting](https://guides.github.com/features/mastering-markdown/): 
-these look very much like .txt files, so you can write them in a very similar way.
+For this project, our group of 6 members will be designing a Food and Study Review app/website for UofT students! 
+More details to come as the project moves forward.
