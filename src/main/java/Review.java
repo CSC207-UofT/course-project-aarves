@@ -32,7 +32,7 @@ public class Review {
     @Override
     public String toString() {
         return String.format("User:\t%s\n Rating:\t%s/%s\n Review:\t%s",
-                this.reviewer.name, this.rating, 5, this.review);
+                this.reviewer.getUsername(), this.rating, 5, this.review);
     }
 
     public static void main(String[] args) {
