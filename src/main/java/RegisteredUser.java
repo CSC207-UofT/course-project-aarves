@@ -29,10 +29,14 @@ public class RegisteredUser extends User {
 
     // TODO: add review to location
     public void addReview(Location location, String review, int rating) {
-        reviews.add(new Review(this, location, review, rating));
+        this.reviews.add(new Review(this, location, review, rating));
     }
 
-    // TODO: add review to location
+    public void addReview(Location location, int rating) {
+        this.reviews.add(new Review(this, location, rating));
+    }
+
+    // TODO: also delete review from location
     public void deleteReview(String review, int rating) {
 
     }
@@ -51,11 +55,10 @@ public class RegisteredUser extends User {
         this.bookmarks.remove(loc);
     }
 
-     // TODO: Not sure if should keep output here, can move somewhere later.
-     // TODO:Need Location subclasses done first though, to get their attributes.
-
     public void viewBookmarks() {
-
+        for (Location location : this.bookmarks) {
+            System.out.println(location);
+        }
     }
 
     public static void main(String[] args) {
