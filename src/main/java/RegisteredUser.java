@@ -27,13 +27,8 @@ public class RegisteredUser extends User {
         return this.bookmarks;
     }
 
-    // TODO: add review to location
-    public void addReview(Location location, String review, int rating) {
-        this.reviews.add(new Review(this, location, review, rating));
-    }
-
-    public void addReview(Location location, int rating) {
-        this.reviews.add(new Review(this, location, rating));
+    public void addReview(Review review) {
+        this.reviews.add(review);
     }
 
     // TODO: also delete review from location
@@ -69,14 +64,6 @@ public class RegisteredUser extends User {
         StudyLocation robarts = new StudyLocation(reviewList, "", "", true, true);
         StudyLocation gerstein = new StudyLocation(reviewList, "", "", true, true);
         StudyLocation koffler = new StudyLocation(reviewList, "", "", true, true);
-
-        u1.addReview(robarts, "Very quiet and productive, would love to go back!", 5);
-        u1.addReview(gerstein, "Bottom of the barrel. Never go here...", 1);
-        u1.addReview(koffler, "Good.", 3);
-
-        u2.addReview(robarts, "Please open the full 5th floor", 1);
-        u2.addReview(gerstein, "Not my cup of tea.", 2);
-        u2.addReview(koffler, "Good study spot.", 4);
 
         u1.viewReviews();
 

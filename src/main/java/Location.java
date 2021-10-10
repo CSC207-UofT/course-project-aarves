@@ -14,6 +14,10 @@ public abstract class Location {
         this.area = area;
     }
 
+    public void addReview(Review review) {
+        this.reviews.add(review);
+    }
+
     public void setName(String name) {
         this.name = name;
     }

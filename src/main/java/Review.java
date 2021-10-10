@@ -40,6 +40,10 @@ public class Review {
         return this.review;
     }
 
+    public RegisteredUser getReviewer() {
+        return this.reviewer;
+    }
+
     protected int getReviewId() {
         return this.reviewId;
     }
