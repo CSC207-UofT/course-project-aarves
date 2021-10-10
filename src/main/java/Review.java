@@ -3,6 +3,8 @@ import java.util.List;
 import java.util.Random;
 
 public class Review {
+    private static int maxID = 0;
+
     private RegisteredUser reviewer;
     private Location location;
     private String review;
@@ -17,9 +19,8 @@ public class Review {
         this.review = review;
         this.rating = rating;
 
-        // Added while-loop to check if the randomly generated ID exists. If so, keep on looping. If not, exit loop and
-        // set that randomId as this Review object's reviewId.
-        this.reviewId = generateId();
+        this.reviewId = Review.maxID;
+        Review.maxID += 1;
     }
 
     public Review(RegisteredUser reviewer, Location location, int rating) {
@@ -27,16 +28,8 @@ public class Review {
         this.location = location;
         this.rating = rating;
 
-        // Same explanation as in the previous constructor.
-        this.reviewId = generateId();
-    }
-
-    private int generateId() {
-        int randomId = new Random().nextInt(899999) + 100000;
-        while (!rm.isIdUnique(randomId)) {
-            randomId = new Random().nextInt(899999) + 100000;
-        }
-        return randomId;
+        this.reviewId = Review.maxID;
+        Review.maxID += 1;
     }
 
     public int getRating() {
