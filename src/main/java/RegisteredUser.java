@@ -24,12 +24,12 @@ public class RegisteredUser extends User {
     }
 
     public ArrayList<Location> getBookmarks() {
-        return this.getBookmarks();
+        return this.bookmarks;
     }
 
     // TODO: add review to location
-    public void addReview(String review, int rating) {
-        reviews.add(new Review(this, review, rating));
+    public void addReview(Location location, String review, int rating) {
+        reviews.add(new Review(this, location, review, rating));
     }
 
     // TODO: add review to location
@@ -62,13 +62,18 @@ public class RegisteredUser extends User {
         RegisteredUser u1 = new RegisteredUser("javalover", "nevercpp");
         RegisteredUser u2 = new RegisteredUser("hogwartsscholar", "hairypotty");
 
-        u1.addReview("Amazing place, would love to go back!", 5);
-        u1.addReview("Bottom of the barrel. Never go here...", 1);
-        u1.addReview("Good.", 3);
+        ArrayList<Review> reviewList = new ArrayList<>();
+        StudyLocation robarts = new StudyLocation(reviewList, "", "", true, true);
+        StudyLocation gerstein = new StudyLocation(reviewList, "", "", true, true);
+        StudyLocation koffler = new StudyLocation(reviewList, "", "", true, true);
 
-        u2.addReview("Yummy", 4);
-        u2.addReview("Not my cup of tea - literally.", 2);
-        u2.addReview("Good study spot.", 4);
+        u1.addReview(robarts, "Very quiet and productive, would love to go back!", 5);
+        u1.addReview(gerstein, "Bottom of the barrel. Never go here...", 1);
+        u1.addReview(koffler, "Good.", 3);
+
+        u2.addReview(robarts, "Please open the full 5th floor", 1);
+        u2.addReview(gerstein, "Not my cup of tea.", 2);
+        u2.addReview(koffler, "Good study spot.", 4);
 
         u1.viewReviews();
 

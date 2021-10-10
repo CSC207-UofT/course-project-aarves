@@ -1,13 +1,14 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Location {
     private String name;
     private String hours_of_service;
-    private List<Review> reviews;
+    private ArrayList<Review> reviews;
     private String area;
     //area grabbed from maps
 
-    public Location(List<Review> reviews, String hours_of_service, String area){
+    public Location(ArrayList<Review> reviews, String hours_of_service, String area){
         this.reviews = reviews;
         this.hours_of_service = hours_of_service;
         this.area = area;

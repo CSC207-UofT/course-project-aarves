@@ -1,9 +1,11 @@
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 public class StudyLocation extends Location{
     private boolean indoors;
     private boolean quiet;
-    public StudyLocation(List<Review> reviews, String hours_of_service, String area, boolean indoors,
+    public StudyLocation(ArrayList<Review> reviews, String hours_of_service, String area, boolean indoors,
                          boolean quiet) {
         super(reviews, hours_of_service, area);
         this.indoors = indoors;
