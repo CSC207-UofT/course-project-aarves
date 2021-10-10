@@ -7,18 +7,20 @@ public class ReviewManager {
         return reviewHashMap.get(reviewId);
     }
 
-    public void addReview(RegisteredUser reviewer, Location location, String review, int rating) {
+    public void createReview(RegisteredUser reviewer, Location location, String review, int rating) {
         Review new_review = new Review(reviewer, location, review, rating);
-        reviewHashMap.put(new_review.getReviewId(), new_review);
-        new_review.getReviewer().addReview(new_review);
-        location.addReview(new_review);
+        addReview(location, new_review);
     }
 
-    public void addReview(RegisteredUser reviewer, Location location, int rating) {
+    public void createReview(RegisteredUser reviewer, Location location, int rating) {
         Review new_review = new Review(reviewer, location, rating);
-        reviewHashMap.put(new_review.getReviewId(), new_review);
-        new_review.getReviewer().addReview(new_review);
-        location.addReview(new_review);
+        addReview(location, new_review);
+    }
+
+    public void addReview(Location location, Review review) {
+        reviewHashMap.put(review.getReviewId(), review);
+        review.getReviewer().addReview(review);
+        location.addReview(review);
     }
 
 }
