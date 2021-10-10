@@ -31,9 +31,8 @@ public class RegisteredUser extends User {
         this.reviews.add(review);
     }
 
-    // TODO: also delete review from location
-    public void deleteReview(String review, int rating) {
-
+    public void deleteReview(Review review) {
+        this.reviews.remove(review);
     }
 
     public void viewReviews() {

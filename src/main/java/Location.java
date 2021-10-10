@@ -18,6 +18,10 @@ public abstract class Location {
         this.reviews.add(review);
     }
 
+    public void deleteReview(Review review) {
+        this.reviews.remove(review);
+    }
+
     public void setName(String name) {
         this.name = name;
     }

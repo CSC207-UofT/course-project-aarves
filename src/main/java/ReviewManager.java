@@ -17,10 +17,16 @@ public class ReviewManager {
         addReview(location, new_review);
     }
 
-    public void addReview(Location location, Review review) {
+    protected void addReview(Location location, Review review) {
         reviewHashMap.put(review.getReviewId(), review);
         review.getReviewer().addReview(review);
         location.addReview(review);
+    }
+
+    public void deleteReview(RegisteredUser reviewer, Location location, Review review) {
+        reviewHashMap.remove(review.getReviewId());
+        reviewer.deleteReview(review);
+        location.deleteReview(review);
     }
 
 }
