@@ -68,14 +68,6 @@ public class Scenario {
             }
         }
         System.out.printf("Welcome to AARVES, %s!%n", username);
-
-//        // Check if the login information provided is correct
-//        if (am.correctLogin(username, password)) {
-//            return true;
-//        } else {
-//            System.out.println("Username/password is incorrect. Please try again.\n");
-//            return false;
-//        }
     }
 
     public static void main(String[] args) {
