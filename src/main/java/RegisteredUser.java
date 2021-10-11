@@ -1,7 +1,8 @@
 import java.util.ArrayList;
 
 public class RegisteredUser extends User {
-    private ArrayList<Review> reviews;
+    private ArrayList<Review> reviews = new ArrayList<>();
+    private ArrayList<Location> bookmarks;
     private String username;
     private String password;
 
@@ -14,30 +15,57 @@ public class RegisteredUser extends User {
         return this.password;
     }
 
-    /**
-     * TODO: add review (needs to communicate with location storing reviews too)
-     */
+    public String getUsername() {
+        return this.username;
+    }
 
-    /**
-     * TODO: delete review (needs to communicate with location storing reviews too)
-     */
+    public ArrayList<Review> getReviews() {
+        return this.reviews;
+    }
 
-    /**
-     * TODO: view reviews
-     */
+    public ArrayList<Location> getBookmarks() {
+        return this.bookmarks;
+    }
 
-    /**
-     * TODO: add bookmark
-     */
+    public void addReview(Review review) {
+        this.reviews.add(review);
+    }
 
+    public void deleteReview(Review review) {
+        this.reviews.remove(review);
+    }
 
-    /**
-     * TODO: delete bookmarks
-     */
+    public void viewReviews() {
+        for (Review review: this.reviews) {
+            System.out.println(review);
+        }
+    }
 
-    /**
-     * TODO: view bookmarks
-     */
+    public void addBookmark(Location loc) {
+        this.bookmarks.add(loc);
+    }
 
+    public void deleteBookmark(Location loc) {
+        this.bookmarks.remove(loc);
+    }
+
+    public void viewBookmarks() {
+        for (Location location : this.bookmarks) {
+            System.out.println(location);
+        }
+    }
+
+    public static void main(String[] args) {
+        RegisteredUser u1 = new RegisteredUser("javalover", "nevercpp");
+        RegisteredUser u2 = new RegisteredUser("hogwartsscholar", "hairypotty");
+
+        ArrayList<Review> reviewList = new ArrayList<>();
+        StudyLocation robarts = new StudyLocation(reviewList, "", "", true, true);
+        StudyLocation gerstein = new StudyLocation(reviewList, "", "", true, true);
+        StudyLocation koffler = new StudyLocation(reviewList, "", "", true, true);
+
+        u1.viewReviews();
+
+    }
 
 }

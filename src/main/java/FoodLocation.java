@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class FoodLocation extends Location{
@@ -6,7 +7,7 @@ public class FoodLocation extends Location{
     private boolean dinein;
     private int pricerange;
 
-    public FoodLocation(List<Review> reviews, String hours_of_service, String area,
+    public FoodLocation(ArrayList<Review> reviews, String hours_of_service, String area,
                         String food, boolean takeout, boolean dinein, int pricerange) {
         super(reviews, hours_of_service, area);
         this.foodtype = food;
