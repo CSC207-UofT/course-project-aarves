@@ -32,11 +32,16 @@ public abstract class Location {
 
     public int get_avgrating(){
      double avg = 0;
-     int len = reviews.size();
-     for(Review r : reviews){
+     int len = this.reviews.size();
+     for(Review r : this.reviews){
          avg += r.getRating();
      }
-     return (int) (avg/len);
+     if (this.reviews.size() == 0) {
+         return -1;
+     }
+     else {
+         return (int) (avg/len);
+     }
     }
 
     public String getArea(){
@@ -48,8 +53,15 @@ public abstract class Location {
     }
 
     public String toString(){
-        return (getName()+"\n Address: "+getArea()+"\n Hours of Service: "+getHours_of_service()+"\n Rating: "
-                +get_avgrating());
+        int avg_rating = this.get_avgrating();
+        if (avg_rating == -1) {
+            return (getName() + "\n Address: " + getArea() + "\n Hours of Service: " + getHours_of_service() + "\n Rating: "
+                    + "This location does not have any ratings yet.");
+        }
+        else {
+            return (getName() + "\n Address: " + getArea() + "\n Hours of Service: " + getHours_of_service() + "\n Rating: "
+                    + avg_rating);
+        }
     }
 
 }
