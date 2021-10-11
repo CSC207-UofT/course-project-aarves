@@ -89,14 +89,14 @@ public class Scenario {
             System.out.println();
 
             // Branch options based off their choice
-            switch (choice) {
-                case "1" -> {
-                    sc.userSignup();
-                    System.out.println();
-                    sc.userLogin();
-                }
-                case "2" -> sc.userLogin();
-                case "3" -> System.out.println("Welcome to AARVES!");
+            if ("1".equals(choice)) {
+                sc.userSignup();
+                System.out.println();
+                sc.userLogin();
+            } else if ("2".equals(choice)) {
+                sc.userLogin();
+            } else if ("3".equals(choice)) {
+                System.out.println("Welcome to AARVES!");
             }
 
             // Ask whether they'd like to return to the main menu
