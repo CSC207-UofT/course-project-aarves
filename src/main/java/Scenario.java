@@ -18,12 +18,7 @@ public class Scenario {
 
     public String mainMenu() {
         // Ask the user whether they want to signup or login (or continue as guest)
-        System.out.println("""
-                
-                AARVES --- Signup/Login
-                [1] Signup
-                [2] Login
-                [3] Continue as guest""");
+        System.out.println("AARVES --- Signup/Login\n[1] Signup\n[2] Login\n[3] Continue as guest");
         return scn.nextLine();
     }
 
@@ -94,14 +89,14 @@ public class Scenario {
             System.out.println();
 
             // Branch options based off their choice
-            if ("1".equals(choice)) {
-                sc.userSignup();
-                System.out.println();
-                sc.userLogin();
-            } else if ("2".equals(choice)) {
-                sc.userLogin();
-            } else if ("3".equals(choice)) {
-                System.out.println("Welcome to AARVES!");
+            switch (choice) {
+                case "1" -> {
+                    sc.userSignup();
+                    System.out.println();
+                    sc.userLogin();
+                }
+                case "2" -> sc.userLogin();
+                case "3" -> System.out.println("Welcome to AARVES!");
             }
 
             // Ask whether they'd like to return to the main menu
