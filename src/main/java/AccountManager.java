@@ -15,8 +15,11 @@ public class AccountManager {
     }
 
     public boolean correctLogin(String username, String password){
-        String storedPassword = accounts.get(username).getPassword();
-        return storedPassword.equals(password);
+        if (accounts.get(username) != null) {
+            String storedPassword = accounts.get(username).getPassword();
+            return storedPassword.equals(password);
+        }
+        return false;
     }
 
 }
