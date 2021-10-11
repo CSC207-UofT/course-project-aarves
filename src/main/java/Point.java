@@ -44,7 +44,8 @@ public class Point {
 
     @Override
     public boolean equals(Object other) {
-        if(other instanceof Point p) {
+        if(other instanceof Point) {
+            Point p = (Point) other;
             return this.longitude == p.getLongitude() && this.latitude == p.getLatitude();
         }
         else {
