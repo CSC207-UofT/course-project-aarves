@@ -36,7 +36,7 @@ public abstract class Location {
      for(Review r : this.reviews){
          avg += r.getRating();
      }
-     if (this.reviews.size() == 0) {
+     if (len == 0) {
          return -1;
      }
      else {
