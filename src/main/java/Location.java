@@ -8,8 +8,7 @@ public abstract class Location {
     private String area;
     //area grabbed from maps
 
-    public Location(ArrayList<Review> reviews, String hours_of_service, String area){
-        this.reviews = reviews;
+    public Location(String hours_of_service, String area){
         this.hours_of_service = hours_of_service;
         this.area = area;
     }

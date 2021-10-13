@@ -1,4 +1,6 @@
 import java.util.HashMap;
+import java.util.Locale;
+
 public class AccountManager {
 
     HashMap<String, RegisteredUser> accounts = new HashMap<>();
@@ -10,7 +12,7 @@ public class AccountManager {
      * @return true if the account already exists in accounts
      */
     public boolean isExistingAccount(String username){
-        return accounts.containsKey(username);
+        return accounts.containsKey(username.toLowerCase());
     }
 
     /**
@@ -20,7 +22,7 @@ public class AccountManager {
      * @param password the user's password
      */
     public void addUser(String username, String password){
-        accounts.put(username, new RegisteredUser(username, password));
+        accounts.put(username.toLowerCase(), new RegisteredUser(username, password));
     }
 
     /**
