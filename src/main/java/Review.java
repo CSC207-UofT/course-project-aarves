@@ -48,6 +48,10 @@ public class Review {
         return this.reviewId;
     }
 
+    public Location getLocation() {
+        return location;
+    }
+
     @Override
     public String toString() {
         return String.format("User:\t%s\n Rating:\t%s/%s\n Review:\t%s",
@@ -56,9 +60,7 @@ public class Review {
 
     public static void main(String[] args) {
 
-        ArrayList<Review> reviewList = new ArrayList<>();
-
-        StudyLocation robarts = new StudyLocation(reviewList, "", "", true, true);
+        StudyLocation robarts = new StudyLocation("", "", true, true);
 
         Review detailIncluded = new Review(new RegisteredUser("Billy123", "123abc"), robarts, "Fantastic place!", 4);
         System.out.println(detailIncluded);

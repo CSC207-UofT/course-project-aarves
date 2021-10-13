@@ -5,11 +5,11 @@ public class FoodLocation extends Location{
     private String foodtype;
     private boolean takeout;
     private boolean dinein;
-    private int pricerange;
+    private String pricerange;
 
-    public FoodLocation(ArrayList<Review> reviews, String hours_of_service, String area,
-                        String food, boolean takeout, boolean dinein, int pricerange) {
-        super(reviews, hours_of_service, area);
+    public FoodLocation(String hours_of_service, String area, String food,
+                        boolean takeout, boolean dinein, String pricerange) {
+        super(hours_of_service, area);
         this.foodtype = food;
         this.takeout = takeout;
         this.dinein = dinein;
@@ -28,7 +28,7 @@ public class FoodLocation extends Location{
         return foodtype;
     }
 
-    public int getPricerange() {
+    public String getPricerange() {
         return pricerange;
     }
 
