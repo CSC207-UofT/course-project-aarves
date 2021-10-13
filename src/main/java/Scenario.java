@@ -33,7 +33,7 @@ public class Scenario {
             if (!am.isExistingAccount(username)) {
                 flag = false;
             }
-            else if (username.length() <= 3) {
+            else if (username.length() < 3) {
                 System.out.println("Your username must be at least 3 characters long");
                 System.out.print("Username:\t");
                 username = scn.nextLine().trim();
