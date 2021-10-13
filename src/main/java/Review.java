@@ -48,6 +48,10 @@ public class Review {
         return this.reviewId;
     }
 
+    public Location getLocation() {
+        return location;
+    }
+
     @Override
     public String toString() {
         return String.format("User:\t%s\n Rating:\t%s/%s\n Review:\t%s",
