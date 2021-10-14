@@ -1,7 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 public class Review {
     private static int maxID = 0;
 
@@ -11,8 +7,16 @@ public class Review {
     private int rating;
     private int reviewId;
 
-    private ReviewManager rm = new ReviewManager();
-
+    /**
+     * Constructs a new Review object which belongs to a given RegisteredUser regarding a specific Location, and
+     * containing a String with information about the RegisteredUser's experience, and an Integer rating out of 5 based
+     * on the RegisteredUser's opinion.
+     *
+     * @param reviewer  The RegisteredUser creating the Review.
+     * @param location  The Location this Review is addressed towards.
+     * @param review    String information about the RegisteredUser's opinions.
+     * @param rating    Integer rating (out of 5) for location as per the RegisteredUser's opinion.
+     */
     public Review(RegisteredUser reviewer, Location location, String review, int rating) {
         this.reviewer = reviewer;
         this.location = location;
@@ -23,6 +27,14 @@ public class Review {
         Review.maxID += 1;
     }
 
+    /**
+     * Constructs a new Review object which belongs to a given RegisteredUser regarding a specific Location, and an
+     * Integer rating out of 5 based on the RegisteredUser's opinion.
+     *
+     * @param reviewer  The RegisteredUser creating the Review.
+     * @param location  The Location this Review is addressed towards.
+     * @param rating    Integer rating (out of 5) for location as per the RegisteredUser's opinion.
+     */
     public Review(RegisteredUser reviewer, Location location, int rating) {
         this.reviewer = reviewer;
         this.location = location;
@@ -32,22 +44,42 @@ public class Review {
         Review.maxID += 1;
     }
 
+    /**
+     * Return the rating associated with this Review.
+     * @return  Integer representing the rating (out of 5).
+     */
     public int getRating() {
         return this.rating;
     }
 
+    /**
+     * Return the written opinion associated with this Review (if applicable).
+     * @return  String representing the opinion.
+     */
     public String getReview() {
         return this.review;
     }
 
+    /**
+     * Return the RegisteredUser who left this Review.
+     * @return  RegisteredUser who created this Review.
+     */
     public RegisteredUser getReviewer() {
         return this.reviewer;
     }
 
+    /**
+     * Return the ID associated with this Review.
+     * @return  Integer representing the ID of the Review.
+     */
     protected int getReviewId() {
         return this.reviewId;
     }
 
+    /**
+     * Return the Location for which this Review is meant for.
+     * @return  Location who the Review is directed towards.
+     */
     public Location getLocation() {
         return location;
     }
@@ -56,16 +88,5 @@ public class Review {
     public String toString() {
         return String.format("User:\t%s\n Rating:\t%s/%s\n Review:\t%s",
                 this.reviewer.getUsername(), this.rating, 5, this.review);
-    }
-
-    public static void main(String[] args) {
-
-        StudyLocation robarts = new StudyLocation("", "", true, true);
-
-        Review detailIncluded = new Review(new RegisteredUser("Billy123", "123abc"), robarts, "Fantastic place!", 4);
-        System.out.println(detailIncluded);
-
-        Review detailExcluded = new Review(new RegisteredUser("Joey456", "456sticks"), robarts, 4);
-        System.out.println(detailExcluded);
     }
 }
