@@ -8,8 +8,6 @@ class AccountManagerTest {
 
     AccountManager am = new AccountManager();
     ReviewManager rm = new ReviewManager();
-    Location robartsPizza = new FoodLocation("11am-11pm", "Robarts",
-            "pizza", true, true, "$5-7");
 
     @BeforeEach
     public void setUp() {
@@ -38,7 +36,7 @@ class AccountManagerTest {
     @Test
     public void testIsExistingAccount() {
         Boolean existing = am.isExistingAccount("greekboi");
-        assertEquals(false, existing);
+        assertEquals(true, existing);
     }
 
     @Test
