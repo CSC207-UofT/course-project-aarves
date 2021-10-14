@@ -1,11 +1,11 @@
 public class Review {
     private static int maxID = 0;
 
-    private RegisteredUser reviewer;
-    private Location location;
+    private final RegisteredUser reviewer;
+    private final Location location;
     private String review;
-    private int rating;
-    private int reviewId;
+    private final int rating;
+    private final int reviewId;
 
     /**
      * Constructs a new Review object which belongs to a given RegisteredUser regarding a specific Location, and
