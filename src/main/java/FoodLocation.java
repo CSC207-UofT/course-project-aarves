@@ -62,7 +62,6 @@ public class FoodLocation extends Location{
         return pricerange;
     }
 
-
     /**
      *
      * @return String representation of FoodLocation
