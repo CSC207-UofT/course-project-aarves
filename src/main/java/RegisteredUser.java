@@ -60,9 +60,9 @@ public class RegisteredUser extends User {
         RegisteredUser u2 = new RegisteredUser("hogwartsscholar", "hairypotty");
 
         ArrayList<Review> reviewList = new ArrayList<>();
-        StudyLocation robarts = new StudyLocation(reviewList, "", "", true, true);
-        StudyLocation gerstein = new StudyLocation(reviewList, "", "", true, true);
-        StudyLocation koffler = new StudyLocation(reviewList, "", "", true, true);
+        StudyLocation robarts = new StudyLocation("", "", true, true);
+        StudyLocation gerstein = new StudyLocation( "", "", true, true);
+        StudyLocation koffler = new StudyLocation( "", "", true, true);
 
         u1.viewReviews();
 

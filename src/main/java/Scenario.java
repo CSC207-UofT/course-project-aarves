@@ -26,21 +26,38 @@ public class Scenario {
 
         System.out.println("AARVES --- Signup");
         System.out.print("Username:\t");
-        String username = scn.nextLine();
+        String username = scn.nextLine().trim();
         boolean flag = true;
         while (flag) {
             // Check if the account exists
             if (!am.isExistingAccount(username)) {
                 flag = false;
-            } else {
+            }
+            else if (username.length() < 3) {
+                System.out.println("Your username must be at least 3 characters long");
+                System.out.print("Username:\t");
+                username = scn.nextLine().trim();
+            }
+            else {
                 System.out.println("That username is taken, please enter a new one.");
                 System.out.print("Username:\t");
-                username = scn.nextLine();
+                username = scn.nextLine().trim();
             }
         }
-        // Ask for the user's preferred password
-        System.out.print("Password:\t");
-        String password = scn.nextLine();
+        // Ask for the user's preferred password - passwords must be at least 8 characters long
+        flag = true;
+        String password = "";
+        do {
+            System.out.print("Password:\t");
+            password = scn.nextLine();
+            if (password.length() >= 8) {
+                flag = false;
+            }
+            else {
+                System.out.println("Your password must be at least 8 characters long");
+            }
+        } while (flag);
+
         // Create the account
         ac.createAccount(am, username, password);
         System.out.println("Your account has been successfully created! Please login.");
