@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class ReviewManager {
 
-    private static HashMap<Integer, Review> reviewHashMap = new HashMap<>();
+    final static HashMap<Integer, Review> reviewHashMap = new HashMap<>();
 
     protected Review getReview(int reviewId) {
         return reviewHashMap.get(reviewId);
