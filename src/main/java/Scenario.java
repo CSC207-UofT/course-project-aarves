@@ -1,5 +1,3 @@
-import jdk.jfr.Registered;
-
 import java.util.Scanner;
 
 /**
@@ -8,12 +6,12 @@ import java.util.Scanner;
 
 public class Scenario {
 
-    private static AccountManager am = new AccountManager();
-    private static ReviewManager rm = new ReviewManager();
-    private AccountCreator ac = new AccountCreator();
-    private Scanner scn = new Scanner(System.in);
-    private static FoodMap fm = new FoodMap();
-    private static StudyMap sm = new StudyMap();
+    final static AccountManager am = new AccountManager();
+    final static ReviewManager rm = new ReviewManager();
+    final AccountCreator ac = new AccountCreator();
+    final Scanner scn = new Scanner(System.in);
+    final static FoodMap fm = new FoodMap();
+    final static StudyMap sm = new StudyMap();
     private static User user;
 
     public Scenario() {
@@ -65,7 +63,7 @@ public class Scenario {
         }
         // Ask for the user's preferred password - passwords must be at least 8 characters long
         flag = true;
-        String password = "";
+        String password;
         do {
             System.out.print("Password:\t");
             password = scn.nextLine();
@@ -117,7 +115,7 @@ public class Scenario {
     }
 
     public Location search() {
-        String search = "";
+        String search;
         while(true) {
             System.out.print("AARVES --- Search Location:" );
             search = scn.nextLine();
@@ -155,9 +153,19 @@ public class Scenario {
         System.out.println("Would you like to bookmark this location (Y/N)?\t");
         String bookmark = scn.nextLine();
         if (bookmark.equalsIgnoreCase("Y")) {
-            user.addBookmark(location);
-            System.out.println();
-            System.out.println("Location successfully bookmarked!");
+            if (user.addBookmark(location)) {
+                System.out.println();
+                System.out.println("Location successfully bookmarked!");
+            }
+            else {
+                System.out.println();
+                System.out.println("You already have a bookmark here! Would you like to remove it (Y/N)?\t");
+                String delete_bookmark = scn.nextLine();
+                if (delete_bookmark.equalsIgnoreCase("Y")) {
+                    user.deleteBookmark(location);
+                    System.out.println("Bookmark removed!");
+                }
+            }
         }
     }
 
@@ -171,8 +179,25 @@ public class Scenario {
             int rating = -1;
             while (rating < 0 || rating > 5) {
                 rating = scn.nextInt();
+                scn.nextLine();
             }
             rm.createReview(user, location, review_content, rating);
+        }
+    }
+
+    public void viewBookmarks(RegisteredUser user) {
+        System.out.println("Would you like to view your bookmarks (Y/N)?\t");
+        String view = scn.nextLine();
+        if (view.equalsIgnoreCase("Y")) {
+            user.viewBookmarks();
+        }
+    }
+
+    public void viewReviews(RegisteredUser user) {
+        System.out.println("Would you like to view your past reviews (Y/N)?\t");
+        String view = scn.nextLine();
+        if (view.equalsIgnoreCase("Y")) {
+            user.viewReviews();
         }
     }
 
@@ -191,16 +216,20 @@ public class Scenario {
             if ("1".equals(choice)) {
                 sc.userSignup();
                 System.out.println();
-                sc.user = sc.userLogin();
+                user = sc.userLogin();
             } else if ("2".equals(choice)) {
-                sc.user = sc.userLogin();
+                user = sc.userLogin();
             } else if ("3".equals(choice)) {
-                sc.user = new GuestUser();
+                user = new GuestUser();
                 System.out.println("Welcome to AARVES!");
             }
 
             boolean search_flag = true;
             while(search_flag) {
+                if (user instanceof RegisteredUser) {
+                    sc.viewBookmarks((RegisteredUser) user);
+                    sc.viewReviews((RegisteredUser) user);
+                }
                 // Ask whether they'd like to search or filter the locations
                 System.out.println();
                 String action = sc.locationAction();
@@ -215,9 +244,9 @@ public class Scenario {
                 }
 
                 // Ask if they would like to bookmark the location and leave a review
-                if (sc.user instanceof RegisteredUser) {
-                    sc.bookmarkLocation(location, (RegisteredUser) sc.user);
-                    sc.leaveReview(location, (RegisteredUser) sc.user);
+                if (user instanceof RegisteredUser) {
+                    sc.bookmarkLocation(location, (RegisteredUser) user);
+                    sc.leaveReview(location, (RegisteredUser) user);
 
                 }
 

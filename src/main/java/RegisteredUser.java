@@ -77,8 +77,14 @@ public class RegisteredUser extends User {
      * Add a Location to the RegisteredUser's bookmarked locations.
      * @param loc   Location to-be-bookmarked.
      */
-    public void addBookmark(Location loc) {
-        this.bookmarks.add(loc);
+    public boolean addBookmark(Location loc) {
+        if (this.bookmarks.contains(loc)) {
+            return false;
+        }
+        else {
+            this.bookmarks.add(loc);
+            return true;
+        }
     }
 
     /**
