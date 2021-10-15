@@ -1,6 +1,3 @@
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
 /**
  * Child class of Location
  *
@@ -46,6 +43,6 @@ public class StudyLocation extends Location{
     @Override
     public String toString() {
         return (super.getName()+"\n Address: "+super.getArea()+"\n Hours of Service: "+super.getHours_of_service()+
-                "\n Rating: " +super.get_avgrating() + "\n Indoors:"+isIndoors()+"\n Quiet: "+isQuiet());
+                "\n Rating: " +super.getAvgRating() + "\n Indoors:"+isIndoors()+"\n Quiet: "+isQuiet());
     }
 }
