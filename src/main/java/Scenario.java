@@ -222,6 +222,7 @@ public class Scenario {
                 }
 
                 // Ask whether they'd like to search again
+                System.out.println();
                 System.out.println("Would you like to search again (Y/N)?\t");
                 String searchAgain = scn.nextLine();
                 if (searchAgain.equalsIgnoreCase("N")) {
@@ -230,6 +231,7 @@ public class Scenario {
             }
 
             // Ask whether they'd like to return to the main menu
+            System.out.println();
             System.out.println("Would you like to return to the main menu (Y/N)?\t");
             String toMainMenu = scn.nextLine();
             if (toMainMenu.equalsIgnoreCase("N")) {
