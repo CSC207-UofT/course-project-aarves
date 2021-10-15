@@ -64,7 +64,7 @@ public class Scenario {
 
     }
 
-    public void userLogin() {
+    public RegisteredUser userLogin() {
 
         System.out.println("AARVES --- Login");
         System.out.print("Username:\t");
@@ -85,6 +85,7 @@ public class Scenario {
             }
         }
         System.out.printf("Welcome to AARVES, %s!%n", username);
+        return  am.getUser(username);
     }
 
     public static void main(String[] args) {
@@ -97,14 +98,17 @@ public class Scenario {
             String choice = sc.mainMenu();
             System.out.println();
 
+            User user;
+
             // Branch options based off their choice
             if ("1".equals(choice)) {
                 sc.userSignup();
                 System.out.println();
-                sc.userLogin();
+                user = sc.userLogin();
             } else if ("2".equals(choice)) {
-                sc.userLogin();
+                user = sc.userLogin();
             } else if ("3".equals(choice)) {
+                user = new GuestUser();
                 System.out.println("Welcome to AARVES!");
             }
 
