@@ -1,6 +1,4 @@
 import java.util.HashMap;
-import java.util.Scanner;
-import java.util.Set;
 
 public abstract class Map {
     public HashMap<Point, Location> locationHashMap = new HashMap<>();

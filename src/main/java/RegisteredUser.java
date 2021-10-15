@@ -41,14 +41,6 @@ public class RegisteredUser extends User {
     }
 
     /**
-     * Return all the locations bookmarked by this RegisteredUser.
-     * @return  ArrayList of locations (object Location).
-     */
-    public ArrayList<Location> getBookmarks() {
-        return this.bookmarks;
-    }
-
-    /**
      * Add a Review to the RegisteredUser.
      * @param review    Review created by the RegisteredUser.
      */
@@ -77,8 +69,14 @@ public class RegisteredUser extends User {
      * Add a Location to the RegisteredUser's bookmarked locations.
      * @param loc   Location to-be-bookmarked.
      */
-    public void addBookmark(Location loc) {
-        this.bookmarks.add(loc);
+    public boolean addBookmark(Location loc) {
+        if (this.bookmarks.contains(loc)) {
+            return false;
+        }
+        else {
+            this.bookmarks.add(loc);
+            return true;
+        }
     }
 
     /**
@@ -90,7 +88,7 @@ public class RegisteredUser extends User {
     }
 
     /**
-     * Displays all of the bookmarks for this RegisteredUser.
+     * Displays all bookmarks for this RegisteredUser.
      */
     public void viewBookmarks() {
         for (Location location : this.bookmarks) {
