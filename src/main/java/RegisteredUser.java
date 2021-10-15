@@ -53,7 +53,7 @@ public class RegisteredUser extends User {
      * @param review    Review created by the RegisteredUser.
      */
     public void addReview(Review review) {
-        this.reviews.add(review);
+        reviews.add(review);
     }
 
     /**
@@ -61,7 +61,7 @@ public class RegisteredUser extends User {
      * @param review    Review to-be-removed from the RegisteredUser.
      */
     public void deleteReview(Review review) {
-        this.reviews.remove(review);
+        reviews.remove(review);
     }
 
     /**

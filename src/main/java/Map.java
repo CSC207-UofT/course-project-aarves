@@ -1,7 +1,9 @@
 import java.util.HashMap;
+import java.util.Scanner;
+import java.util.Set;
 
 public abstract class Map {
-    private HashMap<Point, Location> locationHashMap = new HashMap<>();
+    public HashMap<Point, Location> locationHashMap = new HashMap<>();
 
     /**
      * Return a Location from Map, based off the given Point (which contains coordinates).
@@ -29,5 +31,29 @@ public abstract class Map {
      */
     protected Location deleteLocation(Point point) {
         return locationHashMap.remove(point);
+    }
+
+    public Location getLocationByName(String name) {
+        for (Point key: locationHashMap.keySet()) {
+            if (name.equalsIgnoreCase(locationHashMap.get(key).getName())) {
+                return locationHashMap.get(key);
+            }
+        }
+        return null;
+    }
+
+    /**
+     *
+     * @return string representation of StudyMap
+     */
+    public String toString() {
+        if (locationHashMap == null) {
+            return "There are currently no locations in this FoodMap.";
+        }
+        StringBuilder locations = new StringBuilder();
+        for (Point key: locationHashMap.keySet()) {
+            locations.append(locationHashMap.get(key)).append("\n");
+        }
+        return locations.toString();
     }
 }

@@ -7,7 +7,7 @@ import java.util.List;
 public abstract class Location {
     private String name;
     private String hours_of_service;
-    private ArrayList<Review> reviews;
+    private ArrayList<Review> reviews = new ArrayList<Review>();
     private String area;
     //area grabbed from maps
 
@@ -27,7 +27,7 @@ public abstract class Location {
      * @param review
      */
     public void addReview(Review review) {
-        this.reviews.add(review);
+        reviews.add(review);
     }
 
     /**
@@ -35,7 +35,7 @@ public abstract class Location {
      * @param review
      */
     public void deleteReview(Review review) {
-        this.reviews.remove(review);
+        reviews.remove(review);
     }
 
     /**
@@ -62,16 +62,16 @@ public abstract class Location {
      */
     public int get_avgrating(){
      double avg = 0;
+
+    if (this.reviews == null) {
+        return -1;
+    }
+
      int len = this.reviews.size();
      for(Review r : this.reviews){
          avg += r.getRating();
      }
-     if (len == 0) {
-         return -1;
-     }
-     else {
-         return (int) (avg/len);
-     }
+     return (int) (avg/len);
     }
 
     /**
