@@ -16,9 +16,9 @@ public class StudyLocation extends Location{
      * @param indoors
      * @param quiet
      */
-    public StudyLocation(String hours_of_service, String area, boolean indoors,
+    public StudyLocation(String hours_of_service, String name, String area, boolean indoors,
                          boolean quiet) {
-        super(hours_of_service, area);
+        super(hours_of_service, name, area);
         this.indoors = indoors;
         this.quiet = quiet;
     }
