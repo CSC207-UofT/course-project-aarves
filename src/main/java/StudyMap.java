@@ -10,19 +10,17 @@ public class StudyMap extends Map {
     }
 
     /**
-     * TODO: Documentation (unsure why we return something for adding a location)
-     * @param point
-     * @param location
-     * @return
+     * @param point coordinates of the StudyLocation
+     * @param location the location
+     * @return reference to the StudyLocation
      */
     public StudyLocation addLocation(Point point, StudyLocation location) {
         return (StudyLocation) super.addLocation(point, location);
     }
 
     /**
-     * TODO: Documentation (unsure why we return something for deleting a location)
-     * @param point
-     * @return
+     * @param point coordinates of the StudyLocation
+     * @return reference to the StudyLocation
      */
     public StudyLocation deleteLocation(Point point) {
         return (StudyLocation) super.deleteLocation(point);
