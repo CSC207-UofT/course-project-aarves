@@ -16,6 +16,16 @@ public class AccountManager {
     }
 
     /**
+     * Returns the RegisteredUser associated with the account
+     *
+     * @param username the RegisteredUser's username
+     * @return the RegisteredUser associated with the account
+     */
+    public RegisteredUser getUser(String username) {
+        return accounts.get(username);
+    }
+
+    /**
      * Adds a RegisteredUser to the AccountManager. An existing username will never be passed in.
      *
      * @param username the user's username
