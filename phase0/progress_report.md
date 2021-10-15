@@ -21,33 +21,27 @@ The skeleton program can be found on the course project GitHub, in src/main.java
 Individual Progress
 ===================
 
-Each group member contributed to the Specification and CRC Cards. For the skeleton program, this is a list of what each group member has worked on. Other group members have touched into other classes to fix bugs, but this is a list of the classes we developed and added docstrings for:
+Each group member contributed to the Specification and CRC Cards. For the skeleton program, this is a list of what each group member has worked on. Other group members have touched into other classes to fix bugs, but below are the classes we developed and added docstrings for, based off the group member that did it:
 
-Vaishnavi: Abstract class Location and it's children classes FoodLocation and StudyLocation.
-
-Erica: AccountManager and added docstrings for AccountCreator.
-
-Syed: Abstract class User and its' child GuestUser. Worked on FoodLocation as well.
-
-Ash: Review class and ReviewManager, and also testing our scenario walkthrough in Scenario.java.
-
-Anthony: Git stuff, fixed reviewId issue, and worked on Map, Point, FoodMap, and StudyMap.
-
-Rebecca: AccountCreator to create accounts, RegisteredUser to store reviews and information about a user, worked a bit on ReviewManager to add and delete reviews. Unit test for AccountManager.
+| Member  | Things worked on  |
+|---|---|
+| Vaishnavi  | Abstract class Location and it's children classes FoodLocation and StudyLocation.  |
+| Erica      | AccountManager and added docstrings for AccountCreator.  |
+| Syed       | Abstract class User and its' child GuestUser. Worked on FoodLocation as well.  |
+| Ash        | Review, ReviewManager, and Scenario (to test CRC) class. Added documentation for Map, Point, Review, and RegisteredUser. |
+| Anthony    | Git stuff, fixed reviewId issue, and worked on Map, Point, FoodMap, and StudyMap. |
+| Rebecca    | AccountCreator to create accounts, RegisteredUser to store reviews and information about a user, worked a bit on ReviewManager to add and delete reviews. Unit test for AccountManager. |
 
 What each group member plans to work on next:
 
-Vaishnavi: Package organization within our project.
-
-Erica: Considering how we can develop more controllers.
-
-Syed: Work on the UI and more on the Account classes.
-
-Ash: Implementation of MapBox API.
-
-Anthony: A controller for map information, MapController.
-
-Rebecca: Storage (currently use cases are storing entities), so work on figuring out how where to store objects and implementing.
+| Member  | Things planning to work on  |
+|---|---|
+| Vaishnavi  | Package organization within our project.  |
+| Erica      | Considering how we can develop more controllers.  |
+| Syed       | Work on the UI and more on the Account classes.  |
+| Ash        | Implementation of MapBox API. |
+| Anthony    | A controller for map information, MapController. |
+| Rebecca    | Storage (currently use cases are storing entities), so work on figuring out how where to store objects and implementing. |
 
 Benefits to the design/progress with code
 =========================================
