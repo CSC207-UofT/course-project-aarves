@@ -7,7 +7,7 @@ import java.util.List;
 public abstract class Location {
     private String name;
     private String hours_of_service;
-    private ArrayList<Review> reviews = new ArrayList<Review>();
+    private ArrayList<Review> reviews = new ArrayList<>();
     private String area;
     //area grabbed from maps
 
