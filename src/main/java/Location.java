@@ -16,9 +16,10 @@ public abstract class Location {
      * @param hours_of_service
      * @param area
      */
-    public Location(String hours_of_service, String area){
+    public Location(String hours_of_service, String name, String area){
         this.hours_of_service = hours_of_service;
         this.area = area;
+        this.name = name;
     }
 
     /**

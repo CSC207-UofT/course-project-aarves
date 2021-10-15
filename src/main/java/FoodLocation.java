@@ -21,9 +21,9 @@ public class FoodLocation extends Location{
      * @param dinein
      * @param pricerange
      */
-    public FoodLocation(String hours_of_service, String area, String food,
+    public FoodLocation(String hours_of_service, String name, String area, String food,
                         boolean takeout, boolean dinein, String pricerange) {
-        super(hours_of_service, area);
+        super(hours_of_service, name, area);
         this.foodtype = food;
         this.takeout = takeout;
         this.dinein = dinein;
