@@ -1,30 +1,31 @@
 import java.util.ArrayList;
-import java.util.List;
+
 /**
  * Parent class for FoodLocation and StudyLocation
  *
  */
 public abstract class Location {
-    private String name;
-    private String hours_of_service;
-    private ArrayList<Review> reviews = new ArrayList<>();
-    private String area;
+    final String name;
+    final String hours_of_service;
+    final ArrayList<Review> reviews = new ArrayList<>();
+    final String area;
     //area grabbed from maps
 
     /**
      * Constructs a new Location object
-     * @param hours_of_service
-     * @param area
+     * @param hoursOfService hours of service of location
+     * @param name name of location
+     * @param area address of location
      */
-    public Location(String hours_of_service, String name, String area){
-        this.hours_of_service = hours_of_service;
+    public Location(String hoursOfService, String name, String area){
+        this.hours_of_service = hoursOfService;
         this.area = area;
         this.name = name;
     }
 
     /**
      * Adds the given Review object into Reviews
-     * @param review
+     * @param review review to be added
      */
     public void addReview(Review review) {
         reviews.add(review);
@@ -32,18 +33,10 @@ public abstract class Location {
 
     /**
      * Deletes the given Review Object from Reviews
-     * @param review
+     * @param review review to be deleted
      */
     public void deleteReview(Review review) {
         reviews.remove(review);
-    }
-
-    /**
-     * Sets the Name of the Location Object
-     * @param name
-     */
-    public void setName(String name) {
-        this.name = name;
     }
 
     /**
@@ -60,17 +53,18 @@ public abstract class Location {
      * @return int object of the
      * average of the ratings given from each Review from the ArrayList reviews
      */
-    public int get_avgrating(){
+    public int getAvgRating(){
      double avg = 0;
-
-    if (this.reviews == null) {
-        return -1;
-    }
-
      int len = this.reviews.size();
+
+     if(len == 0) {
+        return -1;
+     }
+
      for(Review r : this.reviews){
          avg += r.getRating();
      }
+
      return (int) (avg/len);
     }
 
@@ -95,7 +89,7 @@ public abstract class Location {
      * @return String representation of Location
      */
     public String toString(){
-        int avg_rating = this.get_avgrating();
+        int avg_rating = this.getAvgRating();
         if (avg_rating == -1) {
             return (getName() + "\n Address: " + getArea() + "\n Hours of Service: " + getHours_of_service() + "\n Rating: "
                     + "This location does not have any ratings yet.");
