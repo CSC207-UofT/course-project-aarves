@@ -29,7 +29,7 @@ Each group member contributed to the Specification and CRC Cards. For the skelet
 | Erica      | AccountManager and added docstrings for AccountCreator.  |
 | Syed       | Abstract class User and its' child GuestUser. Worked on FoodLocation as well.  |
 | Ash        | Review, ReviewManager, and Scenario (to test CRC) class. Added documentation for Map, Point, Review, and RegisteredUser. |
-| Anthony    | Git stuff, fixed reviewId issue, and worked on Map, Point, FoodMap, and StudyMap. |
+| Anthony    | Git stuff, fixed Review issue, worked on Map, Point, FoodMap, and StudyMap and documentation. |
 | Rebecca    | AccountCreator to create accounts, RegisteredUser to store reviews and information about a user, worked a bit on ReviewManager to add and delete reviews. Unit test for AccountManager. |
 
 What each group member plans to work on next:
