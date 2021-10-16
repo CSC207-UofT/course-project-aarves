@@ -33,7 +33,7 @@ public abstract class Map {
 
     /**
      * Return a Location from Map, based off the given name. Returns null if the location is not found.
-     * @param name Name of the Location to be searched for.
+     * @param name String name of the Location to be searched for.
      * @return  Location specified for by name.
      */
     public Location getLocationByName(String name) {
@@ -46,8 +46,8 @@ public abstract class Map {
     }
 
     /**
-     * Returns a string representation of this Map object
-     * @return string representation of Map
+     * Returns a string representation of this Map object.
+     * @return String representation of Map.
      */
     public String toString() {
         if (locationHashMap == null) {
