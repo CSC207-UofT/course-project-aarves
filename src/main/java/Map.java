@@ -41,12 +41,12 @@ public abstract class Map {
     }
 
     /**
-     *
-     * @return string representation of StudyMap
+     * Returns a string representation of this Map object
+     * @return string representation of Map
      */
     public String toString() {
         if (locationHashMap == null) {
-            return "There are currently no locations in this FoodMap.";
+            return "There are currently no locations in this Map.";
         }
         StringBuilder locations = new StringBuilder();
         for (Point key: locationHashMap.keySet()) {

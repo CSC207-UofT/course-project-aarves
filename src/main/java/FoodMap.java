@@ -6,6 +6,7 @@ public class FoodMap extends Map {
      * @param point Point object containing the coordinates of Location.
      * @return reference to the FoodLocation added
      */
+    @Override
     public FoodLocation getLocation(Point point) {
         return (FoodLocation) super.getLocation(point);
     }
@@ -27,6 +28,7 @@ public class FoodMap extends Map {
      * @param point Point of the Location to-be-removed.
      * @return reference to the FoodLocation removed.
      */
+    @Override
     public FoodLocation deleteLocation(Point point) {
         return (FoodLocation) super.deleteLocation(point);
     }
