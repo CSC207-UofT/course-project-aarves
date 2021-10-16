@@ -5,6 +5,7 @@ public class StudyMap extends Map {
      * @param point Point object representing the coordinates of the StudyLocation.
      * @return      StudyLocation at the given Point.
      */
+    @Override
     public StudyLocation getLocation(Point point) {
         return (StudyLocation) super.getLocation(point);
     }
@@ -22,6 +23,7 @@ public class StudyMap extends Map {
      * @param point coordinates of the StudyLocation
      * @return reference to the StudyLocation
      */
+    @Override
     public StudyLocation deleteLocation(Point point) {
         return (StudyLocation) super.deleteLocation(point);
     }

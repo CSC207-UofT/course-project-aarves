@@ -33,7 +33,7 @@ public class Point {
     /**
      * Set the longitude for this Point.
      * @param longitude Float representing the new longitude of the Point.
-     * @return  Boolean for if the given longitude is valid.
+     * @return  Boolean for whether the given longitude is valid.
      */
     public boolean setLongitude(float longitude) {
         if(-180 <= longitude && longitude <= 180) {
@@ -68,6 +68,12 @@ public class Point {
         }
     }
 
+    /**
+     * If other is not a Point, returns false. Otherwise, return if given Point other has the same
+     * coordinates as this Point.
+     * @param other Object with which to compare.
+     * @return Boolean for whether this Point is equal to other.
+     */
     @Override
     public boolean equals(Object other) {
         if(other instanceof Point) {
@@ -79,6 +85,10 @@ public class Point {
         }
     }
 
+    /**
+     * Hashes based on both coordinates, allowing Point to be a key in a HashMap.
+     * @return Int hash code for this Point.
+     */
     @Override
     public int hashCode() {
         return Objects.hash(this.longitude, this.latitude);

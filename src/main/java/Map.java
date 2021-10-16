@@ -31,22 +31,27 @@ public abstract class Map {
         return locationHashMap.remove(point);
     }
 
+    /**
+     * Return a Location from Map, based off the given name. Returns null if the location is not found.
+     * @param name String name of the Location to be searched for.
+     * @return  Location specified for by name.
+     */
     public Location getLocationByName(String name) {
-        for (Point key: locationHashMap.keySet()) {
-            if (name.equalsIgnoreCase(locationHashMap.get(key).getName())) {
-                return locationHashMap.get(key);
+        for (Location location: locationHashMap.values()) {
+            if (name.equalsIgnoreCase(location.getName())) {
+                return location;
             }
         }
         return null;
     }
 
     /**
-     *
-     * @return string representation of StudyMap
+     * Returns a string representation of this Map object.
+     * @return String representation of Map.
      */
     public String toString() {
         if (locationHashMap == null) {
-            return "There are currently no locations in this FoodMap.";
+            return "There are currently no locations in this Map.";
         }
         StringBuilder locations = new StringBuilder();
         for (Point key: locationHashMap.keySet()) {
