@@ -3,15 +3,16 @@
  *
  */
 public class StudyLocation extends Location{
-    private boolean indoors;
-    private boolean quiet;
+    final private boolean indoors;
+    final private boolean quiet;
 
     /**
      * Constructs a new StudyLocation Object
-     * @param hours_of_service
-     * @param area
-     * @param indoors
-     * @param quiet
+     * @param hours_of_service hours of service
+     * @param name name of location
+     * @param area address
+     * @param indoors if location is indoors
+     * @param quiet if location is quiet
      */
     public StudyLocation(String hours_of_service, String name, String area, boolean indoors,
                          boolean quiet) {
@@ -30,7 +31,7 @@ public class StudyLocation extends Location{
 
     /**
      *
-     * @return a boolean value of wheather the StudyLocation is quiet
+     * @return a boolean value of whether the StudyLocation is quiet
      */
     public boolean isQuiet() {
         return quiet;
@@ -43,6 +44,6 @@ public class StudyLocation extends Location{
     @Override
     public String toString() {
         return (super.getName()+"\n Address: "+super.getArea()+"\n Hours of Service: "+super.getHours_of_service()+
-                "\n Rating: " +super.getAvgRating() + "\n Indoors:"+isIndoors()+"\n Quiet: "+isQuiet());
+                "\n Rating: " + super.getAvgRating() + "\n Indoors:"+isIndoors()+"\n Quiet: "+isQuiet());
     }
 }

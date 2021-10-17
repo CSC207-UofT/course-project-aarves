@@ -68,7 +68,7 @@ public class FoodLocation extends Location{
     @Override
     public String toString() {
         return (super.getName()+"\n Address: "+super.getArea()+"\n Hours of Service: "+super.getHours_of_service()
-                +"\n Rating: " +super.getAvgRating()+"\n"+ getFoodType()+"\n dine-in: "+ isDineIn()+"\n takeout: "+isTakeout()
+                +"\n Rating: " + super.getAvgRating()+"\n"+ getFoodType()+"\n dine-in: "+ isDineIn()+"\n takeout: "+isTakeout()
                 +"\n"+ getPriceRange());
     }
 }
