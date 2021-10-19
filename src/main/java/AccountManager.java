@@ -58,8 +58,7 @@ public class AccountManager {
      */
     public boolean correctLogin(String username, String password){
         if (accounts.getUser(username) != null) {
-            String storedPassword = accounts.getUser(username).getPassword();
-            return storedPassword.equals(password);
+            return accounts.getUser(username).isCorrectPassword(password);
         }
         return false;
     }

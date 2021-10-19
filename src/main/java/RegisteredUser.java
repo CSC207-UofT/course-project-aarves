@@ -17,11 +17,13 @@ public class RegisteredUser extends User {
     }
 
     /**
-     * Return the password associated with this RegisteredUser.
-     * @return  String containing the password.
+     * Return whether the password matches the user's password.
+     *
+     * @param password the password guess
+     * @return true if the password matches the user's password
      */
-    public String getPassword() {
-        return this.password;
+    public boolean isCorrectPassword(String password) {
+        return this.password == password;
     }
 
     /**
