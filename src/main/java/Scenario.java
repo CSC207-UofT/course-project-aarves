@@ -8,7 +8,6 @@ public class Scenario {
 
     final static AccountManager am = new AccountManager();
     final static ReviewManager rm = new ReviewManager();
-    final AccountCreator ac = new AccountCreator();
     final Scanner scn = new Scanner(System.in);
     final static FoodMap fm = new FoodMap();
     final static StudyMap sm = new StudyMap();
@@ -76,7 +75,7 @@ public class Scenario {
         } while (flag);
 
         // Create the account
-        ac.createAccount(am, username, password);
+        am.addUser(username, password);
         System.out.println("Your account has been successfully created! Please login.");
 
     }

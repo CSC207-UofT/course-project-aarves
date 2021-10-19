@@ -1,8 +1,6 @@
-import java.util.HashMap;
-
 public class AccountManager {
 
-    HashMap<String, RegisteredUser> accounts = new HashMap<>();
+    private final AccountList accounts = new AccountList();
 
     /**
      * Checks and returns if the account already exists.
@@ -11,7 +9,12 @@ public class AccountManager {
      * @return true if the account already exists in accounts
      */
     public boolean isExistingAccount(String username){
-        return accounts.containsKey(username.toLowerCase());
+        RegisteredUser existing = accounts.getUser(username);
+        if (existing != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -21,7 +24,7 @@ public class AccountManager {
      * @return the RegisteredUser associated with the account
      */
     public RegisteredUser getUser(String username) {
-        return accounts.get(username);
+        return accounts.getUser(username);
     }
 
     /**
@@ -31,7 +34,8 @@ public class AccountManager {
      * @param password the user's password
      */
     public void addUser(String username, String password){
-        accounts.put(username.toLowerCase(), new RegisteredUser(username, password));
+        RegisteredUser user = new RegisteredUser(username.toLowerCase(), password);
+        accounts.addUser(user);
     }
 
     /**
@@ -42,7 +46,7 @@ public class AccountManager {
      */
     public void deleteUser(RegisteredUser user, ReviewManager rm) {
         rm.deleteAllUserReviews(user);
-        accounts.remove(user.getUsername());
+        accounts.deleteUser(user);
     }
 
     /**
@@ -53,8 +57,8 @@ public class AccountManager {
      * @return true if the user's username and password matches the pairing in accounts.
      */
     public boolean correctLogin(String username, String password){
-        if (accounts.get(username) != null) {
-            String storedPassword = accounts.get(username).getPassword();
+        if (accounts.getUser(username) != null) {
+            String storedPassword = accounts.getUser(username).getPassword();
             return storedPassword.equals(password);
         }
         return false;
