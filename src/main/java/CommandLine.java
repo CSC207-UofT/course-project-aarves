@@ -103,14 +103,19 @@ public class CommandLine {
         switch (this.userType) {
             case 1:
                 System.out.println("Added Bookmark");
+                break;
             case 2:
                 System.out.println(this.ig.getBookmarks(user));
+                break;
             case 3:
                 System.out.println("Deleted Bookmark");
+                break;
             case 4:
                 System.out.println("Searched Bookmark");
+                break;
             case 5:
                 System.out.println("Logged Out");
+                break;
             default:
                 System.out.println("Invalid input");
         }
