@@ -10,12 +10,16 @@ public class InputController {
      */
     public int userAccessType(String accessType) {
         // Check if the input is valid
-        return switch (accessType) {
-            case "1" -> 1;
-            case "2" -> 2;
-            case "3" -> 3;
-            default -> 0;
-        };
+        switch (accessType) {
+            case "1":
+                return 1;
+            case "2":
+                return 2;
+            case "3":
+                return 3;
+            default:
+                return 0;
+        }
     }
 
     public boolean createUser(String username, String password) {
@@ -29,13 +33,19 @@ public class InputController {
     }
 
     public int userBookmarks(String bookmarkChoice) {
-        return switch (bookmarkChoice) {
-            case "1" -> 1;
-            case "2" -> 2;
-            case "3" -> 3;
-            case "4" -> 4;
-            case "5" -> 5;
-            default -> 0;
-        };
+        switch (bookmarkChoice) {
+            case "1":
+                return 1;
+            case "2":
+                return 2;
+            case "3":
+                return 3;
+            case "4":
+                return 4;
+            case "5":
+                return 5;
+            default:
+                return 0;
+        }
     }
 }

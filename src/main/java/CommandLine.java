@@ -101,12 +101,18 @@ public class CommandLine {
         this.userType = this.ic.userBookmarks(bookmarkChoice);
 
         switch (this.userType) {
-            case 1 -> System.out.println("Added Bookmark");
-            case 2 -> System.out.println(this.ig.getBookmarks(user));
-            case 3 -> System.out.println("Deleted Bookmark");
-            case 4 -> System.out.println("Searched Bookmark");
-            case 5 -> System.out.println("Logged Out");
-            default -> System.out.println("Invalid input");
+            case 1:
+                System.out.println("Added Bookmark");
+            case 2:
+                System.out.println(this.ig.getBookmarks(user));
+            case 3:
+                System.out.println("Deleted Bookmark");
+            case 4:
+                System.out.println("Searched Bookmark");
+            case 5:
+                System.out.println("Logged Out");
+            default:
+                System.out.println("Invalid input");
         }
     }
 
