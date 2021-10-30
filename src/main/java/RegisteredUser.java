@@ -97,4 +97,12 @@ public class RegisteredUser extends User {
             System.out.println(location);
         }
     }
+
+    public String getBookmarks() {
+        String result = "";
+        for (Location location : this.bookmarks) {
+            result += location.getName() + ",";
+        }
+        return result;
+    }
 }
