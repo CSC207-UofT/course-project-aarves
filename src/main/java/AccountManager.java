@@ -1,6 +1,6 @@
 public class AccountManager {
 
-    private final AccountList accounts = new AccountList();
+    private static final AccountList accounts = new AccountList();
 
     /**
      * Checks and returns if the account already exists.
