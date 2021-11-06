@@ -18,8 +18,8 @@ public class ReviewManager {
      * @param rating the Review's rating
      */
     public void createReview(RegisteredUser reviewer, Location location, String review, int rating) {
-        Review new_review = new Review(reviewer, location, review, rating);
-        addReview(location, new_review);
+        Review new_review = new Review(reviewer.getUsername(), location, review, rating);
+        addReview(location, reviewer, new_review);
     }
 
     /**
@@ -30,8 +30,8 @@ public class ReviewManager {
      * @param rating the Review's rating
      */
     public void createReview(RegisteredUser reviewer, Location location, int rating) {
-        Review new_review = new Review(reviewer, location, rating);
-        addReview(location, new_review);
+        Review new_review = new Review(reviewer.getUsername(), location, rating);
+        addReview(location, reviewer, new_review);
     }
 
     /**
@@ -40,9 +40,9 @@ public class ReviewManager {
      * @param location the Location of the review
      * @param review the Review to be added
      */
-    protected void addReview(Location location, Review review) {
+    protected void addReview(Location location, RegisteredUser reviewer, Review review) {
         reviewHashMap.put(review.getReviewId(), review);
-        review.getReviewer().addReview(review);
+        reviewer.addReview(review);
         location.addReview(review);
     }
 
