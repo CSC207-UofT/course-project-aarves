@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Parent class for FoodLocation and StudyLocation
@@ -7,8 +7,9 @@ import java.util.ArrayList;
 public abstract class Location {
     final String name;
     final String hours_of_service;
-    final ArrayList<Review> reviews = new ArrayList<>();
+    final HashMap<Integer, Integer> reviews = new HashMap<>();
     final String area;
+    float rating = -1;
     //area grabbed from maps
 
     /**
@@ -28,7 +29,12 @@ public abstract class Location {
      * @param review review to be added
      */
     public void addReview(Review review) {
-        reviews.add(review);
+        reviews.put(review.getReviewId(), review.getRating());
+        int total = 0;
+        for (Integer r : this.reviews.keySet()) {
+            total += reviews.get(r);
+        }
+        this.rating = (float) (total / this.reviews.keySet().size());
     }
 
     /**
@@ -36,7 +42,7 @@ public abstract class Location {
      * @param review review to be deleted
      */
     public void deleteReview(Review review) {
-        reviews.remove(review);
+        reviews.remove(review.getReviewId());
     }
 
     /**
@@ -45,27 +51,6 @@ public abstract class Location {
      */
     public String getHours_of_service() {
         return hours_of_service;
-    }
-
-    /**
-     * Given the ArrayList of reviews, return the average of all the ratings associated with
-     * the Location Object
-     * @return int object of the
-     * average of the ratings given from each Review from the ArrayList reviews
-     */
-    public int getAvgRating(){
-     double avg = 0;
-     int len = this.reviews.size();
-
-     if(len == 0) {
-        return -1;
-     }
-
-     for(Review r : this.reviews){
-         avg += r.getRating();
-     }
-
-     return (int) (avg/len);
     }
 
     /**
@@ -89,14 +74,13 @@ public abstract class Location {
      * @return String representation of Location
      */
     public String toString(){
-        int avg_rating = this.getAvgRating();
-        if (avg_rating == -1) {
+        if (this.rating == -1) {
             return (getName() + "\n Address: " + getArea() + "\n Hours of Service: " + getHours_of_service() + "\n Rating: "
                     + "This location does not have any ratings yet.");
         }
         else {
             return (getName() + "\n Address: " + getArea() + "\n Hours of Service: " + getHours_of_service() + "\n Rating: "
-                    + avg_rating);
+                    + rating);
         }
     }
 

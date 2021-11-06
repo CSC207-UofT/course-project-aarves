@@ -52,9 +52,9 @@ public class ReviewManager {
      * @param reviewer the RegisteredUser whose reviews will be deleted.
      */
     public void deleteAllUserReviews(RegisteredUser reviewer) {
-        ArrayList<Review> reviews = reviewer.getReviews();
-        for (Review r : reviews) {
-            deleteReview(reviewer, r.getLocation(), r);
+        ArrayList<Integer> reviews = reviewer.getReviews();
+        for (Integer r : reviews) {
+            deleteReview(reviewer, getReview(r).getLocation(), getReview(r));
         }
     }
 
