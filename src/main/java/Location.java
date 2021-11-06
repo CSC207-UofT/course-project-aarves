@@ -37,6 +37,10 @@ public abstract class Location {
         this.rating = (float) (total / this.reviews.keySet().size());
     }
 
+    public float getRating() {
+        return this.rating;
+    }
+
     /**
      * Deletes the given Review Object from Reviews
      * @param review review to be deleted
