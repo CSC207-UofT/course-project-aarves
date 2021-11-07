@@ -3,10 +3,10 @@ import java.util.ArrayList;
 
 public class ReviewManager {
 
-    final static HashMap<Integer, Review> reviewHashMap = new HashMap<>();
+    private static final ReviewList reviews = new ReviewList();
 
     protected Review getReview(int reviewId) {
-        return reviewHashMap.get(reviewId);
+        return reviews.getReview(reviewId);
     }
 
     /**
@@ -18,8 +18,8 @@ public class ReviewManager {
      * @param rating the Review's rating
      */
     public void createReview(RegisteredUser reviewer, Location location, String review, int rating) {
-        Review new_review = new Review(reviewer, location, review, rating);
-        addReview(location, new_review);
+        Review new_review = new Review(reviewer.getUsername(), location, review, rating);
+        addReview(location, reviewer, new_review);
     }
 
     /**
@@ -30,8 +30,8 @@ public class ReviewManager {
      * @param rating the Review's rating
      */
     public void createReview(RegisteredUser reviewer, Location location, int rating) {
-        Review new_review = new Review(reviewer, location, rating);
-        addReview(location, new_review);
+        Review new_review = new Review(reviewer.getUsername(), location, rating);
+        addReview(location, reviewer, new_review);
     }
 
     /**
@@ -40,9 +40,9 @@ public class ReviewManager {
      * @param location the Location of the review
      * @param review the Review to be added
      */
-    protected void addReview(Location location, Review review) {
-        reviewHashMap.put(review.getReviewId(), review);
-        review.getReviewer().addReview(review);
+    protected void addReview(Location location, RegisteredUser reviewer, Review review) {
+        reviews.addReview(review);
+        reviewer.addReview(review);
         location.addReview(review);
     }
 
@@ -52,9 +52,9 @@ public class ReviewManager {
      * @param reviewer the RegisteredUser whose reviews will be deleted.
      */
     public void deleteAllUserReviews(RegisteredUser reviewer) {
-        ArrayList<Review> reviews = reviewer.getReviews();
-        for (Review r : reviews) {
-            deleteReview(reviewer, r.getLocation(), r);
+        ArrayList<Integer> reviews = reviewer.getReviews();
+        for (Integer r : reviews) {
+            deleteReview(reviewer, getReview(r).getLocation(), getReview(r));
         }
     }
 
@@ -66,7 +66,7 @@ public class ReviewManager {
      * @param review the Review to be deleted
      */
     public void deleteReview(RegisteredUser reviewer, Location location, Review review) {
-        reviewHashMap.remove(review.getReviewId());
+        reviews.deleteReview(review);
         reviewer.deleteReview(review);
         location.deleteReview(review);
     }

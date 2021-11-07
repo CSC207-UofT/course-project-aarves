@@ -1,7 +1,7 @@
 public class Review {
     private static int maxID = 0;
 
-    private final RegisteredUser reviewer;
+    private final String reviewer;
     private final Location location;
     private String review;
     private final int rating;
@@ -17,7 +17,7 @@ public class Review {
      * @param review    String information about the RegisteredUser's opinions.
      * @param rating    Integer rating (out of 5) for location as per the RegisteredUser's opinion.
      */
-    public Review(RegisteredUser reviewer, Location location, String review, int rating) {
+    public Review(String reviewer, Location location, String review, int rating) {
         this.reviewer = reviewer;
         this.location = location;
         this.review = review;
@@ -35,7 +35,7 @@ public class Review {
      * @param location  The Location this Review is addressed towards.
      * @param rating    Integer rating (out of 5) for location as per the RegisteredUser's opinion.
      */
-    public Review(RegisteredUser reviewer, Location location, int rating) {
+    public Review(String reviewer, Location location, int rating) {
         this.reviewer = reviewer;
         this.location = location;
         this.rating = rating;
@@ -64,7 +64,7 @@ public class Review {
      * Return the RegisteredUser who left this Review.
      * @return  RegisteredUser who created this Review.
      */
-    public RegisteredUser getReviewer() {
+    public String getReviewer() {
         return this.reviewer;
     }
 
@@ -87,6 +87,6 @@ public class Review {
     @Override
     public String toString() {
         return String.format("User:\t%s\n Rating:\t%s/%s\n Review:\t%s",
-                this.reviewer.getUsername(), this.rating, 5, this.review);
+                this.reviewer, this.rating, 5, this.review);
     }
 }

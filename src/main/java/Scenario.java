@@ -192,13 +192,13 @@ public class Scenario {
         }
     }
 
-    public void viewReviews(RegisteredUser user) {
-        System.out.println("Would you like to view your past reviews (Y/N)?\t");
-        String view = scn.nextLine();
-        if (view.equalsIgnoreCase("Y")) {
-            user.viewReviews();
-        }
-    }
+//    public void viewReviews(RegisteredUser user) {
+//        System.out.println("Would you like to view your past reviews (Y/N)?\t");
+//        String view = scn.nextLine();
+//        if (view.equalsIgnoreCase("Y")) {
+//            user.viewReviews();
+//        }
+//    }
 
     public static void main(String[] args) {
         Scanner scn = new Scanner(System.in);
@@ -225,10 +225,10 @@ public class Scenario {
 
             boolean search_flag = true;
             while(search_flag) {
-                if (user instanceof RegisteredUser) {
-                    sc.viewBookmarks((RegisteredUser) user);
-                    sc.viewReviews((RegisteredUser) user);
-                }
+//                if (user instanceof RegisteredUser) {
+//                    sc.viewBookmarks((RegisteredUser) user);
+//                    sc.viewReviews((RegisteredUser) user);
+//                }
                 // Ask whether they'd like to search or filter the locations
                 System.out.println();
                 String action = sc.locationAction();
