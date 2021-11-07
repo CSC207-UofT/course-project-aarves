@@ -46,7 +46,7 @@ public abstract class Location {
      * @param review review to be deleted
      */
     public void deleteReview(Review review) {
-        reviews.remove(review.getReviewId());
+        reviews.remove(review);
     }
 
     /**
