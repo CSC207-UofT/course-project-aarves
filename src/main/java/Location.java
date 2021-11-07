@@ -9,6 +9,7 @@ public abstract class Location {
     final String hours_of_service;
     final ArrayList<Review> reviews = new ArrayList<>();
     final String area;
+    float rating = -1;
     //area grabbed from maps
 
     /**
@@ -29,6 +30,15 @@ public abstract class Location {
      */
     public void addReview(Review review) {
         reviews.add(review);
+        int total = 0;
+        for (Review r : this.reviews) {
+            total += r.getRating();
+        }
+        this.rating = (float) total / this.reviews.size();
+    }
+
+    public float getRating() {
+        return this.rating;
     }
 
     /**
@@ -45,27 +55,6 @@ public abstract class Location {
      */
     public String getHours_of_service() {
         return hours_of_service;
-    }
-
-    /**
-     * Given the ArrayList of reviews, return the average of all the ratings associated with
-     * the Location Object
-     * @return int object of the
-     * average of the ratings given from each Review from the ArrayList reviews
-     */
-    public int getAvgRating(){
-     double avg = 0;
-     int len = this.reviews.size();
-
-     if(len == 0) {
-        return -1;
-     }
-
-     for(Review r : this.reviews){
-         avg += r.getRating();
-     }
-
-     return (int) (avg/len);
     }
 
     /**
@@ -89,14 +78,13 @@ public abstract class Location {
      * @return String representation of Location
      */
     public String toString(){
-        int avg_rating = this.getAvgRating();
-        if (avg_rating == -1) {
+        if (this.rating == -1) {
             return (getName() + "\n Address: " + getArea() + "\n Hours of Service: " + getHours_of_service() + "\n Rating: "
                     + "This location does not have any ratings yet.");
         }
         else {
             return (getName() + "\n Address: " + getArea() + "\n Hours of Service: " + getHours_of_service() + "\n Rating: "
-                    + avg_rating);
+                    + rating);
         }
     }
 

@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class RegisteredUser extends User {
-    private final ArrayList<Review> reviews = new ArrayList<>();
+    private final ArrayList<Integer> reviews = new ArrayList<>();
     private final ArrayList<Location> bookmarks = new ArrayList<>();
     private final String username;
     private final String password;
@@ -38,7 +38,7 @@ public class RegisteredUser extends User {
      * Return all the reviews made by this RegisteredUser.
      * @return  ArrayList of reviews (object Review).
      */
-    public ArrayList<Review> getReviews() {
+    public ArrayList<Integer> getReviews() {
         return this.reviews;
     }
 
@@ -47,7 +47,7 @@ public class RegisteredUser extends User {
      * @param review    Review created by the RegisteredUser.
      */
     public void addReview(Review review) {
-        reviews.add(review);
+        reviews.add(review.getReviewId());
     }
 
     /**
@@ -58,14 +58,7 @@ public class RegisteredUser extends User {
         reviews.remove(review);
     }
 
-    /**
-     * Displays all reviews made by the RegisteredUser.
-     */
-    public void viewReviews() {
-        for (Review review: this.reviews) {
-            System.out.println(review);
-        }
-    }
+    // TODO: method viewReviews elsewhere in the code (can't be here, or we'd have clean architecture violation)
 
     /**
      * Add a Location to the RegisteredUser's bookmarked locations.
