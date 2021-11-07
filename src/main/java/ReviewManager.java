@@ -3,10 +3,10 @@ import java.util.ArrayList;
 
 public class ReviewManager {
 
-    final static HashMap<Integer, Review> reviewHashMap = new HashMap<>();
+    private static final ReviewList reviews = new ReviewList();
 
     protected Review getReview(int reviewId) {
-        return reviewHashMap.get(reviewId);
+        return reviews.getReview(reviewId);
     }
 
     /**
@@ -41,7 +41,7 @@ public class ReviewManager {
      * @param review the Review to be added
      */
     protected void addReview(Location location, RegisteredUser reviewer, Review review) {
-        reviewHashMap.put(review.getReviewId(), review);
+        reviews.addReview(review);
         reviewer.addReview(review);
         location.addReview(review);
     }
@@ -66,7 +66,7 @@ public class ReviewManager {
      * @param review the Review to be deleted
      */
     public void deleteReview(RegisteredUser reviewer, Location location, Review review) {
-        reviewHashMap.remove(review.getReviewId());
+        reviews.deleteReview(review);
         reviewer.deleteReview(review);
         location.deleteReview(review);
     }
