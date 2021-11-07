@@ -41,6 +41,7 @@ public class AccountSerializer implements Serializer{
         return accounts;
     }
 
+    // DELETE LATER
     public static void main(String[] args) throws IOException {
         RegisteredUser user1 = new RegisteredUser("sparky", "woof");
         RegisteredUser user2 = new RegisteredUser("johndoe", "password");
