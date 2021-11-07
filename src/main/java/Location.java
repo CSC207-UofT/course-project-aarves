@@ -1,4 +1,4 @@
-import java.util.HashMap;
+import java.util.ArrayList;
 
 /**
  * Parent class for FoodLocation and StudyLocation
@@ -7,7 +7,7 @@ import java.util.HashMap;
 public abstract class Location {
     final String name;
     final String hours_of_service;
-    final HashMap<Integer, Integer> reviews = new HashMap<>();
+    final ArrayList<Review> reviews = new ArrayList<>();
     final String area;
     float rating = -1;
     //area grabbed from maps
@@ -29,12 +29,12 @@ public abstract class Location {
      * @param review review to be added
      */
     public void addReview(Review review) {
-        reviews.put(review.getReviewId(), review.getRating());
+        reviews.add(review);
         int total = 0;
-        for (Integer r : this.reviews.keySet()) {
-            total += reviews.get(r);
+        for (Review r : this.reviews) {
+            total += r.getRating();
         }
-        this.rating = (float) (total / this.reviews.keySet().size());
+        this.rating = (float) total / this.reviews.size();
     }
 
     public float getRating() {
