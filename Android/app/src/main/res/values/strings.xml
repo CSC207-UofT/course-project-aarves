@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">UofT Yelp</string>
+    <string name="register">Register</string>
+    <string name="sign_in">Sign In</string>
+    <string name="guest">Guest</string>
+    <string name="logo">LOGO</string>
+    <string name="forgot_password">Forgot password</string>
+    <string name="sotd">SOTD</string>
+    <string name="fotd">FOTD</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="back">Back</string>
+    <string name="login">Login</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="mapbox_access_token">PUT_YOUR_TOKEN_HERE</string>
+</resources>
