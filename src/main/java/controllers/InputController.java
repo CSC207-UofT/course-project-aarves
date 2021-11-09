@@ -1,3 +1,7 @@
+package controllers;
+
+import usecases.AccountManager;
+
 public class InputController {
 
     AccountManager am = new AccountManager();

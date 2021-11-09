@@ -1,10 +1,11 @@
+import usecases.AccountList;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import entities.RegisteredUser;
 
 import java.io.*;
 
-public class AccountSerializer implements Serializer{
+public class AccountSerializer implements Serializer {
 
 
     static Gson gson = new GsonBuilder().setPrettyPrinting().create();

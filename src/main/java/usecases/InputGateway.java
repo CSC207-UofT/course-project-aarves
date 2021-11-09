@@ -1,3 +1,6 @@
+package usecases;
+
+import usecases.AccountManager;
 import entities.RegisteredUser;
 
 public class InputGateway {

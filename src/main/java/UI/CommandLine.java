@@ -1,4 +1,8 @@
+package UI;
+
+import controllers.InputController;
 import entities.RegisteredUser;
+import usecases.InputGateway;
 
 import java.util.Scanner;
 

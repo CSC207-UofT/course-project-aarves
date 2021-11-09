@@ -1,3 +1,5 @@
+package usecases;
+
 import entities.RegisteredUser;
 
 public class AccountManager {

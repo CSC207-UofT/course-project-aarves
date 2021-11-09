@@ -1,3 +1,5 @@
+package usecases;
+
 import entities.Review;
 
 import java.util.HashMap;

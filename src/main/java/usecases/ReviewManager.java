@@ -1,3 +1,5 @@
+package usecases;
+
 import entities.Location;
 import entities.RegisteredUser;
 import entities.Review;
