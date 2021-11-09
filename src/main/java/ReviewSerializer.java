@@ -1,5 +1,7 @@
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import entities.FoodLocation;
+import entities.Review;
 
 import java.io.*;
 

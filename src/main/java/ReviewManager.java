@@ -1,4 +1,7 @@
-import java.util.HashMap;
+import entities.Location;
+import entities.RegisteredUser;
+import entities.Review;
+
 import java.util.ArrayList;
 
 public class ReviewManager {

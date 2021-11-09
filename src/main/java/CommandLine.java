@@ -1,3 +1,5 @@
+import entities.RegisteredUser;
+
 import java.util.Scanner;
 
 public class CommandLine {

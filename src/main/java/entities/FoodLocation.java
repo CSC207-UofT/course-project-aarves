@@ -1,8 +1,12 @@
+package entities;
+
+import entities.Location;
+
 /**
  * Child class of Location
  *
  */
-public class FoodLocation extends Location{
+public class FoodLocation extends Location {
     final String foodType;
     final boolean takeout;
     final boolean dineIn;

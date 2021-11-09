@@ -1,3 +1,5 @@
+import entities.RegisteredUser;
+
 public class AccountManager {
 
     private static final AccountList accounts = new AccountList();

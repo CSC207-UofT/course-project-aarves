@@ -1,3 +1,7 @@
+package entities;
+
+import entities.Map;
+
 public class StudyMap extends Map {
 
     /**

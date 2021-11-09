@@ -1,3 +1,7 @@
+package entities;
+
+import entities.Location;
+
 import java.util.HashMap;
 
 public abstract class Map {

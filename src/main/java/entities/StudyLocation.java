@@ -1,8 +1,12 @@
+package entities;
+
+import entities.Location;
+
 /**
  * Child class of Location
  *
  */
-public class StudyLocation extends Location{
+public class StudyLocation extends Location {
     final private boolean indoors;
     final private boolean quiet;
 

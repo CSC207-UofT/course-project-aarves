@@ -1,3 +1,5 @@
+package entities;
+
 /**
  * Parent class for GuestUser and constructs a new User object that has an attribute isLoggedOn set
  * as false to indicate that the User is not logged in.

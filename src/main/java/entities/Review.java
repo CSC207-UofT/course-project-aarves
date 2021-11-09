@@ -1,3 +1,5 @@
+package entities;
+
 public class Review {
     private static int maxID = 0;
 

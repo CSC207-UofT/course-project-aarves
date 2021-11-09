@@ -1,3 +1,5 @@
+import entities.RegisteredUser;
+
 public class InputGateway {
 
     AccountManager am = new AccountManager();

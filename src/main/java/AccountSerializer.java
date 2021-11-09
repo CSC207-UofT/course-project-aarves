@@ -1,5 +1,7 @@
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import entities.RegisteredUser;
+
 import java.io.*;
 
 public class AccountSerializer implements Serializer{
