@@ -36,11 +36,31 @@ The app now has an Android UI. The user is now able to use the interactable map 
 
 TO DO, if we want to add this in.
 
-## Major decisions made by our group ##
+## Major decisions made by our group: ##
 
-How does our project adhere to Clean Architecture?
+### Clean Architecture
+**_How does our project adhere to Clean Architecture?_**
+- The code is independent of the Android UI, and external agency and of the database (?)
 
-How is our project consistent with the SOLID design principles?
+**Scenario walk-through:**
+    Upon opening the app, a client interacts with the software through an Android UI. When a client signs-in...
+
+### Solid Principles
+_**How is our project consistent with the SOLID design principles?**_
+
+- Single-Responsibility Principle:
+- Open- Closed Principle:
+- Liskov Substitution Principle:
+- Interface Segregation Principle:
+  - Our Serializer interface is kept small, only defining the two crucial methods 
+  for serialization 
+- Dependency Inversion Principle:
+  - In general, our entities such as a RegisteredUser do not know about for example the Android UI, any use cases
+  or controllers. Instead, the CommandLine generates an instance of the InputController and InputGateway. 
+  The InputController and InputGateways then generate instances of an AccountManager and an AccountManager is able to 
+  instantiate a new RegisteredUser. This flow illustrates how our code only points inwards, consistent with the 
+  dependency rule
+  
 
 ## Packaging ##
 
@@ -49,6 +69,14 @@ How is our project consistent with the SOLID design principles?
 ## Design Patterns ##
 
 (Which design patterns did we implement?)
+
+## Use of Github Features ## 
+
+During our implementation of Phase 1, our team made better use of branching in Github. Instead of each team member
+working off of their own branch like we did during Phase 0, our team instead branched by feature. For example, we had a 
+branch dedicated to Serialization and upon second thought, the Serialization branch could have had two other branches 
+for each entity that was serialized. We also used the issues feature in Github which made it easy to highlight what 
+needed our attention.
 
 ## Progress Report ##
 
