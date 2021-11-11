@@ -13,7 +13,7 @@ Our goal is to create an app that is tailored to UofT students, allowing them to
 (Picture here of FOTD, SOTD)
 
 - Search locations, and use the provided filter to narrow their search for a location.
-- Use the interactable map to browse locations near them.
+- Use the interactable map to browse locations at the St. George campus.
   
 (Picture of map feature here)
 
