@@ -68,7 +68,15 @@ _**How is our project consistent with the SOLID design principles?**_
 
 ## Design Patterns ##
 
-(Which design patterns did we implement?)
+- Template Method Design Pattern:
+  - Since RegisteredUser and GuestUser classes have a bunch of similarities between them, we decided to implement the
+  Template Method Design Pattern to demonstrate Clean Architecture. The abstract class User contains a Template Method
+  called Features and inside the Template Method are the variant and invariant steps. The invariant steps are the
+  common methods between the two subclasses such as; addBookmark(), deleteBookmark(), viewBookmarks(), viewReviews()
+  and they are implemented in the abstract class User. Whereas, the variant steps; getUsername(), getReviews(), 
+  addReview(), deleteReview() are left unimplemented in the abstract class User and are then implemented by 
+  RegisteredUser.
+
 
 ## Use of Github Features ## 
 
