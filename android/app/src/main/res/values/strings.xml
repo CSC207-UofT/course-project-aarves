@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Bluepages</string>
+    <string name="mapbox_access_token">pk.eyJ1IjoiYXNoZW5hZmVlIiwiYSI6ImNrdnEzd2ZxOWVvdHcydm1uYnloNTI4YzkifQ.0Zna_JG9aLJdjGNNyLlQ3Q</string>
+</resources>
