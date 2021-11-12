@@ -2,35 +2,35 @@
 
 ## Specification ##
 
-Our goal is to create an app that is tailored to UofT students, allowing them to browse restaurants and study spots on the St. George Campus. The app allows students to leave reviews and view the reviews of other students for each location.
+Our goal is to create an app that is tailored to UofT students, allowing them to browse restaurants and study spots on the St. George Campus. Through it, students will be able to leave and view the reviews of other students for each location.
 
--   To browse the app, users can either create an account, login, or continue as a guest (no account).
+- To browse the app, users can either create an account, login, or continue as a guest (no account).
 
-### All users should be able to: ###
+### Permissions based off login-type
 
--   View a list of study and food locations recommended to them.
-
--   Search locations, and use the provided filter to narrow their search for a location.
-
--   Use the interactable map to browse locations near them.
-
-### All users with an account should be able to: ###
-
--   Bookmark a location for future viewing
-
--   Leave a review and rating for each location
+| User-type  | Permissions |
+|------------|-------------|
+| Guest users can...     | <ul><li>View a randomly selected food and study spot of the day.</li><li>Search for locations, and further tune their search using filters.</li><li>Use the interactive map to browse locations in their vicinity.</li></ul>            |
+| Registered users can... | <ul><li>Do everything a guest user can do.</li><li>Bookmark locations for easy access in the future.</li><li>Leave reviews and a rating for locations.</li></ul>            |
 
 ### Locations ###
 
--   Each location displays information regarding the location (address, name of location).
+Across both types of locations, general information such as name, address, and hours are provided.
 
--   Food location includes the food type, dine-in/take out options and the price range
+| Location-type | Information-shown |
+|---------------|-------------------|
+| Food          | <ul><li>Food type (i.e. Japanese).</li><li>Whether it's dine-in or takeout.</li><li>Price range.</li></ul>                  |
+| Study         | <ul><li>Whether it's indoors or outdoors.</li><li>Study room availability (if indoors).</li></ul>                  |
 
--   Study location includes whether it is indoors or outdoors and if there are study rooms available
+## Changes From Phase0 ##
 
-## Functionality added between phase 0 and phase 1 ##
+From phase 0 to phase 1, we took the command-line interface and built upon it to have an Android app complete with a GUI. With this addition, the user can now use an interactive map to browse locations. Below are demonstrations of the benefits this move to Android has conveyed:
 
-The app now has an Android UI. The user is now able to use the interactable map to  browse locations at the St. George campus.
+| Being Shown  | Demonstration |
+|--------------|---------------|
+| Login        | INSERT GIF    |
+| Registration | INSERT GIF    |
+| Map browsing | INSERT GIF    |
 
 ## UML Diagram ##
 
