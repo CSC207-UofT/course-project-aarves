@@ -66,6 +66,11 @@ _**How is our project consistent with the SOLID design principles?**_
 
 (Which packaging strategies did we consider? Which did we end up using, and why?)
 
+During our refactoring process, we first considered packaging by feature. However, 
+this proved to be difficult since there were a lot of files that shared similar attributes.
+We ended up packaging by the layers of clean archetecture(enities, use cases, controllers) because it was more efficient
+(used the crc cards and report from phase 0 for reference), and it can keep us all in check of fulfilling the clean 
+architecture model.
 ## Design Patterns ##
 
 (Which design patterns did we implement?)
