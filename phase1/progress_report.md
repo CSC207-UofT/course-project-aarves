@@ -68,9 +68,10 @@ _**How is our project consistent with the SOLID design principles?**_
 
 During our refactoring process, we first considered packaging by feature. However, 
 this proved to be difficult since there were a lot of files that shared similar attributes.
-We ended up packaging by the layers of clean archetecture(enities, use cases, controllers) because it was more efficient
+We ended up packaging by the layers of clean architecture(enities, use cases, controllers) because it was more efficient
 (used the crc cards and report from phase 0 for reference), and it can keep us all in check of fulfilling the clean 
-architecture model.
+architecture model. We are currently unsure about how to organize our serializer files(the Interface, AccountSerializer, 
+ReviewSerializer), because it does not cleanly meet any of the actual layers of clean architecture without a violation.
 ## Design Patterns ##
 
 (Which design patterns did we implement?)
