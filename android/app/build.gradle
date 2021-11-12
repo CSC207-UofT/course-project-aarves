@@ -13,6 +13,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        targetSdkVersion 31
+        minSdkVersion 21
     }
 
     buildTypes {
@@ -25,6 +27,11 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    buildFeatures {
+        viewBinding true
+    }
+    compileSdkVersion 31
+    buildToolsVersion '31.0.0'
 }
 
 dependencies {
@@ -35,7 +42,7 @@ dependencies {
 
     implementation 'com.mapbox.maps:android:10.0.0'
 
-    testImplementation 'junit:junit:'
+    testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
