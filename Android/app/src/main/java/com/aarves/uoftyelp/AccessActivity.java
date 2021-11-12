@@ -19,7 +19,7 @@ public class AccessActivity extends AppCompatActivity {
      * @param view
      */
     public void loginAsGuest(View view) {
-        Intent intent = new Intent(this, MapActivity.class);
+        Intent intent = new Intent(this, MainMenuActivity.class);
         startActivity(intent);
     }
 
