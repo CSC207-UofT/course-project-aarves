@@ -52,8 +52,10 @@ public class ReviewManager {
      * @param reviewer the RegisteredUser whose reviews will be deleted.
      */
     public void deleteAllUserReviews(RegisteredUser reviewer) {
-        ArrayList<Integer> reviews = reviewer.getReviews();
-        for (Integer r : reviews) {
+        ArrayList<Integer> reviewIds = reviewer.getReviews();
+
+        while (reviewIds.size() != 0) {
+            Integer r = reviewIds.get(0);
             deleteReview(reviewer, getReview(r).getLocation(), getReview(r));
         }
     }
@@ -67,7 +69,7 @@ public class ReviewManager {
      */
     public void deleteReview(RegisteredUser reviewer, Location location, Review review) {
         reviews.deleteReview(review);
-        reviewer.deleteReview(review);
+        reviewer.deleteReview(review.getReviewId());
         location.deleteReview(review);
     }
 

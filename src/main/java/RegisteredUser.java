@@ -52,10 +52,10 @@ public class RegisteredUser extends User {
 
     /**
      * Removes a Review from the RegisteredUser.
-     * @param review    Review to-be-removed from the RegisteredUser.
+     * @param reviewId   Review to-be-removed from the RegisteredUser.
      */
-    public void deleteReview(Review review) {
-        reviews.remove(review);
+    public void deleteReview(Integer reviewId) {
+        reviews.remove(reviewId);
     }
 
     // TODO: method viewReviews elsewhere in the code (can't be here, or we'd have clean architecture violation)
