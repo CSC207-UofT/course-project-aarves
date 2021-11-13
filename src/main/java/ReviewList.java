@@ -5,7 +5,7 @@ public class ReviewList {
     final static Map<Integer, Review> reviewHashMap = new HashMap<>();
 
     /**
-     * Adds a registered user account to the accounts list.
+     * Adds a review to the reviews list.
      * @param review the review to add
      */
     public void addReview(Review review) {
@@ -21,7 +21,7 @@ public class ReviewList {
     }
 
     /**
-     * Return the user associated with the username.
+     * Return the review associated with the reviewID.
      *
      * @param reviewID the review ID of the review
      * @return the Review with the given review ID
