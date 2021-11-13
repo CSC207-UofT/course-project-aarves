@@ -2,8 +2,8 @@
   "tests": [
     {
       "name": "Autotesting Action",
-      "setup": "sh .github/scripts/setup_emulators.sh",
-      "run": "gradle test",
+      "setup": "",
+      "run": "gradle test:core",
       "input": "",
       "output": "",
       "comparison": "included",
