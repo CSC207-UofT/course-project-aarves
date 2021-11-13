@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.aarves.bluepages.R;
-import com.aarves.bluepages.usecases.AccountManager;
+import com.aarves.bluepages.usecase.interactors.AccountManager;
 
 public class LoginActivity extends AppCompatActivity {
     private static final AccountManager am = new AccountManager();

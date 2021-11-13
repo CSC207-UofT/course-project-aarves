@@ -1,5 +1,5 @@
-import com.aarves.bluepages.usecases.AccountManager;
-import com.aarves.bluepages.usecases.ReviewManager;
+import com.aarves.bluepages.usecase.interactors.AccountManager;
+import com.aarves.bluepages.usecase.interactors.ReviewManager;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
