@@ -1,4 +1,4 @@
-package com.aarves.bluepages;
+package com.aarves.bluepages.gui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,13 +6,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.aarves.core.usecases.AccountManager;
+import com.aarves.bluepages.R;
+import com.aarves.bluepages.usecases.AccountManager;
 import com.google.android.material.snackbar.Snackbar;
-
-import java.util.concurrent.TimeUnit;
 
 public class RegisterActivity extends AppCompatActivity {
     private static final AccountManager am = new AccountManager();

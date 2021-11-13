@@ -1,4 +1,4 @@
-package com.aarves.core.entities;
+package com.aarves.bluepages.entities;
 
 /**
  * Child class of User and has no attributes.

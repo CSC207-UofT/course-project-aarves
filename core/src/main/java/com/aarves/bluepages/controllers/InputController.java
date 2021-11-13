@@ -1,7 +1,7 @@
-package com.aarves.core.controllers;
+package com.aarves.bluepages.controllers;
 
 
-import com.aarves.core.usecases.AccountManager;
+import com.aarves.bluepages.usecases.AccountManager;
 
 public class InputController {
 

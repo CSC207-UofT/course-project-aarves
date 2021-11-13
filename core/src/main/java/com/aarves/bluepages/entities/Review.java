@@ -1,4 +1,4 @@
-package com.aarves.core.entities;
+package com.aarves.bluepages.entities;
 
 public class Review {
     private static int maxID = 0;

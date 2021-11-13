@@ -1,6 +1,6 @@
-package com.aarves.core.usecases;
+package com.aarves.bluepages.usecases;
 
-import com.aarves.core.entities.Review;
+import com.aarves.bluepages.entities.Review;
 
 import java.util.HashMap;
 import java.util.Map;
