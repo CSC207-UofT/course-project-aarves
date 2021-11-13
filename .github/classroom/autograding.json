@@ -9,16 +9,6 @@
       "comparison": "included",
       "timeout": 10,
       "points": null
-    },
-    {
-      "name": "Autotesting App Module",
-      "setup": "",
-      "run": "gradle -a app:testDebugUnitTest",
-      "input": "",
-      "output": "",
-      "comparison": "included",
-      "timeout": 10,
-      "points": null
     }
   ]
 }
