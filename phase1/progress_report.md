@@ -64,7 +64,7 @@ _**How is our project consistent with the SOLID design principles?**_
 
 ## Packaging ##
 
-(Which packaging strategies did we consider? Which did we end up using, and why?)
+_**Which packaging strategies did we consider? Which did we end up using, and why?**_
 
 During our refactoring process, we first considered packaging by feature. However, 
 this proved to be difficult since there were a lot of files that shared similar attributes.
