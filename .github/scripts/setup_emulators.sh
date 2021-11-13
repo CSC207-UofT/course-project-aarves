@@ -4,7 +4,7 @@ set -e
 # debug log
 # set -x
 # VARIABLES
-API_LEVEL=31
+API_LEVEL=29
 
 # Check Emulator already Installed
 EMULATOR_COUNT=$(/Users/runner/Library/Android/sdk/tools/emulator -list-avds | wc -l)
