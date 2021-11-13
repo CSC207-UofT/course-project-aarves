@@ -1,8 +1,8 @@
-package com.aarves.core.usecases;
+package com.aarves.bluepages.usecases;
 
-import com.aarves.core.entities.Location;
-import com.aarves.core.entities.RegisteredUser;
-import com.aarves.core.entities.Review;
+import com.aarves.bluepages.entities.Location;
+import com.aarves.bluepages.entities.RegisteredUser;
+import com.aarves.bluepages.entities.Review;
 
 import java.util.ArrayList;
 

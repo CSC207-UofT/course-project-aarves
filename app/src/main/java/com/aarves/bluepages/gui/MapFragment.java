@@ -1,4 +1,4 @@
-package com.aarves.bluepages;
+package com.aarves.bluepages.gui;
 
 import android.os.Bundle;
 
@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.aarves.bluepages.R;
 import com.mapbox.geojson.Point;
 import com.mapbox.maps.CameraBoundsOptions;
 import com.mapbox.maps.CoordinateBounds;

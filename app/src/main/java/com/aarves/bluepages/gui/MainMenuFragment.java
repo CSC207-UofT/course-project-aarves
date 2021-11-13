@@ -1,4 +1,4 @@
-package com.aarves.bluepages;
+package com.aarves.bluepages.gui;
 
 import android.os.Bundle;
 
@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import com.aarves.bluepages.R;
 
 public class MainMenuFragment extends Fragment {
 

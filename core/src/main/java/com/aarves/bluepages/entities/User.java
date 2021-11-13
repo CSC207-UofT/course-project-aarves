@@ -1,4 +1,4 @@
-package com.aarves.core.entities;
+package com.aarves.bluepages.entities;
 
 /**
  * Parent class for GuestUser and constructs a new User object that has an attribute isLoggedOn set

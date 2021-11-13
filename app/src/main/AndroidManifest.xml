@@ -13,16 +13,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Bluepages">
         <activity
-            android:name=".RegisterActivity"
+            android:name=".gui.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".gui.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".MainMenuActivity"
+            android:name=".gui.MainMenuActivity"
             android:exported="false" />
         <activity
-            android:name=".AccessActivity"
+            android:name=".gui.AccessActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

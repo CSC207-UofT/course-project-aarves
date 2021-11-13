@@ -1,11 +1,10 @@
-package com.aarves.bluepages;
+package com.aarves.bluepages.gui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
-import com.mapbox.maps.MapView;
-import com.mapbox.maps.Style;
+import com.aarves.bluepages.R;
 
 public class MainMenuActivity extends AppCompatActivity {
 

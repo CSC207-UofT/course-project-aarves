@@ -1,4 +1,4 @@
-package com.aarves.bluepages;
+package com.aarves.bluepages.gui;
 
 import android.os.Handler;
 

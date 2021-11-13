@@ -1,4 +1,4 @@
-package com.aarves.bluepages;
+package com.aarves.bluepages.gui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,7 +8,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.aarves.core.usecases.AccountManager;
+import com.aarves.bluepages.R;
+import com.aarves.bluepages.usecases.AccountManager;
 
 public class LoginActivity extends AppCompatActivity {
     private static final AccountManager am = new AccountManager();
