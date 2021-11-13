@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.aarves.bluepages.R;
-import com.aarves.bluepages.usecases.AccountManager;
+import com.aarves.bluepages.usecase.interactors.AccountManager;
 import com.google.android.material.snackbar.Snackbar;
 
 public class RegisterActivity extends AppCompatActivity {
