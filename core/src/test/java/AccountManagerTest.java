@@ -26,14 +26,14 @@ class AccountManagerTest {
     @Test
     public void testAddUser() {
         am.addUser("souvlaki53", "foodtruck");
-        assertEquals(true, am.isExistingAccount("souvlaki53"));
+        assertTrue(am.isExistingAccount("souvlaki53"));
     }
 
     @Test
     public void testDeleteUser() {
         am.addUser("deleteme", "sure,ok!!!");
         am.deleteUser(am.getUser("deleteme"), rm);
-        assertEquals(false, am.isExistingAccount("deleteme"));
+        assertFalse(am.isExistingAccount("deleteme"));
     }
 
     @Test
