@@ -6,3 +6,20 @@ java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
 }
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'junit:junit:4.13.2'
+    implementation 'com.google.code.gson:gson:2.8.9'
+    testImplementation('org.junit.jupiter:junit-jupiter:5.8.1')
+}
+
+test {
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+    useJUnitPlatform()
+}
