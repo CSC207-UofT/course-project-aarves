@@ -13,7 +13,7 @@
     {
       "name": "Autotesting App Module",
       "setup": "",
-      "run": "gradle app:test",
+      "run": "gradle -a app:test",
       "input": "",
       "output": "",
       "comparison": "included",
