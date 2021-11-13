@@ -1,3 +1,5 @@
+import java.security.Permission;
+
 /**
  * Parent class for GuestUser and constructs a new User object that has an attribute isLoggedOn set
  * as false to indicate that the User is not logged in.
@@ -15,8 +17,33 @@ public abstract class User {
      * It tells us that the User is not logged on.
      */
 
+    public void Permissions() {
+
+
+    }
+
     public User() {
         this.isLoggedOn = false;
     }
 
 }
+
+/**
+ *
+ * public Permissions() {
+ *
+ *  addBookmark()
+ *  deleteBookmark()
+ *  viewBookmarks()
+ *  viewReviews()
+ *  getUsername()
+ *  getReviews()
+ *  addReview()
+ *  deleteReview()
+ *
+ *
+ * }
+ *
+ *
+ *
+ */
