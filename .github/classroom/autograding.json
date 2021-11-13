@@ -1,9 +1,19 @@
 {
   "tests": [
     {
-      "name": "Autotesting Action",
+      "name": "Autotesting Core Module",
       "setup": "",
       "run": "gradle core:test",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": null
+    },
+    {
+      "name": "Autotesting App Module",
+      "setup": "",
+      "run": "gradle app:test",
       "input": "",
       "output": "",
       "comparison": "included",
