@@ -3,7 +3,7 @@
     {
       "name": "Autotesting Action",
       "setup": "",
-      "run": "gradle test:core",
+      "run": "gradle core:test",
       "input": "",
       "output": "",
       "comparison": "included",
