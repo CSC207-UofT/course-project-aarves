@@ -13,7 +13,7 @@ public class DatabaseInjector {
     public DatabaseInjector(Context context) throws NoSuchAlgorithmException {
         this.database = Room.databaseBuilder(context, AppDatabase.class, "database.db").build();
 
-        AccountDAOImpl accountDAO = new AccountDAOImpl();
+        AccountDAOImpl accountDAO = new AccountDAOImpl(this.database.accountDatabaseDAO());
         ReviewDAOImpl reviewDAO = new ReviewDAOImpl(this.database.reviewDatabaseDAO());
 
         this.dataInjector = new DataInjector(accountDAO, reviewDAO);
