@@ -6,11 +6,12 @@ import com.aarves.bluepages.database.access.ReviewDatabaseDAO;
 import com.aarves.bluepages.database.models.ReviewDataEntity;
 import com.aarves.bluepages.database.models.ReviewDatabaseMapper;
 
-import java.util.Map;
+import java.util.HashMap;
+import java.util.List;
 
 public class ReviewDAOImpl implements ReviewDAO {
-    private ReviewDatabaseDAO reviewDatabaseDAO;
-    private ReviewDatabaseMapper reviewDatabaseMapper;
+    private final ReviewDatabaseDAO reviewDatabaseDAO;
+    private final ReviewDatabaseMapper reviewDatabaseMapper;
 
     public ReviewDAOImpl(ReviewDatabaseDAO reviewDatabaseDAO) {
         this.reviewDatabaseDAO = reviewDatabaseDAO;
@@ -25,7 +26,8 @@ public class ReviewDAOImpl implements ReviewDAO {
 
     @Override
     public void deleteReviewData(int reviewId) {
-
+        ReviewDataEntity reviewDataEntity = this.reviewDatabaseDAO.getByID(reviewId);
+        this.reviewDatabaseDAO.delete(reviewDataEntity);
     }
 
     @Override
@@ -35,12 +37,28 @@ public class ReviewDAOImpl implements ReviewDAO {
     }
 
     @Override
-    public Map<Integer, ReviewDTO> getReviewDataByUser(String username) {
-        return null;
+    public HashMap<Integer, ReviewDTO> getReviewDataByUser(String username) {
+        HashMap<Integer, ReviewDTO> reviewMap = new HashMap<>();
+        List<ReviewDataEntity> reviews = this.reviewDatabaseDAO.getByUser(username);
+
+        for(ReviewDataEntity reviewDataEntity : reviews) {
+            ReviewDTO reviewDTO = this.reviewDatabaseMapper.mapToDTO(reviewDataEntity);
+            reviewMap.put(reviewDataEntity.reviewId, reviewDTO);
+        }
+
+        return reviewMap;
     }
 
     @Override
-    public Map<Integer, ReviewDTO> getReviewDataByLocation(int locationId) {
-        return null;
+    public HashMap<Integer, ReviewDTO> getReviewDataByLocation(int locationId) {
+        HashMap<Integer, ReviewDTO> reviewMap = new HashMap<>();
+        List<ReviewDataEntity> reviews = this.reviewDatabaseDAO.getByLocation(locationId);
+
+        for(ReviewDataEntity reviewDataEntity : reviews) {
+            ReviewDTO reviewDTO = this.reviewDatabaseMapper.mapToDTO(reviewDataEntity);
+            reviewMap.put(reviewDataEntity.reviewId, reviewDTO);
+        }
+
+        return reviewMap;
     }
 }
