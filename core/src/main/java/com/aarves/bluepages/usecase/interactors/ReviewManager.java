@@ -7,48 +7,43 @@ import com.aarves.bluepages.entities.Review;
 import java.util.ArrayList;
 
 public class ReviewManager {
+    private ReviewRepository reviewRepository;
+    private AccountManager accountManager;
 
-    private static final ReviewList reviews = new ReviewList();
+    public ReviewManager(ReviewRepository reviewRepository, AccountManager accountManager) {
+        this.reviewRepository = reviewRepository;
+        this.accountManager = accountManager;
+    }
 
     protected Review getReview(int reviewId) {
-        return reviews.getReview(reviewId);
+        return this.reviewRepository.getReview(reviewId);
     }
 
     /**
      * Creates a new review and adds it to the reviewHashMap
      *
-     * @param reviewer the Review's RegisteredUser
-     * @param location the Review's Location
-     * @param review the Review's text
-     * @param rating the Review's rating
+     * @param reviewer      The RegisteredUser creating the Review.
+     * @param locationId    Integer representing the ID of the Location this Review is addressed towards.
+     * @param rating        Integer rating (out of 5) for location as per the RegisteredUser's opinion.
+     * @param reviewBody        String information about the RegisteredUser's opinions.
      */
-    public void createReview(RegisteredUser reviewer, Location location, String review, int rating) {
-        Review new_review = new Review(reviewer.getUsername(), location, review, rating);
-        addReview(location, reviewer, new_review);
+    public void createReview(RegisteredUser reviewer, int locationId, int rating, String reviewBody) {
+        Review newReview = new Review(reviewer.getUsername(), locationId, rating, reviewBody);
+        int newId = this.reviewRepository.addReview(newReview);
+        newReview.setReviewId(newId);
     }
 
     /**
      * Creates a new review and adds it to the reviewHashMap.
      *
-     * @param reviewer the Review's RegisteredUser
-     * @param location the Review's Location
-     * @param rating the Review's rating
+     * @param reviewer      The RegisteredUser creating the Review.
+     * @param locationId    Integer representing the ID of the Location this Review is addressed towards.
+     * @param rating        Integer rating (out of 5) for location as per the RegisteredUser's opinion.
      */
-    public void createReview(RegisteredUser reviewer, Location location, int rating) {
-        Review new_review = new Review(reviewer.getUsername(), location, rating);
-        addReview(location, reviewer, new_review);
-    }
-
-    /**
-     * Adds a review to reviewHashMap.
-     *
-     * @param location the Location of the review
-     * @param review the Review to be added
-     */
-    protected void addReview(Location location, RegisteredUser reviewer, Review review) {
-        reviews.addReview(review);
-        reviewer.addReview(review);
-        location.addReview(review);
+    public void createReview(RegisteredUser reviewer, int locationId, int rating) {
+        Review newReview = new Review(reviewer.getUsername(), locationId, rating);
+        int newId = this.reviewRepository.addReview(newReview);
+        newReview.setReviewId(newId);
     }
 
     /**
@@ -57,9 +52,9 @@ public class ReviewManager {
      * @param reviewer the RegisteredUser whose reviews will be deleted.
      */
     public void deleteAllUserReviews(RegisteredUser reviewer) {
-        ArrayList<Integer> reviews = reviewer.getReviews();
-        for (Integer r : reviews) {
-            deleteReview(reviewer, getReview(r).getLocation(), getReview(r));
+        ArrayList<Review> reviews = reviewer.getReviews();
+        for (Review review : reviews) {
+            deleteReview(reviewer, review);
         }
     }
 
@@ -67,13 +62,10 @@ public class ReviewManager {
      * Deletes a review from all three locations where it is stored.
      *
      * @param reviewer the RegisteredUser of the review
-     * @param location the Location of the review
      * @param review the Review to be deleted
      */
-    public void deleteReview(RegisteredUser reviewer, Location location, Review review) {
-        reviews.deleteReview(review);
+    public void deleteReview(RegisteredUser reviewer, Review review) {
+        this.reviewRepository.deleteReview(review);
         reviewer.deleteReview(review);
-        location.deleteReview(review);
     }
-
 }

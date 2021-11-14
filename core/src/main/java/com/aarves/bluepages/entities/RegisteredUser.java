@@ -3,7 +3,7 @@ package com.aarves.bluepages.entities;
 import java.util.ArrayList;
 
 public class RegisteredUser extends User {
-    private final ArrayList<Integer> reviews = new ArrayList<>();
+    private final ArrayList<Review> reviews = new ArrayList<>();
     private final ArrayList<Location> bookmarks = new ArrayList<>();
     private final String username;
     private final String password;
@@ -19,6 +19,14 @@ public class RegisteredUser extends User {
     }
 
     /**
+     * Return the username associated with this RegisteredUser.
+     * @return  String containing the username.
+     */
+    public String getUsername() {
+        return this.username;
+    }
+
+    /**
      * Return whether the password matches the user's password.
      *
      * @param password the password guess
@@ -29,18 +37,10 @@ public class RegisteredUser extends User {
     }
 
     /**
-     * Return the username associated with this RegisteredUser.
-     * @return  String containing the username.
-     */
-    public String getUsername() {
-        return this.username;
-    }
-
-    /**
      * Return all the reviews made by this RegisteredUser.
      * @return  ArrayList of reviews (object Review).
      */
-    public ArrayList<Integer> getReviews() {
+    public ArrayList<Review> getReviews() {
         return this.reviews;
     }
 
@@ -49,7 +49,7 @@ public class RegisteredUser extends User {
      * @param review    Review created by the RegisteredUser.
      */
     public void addReview(Review review) {
-        reviews.add(review.getReviewId());
+        reviews.add(review);
     }
 
     /**
