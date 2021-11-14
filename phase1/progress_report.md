@@ -48,22 +48,23 @@ TO DO, if we want to add this in.
 
 ## Major decisions made by our group: ##
 
-## Clean Architecture
+### Clean Architecture
 **_How does our project adhere to Clean Architecture?_**
-- The code is independent of the Android UI, and external agency and of the database (?)
+- The code is independent of the Android UI, and external agency and of the database 
+- The code follows the dependency rule (see dependency inversion under SOLID principles for more info)
 
 **Scenario walk-through:**
     Upon opening the app, a client interacts with the software through an Android UI. When a client signs-in...
 
-## SOLID Design Principles
+### Solid Principles
 _**How is our project consistent with the SOLID design principles?**_
 
 | SOLID Principle       | Example |
 |-----------------------|---------|
-| Single responsibility | Examining `AccountList` and `AccountManager`, the two are separate classes to hold in line with the SRP. Originally we had combined the responsibility of account storage and account creation/deletion in one class. In that case, should an actor want to change the process in how an account is created, then it would have also affected the storage of said account. With these two classes, if said actor were to change the process of account creation, the only changes made would be in `AccountManager`, because we still have `RegisteredUser` being stored in `AccountList`, the only difference is how the `RegisteredUser` is made in `AccountManager`.        |
+| Single responsibility |         |
 | Open/closed           |         |
 | Liskov substitution   |         |
-| Interface segregation | Our Serializer interface is kept small, only defining the two crucial methods for serialization         |
+| Interface segregation | Our Serializer and AccountManagerDependency interfaces are kept small, only defining the crucial methods needed         |
 | Dependency inversion  | In general, our entities such as a RegisteredUser do not know about for example the Android UI, any use cases or controllers. Instead, the CommandLine generates an instance of the InputController and InputGateway. The InputController and InputGateways then generate instances of an AccountManager and an AccountManager is able to instantiate a new RegisteredUser. This flow illustrates how our code only points inwards, consistent with the dependency rule        |
 
 ## Packaging ##
@@ -76,17 +77,14 @@ We ended up packaging by the layers of clean architecture(enities, use cases, co
 (used the crc cards and report from phase 0 for reference), and it can keep us all in check of fulfilling the clean 
 architecture model. We are currently unsure about how to organize our serializer files(the Interface, AccountSerializer, 
 ReviewSerializer), because it does not cleanly meet any of the actual layers of clean architecture without a violation.
+
 ## Design Patterns ##
 
-- Template Method Design Pattern:
-  - Since RegisteredUser and GuestUser classes have a bunch of similarities between them, we decided to implement the
-  Template Method Design Pattern to demonstrate Clean Architecture. The abstract class User contains a Template Method
-  called Features and inside the Template Method are the variant and invariant steps. The invariant steps are the
-  common methods between the two subclasses such as; addBookmark(), deleteBookmark(), viewBookmarks(), viewReviews()
-  and they are implemented in the abstract class User. Whereas, the variant steps; getUsername(), getReviews(), 
-  addReview(), deleteReview() are left unimplemented in the abstract class User and are then implemented by 
-  RegisteredUser.
+- Dependency Injection Design Pattern:
 
+To better demonstrate Clean Architecture, we added the Dependency Injection Design Pattern in InputController.java and 
+InputGateway.java by following the Interface Injection method of design. i.e, we created an interface called 
+AccountManagerDependency.java and then injected it in the two adapter classes.
 
 ## Use of Github Features ## 
 
@@ -96,10 +94,32 @@ branch dedicated to Serialization and upon second thought, the Serialization bra
 for each entity that was serialized. We also used the issues feature in Github which made it easy to highlight what 
 needed our attention.
 
+## Testing ##
+
+Currently, we have tested AccountManager.java and ReviewManager.java that fall under the Use Case layer of Clean 
+Architecture. At this stage, due to the way we have designed our program it is still a bit hard to test serialization, 
+but we are working on refactoring our code and adding better suited design patterns to test our serialization classes.
+
 ## Progress Report ##
 
-(open questions we are struggling with)
+1. Open questions we are struggling with:
+- How to implement serialization so that it best follows clean architecture (see Clean Architecture for more information)
+- 
 
-(what worked well so far)
+2. What worked well so far:
+- Keeping team members updated on progress through active team group chat
+- Scheduling consistent meetings to brainstorm ideas and work through any issues
+- Collaborating in writing code worked well when we were unfamiliar with implementing a certain feature
 
-(what each group member has been working on and plans to work on next)
+3. What each group member has been working on and plans to work on next:
+- In general:
+    - Ironing out the Clean Architecture for the UI
+
+                     |                         Current Work                     |           Future Plans             |
+      |--------------|----------------------------------------------------------|------------------------------------|
+      | Ashenafee    |                                                          |
+      | Anthony      |                                                          |
+      | Erica        |                                                          |
+      | Rebecca      |                                                          |
+      | Syed         | Worked on creating Test Cases and adding Design Patterns | Test Cases, UI and Design Patterns
+      | Vaishnavi    |                                                          |
