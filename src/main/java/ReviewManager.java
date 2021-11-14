@@ -5,6 +5,12 @@ public class ReviewManager {
 
     private static final ReviewList reviews = new ReviewList();
 
+    /**
+     * Fetches the review using reviewId
+     *
+     * @param reviewId the id of the review that is being looked for
+     */
+
     protected Review getReview(int reviewId) {
         return reviews.getReview(reviewId);
     }
@@ -23,7 +29,7 @@ public class ReviewManager {
     }
 
     /**
-     * Creates a new review and adds it to the reviewHashMap.
+     * Creates a rating only review and adds it to the reviewHashMap.
      *
      * @param reviewer the Review's RegisteredUser
      * @param location the Review's Location
