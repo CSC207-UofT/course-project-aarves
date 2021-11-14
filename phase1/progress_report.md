@@ -58,19 +58,13 @@ TO DO, if we want to add this in.
 ### Solid Principles
 _**How is our project consistent with the SOLID design principles?**_
 
-- Single-Responsibility Principle:
-- Open- Closed Principle:
-- Liskov Substitution Principle:
-- Interface Segregation Principle:
-  - Our Serializer interface is kept small, only defining the two crucial methods 
-  for serialization 
-- Dependency Inversion Principle:
-  - In general, our entities such as a RegisteredUser do not know about for example the Android UI, any use cases
-  or controllers. Instead, the CommandLine generates an instance of the InputController and InputGateway. 
-  The InputController and InputGateways then generate instances of an AccountManager and an AccountManager is able to 
-  instantiate a new RegisteredUser. This flow illustrates how our code only points inwards, consistent with the 
-  dependency rule
-  
+| SOLID Principle       | Example |
+|-----------------------|---------|
+| Single responsibility |         |
+| Open/closed           |         |
+| Liskov substitution   |         |
+| Interface segregation | Our Serializer interface is kept small, only defining the two crucial methods for serialization         |
+| Dependency inversion  | In general, our entities such as a RegisteredUser do not know about for example the Android UI, any use cases or controllers. Instead, the CommandLine generates an instance of the InputController and InputGateway. The InputController and InputGateways then generate instances of an AccountManager and an AccountManager is able to instantiate a new RegisteredUser. This flow illustrates how our code only points inwards, consistent with the dependency rule        |
 
 ## Packaging ##
 
