@@ -2,9 +2,11 @@
 
 ## Specification ##
 
-Our goal is to create an app that is tailored to UofT students, allowing them to browse restaurants and study spots on the St. George Campus. Through it, students will be able to leave and view the reviews of other students for each location.
+[App name] is a location-browser app tailored to UofT students looking for places nearby the St. George Campus to grab food from, or study at. Users can share their opinions on places in the form of a review, and can also view what others think as well, thus helping them decide whether it's a place they'd like to visit.
 
 - To browse the app, users can either create an account, login, or continue as a guest (no account).
+
+[IMAGE OF MAIN MENU]
 
 ### Permissions based off login-type
 
@@ -12,6 +14,12 @@ Our goal is to create an app that is tailored to UofT students, allowing them to
 |------------|-------------|
 | Guest users can...     | <ul><li>View a randomly selected food and study spot of the day.</li><li>Search for locations, and further tune their search using filters.</li><li>Use the interactive map to browse locations in their vicinity.</li></ul>            |
 | Registered users can... | <ul><li>Do everything a guest user can do.</li><li>Bookmark locations for easy access in the future.</li><li>Leave reviews and a rating for locations.</li></ul>            |
+
+[IMAGE OF FOTD/SOTD]
+
+[IMAGE OF MAP]
+
+[IMAGE OF A REVIEW]
 
 ### Locations ###
 
@@ -21,6 +29,8 @@ Across both types of locations, general information such as name, address, and h
 |---------------|-------------------|
 | Food          | <ul><li>Food type (i.e. Japanese).</li><li>Whether it's dine-in or takeout.</li><li>Price range.</li></ul>                  |
 | Study         | <ul><li>Whether it's indoors or outdoors.</li><li>Study room availability (if indoors).</li></ul>                  |
+
+[IMAGE OF A LOCATION]
 
 ## Changes From Phase0 ##
 
