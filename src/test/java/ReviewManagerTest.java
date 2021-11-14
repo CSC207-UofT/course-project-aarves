@@ -26,7 +26,7 @@ class ReviewManagerTest {
     @Test
     void testGetReview() {
         Review my_Review = rm.getReview(r.getReviewId());
-        assertEquals(true, my_Review == r);
+        assertSame(my_Review, r);
     }
 
     @Test
@@ -41,7 +41,7 @@ class ReviewManagerTest {
 
     @Test
     void testAddReview() {
-        assertEquals(true, rm.getReview(0) != null);
+        assertNotNull(rm.getReview(0));
     }
 
     @Test
