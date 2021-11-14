@@ -1,9 +1,9 @@
-public class InputGateway {
+public class InputGateway implements AccountManagerDependency{
 
-    AccountManager am = new AccountManager();
+    AccountManager am;
 
     public RegisteredUser getUser(String username) {
-        return am.getUser(username);
+        return this.am.getUser(username);
     }
 
     public String getBookmarks(RegisteredUser user) {
@@ -12,5 +12,10 @@ public class InputGateway {
         } else {
             return "Your bookmarks are: " + user.getBookmarks();
         }
+    }
+
+    @Override
+    public void injectAccountManager(AccountManager am) {
+        this.am = am;
     }
 }

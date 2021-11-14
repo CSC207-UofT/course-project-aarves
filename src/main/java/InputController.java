@@ -1,6 +1,6 @@
-public class InputController {
+public class InputController implements AccountManagerDependency{
 
-    AccountManager am = new AccountManager();
+    AccountManager am;
 
     /**
      * 1 --> Login
@@ -47,5 +47,10 @@ public class InputController {
             default:
                 return 0;
         }
+    }
+
+    @Override
+    public void injectAccountManager(AccountManager am) {
+        this.am = am;
     }
 }
