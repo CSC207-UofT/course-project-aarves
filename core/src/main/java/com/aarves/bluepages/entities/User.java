@@ -1,22 +1,26 @@
 package com.aarves.bluepages.entities;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class User {
-    private final ArrayList<Review> reviews;
-    private final ArrayList<Location> bookmarks;
+    private ArrayList<Review> reviews;
+    private ArrayList<Location> bookmarks;
 
     private final String username;
+    private String passwordHash;
 
     /**
      * Constructs a new User, given a username.
      * @param username  String containing the username.
+     * @param passwordHash  String containing the password.
      */
-    public User(String username) {
+    public User(String username, String passwordHash) {
         this.reviews = new ArrayList<>();
         this.bookmarks = new ArrayList<>();
 
         this.username = username;
+        this.passwordHash = passwordHash;
     }
 
     /**
@@ -27,12 +31,24 @@ public class User {
         return this.username;
     }
 
+    public String getPasswordHash() {
+        return this.passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+
     /**
      * Return all the reviews made by this User.
      * @return  ArrayList of Review's.
      */
     public ArrayList<Review> getReviews() {
         return this.reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = new ArrayList<>(reviews);
     }
 
     /**

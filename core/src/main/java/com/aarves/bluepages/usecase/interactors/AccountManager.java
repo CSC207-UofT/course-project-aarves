@@ -1,10 +1,32 @@
 package com.aarves.bluepages.usecase.interactors;
 
-import com.aarves.bluepages.entities.RegisteredUser;
+import com.aarves.bluepages.entities.User;
+
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class AccountManager {
+    private final MessageDigest passwordDigest;
+    private AccountData accountData;
+    private User user;
 
-    private static final AccountList accounts = new AccountList();
+    public AccountManager(AccountData accountData) throws NoSuchAlgorithmException {
+        this.passwordDigest = MessageDigest.getInstance("SHA-256");
+        this.accountData = accountData;
+    }
+
+    /**
+     * Returns the User associated with the account
+     * @return  User associated with the account
+     */
+    public User getUser() {
+        return this.user;
+    }
+
+    public boolean isLoggedIn() {
+        return this.user != null;
+    }
 
     /**
      * Checks and returns if the account already exists.
@@ -13,44 +35,7 @@ public class AccountManager {
      * @return true if the account already exists in accounts
      */
     public boolean isExistingAccount(String username){
-        RegisteredUser existing = accounts.getUser(username);
-        if (existing != null) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /**
-     * Returns the RegisteredUser associated with the account
-     *
-     * @param username the RegisteredUser's username
-     * @return the RegisteredUser associated with the account
-     */
-    public RegisteredUser getUser(String username) {
-        return accounts.getUser(username);
-    }
-
-    /**
-     * Adds a RegisteredUser to the AccountManager. An existing username will never be passed in.
-     *
-     * @param username the user's username
-     * @param password the user's password
-     */
-    public void addUser(String username, String password){
-        RegisteredUser user = new RegisteredUser(username.toLowerCase(), password);
-        accounts.addUser(user);
-    }
-
-    /**
-     * Deletes a user from the AccountManager and deletes all their reviews.
-     *
-     * @param user The user to be deleted.
-     * @param rm The system's ReviewManager.
-     */
-    public void deleteUser(RegisteredUser user, ReviewManager rm) {
-        rm.deleteAllUserReviews(user);
-        accounts.deleteUser(user);
+        return this.accountData.isExistingAccount(username);
     }
 
     /**
@@ -58,13 +43,44 @@ public class AccountManager {
      *
      * @param username the user's inputted username
      * @param password the user's inputted password
-     * @return true if the user's username and password matches the pairing in accounts.
+     * @return Returns true if the user's username and password matches the pairing in accounts.
      */
-    public boolean correctLogin(String username, String password){
-        if (accounts.getUser(username) != null) {
-            return accounts.getUser(username).isCorrectPassword(password);
+    public boolean login(String username, String password){
+        String passwordHash = this.hashPassword(password);
+        try {
+            this.user = this.accountData.getAccount(username, passwordHash);
+            return true;
         }
-        return false;
+        catch(LoginFailureException exception) {
+            return false;
+        }
     }
 
+    public void logout() {
+        this.user = null;
+    }
+
+    /**
+     * Adds a User to the AccountManager. An existing username will never be passed in.
+     *
+     * @param username the user's username
+     * @param password the user's password
+     */
+    public void register(String username, String password){
+        User user = new User(username, this.hashPassword(password));
+        this.accountData.addAccount(user);
+    }
+
+    /**
+     * Deletes a user from the AccountManager.
+     */
+    public void deleteUser() {
+        this.accountData.deleteAccount(this.user);
+        this.user = null;
+    }
+
+    private String hashPassword(String password) {
+        byte[] hash = this.passwordDigest.digest(password.getBytes(StandardCharsets.UTF_8));
+        return new String(hash, StandardCharsets.UTF_8);
+    }
 }
