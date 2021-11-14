@@ -80,11 +80,13 @@ ReviewSerializer), because it does not cleanly meet any of the actual layers of 
 
 ## Design Patterns ##
 
-- Dependency Injection Design Pattern:
+Dependency Injection Design Pattern:
 
 To better demonstrate Clean Architecture, we added the Dependency Injection Design Pattern in InputController.java and 
 InputGateway.java by following the Interface Injection method of design. i.e, we created an interface called 
-AccountManagerDependency.java and then injected it in the two adapter classes.
+AccountManagerDependency.java and then injected it in the two adapter classes. The benefits of implementing dependency injection include:
+- The InputConroller and InputGateway classes are not responsible for creating an instance of an AccountManager. Instead, an instance of the class in passed into the injectAccountManager method. This adheres better to clean architecture by decoupling the Input classes and AccountManager.
+
 
 ## Use of Github Features ## 
 
