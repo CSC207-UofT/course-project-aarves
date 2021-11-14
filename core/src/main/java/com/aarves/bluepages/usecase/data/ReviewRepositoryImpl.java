@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class ReviewRepositoryImpl implements ReviewRepository {
-    ReviewMapper reviewMapper;
-    ReviewDAO reviewDAO;
+    private ReviewMapper reviewMapper;
+    private ReviewDAO reviewDAO;
 
     public ReviewRepositoryImpl(ReviewDAO reviewDAO){
         this.reviewMapper = new ReviewMapper();
@@ -23,8 +23,8 @@ public class ReviewRepositoryImpl implements ReviewRepository {
     }
 
     @Override
-    public void deleteReview(int reviewId) {
-        this.reviewDAO.deleteReviewData(reviewId);
+    public void deleteReview(Review review) {
+        this.reviewDAO.deleteReviewData(review.getReviewId());
     }
 
     @Override
@@ -36,22 +36,22 @@ public class ReviewRepositoryImpl implements ReviewRepository {
     @Override
     public ArrayList<Review> getReviewsByUser(User user) {
         Map<Integer, ReviewDTO> reviewDataMap = this.reviewDAO.getReviewDataByUser(user.username);
-
-        ArrayList<Review> reviews = new ArrayList<>();
-        for (ReviewDTO reviewData : reviewDataMap.values()) {
-            reviews.add(this.reviewMapper.mapToReview(reviewData));
-        }
-
-        return reviews;
+        return this.mapToList(reviewDataMap);
     }
 
     @Override
     public ArrayList<Review> getReviewsByLocation(int locationId) {
         Map<Integer, ReviewDTO> reviewDataMap = this.reviewDAO.getReviewDataByLocation(locationId);
+        return this.mapToList(reviewDataMap);
+    }
 
+    private ArrayList<Review> mapToList(Map<Integer, ReviewDTO> reviewMap) {
         ArrayList<Review> reviews = new ArrayList<>();
-        for (ReviewDTO reviewData : reviewDataMap.values()) {
-            reviews.add(this.reviewMapper.mapToReview(reviewData));
+        for (int reviewId : reviewMap.keySet()) {
+            Review review = this.reviewMapper.mapToReview(reviewMap.get(reviewId));
+            review.setReviewId(reviewId);
+
+            reviews.add(review);
         }
 
         return reviews;

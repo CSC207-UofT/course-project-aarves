@@ -8,7 +8,7 @@ public class ReviewMapper {
                 review.getReviewer(),
                 review.getLocationId(),
                 review.getRating(),
-                review.getReview()
+                review.getBody()
         );
     }
 
@@ -16,8 +16,8 @@ public class ReviewMapper {
         return new Review(
                 reviewDTO.getReviewer(),
                 reviewDTO.getLocationId(),
-                reviewDTO.getReview(),
-                reviewDTO.getRating()
+                reviewDTO.getRating(),
+                reviewDTO.getReview()
         );
     }
 }

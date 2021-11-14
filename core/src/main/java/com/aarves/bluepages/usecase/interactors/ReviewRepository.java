@@ -4,11 +4,10 @@ import com.aarves.bluepages.entities.Review;
 import com.aarves.bluepages.entities.User;
 
 import java.util.List;
-import java.util.Map;
 
 public interface ReviewRepository {
     int addReview(Review review);
-    void deleteReview(int reviewId);
+    void deleteReview(Review review);
 
     Review getReview(int reviewId);
     List<Review> getReviewsByUser(User user);
