@@ -6,8 +6,8 @@ import com.aarves.bluepages.usecase.interactors.LoginFailureException;
 import com.aarves.bluepages.usecase.interactors.ReviewRepository;
 
 public class AccountDataImpl implements AccountData {
-    private AccountDAO accountDAO;
-    private ReviewRepository reviewRepository;
+    private final AccountDAO accountDAO;
+    private final ReviewRepository reviewRepository;
 
     public AccountDataImpl(AccountDAO accountDAO, ReviewRepository reviewRepository) {
         this.accountDAO = accountDAO;
