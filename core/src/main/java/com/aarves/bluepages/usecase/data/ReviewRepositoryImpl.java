@@ -30,7 +30,13 @@ public class ReviewRepositoryImpl implements ReviewRepository {
     @Override
     public Review getReview(int reviewId) {
         ReviewDTO reviewData = this.reviewDAO.getReviewData(reviewId);
-        return this.reviewMapper.mapToReview(reviewData);
+
+        if(reviewData != null) {
+            return this.reviewMapper.mapToReview(reviewData);
+        }
+        else {
+            return null;
+        }
     }
 
     @Override
