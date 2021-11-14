@@ -97,7 +97,7 @@ fabric.properties
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
 
-# Pesky Gradle Stuff
+# Pesky Gradle stuff
 desktop.ini
 gradlew
 gradlew.bat
@@ -105,3 +105,6 @@ gradlew.bat
 /gradle/wrapper/gradle-wrapper.properties
 /gradle/wrapper/gradle-wrapper.jar
 /local.properties
+
+# Don't leak tokens!
+/app/src/main/res/values/developer-config.xml
