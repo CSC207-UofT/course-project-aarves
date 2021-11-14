@@ -62,7 +62,7 @@ public class ReviewManager {
     /**
      * Deletes all reviews associated with the User.
      */
-    public void deleteAllUserReviews() throws NotLoggedInException {
+    public void deleteAllUserReviews() throws PermissionsFailureException, NotLoggedInException {
         if(this.accountManager.isLoggedIn()) {
             ArrayList<Review> reviews = this.getUser().getReviews();
             for (Review review : reviews) {
@@ -79,10 +79,13 @@ public class ReviewManager {
      * Deletes a review from all three locations where it is stored.
      * @param review    the Review to be deleted
      */
-    public void deleteReview(Review review) throws NotLoggedInException {
-        if(this.accountManager.isLoggedIn()) {
+    public void deleteReview(Review review) throws PermissionsFailureException, NotLoggedInException {
+        if(this.accountManager.isLoggedIn() && this.getUser().getUsername().equals(review.getReviewer())) {
             this.reviewRepository.deleteReview(review);
             this.getUser().deleteReview(review);
+        }
+        else if(this.accountManager.isLoggedIn()) {
+            throw new PermissionsFailureException();
         }
         else {
             throw new NotLoggedInException();
