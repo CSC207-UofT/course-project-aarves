@@ -121,7 +121,7 @@ but we are working on refactoring our code and adding better suited design patte
       |--------------|----------------------------------------------------------|------------------------------------|
       | Ashenafee    |                                                          |
       | Anthony      |                                                          |
-      | Erica        |                                                          |
+      | Erica        | Worked on serizalization and implementing design patterns| UI and possibly implementing the Strategy design pattern
       | Rebecca      |                                                          |
       | Syed         | Worked on creating Test Cases and adding Design Patterns | Test Cases, UI and Design Patterns
       | Vaishnavi    | Worked on refactoring through packaging and potential logo| Possibly UI and maintaining clean architecture
