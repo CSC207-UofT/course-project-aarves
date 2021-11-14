@@ -1,16 +1,16 @@
 package com.aarves.bluepages.usecase.data;
 
 public class ReviewDTO {
-    private String reviewer;
-    private int locationId;
-    private int rating;
-    private String review;
+    private final String reviewer;
+    private final int locationId;
+    private final int rating;
+    private final String body;
 
-    public ReviewDTO(String reviewer, int locationId, int rating, String review) {
+    public ReviewDTO(String reviewer, int locationId, int rating, String body) {
         this.reviewer = reviewer;
         this.locationId = locationId;
         this.rating = rating;
-        this.review = review;
+        this.body = body;
     }
 
     public String getReviewer() {
@@ -25,7 +25,7 @@ public class ReviewDTO {
         return this.rating;
     }
 
-    public String getReview() {
-        return this.review;
+    public String getBody() {
+        return this.body;
     }
 }
