@@ -122,4 +122,4 @@ but we are working on refactoring our code and adding better suited design patte
       | Erica        |                                                          |
       | Rebecca      |                                                          |
       | Syed         | Worked on creating Test Cases and adding Design Patterns | Test Cases, UI and Design Patterns
-      | Vaishnavi    |                                                          |
+      | Vaishnavi    | Worked on refactoring through packaging and potential logo| Possibly UI and maintaining clean architecture
