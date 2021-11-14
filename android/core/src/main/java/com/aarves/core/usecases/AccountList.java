@@ -10,12 +10,16 @@ public class AccountList {
 
     /**
      * Adds a registered user account to the accounts list.
-     * @param user
+     * @param user the RegisteredUser to be added.
      */
     public void addUser(RegisteredUser user) {
         accounts.put(user.getUsername(), user);
     }
 
+    /**
+     * Deletes a registered user account from the accounts list.
+     * @param user the RegisteredUser to be deleted.
+     */
     public void deleteUser(RegisteredUser user) {
         accounts.remove(user.getUsername());
     }

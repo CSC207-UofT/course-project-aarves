@@ -39,6 +39,10 @@ public abstract class Location {
         this.rating = (float) total / this.reviews.size();
     }
 
+    /**
+     * Return the average rating of this location.
+     * @return A float value denoting the average rating.
+     */
     public float getRating() {
         return this.rating;
     }
@@ -52,7 +56,7 @@ public abstract class Location {
     }
 
     /**
-     *
+     * Return a String containing the hours of service of this location.
      * @return a String object of the Hours of Service of the Location Object
      */
     public String getHours_of_service() {
@@ -60,8 +64,8 @@ public abstract class Location {
     }
 
     /**
-     *
-     * @return a String object of the area of the Location object(address)
+     * Return a String with the address of this locaiton.
+     * @return a String object of the area of the Location object (address)
      */
     public String getArea(){
         return area;

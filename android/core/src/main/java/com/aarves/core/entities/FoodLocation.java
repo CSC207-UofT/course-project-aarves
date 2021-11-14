@@ -11,7 +11,6 @@ public class FoodLocation extends Location {
     final boolean dineIn;
     final String priceRange;
 
-
     /**
      * Constructs a new FoodLocation Object
      *
@@ -33,7 +32,7 @@ public class FoodLocation extends Location {
     }
 
     /**
-     *
+     * Returns whether a food location offers dine-in.
      * @return  a boolean value regarding if the location has dine-in as an option
      */
     public boolean isDineIn() {
@@ -41,7 +40,7 @@ public class FoodLocation extends Location {
     }
 
     /**
-     *
+     * Returns whether a food location offers takeout.
      * @return  a boolean value regarding if the location has takeout as an option
      */
     public boolean isTakeout() {
@@ -49,7 +48,7 @@ public class FoodLocation extends Location {
     }
 
     /**
-     *
+     * Return the type of food offered by this location.
      * @return a String value of the type of food served at the location
      */
     public String getFoodType() {
@@ -57,7 +56,7 @@ public class FoodLocation extends Location {
     }
 
     /**
-     *
+     * Return the price range of the food offered at this location.
      * @return a String value of the Price range of the location object
      */
     public String getPriceRange() {
@@ -65,7 +64,7 @@ public class FoodLocation extends Location {
     }
 
     /**
-     *
+     * Return a String representation containing readable information on this FoodLocation.
      * @return String representation of FoodLocation
      */
     @Override

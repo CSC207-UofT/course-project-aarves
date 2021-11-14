@@ -13,13 +13,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Bluepages">
         <activity
+            android:name=".MapActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainMenuActivity"
+            android:exported="false" />
+        <activity
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainMenuActivity"
             android:exported="false" />
         <activity
             android:name=".AccessActivity"
