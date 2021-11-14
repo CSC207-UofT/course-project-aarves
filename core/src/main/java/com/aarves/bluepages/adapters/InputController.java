@@ -5,7 +5,7 @@ import com.aarves.bluepages.usecase.interactors.AccountManager;
 
 public class InputController {
 
-    AccountManager am = new AccountManager();
+    // AccountManager am = new AccountManager();
 
     /**
      * 1 --> Login
@@ -29,12 +29,13 @@ public class InputController {
 
     public boolean createUser(String username, String password) {
         // Create user
-        if (!this.am.isExistingAccount(username)) {
-            this.am.addUser(username, password);
-            return true;
-        } else {
-            return false;
-        }
+        // if (!this.am.isExistingAccount(username)) {
+        //     this.am.addUser(username, password);
+        //     return true;
+        // } else {
+        //     return false;
+        // }
+        return false;
     }
 
     public int userBookmarks(String bookmarkChoice) {

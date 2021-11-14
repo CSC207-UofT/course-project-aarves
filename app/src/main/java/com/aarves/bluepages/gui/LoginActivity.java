@@ -9,19 +9,18 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.aarves.bluepages.R;
-import com.aarves.bluepages.usecase.interactors.AccountManager;
 
 public class LoginActivity extends AppCompatActivity {
-    private static final AccountManager am = new AccountManager();
+    // private static final AccountManager am = new AccountManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        am.addUser("rickastley", "getrolled");
-        am.addUser("billy123", "iambilly");
-        am.addUser("javalover", "neverevercpp");
-        am.addUser("billiam", "gates123");
+        // am.addUser("rickastley", "getrolled");
+        // am.addUser("billy123", "iambilly");
+        // am.addUser("javalover", "neverevercpp");
+        // am.addUser("billiam", "gates123");
     }
 
     public void returnToAccessMenu(View view) {
@@ -38,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         String password = passwordInput.getText().toString();
 
         // Check if correct login
+        /*
         boolean loginResult = am.correctLogin(username, password);
 
         if (loginResult) {
@@ -51,5 +51,6 @@ public class LoginActivity extends AppCompatActivity {
             Toast loginFailure = Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT);
             loginFailure.show();
         }
+        */
     }
 }

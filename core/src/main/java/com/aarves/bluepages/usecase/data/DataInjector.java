@@ -18,10 +18,10 @@ public class DataInjector {
     }
 
     public AccountManager getAccountManager() {
-        return accountManager;
+        return this.accountManager;
     }
 
     public ReviewManager getReviewManager() {
-        return reviewManager;
+        return this.reviewManager;
     }
 }

@@ -9,11 +9,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.aarves.bluepages.R;
-import com.aarves.bluepages.usecase.interactors.AccountManager;
 import com.google.android.material.snackbar.Snackbar;
 
 public class RegisterActivity extends AppCompatActivity {
-    private static final AccountManager am = new AccountManager();
+    // private static final AccountManager am = new AccountManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +41,7 @@ public class RegisterActivity extends AppCompatActivity {
             Toast passwordMismatch = Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT);
             passwordMismatch.show();
         } else {
-            am.addUser(username, password);
+            // am.addUser(username, password);
             Handler handler = new Handler();
             Snackbar.make(view, "Account created successfully. Returning to the login menu in 5 seconds.", 5000).show();
             handler.postDelayed(() -> finish(), 5000);

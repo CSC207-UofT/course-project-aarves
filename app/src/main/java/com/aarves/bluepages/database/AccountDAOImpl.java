@@ -1,4 +1,4 @@
-package database;
+package com.aarves.bluepages.database;
 
 import com.aarves.bluepages.usecase.data.AccountDAO;
 
