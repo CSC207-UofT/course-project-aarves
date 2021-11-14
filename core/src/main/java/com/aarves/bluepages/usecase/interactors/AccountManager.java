@@ -8,7 +8,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class AccountManager {
     private final MessageDigest passwordDigest;
-    private AccountData accountData;
+    private final AccountData accountData;
     private User user;
 
     public AccountManager(AccountData accountData) throws NoSuchAlgorithmException {
@@ -48,10 +48,11 @@ public class AccountManager {
     public boolean login(String username, String password){
         String passwordHash = this.hashPassword(password);
         try {
-            this.user = this.accountData.getAccount(username, passwordHash);
+            this.user = this.accountData.getUserAccount(username, passwordHash);
             return true;
         }
-        catch(LoginFailureException exception) {
+        catch(PermissionsFailureException exception) {
+            this.user = null;
             return false;
         }
     }

@@ -2,7 +2,7 @@ package com.aarves.bluepages.usecase.data;
 
 import com.aarves.bluepages.entities.User;
 import com.aarves.bluepages.usecase.interactors.AccountData;
-import com.aarves.bluepages.usecase.interactors.LoginFailureException;
+import com.aarves.bluepages.usecase.interactors.PermissionsFailureException;
 import com.aarves.bluepages.usecase.interactors.ReviewRepository;
 
 public class AccountDataImpl implements AccountData {
@@ -25,7 +25,7 @@ public class AccountDataImpl implements AccountData {
     }
 
     @Override
-    public User getAccount(String username, String passwordHash) throws LoginFailureException {
+    public User getUserAccount(String username, String passwordHash) throws PermissionsFailureException {
         if(this.isPasswordMatch(username, passwordHash)) {
             User user = new User(username, passwordHash);
             user.setReviews(this.reviewRepository.getReviewsByUser(user));
@@ -33,7 +33,7 @@ public class AccountDataImpl implements AccountData {
             return user;
         }
         else {
-            throw new LoginFailureException();
+            throw new PermissionsFailureException();
         }
     }
 

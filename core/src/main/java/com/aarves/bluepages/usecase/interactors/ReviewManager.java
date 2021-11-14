@@ -68,6 +68,7 @@ public class ReviewManager {
             for (Review review : reviews) {
                 this.deleteReview(review);
             }
+            this.getUser().setReviews(new ArrayList<>());
         }
         else {
             throw new NotLoggedInException();
