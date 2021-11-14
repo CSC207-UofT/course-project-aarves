@@ -48,23 +48,22 @@ TO DO, if we want to add this in.
 
 ## Major decisions made by our group: ##
 
-### Clean Architecture
+## Clean Architecture
 **_How does our project adhere to Clean Architecture?_**
-- The code is independent of the Android UI, and external agency and of the database 
-- The code follows the dependency rule (see dependency inversion under SOLID principles for more info)
+- The code is independent of the Android UI, and external agency and of the database (?)
 
 **Scenario walk-through:**
     Upon opening the app, a client interacts with the software through an Android UI. When a client signs-in...
 
-### Solid Principles
+## SOLID Design Principles
 _**How is our project consistent with the SOLID design principles?**_
 
 | SOLID Principle       | Example |
 |-----------------------|---------|
-| Single responsibility |         |
+| Single responsibility | Examining `AccountList` and `AccountManager`, the two are separate classes to hold in line with the SRP. Originally we had combined the responsibility of account storage and account creation/deletion in one class. In that case, should an actor want to change the process in how an account is created, then it would have also affected the storage of said account. With these two classes, if said actor were to change the process of account creation, the only changes made would be in `AccountManager`, because we still have `RegisteredUser` being stored in `AccountList`, the only difference is how the `RegisteredUser` is made in `AccountManager`.        |
 | Open/closed           |         |
 | Liskov substitution   |         |
-| Interface segregation | Our Serializer and AccountManagerDependency interfaces are kept small, only defining the crucial methods needed         |
+| Interface segregation | Our Serializer interface is kept small, only defining the two crucial methods for serialization         |
 | Dependency inversion  | In general, our entities such as a RegisteredUser do not know about for example the Android UI, any use cases or controllers. Instead, the CommandLine generates an instance of the InputController and InputGateway. The InputController and InputGateways then generate instances of an AccountManager and an AccountManager is able to instantiate a new RegisteredUser. This flow illustrates how our code only points inwards, consistent with the dependency rule        |
 
 ## Packaging ##
@@ -99,16 +98,8 @@ needed our attention.
 
 ## Progress Report ##
 
-1. Open questions we are struggling with:
-- How to implement serialization so that it best follows clean architecture (see Clean Architecture for more information)
-- 
+(open questions we are struggling with)
 
-2. What worked well so far:
-- Keeping team members updated on progress through active team group chat
-- Scheduling consistent meetings to brainstorm ideas and work through any issues
-- Collaborating in writing code worked well when we were unfamiliar with implementing a certain feature
+(what worked well so far)
 
-3. What each group member has been working on and plans to work on next:
-- In general:
-    - Ironing out the Clean Architecture for the UI
-    
+(what each group member has been working on and plans to work on next)
