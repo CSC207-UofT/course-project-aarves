@@ -61,7 +61,7 @@ _**How is our project consistent with the SOLID design principles?**_
 
 | SOLID Principle       | Example |
 |-----------------------|---------|
-| Single responsibility |         |
+| Single responsibility | Examining `AccountList` and `AccountManager`, the two are separate classes to hold in line with the SRP. Originally we had combined the responsibility of account storage and account creation/deletion in one class. In that case, should an actor want to change the process in how an account is created, then it would have also affected the storage of said account. With these two classes, if said actor were to change the process of account creation, the only changes made would be in `AccountManager`, because we still have `RegisteredUser` being stored in `AccountList`, the only difference is how the `RegisteredUser` is made in `AccountManager`.        |
 | Open/closed           |         |
 | Liskov substitution   |         |
 | Interface segregation | Our Serializer and AccountManagerDependency interfaces are kept small, only defining the crucial methods needed         |
@@ -115,7 +115,7 @@ but we are working on refactoring our code and adding better suited design patte
 - In general:
     - Ironing out the Clean Architecture for the UI
 
-                     |                         Current Work                     |           Future Plans             |
+      |               |                         Current Work                     |           Future Plans             |
       |--------------|----------------------------------------------------------|------------------------------------|
       | Ashenafee    |                                                          |
       | Anthony      |                                                          |
