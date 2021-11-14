@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class ReviewRepositoryImpl implements ReviewRepository {
-    private ReviewMapper reviewMapper;
-    private ReviewDAO reviewDAO;
+    private final ReviewMapper reviewMapper;
+    private final ReviewDAO reviewDAO;
 
     public ReviewRepositoryImpl(ReviewDAO reviewDAO){
         this.reviewMapper = new ReviewMapper();
@@ -35,7 +35,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
 
     @Override
     public ArrayList<Review> getReviewsByUser(User user) {
-        Map<Integer, ReviewDTO> reviewDataMap = this.reviewDAO.getReviewDataByUser(user.username);
+        Map<Integer, ReviewDTO> reviewDataMap = this.reviewDAO.getReviewDataByUser(user.getUsername());
         return this.mapToList(reviewDataMap);
     }
 

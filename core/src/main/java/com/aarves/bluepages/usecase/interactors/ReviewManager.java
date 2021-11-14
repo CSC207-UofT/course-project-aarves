@@ -1,71 +1,94 @@
 package com.aarves.bluepages.usecase.interactors;
 
-import com.aarves.bluepages.entities.Location;
-import com.aarves.bluepages.entities.RegisteredUser;
+import com.aarves.bluepages.entities.User;
 import com.aarves.bluepages.entities.Review;
 
 import java.util.ArrayList;
 
 public class ReviewManager {
-    private ReviewRepository reviewRepository;
-    private AccountManager accountManager;
+    private final ReviewRepository reviewRepository;
+    private final AccountManager accountManager;
 
     public ReviewManager(ReviewRepository reviewRepository, AccountManager accountManager) {
         this.reviewRepository = reviewRepository;
         this.accountManager = accountManager;
     }
 
-    protected Review getReview(int reviewId) {
+    public Review getReview(int reviewId) {
         return this.reviewRepository.getReview(reviewId);
     }
 
     /**
      * Creates a new review and adds it to the reviewHashMap
      *
-     * @param reviewer      The RegisteredUser creating the Review.
      * @param locationId    Integer representing the ID of the Location this Review is addressed towards.
-     * @param rating        Integer rating (out of 5) for location as per the RegisteredUser's opinion.
-     * @param reviewBody        String information about the RegisteredUser's opinions.
+     * @param rating        Integer rating (out of 5) for location as per the User's opinion.
+     * @param reviewBody    String information about the User's opinions.
      */
-    public void createReview(RegisteredUser reviewer, int locationId, int rating, String reviewBody) {
-        Review newReview = new Review(reviewer.getUsername(), locationId, rating, reviewBody);
-        int newId = this.reviewRepository.addReview(newReview);
-        newReview.setReviewId(newId);
+    public void createReview(int locationId, int rating, String reviewBody) throws NotLoggedInException {
+        if(this.accountManager.isLoggedIn()) {
+            User user = this.getUser();
+            Review newReview = new Review(user.getUsername(), locationId, rating, reviewBody);
+            int newId = this.reviewRepository.addReview(newReview);
+
+            newReview.setReviewId(newId);
+            user.addReview(newReview);
+        }
+        else {
+            throw new NotLoggedInException();
+        }
     }
 
     /**
      * Creates a new review and adds it to the reviewHashMap.
      *
-     * @param reviewer      The RegisteredUser creating the Review.
      * @param locationId    Integer representing the ID of the Location this Review is addressed towards.
-     * @param rating        Integer rating (out of 5) for location as per the RegisteredUser's opinion.
+     * @param rating        Integer rating (out of 5) for location as per the User's opinion.
      */
-    public void createReview(RegisteredUser reviewer, int locationId, int rating) {
-        Review newReview = new Review(reviewer.getUsername(), locationId, rating);
-        int newId = this.reviewRepository.addReview(newReview);
-        newReview.setReviewId(newId);
+    public void createReview(int locationId, int rating) throws NotLoggedInException {
+        if(this.accountManager.isLoggedIn()) {
+            User user = this.getUser();
+            Review newReview = new Review(user.getUsername(), locationId, rating);
+            int newId = this.reviewRepository.addReview(newReview);
+
+            newReview.setReviewId(newId);
+            user.addReview(newReview);
+        }
+        else {
+            throw new NotLoggedInException();
+        }
     }
 
     /**
-     * Deletes all reviews associated with a RegisteredUser.
-     *
-     * @param reviewer the RegisteredUser whose reviews will be deleted.
+     * Deletes all reviews associated with the User.
      */
-    public void deleteAllUserReviews(RegisteredUser reviewer) {
-        ArrayList<Review> reviews = reviewer.getReviews();
-        for (Review review : reviews) {
-            deleteReview(reviewer, review);
+    public void deleteAllUserReviews() throws NotLoggedInException {
+        if(this.accountManager.isLoggedIn()) {
+            ArrayList<Review> reviews = this.getUser().getReviews();
+            for (Review review : reviews) {
+                this.deleteReview(review);
+            }
+        }
+        else {
+            throw new NotLoggedInException();
         }
     }
 
     /**
      * Deletes a review from all three locations where it is stored.
-     *
-     * @param reviewer the RegisteredUser of the review
-     * @param review the Review to be deleted
+     * @param review    the Review to be deleted
      */
-    public void deleteReview(RegisteredUser reviewer, Review review) {
-        this.reviewRepository.deleteReview(review);
-        reviewer.deleteReview(review);
+    public void deleteReview(Review review) throws NotLoggedInException {
+        if(this.accountManager.isLoggedIn()) {
+            this.reviewRepository.deleteReview(review);
+            this.getUser().deleteReview(review);
+        }
+        else {
+            throw new NotLoggedInException();
+        }
+    }
+
+    private User getUser(){
+        return this.accountManager.getUser();
     }
 }

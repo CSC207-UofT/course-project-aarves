@@ -10,14 +10,14 @@ public class Review {
     private int reviewId;
 
     /**
-     * Constructs a new Review object which belongs to a given RegisteredUser regarding a specific Location, and
-     * containing a String with information about the RegisteredUser's experience, and an Integer rating out of 5 based
-     * on the RegisteredUser's opinion.
+     * Constructs a new Review object which belongs to a given User regarding a specific Location, and
+     * containing a String with information about the User's experience, and an Integer rating out of 5 based
+     * on the User's opinion.
      *
-     * @param reviewer      String representing the username of the RegisteredUser creating the Review.
+     * @param reviewer      String representing the username of the User creating the Review.
      * @param locationId    Integer representing the ID of the Location this Review is addressed towards.
-     * @param rating        Integer rating (out of 5) for location as per the RegisteredUser's opinion.
-     * @param body        String information about the RegisteredUser's opinions.
+     * @param rating        Integer rating (out of 5) for location as per the User's opinion.
+     * @param body          String information about the User's opinions.
      */
     public Review(String reviewer, int locationId, int rating, String body) {
         this.reviewer = reviewer;
@@ -29,12 +29,12 @@ public class Review {
     }
 
     /**
-     * Constructs a new Review object which belongs to a given RegisteredUser regarding a specific Location, and an
-     * Integer rating out of 5 based on the RegisteredUser's opinion.
+     * Constructs a new Review object which belongs to a given User regarding a specific Location, and an
+     * Integer rating out of 5 based on the User's opinion.
      *
-     * @param reviewer      String representing the username of the RegisteredUser creating the Review.
+     * @param reviewer      String representing the username of the User creating the Review.
      * @param locationId    Integer representing the ID of the Location this Review is addressed towards.
-     * @param rating        Integer rating (out of 5) for location as per the RegisteredUser's opinion.
+     * @param rating        Integer rating (out of 5) for location as per the User's opinion.
      */
     public Review(String reviewer, int locationId, int rating) {
         this.reviewer = reviewer;
@@ -45,8 +45,8 @@ public class Review {
     }
 
     /**
-     * Return the String representing the username of the RegisteredUser who left this Review.
-     * @return  String representing the username of the RegisteredUser creating the Review.
+     * Return the String representing the username of the User who left this Review.
+     * @return  String representing the username of the User creating the Review.
      */
     public String getReviewer() {
         return this.reviewer;
