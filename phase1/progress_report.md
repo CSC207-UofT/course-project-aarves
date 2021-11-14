@@ -50,7 +50,8 @@ TO DO, if we want to add this in.
 
 ### Clean Architecture
 **_How does our project adhere to Clean Architecture?_**
-- The code is independent of the Android UI, and external agency and of the database (?)
+- The code is independent of the Android UI, and external agency and of the database 
+- The code follows the dependency rule (see dependency inversion under SOLID principles for more info)
 
 **Scenario walk-through:**
     Upon opening the app, a client interacts with the software through an Android UI. When a client signs-in...
@@ -63,7 +64,7 @@ _**How is our project consistent with the SOLID design principles?**_
 | Single responsibility |         |
 | Open/closed           |         |
 | Liskov substitution   |         |
-| Interface segregation | Our Serializer interface is kept small, only defining the two crucial methods for serialization         |
+| Interface segregation | Our Serializer and AccountManagerDependency interfaces are kept small, only defining the crucial methods needed         |
 | Dependency inversion  | In general, our entities such as a RegisteredUser do not know about for example the Android UI, any use cases or controllers. Instead, the CommandLine generates an instance of the InputController and InputGateway. The InputController and InputGateways then generate instances of an AccountManager and an AccountManager is able to instantiate a new RegisteredUser. This flow illustrates how our code only points inwards, consistent with the dependency rule        |
 
 ## Packaging ##
@@ -98,8 +99,16 @@ needed our attention.
 
 ## Progress Report ##
 
-(open questions we are struggling with)
+1. Open questions we are struggling with:
+- How to implement serialization so that it best follows clean architecture (see Clean Architecture for more information)
+- 
 
-(what worked well so far)
+2. What worked well so far:
+- Keeping team members updated on progress through active team group chat
+- Scheduling consistent meetings to brainstorm ideas and work through any issues
+- Collaborating in writing code worked well when we were unfamiliar with implementing a certain feature
 
-(what each group member has been working on and plans to work on next)
+3. What each group member has been working on and plans to work on next:
+- In general:
+    - Ironing out the Clean Architecture for the UI
+    
