@@ -14,7 +14,7 @@ Our goal is to create an app that is tailored to UofT students, allowing them to
 
 - Search locations, and use the provided filter to narrow their search for a location.
 - Use the interactable map to browse locations at the St. George campus.
-  
+
 (Picture of map feature here)
 
 ### All users with an account should be able to: ###
