@@ -41,21 +41,21 @@ From phase 0 to phase 1, we took the command-line interface and built upon it to
 TO DO, if we want to add this in.
 
 ## Major decisions made by our group: ##
-- Using GSON for serialization: we chose json over other databases/storage types as it fit better with the entities that we want to store.
 - Moving to Android vs. web application: we decided to move our app over to Android, as it better fit our original view of what we wanted to do with this project.
 
-## Clean Architecture
-**_How does our project adhere to Clean Architecture?_**
-- The code is independent of the Android UI, and external agency and of the database
-- The code follows the dependency rule (see dependency inversion under SOLID principles for more info)
-
-**Scenario walk-through:** Upon opening Bluepages, the user is greeted with an access menu from which three options are available; guest, login, and register. If the user is new to the app and wants extra functionality, they would select "REGISTER".
+## Scenario walk-through 
+Upon opening Bluepages, the user is greeted with an access menu from which three options are available; guest, login, and register. If the user is new to the app and wants extra functionality, they would select "REGISTER".
 
 They are now presented with a registration menu where they can enter their information. After validating the entered information (i.e. username and password), they are returned to the main menu where they can select the login option.
 
 From here, the user selects "LOGIN", and enters the info which they used to sign up for Bluepages. Upon successful login, the user is brought to the main menu where they can view the food/study spot of the day, access bookmarks/reviews, and view the map.
 
 If "MAP" is selected, the user is presented with a map bound to the vicinity of the St. George Campus, and within these bounds the map is freely pannable and zoomable. Should manual browsing not be the user's go-to, they can use the search bar to look-up nearby locations, presented as a command-line output.
+
+## Clean Architecture
+**_How does our project adhere to Clean Architecture?_**
+- The code is independent of the Android UI, and external agency and of the database
+- The code follows the dependency rule (see dependency inversion under SOLID principles for more info)
 
 ## Solid Principles
 _**How is our project consistent with the SOLID design principles?**_
@@ -125,6 +125,6 @@ but we are working on refactoring our code and adding better suited design patte
   | Ashenafee    | Worked on the Android UI, MapBox integration, and adding classes adhering to our previously-missing layers of Clean Architecture. | Additional work with the UI/MapBox API to display explicit points on the map. |
   | Anthony      |                                                          | |
   | Erica        | Worked on serizalization and implementing design patterns| UI and possibly implementing the Strategy design pattern |
-  | Rebecca      | Looked into serialization method, implemented serialization interface and classes, testing and bugfixes | View bookmarks, view reviews, and their associated UIs |
+  | Rebecca      | Serialization, testing and bugfixes | View bookmarks, view reviews, and their associated UIs |
   | Syed         | Worked on creating Test Cases and adding Design Patterns | Test Cases, UI and Design Patterns |
   | Vaishnavi    | Worked on refactoring through packaging and potential logo | Possibly UI and maintaining clean architecture |
