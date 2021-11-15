@@ -48,7 +48,7 @@ TO DO, if we want to add this in.
 
 ## Major decisions made by our group: ##
 
-### Clean Architecture
+## Clean Architecture
 **_How does our project adhere to Clean Architecture?_**
 - The code is independent of the Android UI, and external agency and of the database 
 - The code follows the dependency rule (see dependency inversion under SOLID principles for more info)
@@ -56,7 +56,7 @@ TO DO, if we want to add this in.
 **Scenario walk-through:**
     Upon opening the app, a client interacts with the software through an Android UI. When a client signs-in...
 
-### Solid Principles
+## Solid Principles
 _**How is our project consistent with the SOLID design principles?**_
 
 | SOLID Principle       | Example |
@@ -122,6 +122,6 @@ but we are working on refactoring our code and adding better suited design patte
       | Ashenafee    |                                                          |
       | Anthony      |                                                          |
       | Erica        | Worked on serizalization and implementing design patterns| UI and possibly implementing the Strategy design pattern
-      | Rebecca      |                                                          |
+      | Rebecca      | Looked into serialization method, implemented serialization interface and classes, testing and bugfixes | View bookmarks, view reviews, and their associated UIs
       | Syed         | Worked on creating Test Cases and adding Design Patterns | Test Cases, UI and Design Patterns
       | Vaishnavi    | Worked on refactoring through packaging and potential logo| Possibly UI and maintaining clean architecture
