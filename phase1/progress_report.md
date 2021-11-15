@@ -30,11 +30,9 @@ Across both types of locations, general information such as name and address are
 
 From phase 0 to phase 1, we took the command-line interface and built upon it to have an Android app complete with a GUI. With this addition, the user can now use an interactive map to browse locations. Below are demonstrations of the benefits this move to Android has conveyed:
 
-| Being Shown  | Demonstration |
-|--------------|---------------|
-| Login        |   ![](assets/gif_login.gif)  |
-| Registration |  ![](assets/gif_registration.gif)   |
-| Map browsing |  ![](assets/gif_map.gif)   |
+| Login | Registration | Map Browsing |
+|--------------|---------------|---------------|
+| ![](assets/gif_login.gif) | ![](assets/gif_registration.gif)      | ![](assets/gif_map.gif) |
 
 ## Major decisions made by our group: ##
 - Moving to Android vs. web application: we decided to move our app over to Android, as it better fit our original view of what we wanted to do with this project.
