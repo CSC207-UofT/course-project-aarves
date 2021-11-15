@@ -1,6 +1,5 @@
 package com.aarves.core.gateways;
 
-import com.aarves.core.controllers.LookupController;
 import com.aarves.core.entities.FoodLocation;
 import com.aarves.core.entities.Location;
 import com.aarves.core.entities.StudyLocation;
@@ -13,6 +12,11 @@ import java.util.ArrayList;
 
 public class MapboxGateway {
 
+    /**
+     * Take the raw response from MapBox and parse it into relevant information.
+     * @param json JSONObject containing the raw response.
+     * @return An ArrayList of Locations containing relevant information from json.
+     */
     public ArrayList<Location> parseInformation(JSONObject json) {
         JSONArray places = new JSONArray();
         try {
@@ -48,15 +52,4 @@ public class MapboxGateway {
         return placeArray;
     }
 
-    public static void main(String[] args) {
-        LookupController lc = new LookupController();
-        JSONObject json = lc.lookupLocation("Starbucks", "pk.eyJ1IjoiYXNoZW5hZmVlIiwiYSI6ImNrdnd3dndzMTAxd24ycnA0cm13MzFlN2QifQ.rElo65x6Ei-DTN_JIz0KlA");
-
-        MapboxGateway mg = new MapboxGateway();
-        ArrayList<Location> locs = mg.parseInformation(json);
-
-        for (Location loc: locs) {
-            System.out.println(loc);
-        }
-    }
 }

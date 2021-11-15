@@ -1,18 +1,15 @@
 package com.aarves.bluepages;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.aarves.core.usecases.AccountManager;
 import com.google.android.material.snackbar.Snackbar;
-
-import java.util.concurrent.TimeUnit;
 
 public class RegisterActivity extends AppCompatActivity {
     private static final AccountManager am = new AccountManager();
@@ -23,10 +20,18 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
     }
 
+    /**
+     * Return the user back to the main access menu.
+     * @param view View object containing context on what's currently being shown.
+     */
     public void returnToAccessMenu(View view) {
         finish();
     }
 
+    /**
+     * Register the user for Bluenotes, given a combination of username and password.
+     * @param view View object containing context on what's currently being shown.
+     */
     public void registerUser(View view) {
         // Get EditText objects for the username/password inputs
         EditText usernameInput = findViewById(R.id.registerUsername);
@@ -47,7 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
             am.addUser(username, password);
             Handler handler = new Handler();
             Snackbar.make(view, "Account created successfully. Returning to the login menu in 5 seconds.", 5000).show();
-            handler.postDelayed(() -> finish(), 5000);
+            handler.postDelayed(this::finish, 5000);
         }
     }
 }

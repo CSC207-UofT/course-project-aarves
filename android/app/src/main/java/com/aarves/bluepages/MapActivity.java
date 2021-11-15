@@ -1,14 +1,14 @@
 package com.aarves.bluepages;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
-import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.aarves.core.controllers.LookupController;
+import com.aarves.core.entities.Location;
+import com.aarves.core.gateways.MapboxGateway;
 import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.maps.Style;
 import com.mapbox.maps.CameraBoundsOptions;
@@ -17,6 +17,8 @@ import com.mapbox.maps.MapView;
 import com.mapbox.maps.MapboxMap;
 
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class MapActivity extends AppCompatActivity {
 
@@ -56,8 +58,13 @@ public class MapActivity extends AppCompatActivity {
                 new Thread() {
                     public void run() {
                         LookupController lc = new LookupController();
+                        MapboxGateway mg = new MapboxGateway();
                         JSONObject json = lc.lookupLocation(editText.getText().toString(), getResources().getString(R.string.mapbox_access_token));
-                        System.out.println(json);
+                        ArrayList<Location> locationArray = mg.parseInformation(json);
+
+                        for (Location loc: locationArray) {
+                            System.out.println(loc);
+                        }
                     }
                 }.start();
                 handled = true;
