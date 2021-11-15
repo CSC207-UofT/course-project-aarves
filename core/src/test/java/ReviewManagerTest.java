@@ -43,7 +43,7 @@ class ReviewManagerTest {
         RegisteredUser u2 = new RegisteredUser("natsy2", "testing");
         StudyLocation sl2 = new StudyLocation("5", "Bahen", "St George Street", true, false);
         Review r2 = new Review("natsy2",  sl, "Noisy!", 3);
-        rm.addReview(u2, sl2, r2.getReviewId());
+        rm.addReview(u2, sl2, r2);
         rm.deleteAllUserReviews(u2);
         List<Integer> empty = new ArrayList<>();
         assertEquals(empty, u2.getReviews());
@@ -54,7 +54,7 @@ class ReviewManagerTest {
         RegisteredUser u2 = new RegisteredUser("natsy2", "testing");
         StudyLocation sl2 = new StudyLocation("5", "Bahen", "St George Street", true, false);
         Review r2 = new Review("natsy2",  sl, "Noisy!", 3);
-        rm.addReview(u2, sl2, r2.getReviewId());
+        rm.addReview(u2, sl2, r2);
         rm.deleteReview(u2, sl2, r2);
         List<Integer> empty = new ArrayList<>();
         assertEquals(empty, u2.getReviews());
