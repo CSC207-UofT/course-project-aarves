@@ -1,6 +1,7 @@
-package com.aarves.core.usecases;
+package com.aarves.core.gateways;
 
 import com.aarves.core.entities.RegisteredUser;
+import com.aarves.core.usecases.AccountManager;
 
 public class InputGateway {
 
