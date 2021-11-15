@@ -108,3 +108,4 @@ gradlew.bat
 
 # Don't leak tokens!
 /app/src/main/res/values/developer-config.xml
+/gradle.properties
