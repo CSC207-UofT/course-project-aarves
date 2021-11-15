@@ -47,6 +47,8 @@ From phase 0 to phase 1, we took the command-line interface and built upon it to
 TO DO, if we want to add this in.
 
 ## Major decisions made by our group: ##
+- Using GSON for serialization: we chose json over other databases/storage types as it fit better with the entities that we want to store.
+- Moving to Android vs. web application: we decided to move our app over to Android, as it better fit our original view of what we wanted to do with this project.
 
 ## Clean Architecture
 **_How does our project adhere to Clean Architecture?_**
