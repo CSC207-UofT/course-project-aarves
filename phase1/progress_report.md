@@ -6,7 +6,9 @@ Bluepages is a location-browser app tailored to UofT students looking for places
 
 - To browse the app, users can either create an account, login, or continue as a guest (no account).
 
-[IMAGE OF MAIN MENU]
+| Light Mode | Dark Mode |
+|----------|------------|
+| ![](assets/access_light.png)      |  ![](assets/access_dark.png)       |
 
 ### Permissions based off login-type
 
@@ -15,22 +17,14 @@ Bluepages is a location-browser app tailored to UofT students looking for places
 | Guest users can...     | <ul><li>View a randomly selected food and study spot of the day.</li><li>Search for locations, and further tune their search using filters.</li><li>Use the interactive map to browse locations in their vicinity.</li></ul>            |
 | Registered users can... | <ul><li>Do everything a guest user can do.</li><li>Bookmark locations for easy access in the future.</li><li>Leave reviews and a rating for locations.</li></ul>            |
 
-[IMAGE OF FOTD/SOTD]
-
-[IMAGE OF MAP]
-
-[IMAGE OF A REVIEW]
-
 ### Locations ###
 
-Across both types of locations, general information such as name, address, and hours are provided.
+Across both types of locations, general information such as name and address are provided.
 
 | Location-type | Information-shown |
 |---------------|-------------------|
 | Food          | <ul><li>Food type (i.e. Japanese).</li><li>Whether it's dine-in or takeout.</li><li>Price range.</li></ul>                  |
 | Study         | <ul><li>Whether it's indoors or outdoors.</li><li>Study room availability (if indoors).</li></ul>                  |
-
-[IMAGE OF A LOCATION]
 
 ## Changes From Phase0 ##
 
@@ -38,9 +32,9 @@ From phase 0 to phase 1, we took the command-line interface and built upon it to
 
 | Being Shown  | Demonstration |
 |--------------|---------------|
-| Login        | INSERT GIF    |
-| Registration | INSERT GIF    |
-| Map browsing | INSERT GIF    |
+| Login        |   ![](assets/gif_login.gif)  |
+| Registration |  ![](assets/gif_registration.gif)   |
+| Map browsing |  ![](assets/gif_map.gif)   |
 
 ## UML Diagram ##
 
@@ -55,8 +49,13 @@ TO DO, if we want to add this in.
 - The code is independent of the Android UI, and external agency and of the database
 - The code follows the dependency rule (see dependency inversion under SOLID principles for more info)
 
-**Scenario walk-through:**
-Upon opening the app, a client interacts with the software through an Android UI. When a client signs-in...
+**Scenario walk-through:** Upon opening Bluepages, the user is greeted with an access menu from which three options are available; guest, login, and register. If the user is new to the app and wants extra functionality, they would select "REGISTER".
+
+They are now presented with a registration menu where they can enter their information. After validating the entered information (i.e. username and password), they are returned to the main menu where they can select the login option.
+
+From here, the user selects "LOGIN", and enters the info which they used to sign up for Bluepages. Upon successful login, the user is brought to the main menu where they can view the food/study spot of the day, access bookmarks/reviews, and view the map.
+
+If "MAP" is selected, the user is presented with a map bound to the vicinity of the St. George Campus, and within these bounds the map is freely pannable and zoomable. Should manual browsing not be the user's go-to, they can use the search bar to look-up nearby locations, presented as a command-line output.
 
 ## Solid Principles
 _**How is our project consistent with the SOLID design principles?**_
@@ -108,22 +107,24 @@ but we are working on refactoring our code and adding better suited design patte
 
 1. Open questions we are struggling with:
 - How to implement serialization so that it best follows clean architecture (see Clean Architecture for more information)
--
+- How to place points on the MapBox map.
+- Where information on the hours of service/price range of some locations can be obtained (possibly through MapBox).
 
 2. What worked well so far:
 - Keeping team members updated on progress through active team group chat
 - Scheduling consistent meetings to brainstorm ideas and work through any issues
 - Collaborating in writing code worked well when we were unfamiliar with implementing a certain feature
+- Having different members with higher levels of proficiency in some areas so each member could help another when issues arise (i.e. Git, Android Studio, etc.)
 
 3. What each group member has been working on and plans to work on next:
-- In general:
-  - Ironing out the Clean Architecture for the UI
 
-    |               |                         Current Work                     |           Future Plans             |
-          |--------------|----------------------------------------------------------|------------------------------------|
-    | Ashenafee    |                                                          |
-    | Anthony      |                                                          |
-    | Erica        | Worked on serizalization and implementing design patterns| UI and possibly implementing the Strategy design pattern
-    | Rebecca      | Looked into serialization method, implemented serialization interface and classes, testing and bugfixes | View bookmarks, view reviews, and their associated UIs
-    | Syed         | Worked on creating Test Cases and adding Design Patterns | Test Cases, UI and Design Patterns
-    | Vaishnavi    | Worked on refactoring through packaging and potential logo| Possibly UI and maintaining clean architecture
+    Across all six of us, we have been ironing out Clean Architecture, but the next goal as a team is to further this use of Clean Archiecture to the UI and Android-specific elements (i.e. Activities).
+
+  |              |                         Current Work                     |           Future Plans             |
+      |--------------|----------------------------------------------------------|------------------------------------|
+  | Ashenafee    | Worked on the Android UI, MapBox integration, and adding classes adhering to our previously-missing layers of Clean Architecture. | Additional work with the UI/MapBox API to display explicit points on the map. |
+  | Anthony      |                                                          | |
+  | Erica        | Worked on serizalization and implementing design patterns| UI and possibly implementing the Strategy design pattern |
+  | Rebecca      | Looked into serialization method, implemented serialization interface and classes, testing and bugfixes | View bookmarks, view reviews, and their associated UIs |
+  | Syed         | Worked on creating Test Cases and adding Design Patterns | Test Cases, UI and Design Patterns |
+  | Vaishnavi    | Worked on refactoring through packaging and potential logo| Possibly UI and maintaining clean architecture |
