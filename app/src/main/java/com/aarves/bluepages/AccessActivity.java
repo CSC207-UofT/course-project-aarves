@@ -16,7 +16,7 @@ public class AccessActivity extends AppCompatActivity {
 
     /**
      * Login to UofT Yelp as a guest user.
-     * @param view
+     * @param view View object containing context on what's currently being shown.
      */
     public void loginAsGuest(View view) {
         Intent intent = new Intent(this, MainMenuActivity.class);
@@ -25,7 +25,7 @@ public class AccessActivity extends AppCompatActivity {
 
     /**
      * Login to UofT Yelp as a registered user.
-     * @param view
+     * @param view View object containing context on what's currently being shown.
      */
     public void loginAsUser(View view) {
         Intent intent = new Intent(this, LoginActivity.class);
@@ -34,7 +34,7 @@ public class AccessActivity extends AppCompatActivity {
 
     /**
      * Register for an account to access UofT Yelp with.
-     * @param view
+     * @param view View object containing context on what's currently being shown.
      */
     public void registerNewUser(View view) {
         Intent intent = new Intent(this, RegisterActivity.class);
