@@ -30,15 +30,9 @@ Across both types of locations, general information such as name and address are
 
 From phase 0 to phase 1, we took the command-line interface and built upon it to have an Android app complete with a GUI. With this addition, the user can now use an interactive map to browse locations. Below are demonstrations of the benefits this move to Android has conveyed:
 
-| Being Shown  | Demonstration |
-|--------------|---------------|
-| Login        |   ![](assets/gif_login.gif)  |
-| Registration |  ![](assets/gif_registration.gif)   |
-| Map browsing |  ![](assets/gif_map.gif)   |
-
-## UML Diagram ##
-
-TO DO, if we want to add this in.
+| Login | Registration | Map Browsing |
+|--------------|---------------|---------------|
+| ![](assets/gif_login.gif) | ![](assets/gif_registration.gif)      | ![](assets/gif_map.gif) |
 
 ## Major decisions made by our group: ##
 - Moving to Android vs. web application: we decided to move our app over to Android, as it better fit our original view of what we wanted to do with this project.
@@ -63,8 +57,6 @@ _**How is our project consistent with the SOLID design principles?**_
 | SOLID Principle       | Example |
 |-----------------------|---------|
 | Single responsibility | Examining `AccountList` and `AccountManager`, the two are separate classes to hold in line with the SRP. Originally we had combined the responsibility of account storage and account creation/deletion in one class. In that case, should an actor want to change the process in how an account is created, then it would have also affected the storage of said account. With these two classes, if said actor were to change the process of account creation, the only changes made would be in `AccountManager`, because we still have `RegisteredUser` being stored in `AccountList`, the only difference is how the `RegisteredUser` is made in `AccountManager`.        |
-| Open/closed           |         |
-| Liskov substitution   |         |
 | Interface segregation | Our Serializer and AccountManagerDependency interfaces are kept small, only defining the crucial methods needed         |
 | Dependency inversion  | In general, our entities such as a RegisteredUser do not know about for example the Android UI, any use cases or controllers. Instead, the CommandLine generates an instance of the InputController and InputGateway. The InputController and InputGateways then generate instances of an AccountManager and an AccountManager is able to instantiate a new RegisteredUser. This flow illustrates how our code only points inwards, consistent with the dependency rule        |
 

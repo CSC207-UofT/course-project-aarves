@@ -1,4 +1,7 @@
-package com.aarves.core.entities;
+package com.aarves.core.usecases;
+
+import com.aarves.core.entities.Location;
+import com.aarves.core.entities.Point;
 
 import java.util.HashMap;
 
