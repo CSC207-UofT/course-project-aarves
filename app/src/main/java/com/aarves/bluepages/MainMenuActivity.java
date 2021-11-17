@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import android.widget.EditText;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainMenuActivity extends AppCompatActivity {
@@ -15,6 +17,11 @@ public class MainMenuActivity extends AppCompatActivity {
     }
 
     // TODO: Bookmark/Review button redirects
+
+    public void viewReviews(View view) {
+        Intent intent = new Intent(this, ReviewView.class);
+        startActivity(intent);
+    }
 
     /**
      * Navigate to a new activity containing the map to-be-browsed.
