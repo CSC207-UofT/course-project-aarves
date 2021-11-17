@@ -1,4 +1,8 @@
-package com.aarves.core.entities;
+package com.aarves.core.usecases;
+
+import com.aarves.core.entities.FoodLocation;
+import com.aarves.core.entities.Point;
+import com.aarves.core.usecases.Map;
 
 public class FoodMap extends Map {
 
