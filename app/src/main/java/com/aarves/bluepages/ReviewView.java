@@ -16,7 +16,6 @@ public class ReviewView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review_view);
         ListView reviewView = findViewById(R.id.listView);
-        Log.d("start", "start");
 
         ArrayList<Review> reviewList = new ArrayList<>();
         FoodLocation food = new FoodLocation("1", "Location", "area", "test", true, true, "1");
