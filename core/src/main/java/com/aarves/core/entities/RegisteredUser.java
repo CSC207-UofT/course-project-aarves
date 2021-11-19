@@ -1,6 +1,7 @@
 package com.aarves.core.entities;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class RegisteredUser extends User {
     private final ArrayList<Integer> reviews = new ArrayList<>();
@@ -25,7 +26,7 @@ public class RegisteredUser extends User {
      * @return true if the password matches the user's password
      */
     public boolean isCorrectPassword(String password) {
-        return this.password == password;
+        return password.equals(this.password);
     }
 
     /**
