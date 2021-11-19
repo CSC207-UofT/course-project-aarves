@@ -1,7 +1,6 @@
 package com.aarves.bluepages;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.aarves.core.entities.FoodLocation;

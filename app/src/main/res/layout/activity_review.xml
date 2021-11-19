@@ -1,31 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
                                    android:layout_height="wrap_content"
                                    android:layout_width="wrap_content"
                                     android:orientation="vertical">
 
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="horizontal">
+        <ImageView android:layout_width="24dp"
+                   android:layout_height="match_parent"
+                   app:srcCompat="@drawable/ic_baseline_person_24">
+        </ImageView>
+        <TextView
+        android:id="@+id/reviewUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="test1"
+        android:layout_gravity="start"
+        android:paddingLeft="10dp"
+        android:paddingRight="20dp"/>
+    </LinearLayout>
     <TextView
             android:id="@+id/reviewRating"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:text="test1"
-            android:layout_gravity="start"/>
-    <TextView
-            android:id="@+id/reviewUsername"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="30sp"
+            android:textSize="20sp"
             android:text="test2"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:layout_gravity="start"/>
     <TextView
             android:id="@+id/reviewText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
+            android:textSize="20sp"
             android:text="test3"
             android:layout_gravity="start"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:layout_alignParentBottom="true"/>
 
 

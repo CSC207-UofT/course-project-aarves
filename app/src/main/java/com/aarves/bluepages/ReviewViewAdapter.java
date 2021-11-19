@@ -24,16 +24,16 @@ public class ReviewViewAdapter extends ArrayAdapter<Review> {
 
     @SuppressLint("ViewHolder")
     public View getView(int position, View reviewView, ViewGroup parent) {
-        String rating = "Rating: " + String.valueOf(getItem(position).getRating());
+        String rating = "Rating: " + getItem(position).getRating();
         String text = getItem(position).getReview();
-        String username = "Username: " + getItem(position).getReviewer();
+        String username = getItem(position).getReviewer();
 
         LayoutInflater inflater = LayoutInflater.from(context);
         reviewView = inflater.inflate(resource, parent, false);
 
-        TextView ratingText = (TextView) reviewView.findViewById(R.id.reviewRating);
-        TextView usernameText = (TextView) reviewView.findViewById(R.id.reviewUsername);
-        TextView reviewText = (TextView) reviewView.findViewById(R.id.reviewText);
+        TextView ratingText = reviewView.findViewById(R.id.reviewRating);
+        TextView usernameText = reviewView.findViewById(R.id.reviewUsername);
+        TextView reviewText = reviewView.findViewById(R.id.reviewText);
 
         ratingText.setText(rating);
         usernameText.setText(username);
