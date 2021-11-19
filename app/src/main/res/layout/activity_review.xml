@@ -9,7 +9,7 @@
                   android:layout_height="match_parent"
                   android:orientation="horizontal">
         <ImageView android:layout_width="24dp"
-                   android:layout_height="match_parent"
+                   android:layout_height="24dp"
                    app:srcCompat="@drawable/ic_baseline_person_24">
         </ImageView>
         <TextView
@@ -19,18 +19,37 @@
         android:textSize="20sp"
         android:text="test1"
         android:layout_gravity="start"
-        android:paddingLeft="10dp"
-        android:paddingRight="20dp"/>
+        android:paddingLeft="10dp"/>
     </LinearLayout>
-    <TextView
-            android:id="@+id/reviewRating"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="test2"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:layout_gravity="start"/>
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="horizontal"
+                  android:layout_height="match_parent">
+        <ImageView android:layout_width="24dp"
+                   android:id="@+id/review_star1"
+                   app:srcCompat="@drawable/ic_baseline_star_border_24"
+                   android:layout_height="24dp">
+        </ImageView>
+        <ImageView android:layout_width="24dp"
+                   android:id="@+id/review_star2"
+                   app:srcCompat="@drawable/ic_baseline_star_border_24"
+                   android:layout_height="24dp">
+        </ImageView>
+        <ImageView android:layout_width="24dp"
+                   android:id="@+id/review_star3"
+                   app:srcCompat="@drawable/ic_baseline_star_border_24"
+                   android:layout_height="24dp">
+        </ImageView>
+        <ImageView android:layout_width="24dp"
+                   android:id="@+id/review_star4"
+                   app:srcCompat="@drawable/ic_baseline_star_border_24"
+                   android:layout_height="24dp">
+        </ImageView>
+        <ImageView android:layout_width="24dp"
+                   android:id="@+id/review_star5"
+                   app:srcCompat="@drawable/ic_baseline_star_border_24"
+                   android:layout_height="24dp">
+        </ImageView>
+    </LinearLayout>
     <TextView
             android:id="@+id/reviewText"
             android:layout_width="match_parent"
@@ -38,10 +57,6 @@
             android:textSize="20sp"
             android:text="test3"
             android:layout_gravity="start"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
             android:layout_alignParentBottom="true"/>
-
-
 
 </LinearLayout>
