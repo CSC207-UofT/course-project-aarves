@@ -50,19 +50,29 @@ public class ReviewViewAdapter extends ArrayAdapter<Review> {
     }
 
     public void setRating(ImageView reviewStar1, ImageView reviewStar2, ImageView reviewStar3, ImageView reviewStar4, ImageView reviewStar5, int rating) {
-        if (rating >= 1) {
+        if (rating == 1) {
             reviewStar1.setImageResource(R.drawable.ic_baseline_star_24);
         }
-        if (rating >= 2) {
+        else if (rating == 2) {
+            reviewStar1.setImageResource(R.drawable.ic_baseline_star_24);
             reviewStar2.setImageResource(R.drawable.ic_baseline_star_24);
         }
-        if (rating >= 3) {
+        else if (rating >= 3) {
+            reviewStar1.setImageResource(R.drawable.ic_baseline_star_24);
+            reviewStar2.setImageResource(R.drawable.ic_baseline_star_24);
             reviewStar3.setImageResource(R.drawable.ic_baseline_star_24);
         }
-        if (rating >= 4) {
+        else if (rating >= 4) {
+            reviewStar1.setImageResource(R.drawable.ic_baseline_star_24);
+            reviewStar2.setImageResource(R.drawable.ic_baseline_star_24);
+            reviewStar3.setImageResource(R.drawable.ic_baseline_star_24);
             reviewStar4.setImageResource(R.drawable.ic_baseline_star_24);
         }
-        if (rating >= 5) {
+        else if (rating >= 5) {
+            reviewStar1.setImageResource(R.drawable.ic_baseline_star_24);
+            reviewStar2.setImageResource(R.drawable.ic_baseline_star_24);
+            reviewStar3.setImageResource(R.drawable.ic_baseline_star_24);
+            reviewStar4.setImageResource(R.drawable.ic_baseline_star_24);
             reviewStar5.setImageResource(R.drawable.ic_baseline_star_24);
         }
     }
