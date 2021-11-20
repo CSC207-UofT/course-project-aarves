@@ -25,6 +25,9 @@
             android:name=".MainMenuActivity"
             android:exported="false" />
         <activity
+                android:name=".ReviewView"
+                android:exported="false" />
+        <activity
             android:name=".AccessActivity"
             android:exported="true">
             <intent-filter>
