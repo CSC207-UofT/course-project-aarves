@@ -8,14 +8,20 @@ import java.security.NoSuchAlgorithmException;
 
 public class AdaptersInjector {
     private final AccountController accountController;
+    private final ReviewController reviewController;
 
     public AdaptersInjector(AccountDAO accountDAO, ReviewDAO reviewDAO) throws NoSuchAlgorithmException {
         UseCaseInjector useCaseInjector = new UseCaseInjector(accountDAO, reviewDAO);
 
         this.accountController = new AccountController(useCaseInjector.getAccountManager());
+        this.reviewController = new ReviewController(useCaseInjector.getReviewManager());
     }
 
     public AccountController getAccountController() {
         return this.accountController;
+    }
+
+    public ReviewController getReviewController() {
+        return this.reviewController;
     }
 }
