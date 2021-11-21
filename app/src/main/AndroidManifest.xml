@@ -2,10 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.aarves.bluepages">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-    <application
+    <application android:name=".MainApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -13,26 +14,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Bluepages">
         <activity
-            android:name=".MapActivity"
+            android:name=".gui.MapActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".gui.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".gui.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".MainMenuActivity"
+            android:name=".gui.MainMenuActivity"
             android:exported="false" />
         <activity
-                android:name=".ReviewView"
-                android:exported="false" />
+            android:name=".gui.ReviewView"
+            android:exported="false" />
         <activity
-            android:name=".AccessActivity"
+            android:name=".gui.AccessActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
