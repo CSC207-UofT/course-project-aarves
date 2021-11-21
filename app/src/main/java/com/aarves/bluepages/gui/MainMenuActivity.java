@@ -18,7 +18,7 @@ public class MainMenuActivity extends AppCompatActivity {
     // TODO: Bookmark/Review button redirects
 
     public void viewReviews(View view) {
-        Intent intent = new Intent(this, ReviewView.class);
+        Intent intent = new Intent(this, ReviewActivity.class);
         startActivity(intent);
     }
 
