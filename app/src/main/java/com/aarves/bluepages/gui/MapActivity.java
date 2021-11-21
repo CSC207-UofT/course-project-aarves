@@ -1,6 +1,7 @@
 package com.aarves.bluepages.gui;
 
 import android.os.Bundle;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 
@@ -10,6 +11,7 @@ import com.aarves.bluepages.R;
 import com.aarves.bluepages.entities.Location;
 import com.aarves.bluepages.adapters.MapboxGateway;
 import com.aarves.core.controllers.LookupController;
+import com.google.android.material.snackbar.Snackbar;
 import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.maps.Style;
 import com.mapbox.maps.CameraBoundsOptions;
@@ -61,6 +63,13 @@ public class MapActivity extends AppCompatActivity {
                         JSONObject json = lc.lookupLocation(editText.getText().toString(), getResources().getString(R.string.mapbox_access_token));
                         ArrayList<Location> locationArray = mg.parseInformation(json);
 
+                        // Show snackbar on UI thread
+                        runOnUiThread(() -> {
+                            if (locationArray.size() > 0) {
+                                Location location = locationArray.get(0);
+                                Snackbar.make(findViewById(R.id.mapView), "First result: " + location.getAddress(), Snackbar.LENGTH_LONG).show();
+                            }
+                        });
                         for (Location loc: locationArray) {
                             System.out.println(loc);
                         }
