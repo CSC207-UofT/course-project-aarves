@@ -8,7 +8,7 @@ import com.aarves.bluepages.entities.Review;
 
 import java.util.ArrayList;
 
-public class ReviewView extends AppCompatActivity {
+public class ReviewActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
