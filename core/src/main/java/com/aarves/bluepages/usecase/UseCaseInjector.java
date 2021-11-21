@@ -1,20 +1,25 @@
-package com.aarves.bluepages.usecase.data;
+package com.aarves.bluepages.usecase;
+
+import com.aarves.bluepages.usecase.data.AccountDAO;
+import com.aarves.bluepages.usecase.data.AccountDataImpl;
+import com.aarves.bluepages.usecase.data.ReviewDAO;
+import com.aarves.bluepages.usecase.data.ReviewRepositoryImpl;
 
 import com.aarves.bluepages.usecase.interactors.AccountManager;
 import com.aarves.bluepages.usecase.interactors.ReviewManager;
 
 import java.security.NoSuchAlgorithmException;
 
-public class DataInjector {
+public class UseCaseInjector {
     private final AccountManager accountManager;
     private final ReviewManager reviewManager;
 
-    public DataInjector(AccountDAO accountDAO, ReviewDAO reviewDAO) throws NoSuchAlgorithmException {
+    public UseCaseInjector(AccountDAO accountDAO, ReviewDAO reviewDAO) throws NoSuchAlgorithmException {
         ReviewRepositoryImpl reviewRepository = new ReviewRepositoryImpl(reviewDAO);
         AccountDataImpl accountData = new AccountDataImpl(accountDAO, reviewRepository);
 
         this.accountManager = new AccountManager(accountData);
-        this.reviewManager = new ReviewManager(reviewRepository, accountManager);
+        this.reviewManager = new ReviewManager(reviewRepository, this.accountManager);
     }
 
     public AccountManager getAccountManager() {
