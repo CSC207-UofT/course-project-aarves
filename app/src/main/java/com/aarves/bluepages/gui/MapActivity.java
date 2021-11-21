@@ -8,8 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.aarves.bluepages.R;
 import com.aarves.bluepages.entities.Location;
-import com.aarves.bluepages.adapters.MapboxGateway;
-import com.aarves.core.controllers.LookupController;
+import com.aarves.bluepages.adapter.MapboxGateway;
+import com.aarves.bluepages.adapter.controllers.LookupController;
 import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.maps.Style;
 import com.mapbox.maps.CameraBoundsOptions;

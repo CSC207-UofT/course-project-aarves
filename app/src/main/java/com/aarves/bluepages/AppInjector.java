@@ -3,7 +3,7 @@ package com.aarves.bluepages;
 import android.content.Context;
 import androidx.room.Room;
 
-import com.aarves.bluepages.adapters.AdaptersInjector;
+import com.aarves.bluepages.adapter.AdapterInjector;
 import com.aarves.bluepages.database.AccountDAOImpl;
 import com.aarves.bluepages.database.AppDatabase;
 import com.aarves.bluepages.database.ReviewDAOImpl;
@@ -19,6 +19,6 @@ public class AppInjector {
         AccountDAOImpl accountDAO = new AccountDAOImpl(database.accountDatabaseDAO());
         ReviewDAOImpl reviewDAO = new ReviewDAOImpl(database.reviewDatabaseDAO());
 
-        AdaptersInjector adaptersInjector = new AdaptersInjector(accountDAO, reviewDAO);
+        AdapterInjector adapterInjector = new AdapterInjector(accountDAO, reviewDAO);
     }
 }

@@ -1,4 +1,4 @@
-package com.aarves.core.controllers;
+package com.aarves.bluepages.adapter.controllers;
 
 import org.json.JSONException;
 import org.json.JSONObject;

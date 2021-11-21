@@ -1,4 +1,4 @@
-package com.aarves.bluepages.adapters;
+package com.aarves.bluepages.adapter;
 
 import com.aarves.bluepages.entities.FoodLocation;
 import com.aarves.bluepages.entities.Location;

@@ -1,4 +1,4 @@
-package com.aarves.bluepages.adapters;
+package com.aarves.bluepages.adapter.controllers;
 
 import com.aarves.bluepages.usecase.interactors.ReviewManager;
 

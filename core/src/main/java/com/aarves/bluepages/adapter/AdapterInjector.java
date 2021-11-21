@@ -1,16 +1,19 @@
-package com.aarves.bluepages.adapters;
+package com.aarves.bluepages.adapter;
 
+import com.aarves.bluepages.adapter.controllers.AccountController;
+import com.aarves.bluepages.adapter.controllers.ReviewController;
+import com.aarves.bluepages.adapter.presenters.AccountPresenterImpl;
 import com.aarves.bluepages.usecase.UseCaseInjector;
 import com.aarves.bluepages.usecase.data.AccountDAO;
 import com.aarves.bluepages.usecase.data.ReviewDAO;
 
 import java.security.NoSuchAlgorithmException;
 
-public class AdaptersInjector {
+public class AdapterInjector {
     private final AccountController accountController;
     private final ReviewController reviewController;
 
-    public AdaptersInjector(AccountDAO accountDAO, ReviewDAO reviewDAO) throws NoSuchAlgorithmException {
+    public AdapterInjector(AccountDAO accountDAO, ReviewDAO reviewDAO) throws NoSuchAlgorithmException {
         AccountPresenterImpl accountPresenter = new AccountPresenterImpl();
 
         UseCaseInjector useCaseInjector = new UseCaseInjector(accountDAO, reviewDAO, accountPresenter);

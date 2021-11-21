@@ -1,15 +1,17 @@
-package com.aarves.bluepages.adapters;
+package com.aarves.bluepages.adapter.presenters;
 
 import com.aarves.bluepages.usecase.interactors.AccountPresenter;
 
 public class AccountPresenterImpl implements AccountPresenter {
+
+
     @Override
-    public void loginResult() {
+    public void loginResult(boolean result) {
 
     }
 
     @Override
-    public void registerResult() {
+    public void registerResult(boolean result) {
 
     }
 }

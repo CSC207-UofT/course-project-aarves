@@ -1,4 +1,4 @@
-package com.aarves.bluepages.adapters;
+package com.aarves.bluepages.adapter.controllers;
 
 import com.aarves.bluepages.usecase.interactors.AccountManager;
 
@@ -14,9 +14,7 @@ public class AccountController {
             this.accountManager.logout();
         }
 
-        boolean result = this.accountManager.login(username, password);
-
-        // TODO: Some presenter stuff
+        this.accountManager.login(username, password);
     }
 
     public void register(String username, String password, String confirmPassword) {
@@ -24,12 +22,6 @@ public class AccountController {
             this.accountManager.logout();
         }
 
-        // TODO: Some presenter stuff
-        if(password.equals(confirmPassword)) {
-            this.accountManager.register(username, password);
-        }
-        else {
-
-        }
+        this.accountManager.register(username, password, confirmPassword);
     }
 }
