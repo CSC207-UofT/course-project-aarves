@@ -17,6 +17,10 @@
         android:theme="@style/Theme.Bluepages">
         <activity
             android:name=".gui.RegisterActivity"
+            android:name=".MapActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".gui.LoginActivity"
@@ -24,6 +28,9 @@
         <activity
             android:name=".gui.MainMenuActivity"
             android:exported="false" />
+        <activity
+                android:name=".ReviewView"
+                android:exported="false" />
         <activity
             android:name=".gui.AccessActivity"
             android:exported="true">

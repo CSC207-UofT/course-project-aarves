@@ -1,40 +1,34 @@
-package com.aarves.bluepages.gui;
+package com.aarves.bluepages;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager2.widget.ViewPager2;
-
+import android.content.Intent;
 import android.os.Bundle;
-import com.aarves.bluepages.R;
+import android.view.View;
+
+import android.widget.EditText;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainMenuActivity extends AppCompatActivity {
-
-    /**
-     * The pager widget, which handles animation and allows swiping horizontally to access previous
-     * and next wizard steps.
-     */
-    private ViewPager2 viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
-
-        // Instantiate a ViewPager2 and a PagerAdapter.
-        viewPager = findViewById(R.id.pager);
-        viewPager.setOrientation(ViewPager2.ORIENTATION_VERTICAL);
-        MainMenuAdapter pagerAdapter = new MainMenuAdapter(this, viewPager);
-        viewPager.setAdapter(pagerAdapter);
     }
 
-    @Override
-    public void onBackPressed() {
-        if (viewPager.getCurrentItem() == 0) {
-            // If the user is currently looking at the first step, allow the system to handle the
-            // Back button. This calls finish() on this activity and pops the back stack.
-            super.onBackPressed();
-        } else {
-            // Otherwise, select the previous step.
-            viewPager.setCurrentItem(viewPager.getCurrentItem() - 1);
-        }
+    // TODO: Bookmark/Review button redirects
+
+    public void viewReviews(View view) {
+        Intent intent = new Intent(this, ReviewView.class);
+        startActivity(intent);
+    }
+
+    /**
+     * Navigate to a new activity containing the map to-be-browsed.
+     * @param view View object containing context on what's currently being shown.
+     */
+    public void viewMap(View view) {
+        Intent intent = new Intent(this, MapActivity.class);
+        startActivity(intent);
     }
 }

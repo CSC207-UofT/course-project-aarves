@@ -20,10 +20,18 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
     }
 
+    /**
+     * Return the user back to the main access menu.
+     * @param view View object containing context on what's currently being shown.
+     */
     public void returnToAccessMenu(View view) {
         finish();
     }
 
+    /**
+     * Register the user for Bluenotes, given a combination of username and password.
+     * @param view View object containing context on what's currently being shown.
+     */
     public void registerUser(View view) {
         // Get EditText objects for the username/password inputs
         EditText usernameInput = findViewById(R.id.registerUsername);
