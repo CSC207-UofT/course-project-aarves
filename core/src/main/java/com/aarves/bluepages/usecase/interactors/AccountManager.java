@@ -8,11 +8,14 @@ import java.security.NoSuchAlgorithmException;
 
 public class AccountManager {
     private final MessageDigest passwordDigest;
+    private final AccountPresenter accountPresenter;
     private final AccountData accountData;
+
     private User user;
 
-    public AccountManager(AccountData accountData) throws NoSuchAlgorithmException {
+    public AccountManager(AccountData accountData, AccountPresenter accountPresenter) throws NoSuchAlgorithmException {
         this.passwordDigest = MessageDigest.getInstance("SHA-256");
+        this.accountPresenter = accountPresenter;
         this.accountData = accountData;
     }
 

@@ -52,7 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
             // am.addUser(username, password);
             Handler handler = new Handler();
             Snackbar.make(view, "Account created successfully. Returning to the login menu in 5 seconds.", 5000).show();
-            handler.postDelayed(() -> finish(), 5000);
+            handler.postDelayed(this::finish, 5000);
         }
     }
 }
