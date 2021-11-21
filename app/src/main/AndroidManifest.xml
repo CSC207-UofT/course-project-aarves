@@ -26,7 +26,7 @@
             android:name=".gui.MainMenuActivity"
             android:exported="false" />
         <activity
-            android:name=".gui.ReviewView"
+            android:name=".gui.ReviewActivity"
             android:exported="false" />
         <activity
             android:name=".gui.AccessActivity"
