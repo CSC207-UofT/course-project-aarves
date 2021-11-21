@@ -1,9 +1,9 @@
-package com.aarves.core.gateways;
+package com.aarves.bluepages.gateways;
 
-import com.aarves.core.entities.FoodLocation;
-import com.aarves.core.entities.Location;
-import com.aarves.core.entities.StudyLocation;
+import com.aarves.bluepages.entities.FoodLocation;
+import com.aarves.bluepages.entities.Location;
 
+import com.aarves.bluepages.entities.StudyLocation;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

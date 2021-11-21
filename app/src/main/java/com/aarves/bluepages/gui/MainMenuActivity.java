@@ -1,12 +1,11 @@
-package com.aarves.bluepages;
+package com.aarves.bluepages.gui;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-
-import android.widget.EditText;
-import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
+import com.aarves.bluepages.R;
 
 public class MainMenuActivity extends AppCompatActivity {
 

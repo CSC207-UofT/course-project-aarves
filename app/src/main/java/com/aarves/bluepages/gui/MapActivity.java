@@ -1,4 +1,4 @@
-package com.aarves.bluepages;
+package com.aarves.bluepages.gui;
 
 import android.os.Bundle;
 import android.view.inputmethod.EditorInfo;
@@ -6,9 +6,10 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.aarves.bluepages.R;
+import com.aarves.bluepages.entities.Location;
+import com.aarves.bluepages.gateways.MapboxGateway;
 import com.aarves.core.controllers.LookupController;
-import com.aarves.core.entities.Location;
-import com.aarves.core.gateways.MapboxGateway;
 import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.maps.Style;
 import com.mapbox.maps.CameraBoundsOptions;

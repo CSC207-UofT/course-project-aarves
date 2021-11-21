@@ -1,4 +1,4 @@
-package com.aarves.bluepages;
+package com.aarves.bluepages.gui;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -8,7 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.aarves.core.entities.Review;
+import com.aarves.bluepages.R;
+import com.aarves.bluepages.entities.Review;
 
 import java.util.ArrayList;
 
@@ -25,8 +26,8 @@ public class ReviewViewAdapter extends ArrayAdapter<Review> {
 
     @SuppressLint("ViewHolder")
     public View getView(int position, View reviewView, ViewGroup parent) {
-        Integer rating = getItem(position).getRating();
-        String text = getItem(position).getReview();
+        int rating = getItem(position).getRating();
+        String text = getItem(position).getBody();
         String username = getItem(position).getReviewer();
 
         LayoutInflater inflater = LayoutInflater.from(context);
