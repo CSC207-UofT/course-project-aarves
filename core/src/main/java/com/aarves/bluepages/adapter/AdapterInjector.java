@@ -14,7 +14,7 @@ public class AdapterInjector {
     private final ReviewController reviewController;
 
     public AdapterInjector(AccountDAO accountDAO, ReviewDAO reviewDAO) throws NoSuchAlgorithmException {
-        AccountPresenterImpl accountPresenter = new AccountPresenterImpl();
+        AccountPresenterImpl accountPresenter = new AccountPresenterImpl(null);
 
         UseCaseInjector useCaseInjector = new UseCaseInjector(accountDAO, reviewDAO, accountPresenter);
 

@@ -46,18 +46,19 @@ public class AccountManager {
      *
      * @param username the user's inputted username
      * @param password the user's inputted password
-     * @return Returns true if the user's username and password matches the pairing in accounts.
      */
-    public boolean login(String username, String password){
+    public void login(String username, String password){
         String passwordHash = this.hashPassword(password);
+        boolean result;
         try {
             this.user = this.accountData.getUserAccount(username, passwordHash);
-            return true;
+            result = true;
         }
         catch(PermissionsFailureException exception) {
             this.user = null;
-            return false;
+            result = false;
         }
+        this.accountPresenter.loginResult(result, username);
     }
 
     public void logout() {
@@ -70,9 +71,17 @@ public class AccountManager {
      * @param username the user's username
      * @param password the user's password
      */
-    public void register(String username, String password){
-        User user = new User(username, this.hashPassword(password));
-        this.accountData.addAccount(user);
+    public void register(String username, String password, String confirmPassword){
+        boolean result;
+        if(password.equals(confirmPassword)) {
+            User user = new User(username, this.hashPassword(password)); // TODO: Doesn't check if username already exists lol
+            this.accountData.addAccount(user);
+            result = true;
+        }
+        else {
+            result = false;
+        }
+        this.accountPresenter.registerResult(result);
     }
 
     /**
