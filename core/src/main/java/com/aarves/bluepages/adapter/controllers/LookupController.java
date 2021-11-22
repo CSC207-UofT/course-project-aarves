@@ -1,9 +1,9 @@
 package com.aarves.bluepages.adapter.controllers;
 
+import org.jsoup.nodes.Document;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 
 import java.io.IOException;
 
@@ -28,14 +28,17 @@ public class LookupController {
         }
 
         // Return JSON response
-        String rawData = doc.text();
-        JSONObject jsonObject = null;
-        try {
-            jsonObject = new JSONObject(rawData);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        if(doc != null) {
+            String rawData = doc.text();
+            JSONObject jsonObject = null;
+            try {
+                jsonObject = new JSONObject(rawData);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
-        return jsonObject;
+            return jsonObject;
+        }
+        return null;
     }
 }
