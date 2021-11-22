@@ -15,8 +15,8 @@ public class AppInjector {
 
     public AppInjector(Context context) throws NoSuchAlgorithmException {
         AppDatabase database = Room.databaseBuilder(context, AppDatabase.class, "database.db")
-                .allowMainThreadQueries()
-                .build();
+                                   .allowMainThreadQueries()
+                                   .build();
 
         AccountDAOImpl accountDAO = new AccountDAOImpl(database.accountDatabaseDAO());
         ReviewDAOImpl reviewDAO = new ReviewDAOImpl(database.reviewDatabaseDAO());
