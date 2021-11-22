@@ -1,6 +1,7 @@
 package com.aarves.bluepages.usecase.interactors;
 
 import com.aarves.bluepages.entities.User;
+import com.aarves.bluepages.usecase.exceptions.PermissionsFailureException;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -49,14 +50,20 @@ public class AccountManager {
      */
     public void login(String username, String password){
         String passwordHash = this.hashPassword(password);
-        boolean result;
+        LoginResult result;
         try {
             this.user = this.accountData.getUserAccount(username, passwordHash);
-            result = true;
+
+            if(this.user != null) {
+                result = LoginResult.SUCCESS;
+            }
+            else {
+                result = LoginResult.ACCOUNT_NOT_FOUND;
+            }
         }
         catch(PermissionsFailureException exception) {
             this.user = null;
-            result = false;
+            result = LoginResult.FAILURE;
         }
         this.accountPresenter.loginResult(result, username);
     }

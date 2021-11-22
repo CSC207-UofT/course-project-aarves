@@ -2,6 +2,8 @@ package com.aarves.bluepages.usecase.interactors;
 
 import com.aarves.bluepages.entities.User;
 import com.aarves.bluepages.entities.Review;
+import com.aarves.bluepages.usecase.exceptions.NotLoggedInException;
+import com.aarves.bluepages.usecase.exceptions.PermissionsFailureException;
 
 import java.util.ArrayList;
 

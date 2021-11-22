@@ -1,6 +1,7 @@
 package com.aarves.bluepages.adapter.presenters;
 
 import com.aarves.bluepages.usecase.interactors.AccountPresenter;
+import com.aarves.bluepages.usecase.interactors.LoginResult;
 
 public class AccountPresenterImpl implements AccountPresenter {
     private AccountView accountView;
@@ -10,15 +11,23 @@ public class AccountPresenterImpl implements AccountPresenter {
     }
 
     @Override
-    public void loginResult(boolean result, String username) {
+    public void loginResult(LoginResult result, String username) {
         if(this.verifyDependencies()) {
             String message;
-            if (result) {
-                message = "Welcome back " + username + "!";
-                this.accountView.startMainMenu();
-                this.accountView.finishActivity();
-            } else {
-                message = "Incorrect username or password!";
+            switch (result) {
+                case SUCCESS:
+                    message = "Welcome back " + username + "!";
+                    this.accountView.startMainMenu();
+                    this.accountView.finishActivity();
+                    break;
+                case FAILURE:
+                    message = "Incorrect password!";
+                    break;
+                case ACCOUNT_NOT_FOUND:
+                    message = "Incorrect username!";
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + result);
             }
             this.accountView.displayPopUp(message);
         }

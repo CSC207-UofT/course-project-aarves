@@ -1,6 +1,7 @@
 package com.aarves.bluepages.usecase.interactors;
 
 import com.aarves.bluepages.entities.User;
+import com.aarves.bluepages.usecase.exceptions.PermissionsFailureException;
 
 public interface AccountData {
     void addAccount(User user);
