@@ -2,6 +2,7 @@ package com.aarves.bluepages.adapter.presenters;
 
 import com.aarves.bluepages.usecase.interactors.AccountPresenter;
 import com.aarves.bluepages.usecase.interactors.LoginResult;
+import com.aarves.bluepages.usecase.interactors.RegisterResult;
 
 public class AccountPresenterImpl implements AccountPresenter {
     private AccountView accountView;
@@ -34,14 +35,22 @@ public class AccountPresenterImpl implements AccountPresenter {
     }
 
     @Override
-    public void registerResult(boolean result) {
+    public void registerResult(RegisterResult result) {
         if(this.verifyDependencies()) {
             String message;
-            if (result) {
-                message = "Account created successfully.";
-                this.accountView.finishActivity();
-            } else {
-                message = "Passwords do not match!";
+            switch (result) {
+                case SUCCESS:
+                    message = "Account created successfully.";
+                    this.accountView.finishActivity();
+                    break;
+                case USERNAME_ALREADY_EXISTS:
+                    message = "Username has already been taken!";
+                    break;
+                case PASSWORD_MISMATCH:
+                    message = "Passwords do not match!";
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + result);
             }
             this.accountView.displayPopUp(message);
         }

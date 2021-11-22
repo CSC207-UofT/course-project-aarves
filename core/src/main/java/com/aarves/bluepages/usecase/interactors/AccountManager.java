@@ -51,19 +51,18 @@ public class AccountManager {
     public void login(String username, String password){
         String passwordHash = this.hashPassword(password);
         LoginResult result;
-        try {
-            this.user = this.accountData.getUserAccount(username, passwordHash);
-
-            if(this.user != null) {
+        if(this.isExistingAccount(username)) {
+            try {
+                this.user = this.accountData.getUserAccount(username, passwordHash);
                 result = LoginResult.SUCCESS;
             }
-            else {
-                result = LoginResult.ACCOUNT_NOT_FOUND;
+            catch (PermissionsFailureException exception) {
+                this.user = null;
+                result = LoginResult.FAILURE;
             }
         }
-        catch(PermissionsFailureException exception) {
-            this.user = null;
-            result = LoginResult.FAILURE;
+        else {
+            result = LoginResult.ACCOUNT_NOT_FOUND;
         }
         this.accountPresenter.loginResult(result, username);
     }
@@ -79,14 +78,17 @@ public class AccountManager {
      * @param password the user's password
      */
     public void register(String username, String password, String confirmPassword){
-        boolean result;
-        if(password.equals(confirmPassword)) {
-            User user = new User(username, this.hashPassword(password)); // TODO: Doesn't check if username already exists lol
-            this.accountData.addAccount(user);
-            result = true;
+        RegisterResult result;
+        if(this.isExistingAccount(username)) {
+            result = RegisterResult.USERNAME_ALREADY_EXISTS;
+        }
+        else if(!password.equals(confirmPassword)) {
+            result = RegisterResult.PASSWORD_MISMATCH;
         }
         else {
-            result = false;
+            User user = new User(username, this.hashPassword(password));
+            this.accountData.addAccount(user);
+            result = RegisterResult.SUCCESS;
         }
         this.accountPresenter.registerResult(result);
     }
