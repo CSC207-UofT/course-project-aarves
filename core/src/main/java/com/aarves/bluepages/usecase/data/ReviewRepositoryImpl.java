@@ -1,8 +1,8 @@
 package com.aarves.bluepages.usecase.data;
 
+import com.aarves.bluepages.usecase.interactors.ReviewRepository;
 import com.aarves.bluepages.entities.Review;
 import com.aarves.bluepages.entities.User;
-import com.aarves.bluepages.usecase.interactors.ReviewRepository;
 
 import java.util.ArrayList;
 import java.util.Map;

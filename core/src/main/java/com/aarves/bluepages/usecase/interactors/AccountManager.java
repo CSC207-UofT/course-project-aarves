@@ -1,7 +1,7 @@
 package com.aarves.bluepages.usecase.interactors;
 
-import com.aarves.bluepages.entities.User;
 import com.aarves.bluepages.usecase.exceptions.PermissionsFailureException;
+import com.aarves.bluepages.entities.User;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
