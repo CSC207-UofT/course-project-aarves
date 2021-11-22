@@ -11,6 +11,8 @@ import com.aarves.bluepages.database.ReviewDAOImpl;
 import java.security.NoSuchAlgorithmException;
 
 public class AppInjector {
+    private final AdapterInjector adapterInjector;
+
     public AppInjector(Context context) throws NoSuchAlgorithmException {
         AppDatabase database = Room.databaseBuilder(context, AppDatabase.class, "database.db")
                 .allowMainThreadQueries()
@@ -19,6 +21,10 @@ public class AppInjector {
         AccountDAOImpl accountDAO = new AccountDAOImpl(database.accountDatabaseDAO());
         ReviewDAOImpl reviewDAO = new ReviewDAOImpl(database.reviewDatabaseDAO());
 
-        AdapterInjector adapterInjector = new AdapterInjector(accountDAO, reviewDAO);
+        this.adapterInjector = new AdapterInjector(accountDAO, reviewDAO);
+    }
+
+    public AdapterInjector getAdapterInjector() {
+        return this.adapterInjector;
     }
 }

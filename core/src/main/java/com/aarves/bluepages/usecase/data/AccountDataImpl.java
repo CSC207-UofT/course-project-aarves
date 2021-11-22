@@ -26,7 +26,7 @@ public class AccountDataImpl implements AccountData {
 
     @Override
     public User getUserAccount(String username, String passwordHash) throws PermissionsFailureException {
-        if(this.isPasswordMatch(username, passwordHash)) {
+        if(this.isExistingAccount(username) && this.isPasswordMatch(username, passwordHash)) {
             User user = new User(username, passwordHash);
             user.setReviews(this.reviewRepository.getReviewsByUser(user));
 

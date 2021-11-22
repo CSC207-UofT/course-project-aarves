@@ -21,7 +21,7 @@ public class AccountDAOImpl implements AccountDAO {
     public void deleteAccount(String username, String passwordHash) {
         AccountDataEntity accountDataEntity = accountDatabaseDAO.getByUsername(username);
 
-        if(accountDataEntity.passwordHash.equals(passwordHash)){
+        if(accountDataEntity != null && accountDataEntity.passwordHash.equals(passwordHash)){
             this.accountDatabaseDAO.delete(accountDataEntity);
         }
     }
