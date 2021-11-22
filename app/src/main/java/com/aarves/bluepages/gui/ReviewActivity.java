@@ -1,8 +1,10 @@
 package com.aarves.bluepages.gui;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.widget.ListView;
-import androidx.appcompat.app.AppCompatActivity;
+
 import com.aarves.bluepages.R;
 import com.aarves.bluepages.entities.Review;
 
