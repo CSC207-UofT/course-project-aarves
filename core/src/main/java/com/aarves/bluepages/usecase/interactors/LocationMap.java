@@ -3,9 +3,10 @@ package com.aarves.bluepages.usecase.interactors;
 import com.aarves.bluepages.entities.Location;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class LocationMap {
-    public HashMap<Integer, Location> locationHashMap = new HashMap<>();
+    public Map<Integer, Location> locationHashMap = new HashMap<>();
 
     /**
      * Return a Location from LocationMap, based off the given Point (which contains coordinates).
