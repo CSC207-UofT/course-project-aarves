@@ -31,7 +31,7 @@ public class MapActivity extends AppCompatActivity {
         // Bind the map to just the vicinity around campus
         MapView mapView = this.findViewById(R.id.mapView);
         MapboxMap mapboxMap = mapView.getMapboxMap();
-        mapboxMap.loadStyleUri(Style.MAPBOX_STREETS);
+        mapboxMap.loadStyleUri("mapbox://styles/ashenafee/ckw8c49wi2of616pdbiend57d");
 
         Point bloorBay = com.mapbox.geojson.Point.fromLngLat(-79.38297760120373, 43.67121768976685);
         Point collegeSpadina = Point.fromLngLat(-79.40543276088096, 43.653559622123446);
