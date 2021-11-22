@@ -1,5 +1,6 @@
 package com.aarves.bluepages.usecase.interactors;
 
+import com.aarves.bluepages.usecase.exceptions.PermissionsFailureException;
 import com.aarves.bluepages.entities.User;
 
 import java.nio.charset.StandardCharsets;
@@ -8,11 +9,14 @@ import java.security.NoSuchAlgorithmException;
 
 public class AccountManager {
     private final MessageDigest passwordDigest;
+    private final AccountPresenter accountPresenter;
     private final AccountData accountData;
+
     private User user;
 
-    public AccountManager(AccountData accountData) throws NoSuchAlgorithmException {
+    public AccountManager(AccountData accountData, AccountPresenter accountPresenter) throws NoSuchAlgorithmException {
         this.passwordDigest = MessageDigest.getInstance("SHA-256");
+        this.accountPresenter = accountPresenter;
         this.accountData = accountData;
     }
 
@@ -43,18 +47,24 @@ public class AccountManager {
      *
      * @param username the user's inputted username
      * @param password the user's inputted password
-     * @return Returns true if the user's username and password matches the pairing in accounts.
      */
-    public boolean login(String username, String password){
+    public void login(String username, String password){
         String passwordHash = this.hashPassword(password);
-        try {
-            this.user = this.accountData.getUserAccount(username, passwordHash);
-            return true;
+        LoginResult result;
+        if(this.isExistingAccount(username)) {
+            try {
+                this.user = this.accountData.getUserAccount(username, passwordHash);
+                result = LoginResult.SUCCESS;
+            }
+            catch (PermissionsFailureException exception) {
+                this.user = null;
+                result = LoginResult.FAILURE;
+            }
         }
-        catch(PermissionsFailureException exception) {
-            this.user = null;
-            return false;
+        else {
+            result = LoginResult.ACCOUNT_NOT_FOUND;
         }
+        this.accountPresenter.loginResult(result, username);
     }
 
     public void logout() {
@@ -67,9 +77,20 @@ public class AccountManager {
      * @param username the user's username
      * @param password the user's password
      */
-    public void register(String username, String password){
-        User user = new User(username, this.hashPassword(password));
-        this.accountData.addAccount(user);
+    public void register(String username, String password, String confirmPassword){
+        RegisterResult result;
+        if(this.isExistingAccount(username)) {
+            result = RegisterResult.USERNAME_ALREADY_EXISTS;
+        }
+        else if(!password.equals(confirmPassword)) {
+            result = RegisterResult.PASSWORD_MISMATCH;
+        }
+        else {
+            User user = new User(username, this.hashPassword(password));
+            this.accountData.addAccount(user);
+            result = RegisterResult.SUCCESS;
+        }
+        this.accountPresenter.registerResult(result);
     }
 
     /**

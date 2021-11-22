@@ -1,26 +1,24 @@
 package com.aarves.bluepages.database;
 
-import com.aarves.bluepages.usecase.data.ReviewDAO;
-import com.aarves.bluepages.usecase.data.ReviewDTO;
 import com.aarves.bluepages.database.access.ReviewDatabaseDAO;
 import com.aarves.bluepages.database.models.ReviewDataEntity;
 import com.aarves.bluepages.database.models.ReviewDatabaseMapper;
+import com.aarves.bluepages.usecase.data.ReviewDAO;
+import com.aarves.bluepages.usecase.data.ReviewDTO;
 
 import java.util.HashMap;
 import java.util.List;
 
 public class ReviewDAOImpl implements ReviewDAO {
     private final ReviewDatabaseDAO reviewDatabaseDAO;
-    private final ReviewDatabaseMapper reviewDatabaseMapper;
 
     public ReviewDAOImpl(ReviewDatabaseDAO reviewDatabaseDAO) {
         this.reviewDatabaseDAO = reviewDatabaseDAO;
-        this.reviewDatabaseMapper = new ReviewDatabaseMapper();
     }
 
     @Override
     public int addReviewData(ReviewDTO review) {
-        ReviewDataEntity reviewDataEntity = this.reviewDatabaseMapper.mapToDataEntity(review);
+        ReviewDataEntity reviewDataEntity = ReviewDatabaseMapper.mapToDataEntity(review);
         return (int) reviewDatabaseDAO.insert(reviewDataEntity);
     }
 
@@ -33,7 +31,7 @@ public class ReviewDAOImpl implements ReviewDAO {
     @Override
     public ReviewDTO getReviewData(int reviewId) {
         ReviewDataEntity reviewDataEntity = this.reviewDatabaseDAO.getByID(reviewId);
-        return this.reviewDatabaseMapper.mapToDTO(reviewDataEntity);
+        return ReviewDatabaseMapper.mapToDTO(reviewDataEntity);
     }
 
     @Override
@@ -42,7 +40,7 @@ public class ReviewDAOImpl implements ReviewDAO {
         List<ReviewDataEntity> reviews = this.reviewDatabaseDAO.getByUser(username);
 
         for(ReviewDataEntity reviewDataEntity : reviews) {
-            ReviewDTO reviewDTO = this.reviewDatabaseMapper.mapToDTO(reviewDataEntity);
+            ReviewDTO reviewDTO = ReviewDatabaseMapper.mapToDTO(reviewDataEntity);
             reviewMap.put(reviewDataEntity.reviewId, reviewDTO);
         }
 
@@ -55,7 +53,7 @@ public class ReviewDAOImpl implements ReviewDAO {
         List<ReviewDataEntity> reviews = this.reviewDatabaseDAO.getByLocation(locationId);
 
         for(ReviewDataEntity reviewDataEntity : reviews) {
-            ReviewDTO reviewDTO = this.reviewDatabaseMapper.mapToDTO(reviewDataEntity);
+            ReviewDTO reviewDTO = ReviewDatabaseMapper.mapToDTO(reviewDataEntity);
             reviewMap.put(reviewDataEntity.reviewId, reviewDTO);
         }
 

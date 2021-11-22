@@ -1,13 +1,15 @@
 package com.aarves.bluepages.usecase.interactors;
 
-import com.aarves.bluepages.entities.User;
+import com.aarves.bluepages.usecase.exceptions.NotLoggedInException;
+import com.aarves.bluepages.usecase.exceptions.PermissionsFailureException;
 import com.aarves.bluepages.entities.Review;
+import com.aarves.bluepages.entities.User;
 
 import java.util.ArrayList;
 
 public class ReviewManager {
     private final ReviewRepository reviewRepository;
-    private final AccountManager accountManager;
+    private final AccountManager accountManager; // TODO: Too coupled? Maybe refactor into interface.
 
     public ReviewManager(ReviewRepository reviewRepository, AccountManager accountManager) {
         this.reviewRepository = reviewRepository;

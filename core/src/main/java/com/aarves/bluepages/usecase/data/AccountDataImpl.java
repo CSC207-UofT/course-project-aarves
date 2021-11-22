@@ -1,9 +1,9 @@
 package com.aarves.bluepages.usecase.data;
 
-import com.aarves.bluepages.entities.User;
 import com.aarves.bluepages.usecase.interactors.AccountData;
-import com.aarves.bluepages.usecase.interactors.PermissionsFailureException;
 import com.aarves.bluepages.usecase.interactors.ReviewRepository;
+import com.aarves.bluepages.usecase.exceptions.PermissionsFailureException;
+import com.aarves.bluepages.entities.User;
 
 public class AccountDataImpl implements AccountData {
     private final AccountDAO accountDAO;
@@ -26,6 +26,10 @@ public class AccountDataImpl implements AccountData {
 
     @Override
     public User getUserAccount(String username, String passwordHash) throws PermissionsFailureException {
+        if(!this.isExistingAccount(username)) {
+            return null;
+        }
+
         if(this.isPasswordMatch(username, passwordHash)) {
             User user = new User(username, passwordHash);
             user.setReviews(this.reviewRepository.getReviewsByUser(user));

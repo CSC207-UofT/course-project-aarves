@@ -1,8 +1,8 @@
 package com.aarves.bluepages.database.models;
 
-import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.ColumnInfo;
 
 @Entity(tableName = "reviews")
 public class ReviewDataEntity {

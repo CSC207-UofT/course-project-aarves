@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.aarves.bluepages.R;
 import com.aarves.bluepages.entities.Review;
 
