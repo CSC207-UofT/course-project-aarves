@@ -34,7 +34,7 @@ public class AccountDAOImpl implements AccountDAO {
 
     @Override
     public boolean isPasswordMatch(String username, String passwordHash) {
-        AccountDataEntity accountDataEntity = accountDatabaseDAO.getByUsername(username);
-        return accountDataEntity.passwordHash.equals(passwordHash);
+        String accountPasswordHash = accountDatabaseDAO.getPasswordHash(username);
+        return passwordHash.equals(accountPasswordHash);
     }
 }
