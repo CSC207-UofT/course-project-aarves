@@ -6,6 +6,7 @@ import com.aarves.bluepages.entities.Review;
 import com.aarves.bluepages.entities.User;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ReviewManager {
     private final ReviewRepository reviewRepository;
@@ -66,7 +67,7 @@ public class ReviewManager {
      */
     public void deleteAllUserReviews() throws PermissionsFailureException, NotLoggedInException {
         if(this.accountManager.isLoggedIn()) {
-            ArrayList<Review> reviews = this.getUser().getReviews();
+            List<Review> reviews = this.getUser().getReviews();
             for (Review review : reviews) {
                 this.deleteReview(review);
             }

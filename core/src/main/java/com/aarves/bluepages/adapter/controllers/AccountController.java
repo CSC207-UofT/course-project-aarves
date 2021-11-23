@@ -1,27 +1,27 @@
 package com.aarves.bluepages.adapter.controllers;
 
-import com.aarves.bluepages.usecase.interactors.AccountManager;
+import com.aarves.bluepages.usecase.interactors.AccountInputBoundary;
 
 public class AccountController {
-    private final AccountManager accountManager;
+    private final AccountInputBoundary accountInput;
 
-    public AccountController(AccountManager accountManager) {
-        this.accountManager = accountManager;
+    public AccountController(AccountInputBoundary accountInput) {
+        this.accountInput = accountInput;
     }
 
     public void login(String username, String password) {
-        if(this.accountManager.isLoggedIn()) {
-            this.accountManager.logout();
+        if(this.accountInput.isLoggedIn()) {
+            this.accountInput.logout();
         }
 
-        this.accountManager.login(username, password);
+        this.accountInput.login(username, password);
     }
 
     public void register(String username, String password, String confirmPassword) {
-        if(this.accountManager.isLoggedIn()) {
-            this.accountManager.logout();
+        if(this.accountInput.isLoggedIn()) {
+            this.accountInput.logout();
         }
 
-        this.accountManager.register(username, password, confirmPassword);
+        this.accountInput.register(username, password, confirmPassword);
     }
 }

@@ -7,16 +7,16 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class AccountManager {
+public class AccountManager implements AccountInputBoundary {
     private final MessageDigest passwordDigest;
-    private final AccountPresenter accountPresenter;
-    private final AccountData accountData;
+    private final AccountOutputBoundary accountOutput;
+    private final AccountDataBoundary accountData;
 
     private User user;
 
-    public AccountManager(AccountData accountData, AccountPresenter accountPresenter) throws NoSuchAlgorithmException {
+    public AccountManager(AccountDataBoundary accountData, AccountOutputBoundary accountOutput) throws NoSuchAlgorithmException {
         this.passwordDigest = MessageDigest.getInstance("SHA-256");
-        this.accountPresenter = accountPresenter;
+        this.accountOutput = accountOutput;
         this.accountData = accountData;
     }
 
@@ -28,6 +28,7 @@ public class AccountManager {
         return this.user;
     }
 
+    @Override
     public boolean isLoggedIn() {
         return this.user != null;
     }
@@ -48,6 +49,7 @@ public class AccountManager {
      * @param username the user's inputted username
      * @param password the user's inputted password
      */
+    @Override
     public void login(String username, String password){
         String passwordHash = this.hashPassword(password);
         LoginResult result;
@@ -64,9 +66,10 @@ public class AccountManager {
         else {
             result = LoginResult.ACCOUNT_NOT_FOUND;
         }
-        this.accountPresenter.loginResult(result, username);
+        this.accountOutput.loginResult(result, username);
     }
 
+    @Override
     public void logout() {
         this.user = null;
     }
@@ -77,6 +80,7 @@ public class AccountManager {
      * @param username the user's username
      * @param password the user's password
      */
+    @Override
     public void register(String username, String password, String confirmPassword){
         RegisterResult result;
         if(this.isExistingAccount(username)) {
@@ -90,7 +94,7 @@ public class AccountManager {
             this.accountData.addAccount(user);
             result = RegisterResult.SUCCESS;
         }
-        this.accountPresenter.registerResult(result);
+        this.accountOutput.registerResult(result);
     }
 
     /**

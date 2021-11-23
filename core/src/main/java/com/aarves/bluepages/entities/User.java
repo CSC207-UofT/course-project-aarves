@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User {
-    private ArrayList<Review> reviews;
-    private ArrayList<Location> bookmarks;
+    private List<Review> reviews;
+    private List<Location> bookmarks;
 
     private final String username;
     private String passwordHash;
@@ -43,7 +43,7 @@ public class User {
      * Return all the reviews made by this User.
      * @return  ArrayList of Review's.
      */
-    public ArrayList<Review> getReviews() {
+    public List<Review> getReviews() {
         return this.reviews;
     }
 
@@ -73,7 +73,7 @@ public class User {
      * Returns all bookmarks for this User.
      * @return  ArrayList of Location's.
      */
-    public ArrayList<Location> getBookmarks() {
+    public List<Location> getBookmarks() {
         return this.bookmarks;
     }
 

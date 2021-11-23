@@ -1,6 +1,6 @@
 package com.aarves.bluepages.usecase.interactors;
 
-public interface AccountPresenter {
+public interface AccountOutputBoundary {
     void loginResult(LoginResult result, String username);
     void registerResult(RegisterResult result);
 }
