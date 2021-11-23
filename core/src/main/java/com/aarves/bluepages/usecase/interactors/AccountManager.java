@@ -7,7 +7,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class AccountManager {
+public class AccountManager implements AccountInputBoundary {
     private final MessageDigest passwordDigest;
     private final AccountOutputBoundary accountOutputBoundary;
     private final AccountData accountData;
@@ -28,6 +28,7 @@ public class AccountManager {
         return this.user;
     }
 
+    @Override
     public boolean isLoggedIn() {
         return this.user != null;
     }
@@ -48,6 +49,7 @@ public class AccountManager {
      * @param username the user's inputted username
      * @param password the user's inputted password
      */
+    @Override
     public void login(String username, String password){
         String passwordHash = this.hashPassword(password);
         LoginResult result;
@@ -67,6 +69,7 @@ public class AccountManager {
         this.accountOutputBoundary.loginResult(result, username);
     }
 
+    @Override
     public void logout() {
         this.user = null;
     }
@@ -77,6 +80,7 @@ public class AccountManager {
      * @param username the user's username
      * @param password the user's password
      */
+    @Override
     public void register(String username, String password, String confirmPassword){
         RegisterResult result;
         if(this.isExistingAccount(username)) {
