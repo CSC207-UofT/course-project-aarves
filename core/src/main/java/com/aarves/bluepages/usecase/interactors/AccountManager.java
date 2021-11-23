@@ -9,14 +9,14 @@ import java.security.NoSuchAlgorithmException;
 
 public class AccountManager {
     private final MessageDigest passwordDigest;
-    private final AccountPresenter accountPresenter;
+    private final AccountOutputBoundary accountOutputBoundary;
     private final AccountData accountData;
 
     private User user;
 
-    public AccountManager(AccountData accountData, AccountPresenter accountPresenter) throws NoSuchAlgorithmException {
+    public AccountManager(AccountData accountData, AccountOutputBoundary accountOutputBoundary) throws NoSuchAlgorithmException {
         this.passwordDigest = MessageDigest.getInstance("SHA-256");
-        this.accountPresenter = accountPresenter;
+        this.accountOutputBoundary = accountOutputBoundary;
         this.accountData = accountData;
     }
 
@@ -64,7 +64,7 @@ public class AccountManager {
         else {
             result = LoginResult.ACCOUNT_NOT_FOUND;
         }
-        this.accountPresenter.loginResult(result, username);
+        this.accountOutputBoundary.loginResult(result, username);
     }
 
     public void logout() {
@@ -90,7 +90,7 @@ public class AccountManager {
             this.accountData.addAccount(user);
             result = RegisterResult.SUCCESS;
         }
-        this.accountPresenter.registerResult(result);
+        this.accountOutputBoundary.registerResult(result);
     }
 
     /**
