@@ -9,14 +9,14 @@ import java.security.NoSuchAlgorithmException;
 
 public class AccountManager implements AccountInputBoundary {
     private final MessageDigest passwordDigest;
-    private final AccountOutputBoundary accountOutputBoundary;
+    private final AccountOutputBoundary accountOutput;
     private final AccountData accountData;
 
     private User user;
 
-    public AccountManager(AccountData accountData, AccountOutputBoundary accountOutputBoundary) throws NoSuchAlgorithmException {
+    public AccountManager(AccountData accountData, AccountOutputBoundary accountOutput) throws NoSuchAlgorithmException {
         this.passwordDigest = MessageDigest.getInstance("SHA-256");
-        this.accountOutputBoundary = accountOutputBoundary;
+        this.accountOutput = accountOutput;
         this.accountData = accountData;
     }
 
@@ -66,7 +66,7 @@ public class AccountManager implements AccountInputBoundary {
         else {
             result = LoginResult.ACCOUNT_NOT_FOUND;
         }
-        this.accountOutputBoundary.loginResult(result, username);
+        this.accountOutput.loginResult(result, username);
     }
 
     @Override
@@ -94,7 +94,7 @@ public class AccountManager implements AccountInputBoundary {
             this.accountData.addAccount(user);
             result = RegisterResult.SUCCESS;
         }
-        this.accountOutputBoundary.registerResult(result);
+        this.accountOutput.registerResult(result);
     }
 
     /**

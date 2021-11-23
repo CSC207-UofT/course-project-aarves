@@ -15,12 +15,12 @@ public class UseCaseInjector {
     private final AccountManager accountManager;
     private final ReviewManager reviewManager;
 
-    public UseCaseInjector(AccountDAO accountDAO, ReviewDAO reviewDAO, AccountOutputBoundary accountOutputBoundary) throws NoSuchAlgorithmException {
+    public UseCaseInjector(AccountDAO accountDAO, ReviewDAO reviewDAO, AccountOutputBoundary accountOutput) throws NoSuchAlgorithmException {
         // TODO: May need to eventually refactor into UseCaseInjectors for each aggregate.
         ReviewRepositoryImpl reviewRepository = new ReviewRepositoryImpl(reviewDAO);
         AccountDataImpl accountData = new AccountDataImpl(accountDAO, reviewRepository);
 
-        this.accountManager = new AccountManager(accountData, accountOutputBoundary);
+        this.accountManager = new AccountManager(accountData, accountOutput);
         this.reviewManager = new ReviewManager(reviewRepository, this.accountManager);
     }
 
