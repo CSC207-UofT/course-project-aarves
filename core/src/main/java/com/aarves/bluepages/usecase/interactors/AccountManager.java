@@ -10,11 +10,11 @@ import java.security.NoSuchAlgorithmException;
 public class AccountManager implements AccountInputBoundary {
     private final MessageDigest passwordDigest;
     private final AccountOutputBoundary accountOutput;
-    private final AccountData accountData;
+    private final AccountDataBoundary accountData;
 
     private User user;
 
-    public AccountManager(AccountData accountData, AccountOutputBoundary accountOutput) throws NoSuchAlgorithmException {
+    public AccountManager(AccountDataBoundary accountData, AccountOutputBoundary accountOutput) throws NoSuchAlgorithmException {
         this.passwordDigest = MessageDigest.getInstance("SHA-256");
         this.accountOutput = accountOutput;
         this.accountData = accountData;

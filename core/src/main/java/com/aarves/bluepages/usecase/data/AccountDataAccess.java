@@ -1,15 +1,15 @@
 package com.aarves.bluepages.usecase.data;
 
-import com.aarves.bluepages.usecase.interactors.AccountData;
+import com.aarves.bluepages.usecase.interactors.AccountDataBoundary;
 import com.aarves.bluepages.usecase.interactors.ReviewRepository;
 import com.aarves.bluepages.usecase.exceptions.PermissionsFailureException;
 import com.aarves.bluepages.entities.User;
 
-public class AccountDataImpl implements AccountData {
+public class AccountDataAccess implements AccountDataBoundary {
     private final AccountDAO accountDAO;
     private final ReviewRepository reviewRepository;
 
-    public AccountDataImpl(AccountDAO accountDAO, ReviewRepository reviewRepository) {
+    public AccountDataAccess(AccountDAO accountDAO, ReviewRepository reviewRepository) {
         this.accountDAO = accountDAO;
         this.reviewRepository = reviewRepository;
     }
