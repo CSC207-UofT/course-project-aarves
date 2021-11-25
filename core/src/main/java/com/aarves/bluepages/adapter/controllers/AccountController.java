@@ -1,5 +1,6 @@
 package com.aarves.bluepages.adapter.controllers;
 
+import com.aarves.bluepages.entities.User;
 import com.aarves.bluepages.usecase.interactors.AccountManager;
 
 public class AccountController {
@@ -15,6 +16,7 @@ public class AccountController {
         }
 
         this.accountManager.login(username, password);
+
     }
 
     public void register(String username, String password, String confirmPassword) {
@@ -23,5 +25,9 @@ public class AccountController {
         }
 
         this.accountManager.register(username, password, confirmPassword);
+    }
+
+    public String getUsername(){
+        return accountManager.getUser().getUsername();
     }
 }
