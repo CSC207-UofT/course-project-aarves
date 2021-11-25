@@ -2,8 +2,8 @@ package com.aarves.bluepages.usecase.data;
 
 import com.aarves.bluepages.entities.Review;
 
-public class ReviewMapper { // TODO: Refactor to make static?
-    public ReviewDTO mapToDTO(Review review) {
+public class ReviewMapper {
+    public static ReviewDTO mapToDTO(Review review) {
         return new ReviewDTO(
                 review.getReviewer(),
                 review.getLocationId(),
@@ -12,7 +12,7 @@ public class ReviewMapper { // TODO: Refactor to make static?
         );
     }
 
-    public Review mapToReview(ReviewDTO reviewDTO) {
+    public static Review mapToReview(ReviewDTO reviewDTO) {
         return new Review(
                 reviewDTO.getReviewer(),
                 reviewDTO.getLocationId(),

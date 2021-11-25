@@ -59,19 +59,19 @@ public class CommandLine {
 
         switch (menuChoice) {
             case "1":
-                // TODO: View the map
+                // View the map
                 break;
             case "2":
-                // TODO: Search
+                // Search
                 break;
             case "3":
                 this.bookmarkMenu();
                 break;
             case "4":
-                // TODO: Reviews
+                // Reviews
                 break;
             case "5":
-                // TODO: Exit
+                // Exit
                 break;
         }
     }

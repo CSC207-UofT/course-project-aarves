@@ -1,13 +1,16 @@
 package com.aarves.bluepages.usecase.interactors;
 
-import com.aarves.bluepages.entities.User;
+import com.aarves.bluepages.usecase.exceptions.NotLoggedInException;
+import com.aarves.bluepages.usecase.exceptions.PermissionsFailureException;
 import com.aarves.bluepages.entities.Review;
+import com.aarves.bluepages.entities.User;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ReviewManager {
     private final ReviewRepository reviewRepository;
-    private final AccountManager accountManager;
+    private final AccountManager accountManager; // TODO: Too coupled? Maybe refactor into interface.
 
     public ReviewManager(ReviewRepository reviewRepository, AccountManager accountManager) {
         this.reviewRepository = reviewRepository;
@@ -64,7 +67,7 @@ public class ReviewManager {
      */
     public void deleteAllUserReviews() throws PermissionsFailureException, NotLoggedInException {
         if(this.accountManager.isLoggedIn()) {
-            ArrayList<Review> reviews = this.getUser().getReviews();
+            List<Review> reviews = this.getUser().getReviews();
             for (Review review : reviews) {
                 this.deleteReview(review);
             }
