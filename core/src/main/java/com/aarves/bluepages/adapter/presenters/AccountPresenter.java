@@ -1,10 +1,10 @@
 package com.aarves.bluepages.adapter.presenters;
 
-import com.aarves.bluepages.usecase.interactors.AccountPresenter;
+import com.aarves.bluepages.usecase.interactors.AccountOutputBoundary;
 import com.aarves.bluepages.usecase.interactors.LoginResult;
 import com.aarves.bluepages.usecase.interactors.RegisterResult;
 
-public class AccountPresenterImpl implements AccountPresenter {
+public class AccountPresenter implements AccountOutputBoundary {
     private AccountView accountView;
 
     public void setAccountView(AccountView accountView) {

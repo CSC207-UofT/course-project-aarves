@@ -8,6 +8,7 @@ import com.aarves.bluepages.usecase.data.ReviewDTO;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ReviewDAOImpl implements ReviewDAO {
     private final ReviewDatabaseDAO reviewDatabaseDAO;
@@ -35,8 +36,8 @@ public class ReviewDAOImpl implements ReviewDAO {
     }
 
     @Override
-    public HashMap<Integer, ReviewDTO> getReviewDataByUser(String username) {
-        HashMap<Integer, ReviewDTO> reviewMap = new HashMap<>();
+    public Map<Integer, ReviewDTO> getReviewDataByUser(String username) {
+        Map<Integer, ReviewDTO> reviewMap = new HashMap<>();
         List<ReviewDataEntity> reviews = this.reviewDatabaseDAO.getByUser(username);
 
         for(ReviewDataEntity reviewDataEntity : reviews) {
@@ -48,8 +49,8 @@ public class ReviewDAOImpl implements ReviewDAO {
     }
 
     @Override
-    public HashMap<Integer, ReviewDTO> getReviewDataByLocation(int locationId) {
-        HashMap<Integer, ReviewDTO> reviewMap = new HashMap<>();
+    public Map<Integer, ReviewDTO> getReviewDataByLocation(int locationId) {
+        Map<Integer, ReviewDTO> reviewMap = new HashMap<>();
         List<ReviewDataEntity> reviews = this.reviewDatabaseDAO.getByLocation(locationId);
 
         for(ReviewDataEntity reviewDataEntity : reviews) {
