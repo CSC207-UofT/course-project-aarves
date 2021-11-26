@@ -64,7 +64,7 @@
             android:layout_gravity="center"
 
     />
-<!--    how can this button move futr-->
+
     <Button
             android:id="@+id/bookmarkButton"
             android:layout_width="140dp"

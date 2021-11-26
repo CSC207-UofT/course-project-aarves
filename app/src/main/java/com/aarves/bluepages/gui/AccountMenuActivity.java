@@ -18,19 +18,18 @@ import com.aarves.bluepages.usecase.interactors.AccountManager;
 
 import java.util.ArrayList;
 
-public class AccountMenuActivity extends AppCompatActivity{
+// TODO: figure out how to display rounded profile picture
+public class AccountMenuActivity extends AccountViewImpl{
 
     @Override
     public void onCreate(Bundle savedInstanceState){
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_account_menu);
-        TextView textView = (TextView) findViewById(R.id.usernameText);
-        // in AccountController add savedInstanceState.putString("Username", username)
-        //savedInstanceState is local
-        // then I would grab savedInstanceState.username
-        //String username = super.getUsername();
-        //textView.setText("Welcome" + AccountController.getUsername());
-        textView.setText("john892");
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_account_menu);
+
+        // display username
+        // TODO: connect this to activity_account_menu.xml file to actualy display
+        TextView textView = findViewById(R.id.usernameText);
+        textView.setText(String.format("Welcome %s", this.accountController.getUsername()));
     }
 
 
@@ -42,15 +41,16 @@ public class AccountMenuActivity extends AppCompatActivity{
     }
 
     // take user to bookmarks
+    // TODO: connect to bookmark UI (when it is completed)
     public void viewBookmarks(View view) {
-        // waiting on bookmarks UI
         //Intent intent = new Intent(this, );
         //startActivity(intent);
     }
 
-    //isloggedon = false
+    // TODO: figure out where to grab password from
     public void signOut(View view){
-
+        // where can I get the password from?
+        this.accountController.login(this.accountController.getUsername(), );
     }
 
 
