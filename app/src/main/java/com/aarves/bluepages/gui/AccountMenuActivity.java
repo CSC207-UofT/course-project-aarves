@@ -24,25 +24,33 @@ public class AccountMenuActivity extends AppCompatActivity{
     public void onCreate(Bundle savedInstanceState){
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_account_menu);
-        TextView textView = (TextView) findViewById(R.id.textView2);
+        TextView textView = (TextView) findViewById(R.id.usernameText);
         // in AccountController add savedInstanceState.putString("Username", username)
         //savedInstanceState is local
         // then I would grab savedInstanceState.username
-        String username = super.getUsername();
-        textView.setText(AccountController.getUsername());
+        //String username = super.getUsername();
+        //textView.setText("Welcome" + AccountController.getUsername());
+        textView.setText("john892");
     }
 
 
+    // take user to reviews
     public void viewReviews(View view) {
 
         Intent intent = new Intent(this, ReviewActivity.class);
         startActivity(intent);
     }
 
+    // take user to bookmarks
     public void viewBookmarks(View view) {
         // waiting on bookmarks UI
-        Intent intent = new Intent(this, );
-        startActivity(intent);
+        //Intent intent = new Intent(this, );
+        //startActivity(intent);
+    }
+
+    //isloggedon = false
+    public void signOut(View view){
+
     }
 
 
