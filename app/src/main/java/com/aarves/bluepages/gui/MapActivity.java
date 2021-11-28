@@ -1,50 +1,48 @@
 package com.aarves.bluepages.gui;
 
 import android.os.Bundle;
-import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
-
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.aarves.bluepages.R;
-import com.aarves.bluepages.entities.Location;
 import com.aarves.bluepages.adapter.MapboxGateway;
 import com.aarves.bluepages.adapter.controllers.LookupController;
+import com.aarves.bluepages.entities.Location;
 import com.google.android.material.snackbar.Snackbar;
-import com.mapbox.geojson.Point;
+import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.camera.CameraPosition;
+import com.mapbox.mapboxsdk.geometry.LatLng;
+import com.mapbox.mapboxsdk.geometry.LatLngBounds;
+import com.mapbox.mapboxsdk.maps.MapView;
+import com.mapbox.mapboxsdk.maps.MapboxMap;
+import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
-import com.mapbox.maps.CameraBoundsOptions;
-import com.mapbox.maps.CoordinateBounds;
-import com.mapbox.maps.MapView;
-import com.mapbox.maps.MapboxMap;
-
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class MapActivity extends AppCompatActivity {
+public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
+
+    private MapView mapView;
+    private @NotNull MapboxMap mapboxMap;
+
+    // Set LatLng for bloorBay and collegeSpadina
+    private final LatLng bloorBay = new LatLng(43.67121768976685, -79.38297760120373);
+    private final LatLng collegeSpadina = new LatLng(43.653559622123446, -79.40543276088096);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Configure Mapbox token
+        Mapbox.getInstance(this, getResources().getString(R.string.mapbox_access_token));
         setContentView(R.layout.activity_map);
 
         // Bind the map to just the vicinity around campus
-        MapView mapView = this.findViewById(R.id.mapView);
-        MapboxMap mapboxMap = mapView.getMapboxMap();
-        mapboxMap.loadStyleUri("mapbox://styles/ashenafee/ckw8c49wi2of616pdbiend57d");
-
-        Point bloorBay = com.mapbox.geojson.Point.fromLngLat(-79.38297760120373, 43.67121768976685);
-        Point collegeSpadina = Point.fromLngLat(-79.40543276088096, 43.653559622123446);
-
-        CameraBoundsOptions CAMPUS = new CameraBoundsOptions.Builder().bounds(
-                        new CoordinateBounds(collegeSpadina, bloorBay, false)
-                ).minZoom(5.0)
-                .build();
-
-        mapboxMap.setBounds(CAMPUS);
-
+        mapView = findViewById(R.id.mapView);
+        mapView.onCreate(savedInstanceState);
+        mapView.getMapAsync(this);
         searchConfiguration();
     }
 
@@ -79,5 +77,30 @@ public class MapActivity extends AppCompatActivity {
             }
             return handled;
         });
+    }
+
+    @Override
+    public void onMapReady(@NonNull @NotNull com.mapbox.mapboxsdk.maps.MapboxMap mapboxMap) {
+        this.mapboxMap = mapboxMap;
+        // Set the map style from URI
+        mapboxMap.setStyle(new Style.Builder().fromUri("mapbox://styles/ashenafee/ckw8c49wi2of616pdbiend57d"));
+
+        // Zoom camera in to bloorBay and collegeSpadina
+        mapboxMap.setCameraPosition(new CameraPosition.Builder()
+                .target(bloorBay)
+                        .target(collegeSpadina)
+                .zoom(15)
+                .build());
+
+        // Set latlngbounds
+        LatLngBounds latLngBounds = new LatLngBounds.Builder()
+                .include(bloorBay)
+                .include(collegeSpadina)
+                .build();
+
+        // Set camera bounds
+        mapboxMap.setLatLngBoundsForCameraTarget(latLngBounds);
+        mapboxMap.setMinZoomPreference(15);
+        mapboxMap.setMaxZoomPreference(18);
     }
 }
