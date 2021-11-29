@@ -10,6 +10,8 @@ import com.aarves.bluepages.adapter.MapboxGateway;
 import com.aarves.bluepages.adapter.controllers.LookupController;
 import com.aarves.bluepages.entities.Location;
 import com.google.android.material.snackbar.Snackbar;
+import com.mapbox.geojson.BoundingBox;
+import com.mapbox.geojson.Geometry;
 import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
 import com.mapbox.mapboxsdk.geometry.LatLng;
@@ -85,22 +87,43 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         // Set the map style from URI
         mapboxMap.setStyle(new Style.Builder().fromUri("mapbox://styles/ashenafee/ckw8c49wi2of616pdbiend57d"));
 
+        // Create a LatLng bound for BloorBay LatLng object
+
+        LatLngBounds boundOne = new LatLngBounds.Builder()
+                .include(bloorBay)
+                        .build();
+
+        // Create a LatLng bound for CollegeSpadina LatLng object
+
+        LatLngBounds boundTwo = new LatLngBounds.Builder()
+                .include(collegeSpadina)
+                        .build();
+
+        // Bound the map to all the area covered by the two LatLngBounds objects
+
+        mapboxMap.setLatLngBoundsForCameraTarget(boundOne.intersect(boundTwo));
+
+        // Set the minimum and maximum zoom of the map to the same value
+
+        mapboxMap.setMinZoomPreference(15);
+        mapboxMap.setMaxZoomPreference(15);
+
         // Zoom camera in to bloorBay and collegeSpadina
-        mapboxMap.setCameraPosition(new CameraPosition.Builder()
-                .target(bloorBay)
-                        .target(collegeSpadina)
-                .zoom(15)
-                .build());
+        // mapboxMap.setCameraPosition(new CameraPosition.Builder()
+                //.target(bloorBay)
+                        //.target(collegeSpadina)
+                //.zoom(15)
+                //.build());
 
         // Set latlngbounds
-        LatLngBounds latLngBounds = new LatLngBounds.Builder()
-                .include(bloorBay)
-                .include(collegeSpadina)
-                .build();
+        //LatLngBounds latLngBounds = new LatLngBounds.Builder()
+                //.include(bloorBay)
+                //.include(collegeSpadina)
+                //.build();
 
         // Set camera bounds
-        mapboxMap.setLatLngBoundsForCameraTarget(latLngBounds);
-        mapboxMap.setMinZoomPreference(15);
-        mapboxMap.setMaxZoomPreference(18);
+        //mapboxMap.setLatLngBoundsForCameraTarget(latLngBounds);
+        //mapboxMap.setMinZoomPreference(15);
+        //mapboxMap.setMaxZoomPreference(18);
     }
 }
