@@ -89,19 +89,14 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         // Create a LatLng bound for BloorBay LatLng object
 
-        LatLngBounds boundOne = new LatLngBounds.Builder()
+        LatLngBounds bound = new LatLngBounds.Builder()
                 .include(bloorBay)
-                        .build();
-
-        // Create a LatLng bound for CollegeSpadina LatLng object
-
-        LatLngBounds boundTwo = new LatLngBounds.Builder()
                 .include(collegeSpadina)
                         .build();
 
-        // Bound the map to all the area covered by the two LatLngBounds objects
+        // Bound the map to all the area covered by the LatLngBounds object
 
-        mapboxMap.setLatLngBoundsForCameraTarget(boundOne.intersect(boundTwo));
+        mapboxMap.setLatLngBoundsForCameraTarget(bound);
 
         // Set the minimum and maximum zoom of the map to the same value
 
