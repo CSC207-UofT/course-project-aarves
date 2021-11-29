@@ -13,6 +13,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.mapbox.geojson.BoundingBox;
 import com.mapbox.geojson.Geometry;
 import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.geometry.LatLngBounds;
@@ -102,6 +103,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         mapboxMap.setMinZoomPreference(15);
         mapboxMap.setMaxZoomPreference(15);
+
+        // Hard Code a marker for Bloor Bay search result (generalize for every search result)
+
+        mapboxMap.addMarker(new MarkerOptions()
+                .position(bloorBay)
+                .setTitle("Bloor Bay"));
 
         // Zoom camera in to bloorBay and collegeSpadina
         // mapboxMap.setCameraPosition(new CameraPosition.Builder()
