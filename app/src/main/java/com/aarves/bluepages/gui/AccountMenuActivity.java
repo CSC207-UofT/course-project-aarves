@@ -18,7 +18,7 @@ import com.aarves.bluepages.usecase.interactors.AccountManager;
 
 import java.util.ArrayList;
 
-// TODO: figure out how to display rounded profile picture
+
 public class AccountMenuActivity extends AccountViewImpl{
 
     @Override
@@ -27,11 +27,10 @@ public class AccountMenuActivity extends AccountViewImpl{
         setContentView(R.layout.activity_account_menu);
 
         // display username
-        // TODO: connect this to activity_account_menu.xml file to actualy display
+        // TODO: is the app displaying username?
         TextView textView = findViewById(R.id.usernameText);
         textView.setText(String.format("Welcome %s", this.accountController.getUsername()));
     }
-
 
     // take user to reviews
     public void viewReviews(View view) {
@@ -47,10 +46,12 @@ public class AccountMenuActivity extends AccountViewImpl{
         //startActivity(intent);
     }
 
-    // TODO: figure out where to grab password from
+    // TODO: check if this is working
     public void signOut(View view){
-        // where can I get the password from?
-        this.accountController.login(this.accountController.getUsername(), );
+
+        String password = getIntent().getExtras().getString("password");
+        String username = getIntent().getExtras().getString("username");
+        this.accountController.login(username, password );
     }
 
 
