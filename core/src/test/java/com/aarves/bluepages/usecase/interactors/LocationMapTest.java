@@ -41,7 +41,6 @@ class LocationMapTest {
 
     }
 
-    // map.get() returns null if no such key is found
     @Test
     void testNoSuchPointGetLocation() {
         Location result = locationMap.getLocation(91);
