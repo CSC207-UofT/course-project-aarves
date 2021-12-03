@@ -51,4 +51,26 @@ public class SearchActivity extends AppCompatActivity {
 //        parsedButton.setTextColor();
 //        parsedButton.setBackgroundColor();
 //    }
+private void searchConfiguration() {
+    EditText editText = this.findViewById(R.id.search);
+    editText.setOnEditorActionListener((v, actionId, event) -> {
+        boolean handled = false;
+        if (actionId == EditorInfo.IME_ACTION_DONE) {
+            new Thread() {
+                public void run() {
+                    LookupController lc = new LookupController();
+                    MapboxGateway mg = new MapboxGateway();
+                    JSONObject json = lc.lookupLocation(editText.getText().toString(), getResources().getString(R.string.mapbox_access_token));
+                    ArrayList<Location> locationArray = mg.parseInformation(json);
+
+                    for (Location loc: locationArray) {
+                        System.out.println(loc);
+                    }
+                }
+            }.start();
+            handled = true;
+        }
+        return handled;
+    });
+}
 }
