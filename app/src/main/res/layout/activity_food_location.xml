@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools" android:layout_height="wrap_content"
+              android:layout_width="wrap_content"
+              android:orientation="vertical">
+
+    <TextView
+            android:id="@+id/foodLocationName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:text="Location Name"
+            android:layout_gravity="start"
+            android:paddingStart="10dp" tools:ignore="RtlSymmetry"/>
+
+    <TextView
+            android:id="@+id/foodLocationAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="Address: "
+            android:layout_gravity="start"
+            android:paddingStart="10dp" tools:ignore="RtlSymmetry"/>
+
+    <TextView
+            android:id="@+id/foodLocationHours"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="Hours: "
+            android:layout_gravity="start"
+            android:paddingStart="10dp" tools:ignore="RtlSymmetry"/>
+
+    <TextView
+            android:id="@+id/foodLocationPriceRange"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="Price Range: "
+            android:layout_gravity="start"
+            android:paddingStart="10dp" tools:ignore="RtlSymmetry"/>
+
+    <TextView
+            android:id="@+id/foodLocationFoodType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="Food Type: "
+            android:layout_gravity="start"
+            android:paddingStart="10dp" tools:ignore="RtlSymmetry"/>
+
+    <TextView
+            android:id="@+id/foodLocationTakeOut"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="Take out: "
+            android:layout_gravity="start"
+            android:paddingStart="10dp" tools:ignore="RtlSymmetry"/>
+
+    <TextView
+            android:id="@+id/foodLocationDineIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="Dine in: "
+            android:layout_gravity="start"
+            android:paddingStart="10dp" tools:ignore="RtlSymmetry"
+            android:layout_alignParentBottom="true"/>
+
+</LinearLayout>
