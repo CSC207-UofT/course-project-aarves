@@ -8,6 +8,7 @@ public abstract class Location {
     protected final String name;
     protected final String hoursOfService;
     protected final String address;
+    protected final double[] coordinates;
 
     /**
      * Constructs a new Location object
@@ -15,10 +16,11 @@ public abstract class Location {
      * @param name name of location
      * @param address address of location
      */
-    public Location(String hoursOfService, String name, String address){
+    public Location(String hoursOfService, String name, String address, double[] coordinates) {
         this.hoursOfService = hoursOfService;
         this.address = address;
         this.name = name;
+        this.coordinates = coordinates;
     }
 
     /**
@@ -43,5 +45,13 @@ public abstract class Location {
      */
     public String getName(){
         return name;
+    }
+
+    /**
+     *
+     * @return a double array of the coordinates of the Location
+     */
+    public double[] getCoordinates(){
+        return coordinates;
     }
 }

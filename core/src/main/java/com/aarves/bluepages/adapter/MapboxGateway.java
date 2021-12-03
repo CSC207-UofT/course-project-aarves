@@ -38,10 +38,10 @@ public class MapboxGateway {
                 // TODO: More rigorous check to see the type of location
                 // Note: Unable to find information on hours, takeout/dinein, price, indoors, or quiet.
                 if (placeCategory.contains("shop")) {
-                    FoodLocation fl = new FoodLocation("", placeName, placeAddress, placeCategory, false, false, "");
+                    FoodLocation fl = new FoodLocation("", placeName, placeAddress, coordinates, placeCategory, false, false, "");
                     placeArray.add(fl);
                 } else {
-                    StudyLocation sl = new StudyLocation("", placeName, placeAddress, false, false);
+                    StudyLocation sl = new StudyLocation("", placeName, placeAddress, coordinates, false, false);
                     placeArray.add(sl);
                 }
             } catch (JSONException e) {

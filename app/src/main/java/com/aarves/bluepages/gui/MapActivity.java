@@ -15,6 +15,7 @@ import com.mapbox.geojson.Geometry;
 import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
+import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.geometry.LatLngBounds;
 import com.mapbox.mapboxsdk.maps.MapView;
@@ -70,6 +71,20 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                 Location location = locationArray.get(0);
                                 Snackbar.make(findViewById(R.id.mapView), "First result: " + location.getAddress(), Snackbar.LENGTH_LONG).show();
                             }
+
+                            // Add the points to the map
+                            mapboxMap.clear();
+                            for (Location location : locationArray) {
+                                mapboxMap.addMarker(new MarkerOptions()
+                                        .position(new LatLng(location.getCoordinates()[1], location.getCoordinates()[0]))
+                                        .title(location.getName()));
+                            }
+
+                            // Zoom camera to first result
+                            if (locationArray.size() > 0) {
+                                mapboxMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(locationArray.get(0).getCoordinates()[1], locationArray.get(0).getCoordinates()[0]), 16));
+                            }
+
                         });
                         for (Location loc: locationArray) {
                             System.out.println(loc);
@@ -90,42 +105,36 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         // Create a LatLng bound for BloorBay LatLng object
 
-        LatLngBounds bound = new LatLngBounds.Builder()
-                .include(bloorBay)
-                .include(collegeSpadina)
-                        .build();
-
-        // Bound the map to all the area covered by the LatLngBounds object
-
-        mapboxMap.setLatLngBoundsForCameraTarget(bound);
+//        LatLngBounds bound = new LatLngBounds.Builder()
+//                .include(bloorBay)
+//                .include(collegeSpadina)
+//                        .build();
+//
+//        // Bound the map to all the area covered by the LatLngBounds object
+//
+//        mapboxMap.setLatLngBoundsForCameraTarget(bound);
 
         // Set the minimum and maximum zoom of the map to the same value
 
-        mapboxMap.setMinZoomPreference(15);
-        mapboxMap.setMaxZoomPreference(15);
-
-        // Hard Code a marker for Bloor Bay search result (generalize for every search result)
-
-        mapboxMap.addMarker(new MarkerOptions()
-                .position(bloorBay)
-                .setTitle("Bloor Bay"));
+//        mapboxMap.setMinZoomPreference(15);
+//        mapboxMap.setMaxZoomPreference(15);
 
         // Zoom camera in to bloorBay and collegeSpadina
-        // mapboxMap.setCameraPosition(new CameraPosition.Builder()
-                //.target(bloorBay)
-                        //.target(collegeSpadina)
-                //.zoom(15)
-                //.build());
+         mapboxMap.setCameraPosition(new CameraPosition.Builder()
+                .target(bloorBay)
+                        .target(collegeSpadina)
+                .zoom(15)
+                .build());
 
         // Set latlngbounds
-        //LatLngBounds latLngBounds = new LatLngBounds.Builder()
-                //.include(bloorBay)
-                //.include(collegeSpadina)
-                //.build();
+        LatLngBounds latLngBounds = new LatLngBounds.Builder()
+                .include(bloorBay)
+                .include(collegeSpadina)
+                .build();
 
         // Set camera bounds
-        //mapboxMap.setLatLngBoundsForCameraTarget(latLngBounds);
-        //mapboxMap.setMinZoomPreference(15);
-        //mapboxMap.setMaxZoomPreference(18);
+        mapboxMap.setLatLngBoundsForCameraTarget(latLngBounds);
+        mapboxMap.setMinZoomPreference(15);
+        mapboxMap.setMaxZoomPreference(18);
     }
 }
