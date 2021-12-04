@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+
+              android:paddingLeft="16dp"
+              android:paddingRight="16dp"
+              android:orientation="vertical"
+              android:background="@color/mapbox_blue"
+>
+
+    <ImageView
+            android:layout_width="250dp"
+            android:layout_height="350dp"
+            android:layout_gravity="center"
+            android:background="@drawable/profileimage"
+            android:contentDescription="profile image"/>
+
+    <TextView
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:id="@+id/usernameText"
+            android:text=""
+            android:gravity="center"
+            android:textSize="25dp"
+    />
+
+
+    <Button
+            android:id="@+id/reviewButton"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:onClick="viewReviews"
+            android:text="Reviews"
+            android:layout_gravity="center"
+
+    />
+
+    <Button
+            android:id="@+id/bookmarkButton"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:onClick="viewBookmarks"
+            android:text="Bookmarks"
+            android:layout_gravity="center"
+            />
+
+    <Button
+            android:id="@+id/signOutButton"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="12dp"
+            android:onClick="signOut"
+            android:text="sign out"
+            android:layout_gravity="center"
+            android:textSize="8dp"/>
+
+</LinearLayout>

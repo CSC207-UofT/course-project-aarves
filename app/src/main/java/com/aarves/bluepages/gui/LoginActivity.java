@@ -1,5 +1,6 @@
 package com.aarves.bluepages.gui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -28,6 +29,12 @@ public class LoginActivity extends AccountViewImpl {
 
         // Check if correct login
         this.accountController.login(username, password);
+
+        // Pass data to AccountMenuActivity to allow sign-out functionality
+        Intent i = new Intent(LoginActivity.this, AccountMenuActivity.class);
+        i.putExtra("password", password);
+        i.putExtra("username", username);
+
     }
 
     /**

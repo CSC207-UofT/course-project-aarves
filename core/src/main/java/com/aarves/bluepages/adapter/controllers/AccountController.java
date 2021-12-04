@@ -24,4 +24,8 @@ public class AccountController {
 
         this.accountInput.register(username, password, confirmPassword);
     }
+
+    public String getUsername(){
+        return accountInput.getUser().getUsername();
+    }
 }

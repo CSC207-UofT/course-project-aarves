@@ -1,5 +1,6 @@
 package com.aarves.bluepages.adapter.controllers;
 
+import com.aarves.bluepages.entities.User;
 import com.aarves.bluepages.usecase.interactors.account.AccountInputBoundary;
 
 public class AccountInputMockup implements AccountInputBoundary {
@@ -42,5 +43,11 @@ public class AccountInputMockup implements AccountInputBoundary {
         this.username = username;
         this.password = password;
         this.confirmPassword = confirmPassword;
+    }
+
+    // TODO: Fix later
+    @Override
+    public User getUser() {
+        return null;
     }
 }
