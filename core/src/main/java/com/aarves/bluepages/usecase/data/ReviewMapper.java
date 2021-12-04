@@ -4,21 +4,41 @@ import com.aarves.bluepages.entities.Review;
 
 public class ReviewMapper {
     public static ReviewDTO mapToDTO(Review review) {
-        return new ReviewDTO(
-                review.getReviewer(),
-                review.getLocationId(),
-                review.getRating(),
-                review.getBody()
-        );
+        if(review.getBody() != null) {
+            return new ReviewDTO(
+                    review.getReviewer(),
+                    review.getLocationId(),
+                    review.getRating(),
+                    review.getBody()
+            );
+        }
+        else {
+            return new ReviewDTO(
+                    review.getReviewer(),
+                    review.getLocationId(),
+                    review.getRating(),
+                    ""
+            );
+        }
     }
 
     public static Review mapToReview(ReviewDTO reviewDTO, int reviewId) {
-        return new Review(
-                reviewId,
-                reviewDTO.getReviewer(),
-                reviewDTO.getLocationId(),
-                reviewDTO.getRating(),
-                reviewDTO.getBody()
-        );
+        if(!reviewDTO.getBody().isEmpty()) {
+            return new Review(
+                    reviewId,
+                    reviewDTO.getReviewer(),
+                    reviewDTO.getLocationId(),
+                    reviewDTO.getRating(),
+                    reviewDTO.getBody()
+            );
+        }
+        else {
+            return new Review(
+                    reviewId,
+                    reviewDTO.getReviewer(),
+                    reviewDTO.getLocationId(),
+                    reviewDTO.getRating()
+            );
+        }
     }
 }
