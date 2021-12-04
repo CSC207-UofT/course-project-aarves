@@ -1,7 +1,9 @@
-package com.aarves.bluepages.usecase.interactors;
+package com.aarves.bluepages.usecase.interactors.account;
 
 import com.aarves.bluepages.usecase.exceptions.PermissionsFailureException;
 import com.aarves.bluepages.entities.User;
+import com.aarves.bluepages.usecase.interactors.Observable;
+import com.aarves.bluepages.usecase.interactors.Observer;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;

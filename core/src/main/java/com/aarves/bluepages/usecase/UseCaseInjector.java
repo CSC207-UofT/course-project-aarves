@@ -5,8 +5,8 @@ import com.aarves.bluepages.usecase.data.AccountDataAccess;
 import com.aarves.bluepages.usecase.data.ReviewDAO;
 import com.aarves.bluepages.usecase.data.ReviewRepositoryImpl;
 
-import com.aarves.bluepages.usecase.interactors.AccountManager;
-import com.aarves.bluepages.usecase.interactors.AccountOutputBoundary;
+import com.aarves.bluepages.usecase.interactors.account.AccountManager;
+import com.aarves.bluepages.usecase.interactors.account.AccountOutputBoundary;
 import com.aarves.bluepages.usecase.interactors.ReviewManager;
 
 import java.security.NoSuchAlgorithmException;

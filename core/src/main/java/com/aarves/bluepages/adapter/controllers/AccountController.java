@@ -1,6 +1,6 @@
 package com.aarves.bluepages.adapter.controllers;
 
-import com.aarves.bluepages.usecase.interactors.AccountInputBoundary;
+import com.aarves.bluepages.usecase.interactors.account.AccountInputBoundary;
 
 public class AccountController {
     private final AccountInputBoundary accountInput;

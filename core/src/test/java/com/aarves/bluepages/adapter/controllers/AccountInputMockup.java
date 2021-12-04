@@ -1,6 +1,6 @@
 package com.aarves.bluepages.adapter.controllers;
 
-import com.aarves.bluepages.usecase.interactors.AccountInputBoundary;
+import com.aarves.bluepages.usecase.interactors.account.AccountInputBoundary;
 
 public class AccountInputMockup implements AccountInputBoundary {
     private String username;
