@@ -16,8 +16,8 @@ public class StudyLocation extends Location {
      * @param indoors if location is indoors
      * @param quiet if location is quiet
      */
-    public StudyLocation(String hours_of_service, String name, String address, boolean indoors, boolean quiet) {
-        super(hours_of_service, name, address);
+    public StudyLocation(String hours_of_service, String name, String address, double[] coordinates, boolean indoors, boolean quiet) {
+        super(hours_of_service, name, address, coordinates);
         this.indoors = indoors;
         this.quiet = quiet;
     }
@@ -45,6 +45,6 @@ public class StudyLocation extends Location {
     @Override
     public String toString() {
         return (super.getName() + "\n Address: " + super.getAddress() + "\n Hours of Service: "
-                + super.getHoursOfService() + "\n Indoors:" + isIndoors() + "\n Quiet: " + isQuiet());
+                + super.getHoursOfService() + "\n Indoors: " + isIndoors() + "\n Quiet: " + isQuiet());
     }
 }

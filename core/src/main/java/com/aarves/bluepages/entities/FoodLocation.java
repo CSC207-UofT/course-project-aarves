@@ -21,9 +21,9 @@ public class FoodLocation extends Location {
      * @param dineIn if location has dine-in
      * @param priceRange the price range of the location ($, $$, $$$)
      */
-    public FoodLocation(String hours_of_service, String name, String address, String food,
+    public FoodLocation(String hours_of_service, String name, String address, double[] coordinates, String food,
                         boolean takeout, boolean dineIn, String priceRange) {
-        super(hours_of_service, name, address);
+        super(hours_of_service, name, address, coordinates);
         this.foodType = food;
         this.takeout = takeout;
         this.dineIn = dineIn;
@@ -69,7 +69,7 @@ public class FoodLocation extends Location {
     @Override
     public String toString() {
         return (super.getName() + "\n Address: " + super.getAddress() + "\n Hours of Service: "
-                + super.getHoursOfService() + "\n" + getFoodType() + "\n dine-in: " + isDineIn()
-                + "\n takeout: " + isTakeout() + "\n" + getPriceRange());
+                + super.getHoursOfService() + "\n Food Type: " + getFoodType() + "\n dine-in: " + isDineIn()
+                + "\n takeout: " + isTakeout() + "\n Price Range: " + getPriceRange());
     }
 }
