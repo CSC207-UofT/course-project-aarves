@@ -7,10 +7,6 @@ import com.aarves.bluepages.usecase.interactors.account.RegisterResult;
 public class AccountPresenter implements AccountOutputBoundary {
     private AccountView accountView;
 
-    public void setAccountView(AccountView accountView) {
-        this.accountView = accountView;
-    }
-
     @Override
     public void loginResult(LoginResult result, String username) {
         if(this.verifyDependencies()) {
@@ -54,6 +50,10 @@ public class AccountPresenter implements AccountOutputBoundary {
             }
             this.accountView.displayPopUp(message);
         }
+    }
+
+    public void setAccountView(AccountView accountView) {
+        this.accountView = accountView;
     }
 
     private boolean verifyDependencies() {

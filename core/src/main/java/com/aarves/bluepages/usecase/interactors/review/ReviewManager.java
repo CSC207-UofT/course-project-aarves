@@ -10,14 +10,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReviewManager implements Observer<User> {
+    private final ReviewOutputBoundary reviewOutput;
     private final ReviewRepository reviewRepository;
 
     private List<Review> reviews;
     private String username;
 
-    public ReviewManager(ReviewRepository reviewRepository) {
+    public ReviewManager(ReviewRepository reviewRepository, ReviewOutputBoundary reviewOutput) {
         this.reviewRepository = reviewRepository;
+        this.reviewOutput = reviewOutput;
+
         this.reviews = new ArrayList<>();
+        this.username = "";
     }
 
     @Override

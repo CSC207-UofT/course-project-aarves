@@ -13,16 +13,16 @@ import java.util.List;
 
 public class AccountManager implements AccountInputBoundary, Observable<User> {
     private final MessageDigest passwordDigest;
-    private final AccountOutputBoundary accountOutput;
     private final AccountDataBoundary accountData;
+    private final AccountOutputBoundary accountOutput;
 
     private final List<Observer<User>> observers;
     private User user;
 
     public AccountManager(AccountDataBoundary accountData, AccountOutputBoundary accountOutput) throws NoSuchAlgorithmException {
         this.passwordDigest = MessageDigest.getInstance("SHA-256");
-        this.accountOutput = accountOutput;
         this.accountData = accountData;
+        this.accountOutput = accountOutput;
 
         this.observers = new ArrayList<>();
     }
