@@ -12,7 +12,7 @@ public class ReviewManager implements Observer<User> {
     private final ReviewRepository reviewRepository;
 
     private List<Review> reviews;
-    private User user;
+    private String username;
 
     public ReviewManager(ReviewRepository reviewRepository, AccountManager accountManager) {
         this.reviewRepository = reviewRepository;
@@ -21,8 +21,14 @@ public class ReviewManager implements Observer<User> {
 
     @Override
     public void update(User arg) {
-        this.reviews = arg.getReviews();
-        this.user = arg;
+        if(arg != null) {
+            this.reviews = arg.getReviews();
+            this.username = arg.getUsername();
+        }
+        else {
+            this.reviews.clear();
+            this.username = "";
+        }
     }
 
     /**
@@ -35,11 +41,13 @@ public class ReviewManager implements Observer<User> {
     public void createReview(int locationId, int rating, String reviewBody) throws NotLoggedInException {
         this.checkLoggedIn();
 
-        Review newReview = new Review(this.user.getUsername(), locationId, rating, reviewBody);
+        Review newReview = new Review(this.username, locationId, rating, reviewBody);
         int newId = this.reviewRepository.addReview(newReview);
-
         newReview.setReviewId(newId);
-        this.user.addReview(newReview);
+
+        if(!this.reviews.contains(newReview)) {
+            this.reviews.add(newReview);
+        }
     }
 
     /**
@@ -51,11 +59,13 @@ public class ReviewManager implements Observer<User> {
     public void createReview(int locationId, int rating) throws NotLoggedInException {
         this.checkLoggedIn();
 
-        Review newReview = new Review(this.user.getUsername(), locationId, rating);
+        Review newReview = new Review(this.username, locationId, rating);
         int newId = this.reviewRepository.addReview(newReview);
-
         newReview.setReviewId(newId);
-        this.user.addReview(newReview);
+
+        if(!this.reviews.contains(newReview)) {
+            this.reviews.add(newReview);
+        }
     }
 
     /**
@@ -67,7 +77,7 @@ public class ReviewManager implements Observer<User> {
         for (Review review : this.reviews) {
             this.deleteReview(review);
         }
-        this.user.clearReviews();
+        this.reviews.clear();
     }
 
     /**
@@ -77,9 +87,9 @@ public class ReviewManager implements Observer<User> {
     public void deleteReview(Review review) throws PermissionsFailureException, NotLoggedInException {
         this.checkLoggedIn();
 
-        if(this.user.getUsername().equals(review.getReviewer())) {
+        if(this.username.equals(review.getReviewer())) {
             this.reviewRepository.deleteReview(review);
-            this.user.deleteReview(review);
+            this.reviews.remove(review);
         }
         else {
             throw new PermissionsFailureException();
@@ -91,7 +101,7 @@ public class ReviewManager implements Observer<User> {
     }
 
     private void checkLoggedIn() throws NotLoggedInException {
-        if(this.user != null) {
+        if(this.username.isEmpty()) {
             throw new NotLoggedInException();
         }
     }
