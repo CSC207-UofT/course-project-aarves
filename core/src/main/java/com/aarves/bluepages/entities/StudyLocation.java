@@ -45,6 +45,6 @@ public class StudyLocation extends Location {
     @Override
     public String toString() {
         return (super.getName() + "\n Address: " + super.getAddress() + "\n Hours of Service: "
-                + super.getHoursOfService() + "\n Indoors:" + isIndoors() + "\n Quiet: " + isQuiet());
+                + super.getHoursOfService() + "\n Indoors: " + isIndoors() + "\n Quiet: " + isQuiet());
     }
 }
