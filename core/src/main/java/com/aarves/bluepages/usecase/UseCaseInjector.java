@@ -7,7 +7,7 @@ import com.aarves.bluepages.usecase.data.ReviewRepositoryImpl;
 
 import com.aarves.bluepages.usecase.interactors.account.AccountManager;
 import com.aarves.bluepages.usecase.interactors.account.AccountOutputBoundary;
-import com.aarves.bluepages.usecase.interactors.ReviewManager;
+import com.aarves.bluepages.usecase.interactors.review.ReviewManager;
 
 import java.security.NoSuchAlgorithmException;
 

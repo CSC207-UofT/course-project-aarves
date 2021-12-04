@@ -14,11 +14,11 @@ import com.aarves.bluepages.entities.Review;
 
 import java.util.ArrayList;
 
-public class ReviewActivityAdapter extends ArrayAdapter<Review> {
+public class ReviewArrayAdapter extends ArrayAdapter<Review> {
     private final Context context;
     private final int resource;
 
-    public ReviewActivityAdapter(Context context, int resource, ArrayList<Review> reviews) {
+    public ReviewArrayAdapter(Context context, int resource, ArrayList<Review> reviews) {
         super(context, resource, reviews);
 
         this.context = context;

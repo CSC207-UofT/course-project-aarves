@@ -1,4 +1,7 @@
 package com.aarves.bluepages.adapter.presenters;
 
-public class ReviewView {
+public interface ReviewView {
+    void setReviews();
+
+    void finishActivity();
 }

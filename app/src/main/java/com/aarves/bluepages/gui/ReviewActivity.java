@@ -27,7 +27,7 @@ public class ReviewActivity extends AppCompatActivity {
         reviewList.add(new Review("user 3", 0, 5,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ullamcorper tristique neque sed auctor. In consectetur tortor in diam luctus, eget tempus diam finibus. Sed purus lorem, scelerisque et urna quis, imperdiet faucibus purus. Cras consequat purus dolor, tincidunt pulvinar orci tristique non. Pellentesque quis odio lacinia, accumsan felis a."));
         reviewList.add(new Review("user 4", 0, 4,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ullamcorper tristique neque sed auctor. In consectetur tortor in diam luctus, eget tempus diam finibus. Sed purus lorem, scelerisque et urna quis, imperdiet faucibus purus. Cras consequat purus dolor, tincidunt pulvinar orci tristique non. Pellentesque quis odio lacinia, accumsan felis a."));
 
-        ReviewActivityAdapter adapter = new ReviewActivityAdapter(this, R.layout.activity_review, reviewList);
+        ReviewArrayAdapter adapter = new ReviewArrayAdapter(this, R.layout.activity_review, reviewList);
         reviewListView.setAdapter(adapter);
     }
 }
