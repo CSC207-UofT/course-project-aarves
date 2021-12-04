@@ -20,11 +20,17 @@ import java.util.ArrayList;
 
 
 public class AccountMenuActivity extends AccountViewImpl{
+    private String username;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_menu);
+
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            username = bundle.getString("username");
+        }
 
         // display username
         // TODO: is the app displaying username?
@@ -49,9 +55,9 @@ public class AccountMenuActivity extends AccountViewImpl{
     // TODO: check if this is working
     public void signOut(View view){
 
-        String password = getIntent().getExtras().getString("password");
-        String username = getIntent().getExtras().getString("username");
-        this.accountController.login(username, password );
+//        String password = getIntent().getExtras().getString("password");
+//        String username = getIntent().getExtras().getString("username");
+//        this.accountController.login(username, password );
     }
 
 
