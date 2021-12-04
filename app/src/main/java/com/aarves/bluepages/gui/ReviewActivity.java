@@ -7,12 +7,14 @@ import android.widget.ListView;
 
 import com.aarves.bluepages.R;
 import com.aarves.bluepages.MainApplication;
+import com.aarves.bluepages.adapter.controllers.ReviewController;
 import com.aarves.bluepages.adapter.presenters.ReviewView;
 import com.aarves.bluepages.adapter.presenters.ReviewViewModel;
 
 import java.util.List;
 
 public class ReviewActivity extends AppCompatActivity implements ReviewView {
+    private ReviewController reviewController;
     private ReviewArrayAdapter reviewAdapter;
 
     @Override
@@ -27,7 +29,10 @@ public class ReviewActivity extends AppCompatActivity implements ReviewView {
         reviewListView.setAdapter(this.reviewAdapter);
 
         MainApplication application = (MainApplication) this.getApplication();
+        this.reviewController = application.getAdapters().getReviewController();
         application.setReviewView(this);
+
+        this.reviewController.loadReviews();
     }
 
     @Override

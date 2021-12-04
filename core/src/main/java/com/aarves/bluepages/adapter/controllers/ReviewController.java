@@ -1,11 +1,15 @@
 package com.aarves.bluepages.adapter.controllers;
 
-import com.aarves.bluepages.usecase.interactors.review.ReviewManager;
+import com.aarves.bluepages.usecase.interactors.review.ReviewInputBoundary;
 
 public class ReviewController {
-    private final ReviewManager reviewManager;
+    private final ReviewInputBoundary reviewInput;
 
-    public ReviewController(ReviewManager reviewManager) {
-        this.reviewManager = reviewManager;
+    public ReviewController(ReviewInputBoundary reviewInput) {
+        this.reviewInput = reviewInput;
+    }
+
+    public void loadReviews() {
+        this.reviewInput.loadReviews();
     }
 }
