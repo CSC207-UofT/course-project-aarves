@@ -5,8 +5,8 @@ import androidx.room.Room;
 
 import com.aarves.bluepages.adapter.AdapterInjector;
 import com.aarves.bluepages.database.AppDatabase;
-import com.aarves.bluepages.database.AccountDAOImpl;
-import com.aarves.bluepages.database.ReviewDAOImpl;
+import com.aarves.bluepages.database.AccountDAOAdapter;
+import com.aarves.bluepages.database.ReviewDAOAdapter;
 
 import java.security.NoSuchAlgorithmException;
 
@@ -15,6 +15,7 @@ public class AppInjector {
 
     public AppInjector(Context context) throws NoSuchAlgorithmException {
         AppDatabase database;
+        context.deleteDatabase("database.db"); // TODO: Remove later, currently for testing only
         if(!context.getDatabasePath("database.db").exists()) {
             database = Room.databaseBuilder(context, AppDatabase.class, "database.db")
                            .createFromAsset("database/sample.db")
@@ -27,8 +28,8 @@ public class AppInjector {
                            .build();
         }
 
-        AccountDAOImpl accountDAO = new AccountDAOImpl(database.accountDatabaseDAO());
-        ReviewDAOImpl reviewDAO = new ReviewDAOImpl(database.reviewDatabaseDAO());
+        AccountDAOAdapter accountDAO = new AccountDAOAdapter(database.accountDatabaseDAO());
+        ReviewDAOAdapter reviewDAO = new ReviewDAOAdapter(database.reviewDatabaseDAO());
 
         this.adapterInjector = new AdapterInjector(accountDAO, reviewDAO);
     }

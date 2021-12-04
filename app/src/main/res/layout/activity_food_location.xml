@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_height="wrap_content"
+              android:layout_width="wrap_content"
+              android:orientation="vertical">
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_marginLeft="10dp"
+                  android:layout_height="match_parent"
+                  android:orientation="horizontal">
+        <ImageView android:layout_width="24dp"
+                   android:layout_height="24dp"
+                   app:srcCompat="@drawable/ic_baseline_restaurant_24">
+        </ImageView>
+        <TextView
+                android:id="@+id/locationName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="Food location name"
+                android:layout_gravity="start"
+                android:paddingLeft="10dp"/>
+    </LinearLayout>
+    <TextView
+            android:id="@+id/locationAddress"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="Address"
+            android:layout_gravity="start"/>
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="horizontal"
+                  android:layout_marginLeft="10dp"
+                  android:layout_height="match_parent">
+        <ImageView android:layout_width="24dp"
+                   android:id="@+id/review_star1"
+                   app:srcCompat="@drawable/ic_baseline_star_border_24"
+                   android:layout_height="24dp">
+        </ImageView>
+        <ImageView android:layout_width="24dp"
+                   android:id="@+id/review_star2"
+                   app:srcCompat="@drawable/ic_baseline_star_border_24"
+                   android:layout_height="24dp">
+        </ImageView>
+        <ImageView android:layout_width="24dp"
+                   android:id="@+id/review_star3"
+                   app:srcCompat="@drawable/ic_baseline_star_border_24"
+                   android:layout_height="24dp">
+        </ImageView>
+        <ImageView android:layout_width="24dp"
+                   android:id="@+id/review_star4"
+                   app:srcCompat="@drawable/ic_baseline_star_border_24"
+                   android:layout_height="24dp">
+        </ImageView>
+        <ImageView android:layout_width="24dp"
+                   android:id="@+id/review_star5"
+                   app:srcCompat="@drawable/ic_baseline_star_border_24"
+                   android:layout_height="24dp">
+        </ImageView>
+    </LinearLayout>
+    <TextView
+            android:id="@+id/foodLocationHours"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="Hours"
+            android:layout_gravity="start"
+            android:layout_alignParentBottom="true"/>
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="horizontal">
+        <TextView
+                android:id="@+id/foodLocationDineIn"
+                android:layout_marginLeft="10dp"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="Dine in? Yes/No"
+                android:layout_gravity="start"/>
+        <TextView
+                android:id="@+id/foodLocationTakeOut"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="Takeout? Yes/No"
+                android:layout_gravity="start"
+                android:paddingLeft="10dp"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="horizontal">
+        <Button
+                android:id="@+id/foodLocationMap"
+                android:layout_width="130dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="wrap_content"
+                android:text="View on map"/>
+        <Button
+                android:id="@+id/foodLocationReviews"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Reviews"/>
+    </LinearLayout>
+    <Button
+            android:id="@+id/foodLocationBookmark"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bookmark"/>
+
+</LinearLayout>
