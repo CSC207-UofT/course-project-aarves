@@ -14,7 +14,7 @@ import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 import com.aarves.bluepages.R;
 import com.aarves.bluepages.adapter.controllers.AccountController;
 import com.aarves.bluepages.database.models.AccountDataEntity;
-import com.aarves.bluepages.usecase.interactors.AccountManager;
+import com.aarves.bluepages.usecase.interactors.account.AccountManager;
 
 import java.util.ArrayList;
 
