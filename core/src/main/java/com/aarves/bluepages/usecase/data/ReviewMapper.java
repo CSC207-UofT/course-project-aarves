@@ -23,22 +23,16 @@ public class ReviewMapper {
     }
 
     public static Review mapToReview(ReviewDTO reviewDTO, int reviewId) {
+        Review review = new Review(
+                reviewId,
+                reviewDTO.getReviewer(),
+                reviewDTO.getLocationId(),
+                reviewDTO.getRating()
+        );
         if(!reviewDTO.getBody().isEmpty()) {
-            return new Review(
-                    reviewId,
-                    reviewDTO.getReviewer(),
-                    reviewDTO.getLocationId(),
-                    reviewDTO.getRating(),
-                    reviewDTO.getBody()
-            );
+            review.setBody(reviewDTO.getBody());
         }
-        else {
-            return new Review(
-                    reviewId,
-                    reviewDTO.getReviewer(),
-                    reviewDTO.getLocationId(),
-                    reviewDTO.getRating()
-            );
-        }
+
+        return review;
     }
 }

@@ -42,9 +42,10 @@ public class ReviewManager implements Observer<User> {
     public void createReview(int locationId, int rating, String reviewBody) throws NotLoggedInException {
         this.checkLoggedIn();
 
-        Review review = new Review(this.username, locationId, rating, reviewBody);
-        Review newReview = this.reviewRepository.addReview(review);
+        Review review = new Review(this.username, locationId, rating);
+        review.setBody(reviewBody);
 
+        Review newReview = this.reviewRepository.addReview(review);
         if(!this.reviews.contains(newReview)) {
             this.reviews.add(newReview);
         }

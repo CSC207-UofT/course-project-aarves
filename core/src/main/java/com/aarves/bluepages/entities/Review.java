@@ -11,26 +11,6 @@ public class Review {
     private int rating;
 
     /**
-     * Constructs a new Review object which belongs to a given User regarding a specific Location, and
-     * containing a String with information about the User's experience, and an Integer rating out of 5 based
-     * on the User's opinion.
-     *
-     * @param reviewId      Integer representing the Review's key in the database
-     * @param reviewer      String representing the username of the User creating the Review.
-     * @param locationId    Integer representing the ID of the Location this Review is addressed towards.
-     * @param rating        Integer rating (out of 5) for location as per the User's opinion.
-     * @param body          String information about the User's opinions.
-     */
-    public Review(int reviewId, String reviewer, int locationId, int rating, String body) {
-        this.reviewer = reviewer;
-        this.locationId = locationId;
-        this.rating = rating;
-        this.body = body;
-
-        this.reviewId = reviewId;
-    }
-
-    /**
      * Constructs a new Review object which belongs to a given User regarding a specific Location, and an
      * Integer rating out of 5 based on the User's opinion.
      *
@@ -45,27 +25,6 @@ public class Review {
         this.rating = rating;
 
         this.reviewId = reviewId;
-    }
-
-    /**
-     * Constructs a new Review object which belongs to a given User regarding a specific Location, and
-     * containing a String with information about the User's experience, and an Integer rating out of 5 based
-     * on the User's opinion.
-     *
-     * Note that any Review object with DEFAULT_ID should not be in the User's reviews List.
-     *
-     * @param reviewer      String representing the username of the User creating the Review.
-     * @param locationId    Integer representing the ID of the Location this Review is addressed towards.
-     * @param rating        Integer rating (out of 5) for location as per the User's opinion.
-     * @param body          String information about the User's opinions.
-     */
-    public Review(String reviewer, int locationId, int rating, String body) {
-        this.reviewer = reviewer;
-        this.locationId = locationId;
-        this.rating = rating;
-        this.body = body;
-
-        this.reviewId = Review.DEFAULT_ID;
     }
 
     /**
