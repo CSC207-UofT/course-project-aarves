@@ -11,9 +11,11 @@ import com.aarves.bluepages.adapter.MapboxGateway;
 import com.aarves.bluepages.adapter.controllers.LookupController;
 import com.aarves.bluepages.entities.Location;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.JsonElement;
 import com.mapbox.geojson.BoundingBox;
 import com.mapbox.geojson.Feature;
 import com.mapbox.geojson.Geometry;
+import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
@@ -108,12 +110,26 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         // Get rendered features based off the user's tap
         mapboxMap.addOnMapClickListener(point -> {
-            mapboxMap.addMarker(new MarkerOptions().position(point));
+            mapboxMap.clear();
             PointF screenPoint = mapboxMap.getProjection().toScreenLocation(point);
             List<Feature> features = mapboxMap.queryRenderedFeatures(screenPoint);
             if (!features.isEmpty()) {
-                String name = features.get(0).getStringProperty("name");
-                Snackbar.make(findViewById(R.id.mapView), "You clicked " + name, Snackbar.LENGTH_LONG).show();
+
+                // Get the first feature where geometry is a point
+                for (Feature feature : features) {
+                    if (feature.geometry().type().equals("Point")) {
+                        // Get latitude and longitude of the feature
+                        Point coordinates = (Point) feature.geometry();
+                        double latitude = coordinates.latitude();
+                        double longitude = coordinates.longitude();
+
+                        String name = feature.getStringProperty("name");
+                        mapboxMap.addMarker(new MarkerOptions()
+                                .position(new LatLng(latitude, longitude))
+                                .title(name));
+                        Snackbar.make(findViewById(R.id.mapView), "You clicked on " + name, Snackbar.LENGTH_LONG).show();
+                    }
+                }
             }
             return true;
         });
