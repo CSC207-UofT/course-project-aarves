@@ -6,11 +6,14 @@ import android.os.Bundle;
 import android.widget.ListView;
 
 import com.aarves.bluepages.R;
+import com.aarves.bluepages.MainApplication;
+import com.aarves.bluepages.adapter.presenters.ReviewView;
 import com.aarves.bluepages.adapter.presenters.ReviewViewModel;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class ReviewActivity extends AppCompatActivity {
+public class ReviewActivity extends AppCompatActivity implements ReviewView {
+    private ReviewArrayAdapter reviewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,14 +23,15 @@ public class ReviewActivity extends AppCompatActivity {
 
         // TODO: When Location UI is done, all that is needed to be done is to pass the location's array list of reviews into this class, and then into the ReviewArrayAdapter
         // TODO: Same for RegisteredUser.
+        this.reviewAdapter = new ReviewArrayAdapter(this, R.layout.activity_review);
+        reviewListView.setAdapter(this.reviewAdapter);
 
-        ArrayList<ReviewViewModel> reviewList = new ArrayList<>();
-        reviewList.add(new ReviewViewModel("user 1", 1));
-        reviewList.add(new ReviewViewModel("user 2", 3));
-        reviewList.add(new ReviewViewModel("user 3", 5));
-        reviewList.add(new ReviewViewModel("user 4",4));
+        MainApplication application = (MainApplication) this.getApplication();
+        application.setReviewView(this);
+    }
 
-        ReviewArrayAdapter adapter = new ReviewArrayAdapter(this, R.layout.activity_review, reviewList);
-        reviewListView.setAdapter(adapter);
+    @Override
+    public void displayReviews(List<ReviewViewModel> reviews) {
+        this.reviewAdapter.addAll(reviews);
     }
 }

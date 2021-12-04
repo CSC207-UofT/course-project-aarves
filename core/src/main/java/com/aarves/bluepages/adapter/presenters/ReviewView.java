@@ -4,6 +4,4 @@ import java.util.List;
 
 public interface ReviewView {
     void displayReviews(List<ReviewViewModel> reviews);
-
-    void finishActivity();
 }
