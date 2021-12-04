@@ -6,41 +6,28 @@ import com.aarves.bluepages.entities.User;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
 
-public class AccountManager implements AccountInputBoundary {
+public class AccountManager implements AccountInputBoundary, Observable<User> {
     private final MessageDigest passwordDigest;
     private final AccountOutputBoundary accountOutput;
     private final AccountDataBoundary accountData;
 
+    private final List<Observer<User>> observers;
     private User user;
 
     public AccountManager(AccountDataBoundary accountData, AccountOutputBoundary accountOutput) throws NoSuchAlgorithmException {
         this.passwordDigest = MessageDigest.getInstance("SHA-256");
         this.accountOutput = accountOutput;
         this.accountData = accountData;
-    }
 
-    /**
-     * Returns the User associated with the account
-     * @return  User associated with the account
-     */
-    public User getUser() {
-        return this.user;
+        this.observers = new ArrayList<>();
     }
 
     @Override
     public boolean isLoggedIn() {
         return this.user != null;
-    }
-
-    /**
-     * Checks and returns if the account already exists.
-     *
-     * @param username the username of the user
-     * @return true if the account already exists in accounts
-     */
-    public boolean isExistingAccount(String username){
-        return this.accountData.isExistingAccount(username);
     }
 
     /**
@@ -67,11 +54,13 @@ public class AccountManager implements AccountInputBoundary {
             result = LoginResult.ACCOUNT_NOT_FOUND;
         }
         this.accountOutput.loginResult(result, username);
+        this.notifyObservers();
     }
 
     @Override
     public void logout() {
         this.user = null;
+        this.notifyObservers();
     }
 
     /**
@@ -97,12 +86,52 @@ public class AccountManager implements AccountInputBoundary {
         this.accountOutput.registerResult(result);
     }
 
+    @Override
+    public void addObserver(Observer<User> observer) {
+        this.observers.add(observer);
+    }
+
+    @Override
+    public void deleteObserver(Observer<User> observer) {
+        this.observers.remove(observer);
+    }
+
+    @Override
+    public void clearObservers() {
+        this.observers.clear();
+    }
+
+    @Override
+    public void notifyObservers() {
+        for(Observer<User> observer : this.observers) {
+            observer.update(this.user);
+        }
+    }
+
     /**
      * Deletes a user from the AccountManager.
      */
     public void deleteUser() {
         this.accountData.deleteAccount(this.user);
         this.user = null;
+    }
+
+    /**
+     * Checks and returns if the account already exists.
+     *
+     * @param username the username of the user
+     * @return true if the account already exists in accounts
+     */
+    public boolean isExistingAccount(String username){
+        return this.accountData.isExistingAccount(username);
+    }
+
+    /**
+     * Returns the User associated with the account
+     * @return  User associated with the account
+     */
+    public User getUser() {
+        return this.user;
     }
 
     private String hashPassword(String password) {
