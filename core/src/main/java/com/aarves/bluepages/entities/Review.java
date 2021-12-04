@@ -1,7 +1,7 @@
 package com.aarves.bluepages.entities;
 
 public class Review {
-    private static final int DEFAULT_ID = -1;
+    private static final int DEFAULT_ID = 0;
 
     private final int reviewId;
     private final String reviewer;
@@ -15,6 +15,7 @@ public class Review {
      * containing a String with information about the User's experience, and an Integer rating out of 5 based
      * on the User's opinion.
      *
+     * @param reviewId      Integer representing the Review's key in the database
      * @param reviewer      String representing the username of the User creating the Review.
      * @param locationId    Integer representing the ID of the Location this Review is addressed towards.
      * @param rating        Integer rating (out of 5) for location as per the User's opinion.
@@ -33,6 +34,7 @@ public class Review {
      * Constructs a new Review object which belongs to a given User regarding a specific Location, and an
      * Integer rating out of 5 based on the User's opinion.
      *
+     * @param reviewId      Integer representing the Review's key in the database
      * @param reviewer      String representing the username of the User creating the Review.
      * @param locationId    Integer representing the ID of the Location this Review is addressed towards.
      * @param rating        Integer rating (out of 5) for location as per the User's opinion.
@@ -49,6 +51,8 @@ public class Review {
      * Constructs a new Review object which belongs to a given User regarding a specific Location, and
      * containing a String with information about the User's experience, and an Integer rating out of 5 based
      * on the User's opinion.
+     *
+     * Note that any Review object with DEFAULT_ID should not be in the User's reviews List.
      *
      * @param reviewer      String representing the username of the User creating the Review.
      * @param locationId    Integer representing the ID of the Location this Review is addressed towards.
@@ -67,6 +71,8 @@ public class Review {
     /**
      * Constructs a new Review object which belongs to a given User regarding a specific Location, and an
      * Integer rating out of 5 based on the User's opinion.
+     *
+     * Note that any Review object with DEFAULT_ID should not be in the User's reviews List.
      *
      * @param reviewer      String representing the username of the User creating the Review.
      * @param locationId    Integer representing the ID of the Location this Review is addressed towards.

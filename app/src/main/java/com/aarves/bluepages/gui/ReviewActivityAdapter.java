@@ -20,61 +20,38 @@ public class ReviewActivityAdapter extends ArrayAdapter<Review> {
 
     public ReviewActivityAdapter(Context context, int resource, ArrayList<Review> reviews) {
         super(context, resource, reviews);
+
         this.context = context;
         this.resource = resource;
     }
 
+    @Override
     @SuppressLint("ViewHolder")
-    public View getView(int position, View reviewView, ViewGroup parent) {
-        int rating = getItem(position).getRating();
-        String text = getItem(position).getBody();
-        String username = getItem(position).getReviewer();
+    public View getView(int position, View convertView, ViewGroup parent) {
+        int rating = this.getItem(position).getRating();
+        String text = this.getItem(position).getBody();
+        String username = this.getItem(position).getReviewer();
 
-        LayoutInflater inflater = LayoutInflater.from(context);
-        reviewView = inflater.inflate(resource, parent, false);
+        LayoutInflater inflater = LayoutInflater.from(this.context);
+        convertView = inflater.inflate(this.resource, parent, false);
 
-        TextView usernameText = reviewView.findViewById(R.id.reviewUsername);
-        TextView reviewText = reviewView.findViewById(R.id.reviewText);
-
-        ImageView reviewStar1 = reviewView.findViewById(R.id.review_star1);
-        ImageView reviewStar2 = reviewView.findViewById(R.id.review_star2);
-        ImageView reviewStar3 = reviewView.findViewById(R.id.review_star3);
-        ImageView reviewStar4 = reviewView.findViewById(R.id.review_star4);
-        ImageView reviewStar5 = reviewView.findViewById(R.id.review_star5);
-
-        setRating(reviewStar1, reviewStar2, reviewStar3, reviewStar4, reviewStar5, rating);
-
+        TextView usernameText = convertView.findViewById(R.id.reviewUsername);
         usernameText.setText(username);
+
+        TextView reviewText = convertView.findViewById(R.id.reviewText);
         reviewText.setText(text);
 
-        return reviewView;
+        this.setRating(convertView, rating);
+
+        return convertView;
     }
 
-    public void setRating(ImageView reviewStar1, ImageView reviewStar2, ImageView reviewStar3, ImageView reviewStar4, ImageView reviewStar5, int rating) {
-        if (rating == 1) {
-            reviewStar1.setImageResource(R.drawable.ic_baseline_star_24);
-        }
-        else if (rating == 2) {
-            reviewStar1.setImageResource(R.drawable.ic_baseline_star_24);
-            reviewStar2.setImageResource(R.drawable.ic_baseline_star_24);
-        }
-        else if (rating == 3) {
-            reviewStar1.setImageResource(R.drawable.ic_baseline_star_24);
-            reviewStar2.setImageResource(R.drawable.ic_baseline_star_24);
-            reviewStar3.setImageResource(R.drawable.ic_baseline_star_24);
-        }
-        else if (rating == 4) {
-            reviewStar1.setImageResource(R.drawable.ic_baseline_star_24);
-            reviewStar2.setImageResource(R.drawable.ic_baseline_star_24);
-            reviewStar3.setImageResource(R.drawable.ic_baseline_star_24);
-            reviewStar4.setImageResource(R.drawable.ic_baseline_star_24);
-        }
-        else if (rating == 5) {
-            reviewStar1.setImageResource(R.drawable.ic_baseline_star_24);
-            reviewStar2.setImageResource(R.drawable.ic_baseline_star_24);
-            reviewStar3.setImageResource(R.drawable.ic_baseline_star_24);
-            reviewStar4.setImageResource(R.drawable.ic_baseline_star_24);
-            reviewStar5.setImageResource(R.drawable.ic_baseline_star_24);
+    private void setRating(View convertView, int rating) {
+        int[] starIds = {R.id.review_star1, R.id.review_star2, R.id.review_star3, R.id.review_star4, R.id.review_star5};
+
+        for(int i = 0; i < rating; i++) {
+            ImageView star = convertView.findViewById(starIds[i]);
+            star.setImageResource(R.drawable.ic_baseline_star_24);
         }
     }
 
