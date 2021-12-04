@@ -19,26 +19,17 @@ import com.aarves.bluepages.usecase.interactors.account.AccountManager;
 import java.util.ArrayList;
 
 
-public class AccountMenuActivity extends AccountViewImpl{
-    private String username;
+public class AccountMenuActivity extends AccountViewImpl {
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_menu);
 
-        Bundle bundle = getIntent().getExtras();
-        username = bundle.getString("username");
-        if (username != null) {
-            // display username
-            TextView textView = findViewById(R.id.usernameText);
-            textView.setText(String.format(this.accountController.getUsername()));
-        }
-
         // display username
-        // TODO: is the app displaying username?
         TextView textView = findViewById(R.id.usernameText);
-        textView.setText(String.format(""));
+        textView.setText(String.format(this.accountController.getUsername()));
+
     }
 
     // take user to reviews

@@ -1,5 +1,6 @@
 package com.aarves.bluepages.gui;
 
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,16 +10,12 @@ import android.view.View;
 import com.aarves.bluepages.R;
 
 public class MainMenuActivity extends AppCompatActivity {
-    private String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
         Bundle bundle = getIntent().getExtras();
-        if (bundle != null) {
-            username = bundle.getString("username");
-        }
     }
 
     // TODO: Bookmark/Review button redirects
@@ -39,7 +36,6 @@ public class MainMenuActivity extends AppCompatActivity {
 
     public void viewAccount(View view) {
         Intent intent = new Intent(this, AccountMenuActivity.class);
-        intent.putExtra("username", username);
         startActivity(intent);
     }
 }
