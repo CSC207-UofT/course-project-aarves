@@ -2,61 +2,65 @@ package com.aarves.bluepages.adapter.presenters;
 
 import com.aarves.bluepages.usecase.interactors.LoginResult;
 import com.aarves.bluepages.usecase.interactors.RegisterResult;
+import org.junit.Assert;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 class AccountPresenterTest {
 
-    AccountPresenter ap = new AccountPresenter();
-    private AccountView accountView;
+    AccountOutputMockup accountOutput;
 
     @BeforeEach
     void setUp() {
-        ap.setAccountView(accountView);
+        this.accountOutput = new AccountOutputMockup();
     }
 
     @AfterEach
     void tearDown() {
     }
 
-    // shouldnt need to test this correct?
-    @Test
-    void testSetAccountView() {
 
-    }
-
-
-    // how do I test this
     @Test
     void testLoginResultSuccess() {
-        String username = new String("JohnDoe");
-        ap.loginResult(LoginResult.SUCCESS, username);
-        //assertEquals(accountView, );
+        String username = "JohnDoe";
+        accountOutput.loginResult(LoginResult.SUCCESS, username);
+        assertEquals("Welcome back JohnDoe!", accountOutput.getLogInResult() );
     }
 
     @Test
     void testLoginResultFailure() {
-        String username = new String("JohnDoe");
-        ap.loginResult(LoginResult.FAILURE, username);
-        //assertEquals("Incorrect password!", accountView);
+        String username = "JohnDoe";
+        accountOutput.loginResult(LoginResult.FAILURE, username);
+        assertEquals("Incorrect password!", accountOutput.getLogInResult());
     }
 
     @Test
     void testLoginResultAccNotFound() {
-        String username = new String("JohnDoe");
-        ap.loginResult(LoginResult.ACCOUNT_NOT_FOUND, username);
+        String username = "JohnDoe";
+        accountOutput.loginResult(LoginResult.ACCOUNT_NOT_FOUND, username);
+        assertEquals("Incorrect username!", accountOutput.getLogInResult());
     }
 
 
     @Test
-    void testRegisterResult() {
-        RegisterResult rr = RegisterResult.SUCCESS;
-        ap.registerResult(rr);
+    void testSuccessRegisterResult() {
+        accountOutput.registerResult(RegisterResult.SUCCESS);
+        assertEquals("Account created successfully.", accountOutput.getRegisterResult());
+    }
 
-        RegisterResult rr2 = RegisterResult.PASSWORD_MISMATCH;
-        RegisterResult rr3 = RegisterResult.SUCCESS.USERNAME_ALREADY_EXISTS;
+    @Test
+    void testUserTakenRegisterResult() {
+        accountOutput.registerResult(RegisterResult.USERNAME_ALREADY_EXISTS);
+        assertEquals("Username has already been taken!", accountOutput.getRegisterResult());
+    }
+
+    @Test
+    void testMismatchRegisterResult() {
+        accountOutput.registerResult(RegisterResult.PASSWORD_MISMATCH);
+        assertEquals("Passwords do not match!", accountOutput.getRegisterResult());
     }
 }
