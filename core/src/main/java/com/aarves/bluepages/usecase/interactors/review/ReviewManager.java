@@ -9,7 +9,7 @@ import com.aarves.bluepages.usecase.interactors.Observer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReviewManager implements Observer<User> {
+public class ReviewManager implements ReviewInputBoundary, Observer<User> {
     private final ReviewOutputBoundary reviewOutput;
     private final ReviewRepository reviewRepository;
 
@@ -25,6 +25,12 @@ public class ReviewManager implements Observer<User> {
     }
 
     @Override
+    public void loadReviews() {
+        List<ReviewOutputModel> reviewOutputModels = ReviewOutputMapper.mapToOutputModels(this.reviews);
+        this.reviewOutput.presentReviews(reviewOutputModels);
+    }
+
+    @Override
     public void update(User arg) {
         if(arg != null) {
             this.reviews = arg.getReviews();
@@ -34,6 +40,7 @@ public class ReviewManager implements Observer<User> {
             this.reviews.clear();
             this.username = "";
         }
+        this.loadReviews();
     }
 
     /**
