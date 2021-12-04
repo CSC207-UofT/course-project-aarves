@@ -1,14 +1,20 @@
-package com.aarves.bluepages.usecase.interactors.review;
+package com.aarves.bluepages.adapter.presenters;
 
-public class ReviewOutputData {
+public class ReviewViewModel {
     private final String reviewer;
     private final int rating;
     private final String body;
 
-    public ReviewOutputData(String reviewer, int rating, String body) {
+    public ReviewViewModel(String reviewer, int rating, String body) {
         this.reviewer = reviewer;
         this.rating = rating;
         this.body = body;
+    }
+
+    public ReviewViewModel(String reviewer, int rating) {
+        this.reviewer = reviewer;
+        this.rating = rating;
+        this.body = "";
     }
 
     public String getReviewer() {
@@ -21,5 +27,9 @@ public class ReviewOutputData {
 
     public String getBody() {
         return this.body;
+    }
+
+    public boolean showBody() {
+        return !this.body.isEmpty();
     }
 }

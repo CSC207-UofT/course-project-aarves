@@ -2,7 +2,7 @@ package com.aarves.bluepages.usecase.data;
 
 import com.aarves.bluepages.entities.Review;
 
-public class ReviewMapper {
+public class ReviewDataMapper {
     public static ReviewDTO mapToDTO(Review review) {
         if(review.getBody() != null) {
             return new ReviewDTO(
