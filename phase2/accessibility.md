@@ -7,7 +7,7 @@
 | Equitable Use                 |         |
 | Flexibility in Use            |         |
 | Simple and Intuitive Use      |         |
-| Perceptible Information       |         |
+| Perceptible Information       | Clickable objects in the UI are shaped like a physical button to ensure that the user knows that they are clickable. Pictures are used to better present what the user should be looking at (e.g., person icon for account/user, stars to represent the place's rating rather than text, an interactive map to view the locations)       |
 | Tolerance for Error           |         |
 | Low Physical Effort           |         |
 | Size and Space for Approach and Use |   |
