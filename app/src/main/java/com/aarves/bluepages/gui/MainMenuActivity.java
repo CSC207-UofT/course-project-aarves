@@ -15,7 +15,6 @@ public class MainMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
-        Bundle bundle = getIntent().getExtras();
     }
 
     // TODO: Bookmark/Review button redirects
