@@ -4,10 +4,10 @@ import com.aarves.bluepages.database.access.AccountDatabaseDAO;
 import com.aarves.bluepages.database.models.AccountDataEntity;
 import com.aarves.bluepages.usecase.data.AccountDAO;
 
-public class AccountDAOImpl implements AccountDAO {
+public class AccountDAOAdapter implements AccountDAO {
     private final AccountDatabaseDAO accountDatabaseDAO;
 
-    public AccountDAOImpl(AccountDatabaseDAO accountDatabaseDAO) {
+    public AccountDAOAdapter(AccountDatabaseDAO accountDatabaseDAO) {
         this.accountDatabaseDAO = accountDatabaseDAO;
     }
 

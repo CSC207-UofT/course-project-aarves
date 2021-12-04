@@ -1,4 +1,4 @@
-package com.aarves.bluepages.usecase.interactors;
+package com.aarves.bluepages.usecase.interactors.account;
 
 import com.aarves.bluepages.usecase.exceptions.PermissionsFailureException;
 import com.aarves.bluepages.entities.User;

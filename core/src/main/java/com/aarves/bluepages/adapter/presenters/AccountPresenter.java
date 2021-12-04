@@ -1,15 +1,11 @@
 package com.aarves.bluepages.adapter.presenters;
 
-import com.aarves.bluepages.usecase.interactors.AccountOutputBoundary;
-import com.aarves.bluepages.usecase.interactors.LoginResult;
-import com.aarves.bluepages.usecase.interactors.RegisterResult;
+import com.aarves.bluepages.usecase.interactors.account.AccountOutputBoundary;
+import com.aarves.bluepages.usecase.interactors.account.LoginResult;
+import com.aarves.bluepages.usecase.interactors.account.RegisterResult;
 
 public class AccountPresenter implements AccountOutputBoundary {
     private AccountView accountView;
-
-    public void setAccountView(AccountView accountView) {
-        this.accountView = accountView;
-    }
 
     @Override
     public void loginResult(LoginResult result, String username) {
@@ -54,6 +50,10 @@ public class AccountPresenter implements AccountOutputBoundary {
             }
             this.accountView.displayPopUp(message);
         }
+    }
+
+    public void setAccountView(AccountView accountView) {
+        this.accountView = accountView;
     }
 
     private boolean verifyDependencies() {

@@ -10,10 +10,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ReviewDAOImpl implements ReviewDAO {
+public class ReviewDAOAdapter implements ReviewDAO {
     private final ReviewDatabaseDAO reviewDatabaseDAO;
 
-    public ReviewDAOImpl(ReviewDatabaseDAO reviewDatabaseDAO) {
+    public ReviewDAOAdapter(ReviewDatabaseDAO reviewDatabaseDAO) {
         this.reviewDatabaseDAO = reviewDatabaseDAO;
     }
 
