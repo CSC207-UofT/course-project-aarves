@@ -1,5 +1,6 @@
 package com.aarves.bluepages.gui;
 
+import android.graphics.PointF;
 import android.os.Bundle;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
@@ -11,6 +12,7 @@ import com.aarves.bluepages.adapter.controllers.LookupController;
 import com.aarves.bluepages.entities.Location;
 import com.google.android.material.snackbar.Snackbar;
 import com.mapbox.geojson.BoundingBox;
+import com.mapbox.geojson.Feature;
 import com.mapbox.geojson.Geometry;
 import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
@@ -26,6 +28,7 @@ import org.jetbrains.annotations.NotNull;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -103,26 +106,22 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         // Set the map style from URI
         mapboxMap.setStyle(new Style.Builder().fromUri("mapbox://styles/ashenafee/ckw8c49wi2of616pdbiend57d"));
 
-        // Create a LatLng bound for BloorBay LatLng object
-
-//        LatLngBounds bound = new LatLngBounds.Builder()
-//                .include(bloorBay)
-//                .include(collegeSpadina)
-//                        .build();
-//
-//        // Bound the map to all the area covered by the LatLngBounds object
-//
-//        mapboxMap.setLatLngBoundsForCameraTarget(bound);
-
-        // Set the minimum and maximum zoom of the map to the same value
-
-//        mapboxMap.setMinZoomPreference(15);
-//        mapboxMap.setMaxZoomPreference(15);
+        // Get rendered features based off the user's tap
+        mapboxMap.addOnMapClickListener(point -> {
+            mapboxMap.addMarker(new MarkerOptions().position(point));
+            PointF screenPoint = mapboxMap.getProjection().toScreenLocation(point);
+            List<Feature> features = mapboxMap.queryRenderedFeatures(screenPoint);
+            if (!features.isEmpty()) {
+                String name = features.get(0).getStringProperty("name");
+                Snackbar.make(findViewById(R.id.mapView), "You clicked " + name, Snackbar.LENGTH_LONG).show();
+            }
+            return true;
+        });
 
         // Zoom camera in to bloorBay and collegeSpadina
-         mapboxMap.setCameraPosition(new CameraPosition.Builder()
+        mapboxMap.setCameraPosition(new CameraPosition.Builder()
                 .target(bloorBay)
-                        .target(collegeSpadina)
+                .target(collegeSpadina)
                 .zoom(15)
                 .build());
 
