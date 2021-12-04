@@ -14,7 +14,7 @@ public class ReviewManager implements Observer<User> {
     private List<Review> reviews;
     private String username;
 
-    public ReviewManager(ReviewRepository reviewRepository, AccountManager accountManager) {
+    public ReviewManager(ReviewRepository reviewRepository) {
         this.reviewRepository = reviewRepository;
         this.reviews = new ArrayList<>();
     }
@@ -41,9 +41,8 @@ public class ReviewManager implements Observer<User> {
     public void createReview(int locationId, int rating, String reviewBody) throws NotLoggedInException {
         this.checkLoggedIn();
 
-        Review newReview = new Review(this.username, locationId, rating, reviewBody);
-        int newId = this.reviewRepository.addReview(newReview);
-        newReview.setReviewId(newId);
+        Review review = new Review(this.username, locationId, rating, reviewBody);
+        Review newReview = this.reviewRepository.addReview(review);
 
         if(!this.reviews.contains(newReview)) {
             this.reviews.add(newReview);
@@ -59,9 +58,8 @@ public class ReviewManager implements Observer<User> {
     public void createReview(int locationId, int rating) throws NotLoggedInException {
         this.checkLoggedIn();
 
-        Review newReview = new Review(this.username, locationId, rating);
-        int newId = this.reviewRepository.addReview(newReview);
-        newReview.setReviewId(newId);
+        Review review = new Review(this.username, locationId, rating);
+        Review newReview = this.reviewRepository.addReview(review);
 
         if(!this.reviews.contains(newReview)) {
             this.reviews.add(newReview);

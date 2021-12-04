@@ -21,7 +21,7 @@ public class UseCaseInjector {
         AccountDataAccess accountDataAccess = new AccountDataAccess(accountDAO, reviewRepository);
 
         this.accountManager = new AccountManager(accountDataAccess, accountOutput);
-        this.reviewManager = new ReviewManager(reviewRepository, this.accountManager);
+        this.reviewManager = new ReviewManager(reviewRepository);
     }
 
     public AccountManager getAccountManager() {

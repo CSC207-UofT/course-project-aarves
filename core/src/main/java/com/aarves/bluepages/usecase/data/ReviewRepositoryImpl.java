@@ -16,9 +16,11 @@ public class ReviewRepositoryImpl implements ReviewRepository {
     }
 
     @Override
-    public int addReview(Review review) {
+    public Review addReview(Review review) {
         ReviewDTO reviewData = ReviewMapper.mapToDTO(review);
-        return this.reviewDAO.addReviewData(reviewData);
+        int reviewId = this.reviewDAO.addReviewData(reviewData);
+
+        return ReviewMapper.mapToReview(reviewData, reviewId);
     }
 
     @Override
@@ -31,7 +33,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
         ReviewDTO reviewData = this.reviewDAO.getReviewData(reviewId);
 
         if(reviewData != null) {
-            return ReviewMapper.mapToReview(reviewData);
+            return ReviewMapper.mapToReview(reviewData, reviewId);
         }
         else {
             return null;
@@ -53,9 +55,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
     private List<Review> mapToList(Map<Integer, ReviewDTO> reviewMap) {
         List<Review> reviews = new ArrayList<>();
         for (int reviewId : reviewMap.keySet()) {
-            Review review = ReviewMapper.mapToReview(reviewMap.get(reviewId));
-            review.setReviewId(reviewId);
-
+            Review review = ReviewMapper.mapToReview(reviewMap.get(reviewId), reviewId);
             reviews.add(review);
         }
 

@@ -12,8 +12,9 @@ public class ReviewMapper {
         );
     }
 
-    public static Review mapToReview(ReviewDTO reviewDTO) {
+    public static Review mapToReview(ReviewDTO reviewDTO, int reviewId) {
         return new Review(
+                reviewId,
                 reviewDTO.getReviewer(),
                 reviewDTO.getLocationId(),
                 reviewDTO.getRating(),
