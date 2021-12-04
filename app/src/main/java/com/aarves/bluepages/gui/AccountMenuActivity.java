@@ -28,14 +28,17 @@ public class AccountMenuActivity extends AccountViewImpl{
         setContentView(R.layout.activity_account_menu);
 
         Bundle bundle = getIntent().getExtras();
-        if (bundle != null) {
-            username = bundle.getString("username");
+        username = bundle.getString("username");
+        if (username != null) {
+            // display username
+            TextView textView = findViewById(R.id.usernameText);
+            textView.setText(String.format(this.accountController.getUsername()));
         }
 
         // display username
         // TODO: is the app displaying username?
         TextView textView = findViewById(R.id.usernameText);
-        textView.setText(String.format("Welcome %s", this.accountController.getUsername()));
+        textView.setText(String.format(""));
     }
 
     // take user to reviews
