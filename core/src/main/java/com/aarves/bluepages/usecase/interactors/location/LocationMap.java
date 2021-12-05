@@ -17,6 +17,16 @@ public class LocationMap {
     }
 
     /**
+     * Return Location from LocationMap, based off the given coordinates.
+     * @param coordinates   coordinates containing the coordinates of Location.
+     * @return              Location specified for by coordinates.
+     */
+    public Location getLocation(Long[] coordinates) {
+        int locationId = this.getLocationId(coordinates);
+        return this.locationData.getLocation(locationId);
+    }
+
+    /**
      * Return location ID from LocationMap, based off the given coordinates.
      * @param coordinates   coordinates containing the coordinates of Location.
      * @return              Location ID specified for by coordinates.
