@@ -101,7 +101,7 @@ class LocationMapTest {
     }
 
     @Test
-    void testNoSuchLocationByName() {
+    void testNoLocationByName() {
         Location result = locationMap.getLocationByName("Varsity Stadium");
         assertNull(result);
 
