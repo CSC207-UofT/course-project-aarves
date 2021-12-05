@@ -9,18 +9,7 @@ public class AccountInputMockup implements AccountInputBoundary {
     private String confirmPassword;
 
     private boolean loggedIn;
-
-    public String getUsername() {
-        return this.username;
-    }
-
-    public String getPassword() {
-        return this.password;
-    }
-
-    public String getConfirmPassword() {
-        return this.confirmPassword;
-    }
+    private boolean loaded;
 
     @Override
     public boolean isLoggedIn() {
@@ -46,9 +35,24 @@ public class AccountInputMockup implements AccountInputBoundary {
         this.confirmPassword = confirmPassword;
     }
 
-    // TODO: Fix later
     @Override
-    public User getUser() {
-        return null;
+    public void loadInformation() {
+        this.loaded = true;
+    }
+
+    public String getUsername() {
+        return this.username;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public String getConfirmPassword() {
+        return this.confirmPassword;
+    }
+
+    public boolean isLoaded() {
+        return this.loaded;
     }
 }
