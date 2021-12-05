@@ -3,10 +3,10 @@ package com.aarves.bluepages.usecase.interactors;
 import com.aarves.bluepages.entities.FoodLocation;
 import com.aarves.bluepages.entities.Location;
 import com.aarves.bluepages.entities.StudyLocation;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +14,6 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LocationMapTest {
-
     LocationMap locationMap = new LocationMap();
 
     @BeforeEach
@@ -22,10 +21,10 @@ class LocationMapTest {
         Location l1 = new StudyLocation("9am-10pm", "Gerstein Library", "145 St.Geroge St", true, true);
         Location l2 = new StudyLocation("9am- 1pm", "Rm101", "971 Koffler St", true, false);
         Location l3 = new FoodLocation("11am-3pm", "Freshii", "345 Yonge St", "Soups and salads", true, true, "10-20$");
+
         locationMap.addLocation(89, l3);
         locationMap.addLocation(234, l2);
         locationMap.addLocation(241, l1);
-
     }
 
     @AfterEach
@@ -59,9 +58,6 @@ class LocationMapTest {
         assertEquals(mapSize, locationMap.locationHashMap.size());
     }
 
-    // TODO: do we want the following case?:
-    // if a key already in the map tries to be added again
-    // put() will override the value so the location just gets updated
     @Test
     void testAddDuplicateLocation(){
         int mapSize = locationMap.locationHashMap.size();
@@ -104,7 +100,7 @@ class LocationMapTest {
     }
 
     @Test
-    void testNoSuchLocationByName() {
+    void testNoLocationByName() {
         Location result = locationMap.getLocationByName("Varsity Stadium");
         assertNull(result);
 
