@@ -16,12 +16,24 @@ public class LocationDataAccess implements BookmarkDataBoundary, LocationDataBou
     }
 
     @Override
+    public void updateBookmarks(String username, List<Location> bookmarks) {
+        List<Integer> bookmarkIds = new ArrayList<>();
+
+        for(Location location : bookmarks) {
+            bookmarkIds.add(location.getLocationId());
+        }
+
+        this.locationDAO.updateBookmarks(username, bookmarkIds);
+    }
+
+    @Override
     public List<Location> getUserBookmarks(String username) {
-        List<LocationDTO> bookmarksData = this.locationDAO.getBookmarksData(username);
+        Map<Integer, LocationDTO> bookmarksData = this.locationDAO.getBookmarksData(username);
         List<Location> bookmarks = new ArrayList<>();
 
-        for(LocationDTO bookmarkData : bookmarksData) {
-            Location bookmark = LocationDataMapper.locationFactory(bookmarkData);
+        for(int bookmarkId : bookmarksData.keySet()) {
+            LocationDTO bookmarkData = bookmarksData.get(bookmarkId);
+            Location bookmark = LocationDataMapper.locationFactory(bookmarkData, bookmarkId);
             bookmarks.add(bookmark);
         }
 
@@ -29,9 +41,11 @@ public class LocationDataAccess implements BookmarkDataBoundary, LocationDataBou
     }
 
     @Override
-    public int addLocation(Location location) {
+    public Location addLocation(Location location) {
         LocationDTO locationDTO = LocationDataMapper.mapToDTO(location);
-        return this.locationDAO.addLocation(locationDTO);
+        int locationId = this.locationDAO.addLocation(locationDTO);
+
+        return LocationDataMapper.locationFactory(locationDTO, locationId);
     }
 
     @Override
@@ -44,7 +58,7 @@ public class LocationDataAccess implements BookmarkDataBoundary, LocationDataBou
         LocationDTO locationDTO = this.locationDAO.getLocationData(locationId);
 
         if(locationDTO != null) {
-            return LocationDataMapper.locationFactory(locationDTO);
+            return LocationDataMapper.locationFactory(locationDTO, locationId);
         }
         else {
             return null;

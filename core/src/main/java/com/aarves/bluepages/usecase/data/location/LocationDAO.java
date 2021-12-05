@@ -7,7 +7,9 @@ public interface LocationDAO {
     int addLocation(LocationDTO locationDTO);
     void deleteLocation(int locationId);
 
+    void updateBookmarks(String username, List<Integer> bookmarkIds);
+
     LocationDTO getLocationData(int locationId);
-    List<LocationDTO> getBookmarksData(String username);
+    Map<Integer, LocationDTO> getBookmarksData(String username);
     Map<List<Long>, Integer> getCoordinatesMap();
 }

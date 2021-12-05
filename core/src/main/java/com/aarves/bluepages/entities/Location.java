@@ -1,17 +1,45 @@
 package com.aarves.bluepages.entities;
 
 public abstract class Location {
+    private static final int DEFAULT_ID = 0;
+
+    private final int locationId;
     protected final String name;
     protected final double[] coordinates;
 
     /**
      * Constructs a new Location object
-     * @param name name of location
-     * @param coordinates GPS coordinates of location
+     *
+     * @param locationId    ID of Location
+     * @param name          name of Location
+     * @param coordinates   GPS coordinates of Location
+     */
+    public Location(int locationId, String name, double[] coordinates) {
+        this.name = name;
+        this.coordinates = coordinates;
+
+        this.locationId = locationId;
+    }
+
+    /**
+     * Constructs a new Location object. Using DEFAULT_ID indicates that Location is not in database.
+     *
+     * @param name          name of Location
+     * @param coordinates   GPS coordinates of Location
      */
     public Location(String name, double[] coordinates) {
         this.name = name;
         this.coordinates = coordinates;
+
+        this.locationId = Location.DEFAULT_ID;
+    }
+
+    /**
+     * Return the ID associated with this Location.
+     * @return  Integer representing the ID of the Location.
+     */
+    public int getLocationId() {
+        return this.locationId;
     }
 
     /**

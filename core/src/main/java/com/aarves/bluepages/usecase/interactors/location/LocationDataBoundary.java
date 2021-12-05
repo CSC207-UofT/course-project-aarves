@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface LocationDataBoundary {
-    int addLocation(Location location);
+    Location addLocation(Location location);
     void deleteLocation(int locationId);
 
     Location getLocation(int locationId);

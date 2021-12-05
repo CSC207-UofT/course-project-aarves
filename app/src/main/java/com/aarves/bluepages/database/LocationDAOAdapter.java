@@ -35,6 +35,11 @@ public class LocationDAOAdapter implements LocationDAO {
     }
 
     @Override
+    public void updateBookmarks(String username, List<Integer> bookmarkIds) {
+        this.bookmarkDatabaseDAO.updateBookmarks(username, bookmarkIds);
+    }
+
+    @Override
     public LocationDTO getLocationData(int locationId) {
         LocationDataEntity locationDataEntity = this.locationDatabaseDAO.getByID(locationId);
 
@@ -47,15 +52,15 @@ public class LocationDAOAdapter implements LocationDAO {
     }
 
     @Override
-    public List<LocationDTO> getBookmarksData(String username) {
+    public Map<Integer, LocationDTO> getBookmarksData(String username) {
         List<Integer> bookmarkIds = this.bookmarkDatabaseDAO.getBookmarks(username).bookmarks;
-        List<LocationDTO> bookmarksData = new ArrayList<>();
+        Map<Integer, LocationDTO> bookmarksData = new HashMap<>();
 
         for(int bookmarkId : bookmarkIds) {
             LocationDTO bookmarkData = this.getLocationData(bookmarkId);
 
             if(bookmarkData != null) {
-                bookmarksData.add(bookmarkData);
+                bookmarksData.put(bookmarkId, bookmarkData);
             }
         }
 
