@@ -35,6 +35,12 @@ public class AccountViewImpl extends AppCompatActivity implements AccountView {
     }
 
     @Override
+    public void returnToAccessMenu() {
+        Intent intent = new Intent(this, AccessActivity.class);
+        this.startActivity(intent);
+    }
+
+    @Override
     public void finishActivity() {
         this.finish();
     }

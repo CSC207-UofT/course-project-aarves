@@ -9,8 +9,8 @@ import org.jetbrains.annotations.NotNull;
 
 @Entity(tableName = "accounts")
 public class AccountDataEntity {
-    @PrimaryKey
-    @NonNull
+    @PrimaryKey @NonNull
+    @ColumnInfo(name = "username")
     public String username;
 
     @ColumnInfo(name = "password_hash")
