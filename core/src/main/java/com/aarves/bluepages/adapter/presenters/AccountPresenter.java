@@ -6,6 +6,7 @@ import com.aarves.bluepages.usecase.interactors.account.RegisterResult;
 
 public class AccountPresenter implements AccountOutputBoundary {
     private AccountView accountView;
+    private AccountMenuView accountMenuView;
 
     @Override
     public void loginResult(LoginResult result, String username) {
@@ -52,17 +53,40 @@ public class AccountPresenter implements AccountOutputBoundary {
         }
     }
 
-    public void logout() {
-        this.accountView.displayPopUp("Account logged out successfully.");
-        this.accountView.returnToAccessMenu();
-        this.accountView.finishActivity();
+    public void displayLogout() {
+        if(this.verifyDependencies()) {
+            this.accountView.displayPopUp("Account logged out successfully.");
+
+            this.accountView.returnToAccessMenu();
+            this.accountView.finishActivity();
+        }
+    }
+
+    @Override
+    public void displayInformation(String username) {
+        if(this.verifyMenuDependencies()) {
+            if(!username.isEmpty()) {
+                this.accountMenuView.displayAccountInformation(username);
+            }
+            else {
+                this.accountMenuView.displayAccountInformation("Guest User");
+            }
+        }
     }
 
     public void setAccountView(AccountView accountView) {
         this.accountView = accountView;
     }
 
+    public void setAccountMenuView(AccountMenuView accountMenuView) {
+        this.accountMenuView = accountMenuView;
+    }
+
     private boolean verifyDependencies() {
         return this.accountView != null;
+    }
+
+    private boolean verifyMenuDependencies() {
+        return this.accountMenuView != null;
     }
 }

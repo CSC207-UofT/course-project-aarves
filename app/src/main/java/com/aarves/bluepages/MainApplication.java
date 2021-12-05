@@ -3,6 +3,7 @@ package com.aarves.bluepages;
 import android.app.Application;
 
 import com.aarves.bluepages.adapter.AdapterInjector;
+import com.aarves.bluepages.adapter.presenters.AccountMenuView;
 import com.aarves.bluepages.adapter.presenters.AccountView;
 import com.aarves.bluepages.adapter.presenters.ReviewView;
 
@@ -28,6 +29,10 @@ public class MainApplication extends Application {
 
     public void setAccountView(AccountView accountView) {
         this.getAdapters().setAccountView(accountView);
+    }
+
+    public void setAccountMenuView(AccountMenuView accountMenuView) {
+        this.getAdapters().setAccountMenuView(accountMenuView);
     }
 
     public void setReviewView(ReviewView reviewView) {

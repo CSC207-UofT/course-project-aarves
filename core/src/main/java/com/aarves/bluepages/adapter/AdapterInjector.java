@@ -2,11 +2,7 @@ package com.aarves.bluepages.adapter;
 
 import com.aarves.bluepages.adapter.controllers.AccountController;
 import com.aarves.bluepages.adapter.controllers.ReviewController;
-
-import com.aarves.bluepages.adapter.presenters.AccountPresenter;
-import com.aarves.bluepages.adapter.presenters.AccountView;
-import com.aarves.bluepages.adapter.presenters.ReviewPresenter;
-import com.aarves.bluepages.adapter.presenters.ReviewView;
+import com.aarves.bluepages.adapter.presenters.*;
 
 import com.aarves.bluepages.usecase.data.account.AccountDAO;
 import com.aarves.bluepages.usecase.data.location.LocationDAO;
@@ -48,6 +44,10 @@ public class AdapterInjector {
 
     public void setAccountView(AccountView accountView) {
         this.accountPresenter.setAccountView(accountView);
+    }
+
+    public void setAccountMenuView(AccountMenuView accountMenuView) {
+        this.accountPresenter.setAccountMenuView(accountMenuView);
     }
 
     public ReviewController getReviewController() {
