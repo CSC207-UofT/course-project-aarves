@@ -11,7 +11,7 @@ public class AccountPresenter implements AccountOutputBoundary {
     public void loginResult(LoginResult result, String username) {
         if(this.verifyDependencies()) {
             String message;
-            switch (result) {
+            switch(result) {
                 case SUCCESS:
                     message = "Welcome back " + username + "!";
                     this.accountView.startMainMenu();
@@ -34,7 +34,7 @@ public class AccountPresenter implements AccountOutputBoundary {
     public void registerResult(RegisterResult result) {
         if(this.verifyDependencies()) {
             String message;
-            switch (result) {
+            switch(result) {
                 case SUCCESS:
                     message = "Account created successfully.";
                     this.accountView.finishActivity();

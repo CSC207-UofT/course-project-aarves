@@ -22,10 +22,10 @@ public class LocationDataEntity {
     @ColumnInfo(name = "location_type")
     public String type;
 
-    public LocationDataEntity(String name, double[] coordinates, String type) {
+    public LocationDataEntity(String name, double longitude, double latitude, String type) {
         this.name = name;
-        this.longitude = coordinates[0];
-        this.latitude = coordinates[1];
+        this.longitude = longitude;
+        this.latitude = latitude;
         this.type = type;
     }
 }
