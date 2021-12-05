@@ -2,65 +2,91 @@ package com.aarves.bluepages.adapter.presenters;
 
 import com.aarves.bluepages.usecase.interactors.account.LoginResult;
 import com.aarves.bluepages.usecase.interactors.account.RegisterResult;
-import org.junit.Assert;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
 class AccountPresenterTest {
-
-    AccountOutputMockup accountOutput;
+    AccountPresenter accountPresenter;
+    AccountViewMockup accountView;
 
     @BeforeEach
     void setUp() {
-        this.accountOutput = new AccountOutputMockup();
+        accountView = new AccountViewMockup();
+        accountPresenter = new AccountPresenter();
+        accountPresenter.setAccountView(accountView);
     }
 
     @AfterEach
     void tearDown() {
     }
 
-
     @Test
-    void testLoginResultSuccess() {
-        String username = "JohnDoe";
-        accountOutput.loginResult(LoginResult.SUCCESS, username);
-        assertEquals("Welcome back JohnDoe!", accountOutput.getLogInResult() );
+    void loginResultSuccessDisplay() {
+        accountPresenter.loginResult(LoginResult.SUCCESS, "username");
+        assertEquals("Welcome back username!", accountView.getPopUpDisplay());
+
     }
 
     @Test
-    void testLoginResultFailure() {
-        String username = "JohnDoe";
-        accountOutput.loginResult(LoginResult.FAILURE, username);
-        assertEquals("Incorrect password!", accountOutput.getLogInResult());
+    void loginResultSuccessActivity() {
+        accountPresenter.loginResult(LoginResult.SUCCESS, "username");
+        assertTrue(accountView.startActivity);
+        assertTrue(accountView.finishActivity);
     }
 
     @Test
-    void testLoginResultAccNotFound() {
-        String username = "JohnDoe";
-        accountOutput.loginResult(LoginResult.ACCOUNT_NOT_FOUND, username);
-        assertEquals("Incorrect username!", accountOutput.getLogInResult());
-    }
-
-
-    @Test
-    void testSuccessRegisterResult() {
-        accountOutput.registerResult(RegisterResult.SUCCESS);
-        assertEquals("Account created successfully.", accountOutput.getRegisterResult());
+    void loginResultFailureDisplay() {
+        accountPresenter.loginResult(LoginResult.FAILURE, "username");
+        assertEquals("Incorrect password!", accountView.getPopUpDisplay());
     }
 
     @Test
-    void testUserTakenRegisterResult() {
-        accountOutput.registerResult(RegisterResult.USERNAME_ALREADY_EXISTS);
-        assertEquals("Username has already been taken!", accountOutput.getRegisterResult());
+    void loginResultFailureActivity() {
+        accountPresenter.loginResult(LoginResult.FAILURE, "username");
+        assertFalse(accountView.startActivity);
+        assertFalse(accountView.finishActivity);
     }
 
     @Test
-    void testMismatchRegisterResult() {
-        accountOutput.registerResult(RegisterResult.PASSWORD_MISMATCH);
-        assertEquals("Passwords do not match!", accountOutput.getRegisterResult());
+    void loginResultAccNotFoundDisplay() {
+        accountPresenter.loginResult(LoginResult.ACCOUNT_NOT_FOUND, "username");
+        assertEquals("Incorrect username!", accountView.getPopUpDisplay());
     }
+
+    @Test
+    void loginResultAccNotFoundActivity() {
+        accountPresenter.loginResult(LoginResult.ACCOUNT_NOT_FOUND, "username");
+        assertFalse(accountView.startActivity);
+        assertFalse(accountView.finishActivity);
+    }
+
+    @Test
+    void registerResultSuccessDisplay() {
+        accountPresenter.registerResult(RegisterResult.SUCCESS);
+        assertTrue(accountView.finishActivity);
+        assertEquals("Account created successfully.", accountView.getPopUpDisplay());
+    }
+
+    @Test
+    void registerResultSuccessActivity() {
+        accountPresenter.registerResult(RegisterResult.SUCCESS);
+        assertTrue(accountView.finishActivity);
+    }
+
+    @Test
+    void registerResultUserTakenDisplay() {
+        accountPresenter.registerResult(RegisterResult.USERNAME_ALREADY_EXISTS);
+        assertEquals("Username has already been taken!", accountView.getPopUpDisplay());
+    }
+
+    @Test
+    void registerResultPassMismatchDisplay() {
+        accountPresenter.registerResult(RegisterResult.PASSWORD_MISMATCH);
+        assertEquals("Passwords do not match!", accountView.getPopUpDisplay());
+    }
+
 }
