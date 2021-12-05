@@ -1,6 +1,7 @@
 package com.aarves.bluepages.gui;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import android.os.Bundle;
@@ -28,8 +29,13 @@ public class CreateReviewActivity extends CreateReviewViewImpl {
 
         // Modify the image button display
         for(int i = 0; i < rating; i++) {
-            ImageView star = view.findViewById(starIds[i]);
+            ImageButton star = findViewById(starIds[i]);
             star.setImageResource(R.drawable.ic_baseline_star_24);
+        }
+        // Set the "empty" stars
+        for(int i=rating; i < 5; i++) {
+            ImageButton star = findViewById(starIds[i]);
+            star.setImageResource(R.drawable.ic_baseline_star_border_24);
         }
 
     }
@@ -45,13 +51,13 @@ public class CreateReviewActivity extends CreateReviewViewImpl {
         int rating = 0;
 
         // Get the rating
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 5; i++) {
             if (view.getId() == starIds[i]) {
                 rating = i;
             }
         }
 
-        return rating;
+        return rating+1;
     }
 
     /**
@@ -70,7 +76,7 @@ public class CreateReviewActivity extends CreateReviewViewImpl {
         int rating = getRating(view, starIds);
 
         // Get the text of the review
-        EditText reviewTextBody = this.findViewById(R.id.reviewTextBody);
+        EditText reviewTextBody = findViewById(R.id.reviewTextBody);
         String reviewBody = reviewTextBody.getText().toString();
 
         // TODO: Pass in location ID
