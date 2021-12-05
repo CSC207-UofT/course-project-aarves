@@ -22,9 +22,10 @@ public class BookmarkManager implements BookmarkInputBoundary, Observer<User> {
     }
 
     @Override
-    public void addBookmark(int locationId) {
-        List<Integer> bookmarkIds = new ArrayList<>();
+    public void addBookmark(int locationId) throws NotLoggedInException {
+        this.checkLoggedIn();
 
+        List<Integer> bookmarkIds = new ArrayList<>();
         for(Location location : this.bookmarks) {
             bookmarkIds.add(location.getLocationId());
         }
@@ -35,7 +36,8 @@ public class BookmarkManager implements BookmarkInputBoundary, Observer<User> {
     }
 
     @Override
-    public void removeBookmark(int locationId) {
+    public void removeBookmark(int locationId) throws NotLoggedInException {
+        this.checkLoggedIn();
         this.bookmarkData.removeBookmark(this.username, locationId, this.bookmarks);
     }
 
