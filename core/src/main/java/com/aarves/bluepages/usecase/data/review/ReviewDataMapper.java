@@ -1,4 +1,4 @@
-package com.aarves.bluepages.usecase.data;
+package com.aarves.bluepages.usecase.data.review;
 
 import com.aarves.bluepages.entities.Review;
 

@@ -17,6 +17,10 @@ public class AccountController {
         this.accountInput.login(username, password);
     }
 
+    public void logout() {
+        this.accountInput.logout();
+    }
+
     public void register(String username, String password, String confirmPassword) {
         if(this.accountInput.isLoggedIn()) {
             this.accountInput.logout();

@@ -31,13 +31,23 @@ public class ReviewManager implements ReviewInputBoundary, Observer<User> {
     }
 
     @Override
+    public void refreshReviews() {
+        this.reviews.clear();
+
+        List<Review> reviews = this.reviewRepository.getReviewsByUser(this.username);
+        this.reviews.addAll(reviews);
+    }
+
+    @Override
     public void update(User arg) {
         if(arg != null) {
             this.reviews = arg.getReviews();
             this.username = arg.getUsername();
+
+            this.refreshReviews();
         }
         else {
-            this.reviews.clear();
+            this.reviews = new ArrayList<>();
             this.username = "";
         }
         this.loadReviews();

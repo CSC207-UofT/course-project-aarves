@@ -62,6 +62,7 @@ public class AccountManager implements AccountInputBoundary, Observable<User> {
     @Override
     public void logout() {
         this.user = null;
+        this.accountOutput.logout();
         this.notifyObservers();
     }
 

@@ -7,6 +7,7 @@ import androidx.room.ColumnInfo;
 @Entity(tableName = "reviews")
 public class ReviewDataEntity {
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "review_id")
     public int reviewId;
 
     @ColumnInfo(name = "username")

@@ -2,7 +2,7 @@ package com.aarves.bluepages.database;
 
 import com.aarves.bluepages.database.access.AccountDatabaseDAO;
 import com.aarves.bluepages.database.models.AccountDataEntity;
-import com.aarves.bluepages.usecase.data.AccountDAO;
+import com.aarves.bluepages.usecase.data.account.AccountDAO;
 
 public class AccountDAOAdapter implements AccountDAO {
     private final AccountDatabaseDAO accountDatabaseDAO;
