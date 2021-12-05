@@ -1,6 +1,5 @@
 package com.aarves.bluepages.gui;
 
-import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -15,13 +14,6 @@ public class MainMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
-    }
-
-    // TODO: Bookmark/Review button redirects
-
-    public void viewReviews(View view) {
-        Intent intent = new Intent(this, ReviewActivity.class);
-        startActivity(intent);
     }
 
     /**

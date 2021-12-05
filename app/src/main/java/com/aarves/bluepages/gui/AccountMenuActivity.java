@@ -1,22 +1,10 @@
 package com.aarves.bluepages.gui;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.drawable.RoundedBitmapDrawable;
-import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 import com.aarves.bluepages.R;
-import com.aarves.bluepages.adapter.controllers.AccountController;
-import com.aarves.bluepages.database.models.AccountDataEntity;
-import com.aarves.bluepages.usecase.interactors.account.AccountManager;
-
-import java.util.ArrayList;
 
 
 public class AccountMenuActivity extends AccountViewImpl {
@@ -47,11 +35,10 @@ public class AccountMenuActivity extends AccountViewImpl {
     }
 
     // TODO: check if this is working
-    public void signOut(View view){
+    public void signOut(View view) {
 
-//        String password = getIntent().getExtras().getString("password");
-//        String username = getIntent().getExtras().getString("username");
-//        this.accountController.login(username, password );
+        Intent intent = new Intent(this, AccessActivity.class);
+        startActivity(intent);
     }
 
 
