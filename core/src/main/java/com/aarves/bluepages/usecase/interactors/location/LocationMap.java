@@ -51,7 +51,7 @@ public class LocationMap {
     public int addLocation(Long[] coordinates, Location location) {
         this.checkCoordinates(coordinates);
 
-        int newLocationId = this.locationData.addLocation(location);
+        int newLocationId = this.locationData.addLocation(location).getLocationId();
         Integer locationId = this.coordinatesMap.put(Arrays.asList(coordinates).subList(0, 2), newLocationId);
         if(locationId != null) {
             return locationId;

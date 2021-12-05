@@ -4,6 +4,8 @@ import com.aarves.bluepages.database.access.AccountDatabaseDAO;
 import com.aarves.bluepages.database.models.AccountDataEntity;
 import com.aarves.bluepages.usecase.data.account.AccountDAO;
 
+import java.util.ArrayList;
+
 public class AccountDAOAdapter implements AccountDAO {
     private final AccountDatabaseDAO accountDatabaseDAO;
 
@@ -13,7 +15,7 @@ public class AccountDAOAdapter implements AccountDAO {
 
     @Override
     public void addAccount(String username, String passwordHash) {
-        AccountDataEntity accountDataEntity = new AccountDataEntity(username, passwordHash);
+        AccountDataEntity accountDataEntity = new AccountDataEntity(username, passwordHash, new ArrayList<>());
         this.accountDatabaseDAO.insert(accountDataEntity);
     }
 
