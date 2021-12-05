@@ -3,8 +3,11 @@ package com.aarves.bluepages.gui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import com.aarves.bluepages.R;
+
+import java.util.Objects;
 
 
 public class AccountMenuActivity extends AccountViewImpl {
@@ -14,9 +17,22 @@ public class AccountMenuActivity extends AccountViewImpl {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_menu);
 
-        // display username
+        displayAccountInformation();
+    }
+
+    public void displayAccountInformation() {
+        // displays the account information
         TextView textView = findViewById(R.id.usernameText);
-        textView.setText(String.format(this.accountController.getUsername()));
+
+        Bundle loginInformation = getIntent().getExtras();
+
+        if (loginInformation == null) { // the user logged in as a guest
+            textView.setText("Guest User");
+        }
+        else { // the user is logged in with an account
+            //display username
+            textView.setText(this.accountController.getUsername());
+        }
 
     }
 
