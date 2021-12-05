@@ -9,6 +9,9 @@ import com.aarves.bluepages.database.AppDatabase;
 import com.aarves.bluepages.database.AccountDAOAdapter;
 import com.aarves.bluepages.database.LocationDAOAdapter;
 import com.aarves.bluepages.database.ReviewDAOAdapter;
+import com.aarves.bluepages.usecase.data.AccountDAO;
+import com.aarves.bluepages.usecase.data.LocationDAO;
+import com.aarves.bluepages.usecase.data.ReviewDAO;
 
 import java.security.NoSuchAlgorithmException;
 
@@ -39,9 +42,9 @@ public class AppInjector {
         }
         */
 
-        AccountDAOAdapter accountDAO = new AccountDAOAdapter(database.accountDatabaseDAO());
-        LocationDAOAdapter locationDAO = new LocationDAOAdapter(database.locationDatabaseDAO());
-        ReviewDAOAdapter reviewDAO = new ReviewDAOAdapter(database.reviewDatabaseDAO());
+        AccountDAO accountDAO = new AccountDAOAdapter(database.accountDatabaseDAO());
+        LocationDAO locationDAO = new LocationDAOAdapter(database.locationDatabaseDAO());
+        ReviewDAO reviewDAO = new ReviewDAOAdapter(database.reviewDatabaseDAO());
 
         this.adapterInjector = new AdapterInjector(accountDAO, locationDAO, reviewDAO);
     }

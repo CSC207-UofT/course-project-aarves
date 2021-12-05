@@ -6,10 +6,14 @@ import com.aarves.bluepages.adapter.presenters.AccountPresenter;
 import com.aarves.bluepages.adapter.presenters.AccountView;
 import com.aarves.bluepages.adapter.presenters.ReviewPresenter;
 import com.aarves.bluepages.adapter.presenters.ReviewView;
-import com.aarves.bluepages.usecase.UseCaseInjector;
+
 import com.aarves.bluepages.usecase.data.AccountDAO;
 import com.aarves.bluepages.usecase.data.LocationDAO;
 import com.aarves.bluepages.usecase.data.ReviewDAO;
+import com.aarves.bluepages.usecase.interactors.account.AccountManager;
+import com.aarves.bluepages.usecase.interactors.account.AccountUseCaseInjector;
+import com.aarves.bluepages.usecase.interactors.review.ReviewManager;
+import com.aarves.bluepages.usecase.interactors.review.ReviewUseCaseInjector;
 
 import java.security.NoSuchAlgorithmException;
 
@@ -23,10 +27,15 @@ public class AdapterInjector {
         this.accountPresenter = new AccountPresenter();
         this.reviewPresenter = new ReviewPresenter();
 
-        UseCaseInjector useCaseInjector = new UseCaseInjector(accountDAO, reviewDAO, this.accountPresenter, this.reviewPresenter);
+        AccountUseCaseInjector accountUseCaseInjector = new AccountUseCaseInjector(accountDAO, this.accountPresenter);
+        ReviewUseCaseInjector reviewUseCaseInjector = new ReviewUseCaseInjector(reviewDAO, this.reviewPresenter);
 
-        this.accountController = new AccountController(useCaseInjector.getAccountManager());
-        this.reviewController = new ReviewController(useCaseInjector.getReviewManager());
+        AccountManager accountManager = accountUseCaseInjector.getAccountManager();
+        ReviewManager reviewManager = reviewUseCaseInjector.getReviewManager();
+        accountManager.addObserver(reviewManager);
+
+        this.accountController = new AccountController(accountManager);
+        this.reviewController = new ReviewController(reviewManager);
     }
 
     public AccountController getAccountController() {
