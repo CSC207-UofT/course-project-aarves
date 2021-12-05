@@ -112,11 +112,11 @@ but we are working on refactoring our code and adding better suited design patte
 
     Across all six of us, we have been ironing out Clean Architecture, but the next goal as a team is to further this use of Clean Archiecture to the UI and Android-specific elements (i.e. Activities).
 
-  |              |                         Current Work                     |           Future Plans             |
+  |              |                         Work since Phase 1               | Link to a Significant Pull Request |
   |--------------|----------------------------------------------------------|------------------------------------|
-  | Ashenafee    | Worked on the Android UI, MapBox integration, and adding classes adhering to our previously-missing layers of Clean Architecture. | Additional work with the UI/MapBox API to display explicit points on the map. |
-  | Anthony      | Worked on databasing with Clean Architecture, refactoring,  organizing the use of Github features, planning Clean Architecture. | Fully integrate Clean Architecture and new database system. Afterwards, expand use cases.                                                        | |
-  | Erica        | Worked on serizalization and implementing design patterns| UI and possibly implementing the Strategy design pattern |
-  | Rebecca      | Serialization, testing and bugfixes | View bookmarks, view reviews, and their associated UIs |
-  | Syed         | Worked on creating Test Cases and adding Design Patterns | Test Cases, UI and Design Patterns |
-  | Vaishnavi    | Worked on refactoring through packaging and potential logo | Possibly UI and maintaining clean architecture |
+  | Ashenafee    |                                                          |                                    |
+  | Anthony      |                                                          |                                    |
+  | Erica        |                                                          |                                    |
+  | Rebecca      |                                                          |                                    |
+  | Syed         |                                                          |                                    |
+  | Vaishnavi    |                                                          |                                    |
