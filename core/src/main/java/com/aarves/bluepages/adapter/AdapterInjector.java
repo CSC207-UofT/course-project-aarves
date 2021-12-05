@@ -2,11 +2,7 @@ package com.aarves.bluepages.adapter;
 
 import com.aarves.bluepages.adapter.controllers.AccountController;
 import com.aarves.bluepages.adapter.controllers.ReviewController;
-
-import com.aarves.bluepages.adapter.presenters.AccountPresenter;
-import com.aarves.bluepages.adapter.presenters.AccountView;
-import com.aarves.bluepages.adapter.presenters.ReviewPresenter;
-import com.aarves.bluepages.adapter.presenters.ReviewView;
+import com.aarves.bluepages.adapter.presenters.*;
 
 import com.aarves.bluepages.usecase.data.account.AccountDAO;
 import com.aarves.bluepages.usecase.data.location.LocationDAO;
