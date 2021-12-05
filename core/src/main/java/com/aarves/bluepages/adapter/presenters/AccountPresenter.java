@@ -52,6 +52,12 @@ public class AccountPresenter implements AccountOutputBoundary {
         }
     }
 
+    public void logout() {
+        this.accountView.displayPopUp("Account logged out successfully.");
+        this.accountView.returnToAccessMenu();
+        this.accountView.finishActivity();
+    }
+
     public void setAccountView(AccountView accountView) {
         this.accountView = accountView;
     }
