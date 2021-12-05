@@ -41,8 +41,8 @@ public class ReviewRepositoryImpl implements ReviewRepository {
     }
 
     @Override
-    public List<Review> getReviewsByUser(User user) {
-        Map<Integer, ReviewDTO> reviewDataMap = this.reviewDAO.getReviewDataByUser(user.getUsername());
+    public List<Review> getReviewsByUser(String username) {
+        Map<Integer, ReviewDTO> reviewDataMap = this.reviewDAO.getReviewDataByUser(username);
         return this.mapToList(reviewDataMap);
     }
 

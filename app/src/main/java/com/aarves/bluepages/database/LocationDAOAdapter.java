@@ -28,6 +28,12 @@ public class LocationDAOAdapter implements LocationDAO {
     @Override
     public LocationDTO getLocationData(int locationId) {
         LocationDataEntity locationDataEntity = this.locationDatabaseDAO.getByID(locationId);
-        return LocationDatabaseMapper.mapToDTO(locationDataEntity);
+
+        if(locationDataEntity != null) {
+            return LocationDatabaseMapper.mapToDTO(locationDataEntity);
+        }
+        else {
+            return null;
+        }
     }
 }

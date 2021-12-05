@@ -32,7 +32,13 @@ public class ReviewDAOAdapter implements ReviewDAO {
     @Override
     public ReviewDTO getReviewData(int reviewId) {
         ReviewDataEntity reviewDataEntity = this.reviewDatabaseDAO.getByID(reviewId);
-        return ReviewDatabaseMapper.mapToDTO(reviewDataEntity);
+
+        if(reviewDataEntity != null) {
+            return ReviewDatabaseMapper.mapToDTO(reviewDataEntity);
+        }
+        else {
+            return null;
+        }
     }
 
     @Override

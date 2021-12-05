@@ -1,9 +1,6 @@
 package com.aarves.bluepages.usecase;
 
-import com.aarves.bluepages.usecase.data.AccountDAO;
-import com.aarves.bluepages.usecase.data.AccountDataAccess;
-import com.aarves.bluepages.usecase.data.ReviewDAO;
-import com.aarves.bluepages.usecase.data.ReviewRepositoryImpl;
+import com.aarves.bluepages.usecase.data.*;
 
 import com.aarves.bluepages.usecase.interactors.account.AccountManager;
 import com.aarves.bluepages.usecase.interactors.account.AccountOutputBoundary;
@@ -18,8 +15,8 @@ public class UseCaseInjector {
 
     public UseCaseInjector(AccountDAO accountDAO, ReviewDAO reviewDAO, AccountOutputBoundary accountOutput, ReviewOutputBoundary reviewOutput) throws NoSuchAlgorithmException {
         // TODO: May need to eventually refactor into UseCaseInjectors for each aggregate.
+        AccountDataAccess accountDataAccess = new AccountDataAccess(accountDAO);
         ReviewRepositoryImpl reviewRepository = new ReviewRepositoryImpl(reviewDAO);
-        AccountDataAccess accountDataAccess = new AccountDataAccess(accountDAO, reviewRepository);
 
         this.accountManager = new AccountManager(accountDataAccess, accountOutput);
         this.reviewManager = new ReviewManager(reviewRepository, reviewOutput);

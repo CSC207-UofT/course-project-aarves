@@ -8,6 +8,7 @@ import com.aarves.bluepages.adapter.presenters.ReviewPresenter;
 import com.aarves.bluepages.adapter.presenters.ReviewView;
 import com.aarves.bluepages.usecase.UseCaseInjector;
 import com.aarves.bluepages.usecase.data.AccountDAO;
+import com.aarves.bluepages.usecase.data.LocationDAO;
 import com.aarves.bluepages.usecase.data.ReviewDAO;
 
 import java.security.NoSuchAlgorithmException;
@@ -18,7 +19,7 @@ public class AdapterInjector {
     private final ReviewController reviewController;
     private final ReviewPresenter reviewPresenter;
 
-    public AdapterInjector(AccountDAO accountDAO, ReviewDAO reviewDAO) throws NoSuchAlgorithmException {
+    public AdapterInjector(AccountDAO accountDAO, LocationDAO locationDAO, ReviewDAO reviewDAO) throws NoSuchAlgorithmException {
         this.accountPresenter = new AccountPresenter();
         this.reviewPresenter = new ReviewPresenter();
 
