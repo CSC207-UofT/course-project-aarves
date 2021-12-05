@@ -21,6 +21,7 @@ public class AppInjector {
     public AppInjector(Context context) throws NoSuchAlgorithmException {
         AppDatabase database;
 
+        context.deleteDatabase("database.db"); // TODO: Remove later, currently for testing only
         // TODO: Remove later
         database = Room.databaseBuilder(context, AppDatabase.class, "database.db")
                        .setJournalMode(RoomDatabase.JournalMode.TRUNCATE)
@@ -29,7 +30,6 @@ public class AppInjector {
                        .build();
 
         /*
-        context.deleteDatabase("database.db"); // TODO: Remove later, currently for testing only
         if(!context.getDatabasePath("database.db").exists()) {
             database = Room.databaseBuilder(context, AppDatabase.class, "database.db")
                            .createFromAsset("database/sample.db")
@@ -44,7 +44,7 @@ public class AppInjector {
         */
 
         AccountDAO accountDAO = new AccountDAOAdapter(database.accountDatabaseDAO());
-        LocationDAO locationDAO = new LocationDAOAdapter(database.locationDatabaseDAO());
+        LocationDAO locationDAO = new LocationDAOAdapter(database.bookmarkDatabaseDAO(), database.locationDatabaseDAO());
         ReviewDAO reviewDAO = new ReviewDAOAdapter(database.reviewDatabaseDAO());
 
         this.adapterInjector = new AdapterInjector(accountDAO, locationDAO, reviewDAO);

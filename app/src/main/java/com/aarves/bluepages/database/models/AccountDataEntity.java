@@ -7,6 +7,8 @@ import androidx.annotation.NonNull;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+
 @Entity(tableName = "accounts")
 public class AccountDataEntity {
     @PrimaryKey @NonNull
@@ -16,8 +18,12 @@ public class AccountDataEntity {
     @ColumnInfo(name = "password_hash")
     public String passwordHash;
 
-    public AccountDataEntity(@NotNull String username, String passwordHash) {
+    @ColumnInfo(name = "bookmarks")
+    public List<Integer> bookmarks;
+
+    public AccountDataEntity(@NotNull String username, String passwordHash, List<Integer> bookmarks) {
         this.username = username;
         this.passwordHash = passwordHash;
+        this.bookmarks = bookmarks;
     }
 }

@@ -25,15 +25,17 @@ public class LocationDataMapper {
         }
     }
 
-    public static Location locationFactory(LocationDTO locationDTO) {
+    public static Location locationFactory(LocationDTO locationDTO, int locationId) {
         switch(locationDTO.getType()) {
             case FOOD:
                 return new FoodLocation(
+                        locationId,
                         locationDTO.getName(),
                         locationDTO.getCoordinates()
                 );
             case STUDY:
                 return new StudyLocation(
+                        locationId,
                         locationDTO.getName(),
                         locationDTO.getCoordinates()
                 );
