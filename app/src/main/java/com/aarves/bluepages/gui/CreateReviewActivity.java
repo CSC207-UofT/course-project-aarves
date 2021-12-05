@@ -1,4 +1,5 @@
 package com.aarves.bluepages.gui;
+import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -6,6 +7,7 @@ import android.widget.ImageView;
 
 import android.os.Bundle;
 
+import android.widget.Toast;
 import com.aarves.bluepages.R;
 import com.aarves.bluepages.usecase.exceptions.NotLoggedInException;
 
@@ -81,6 +83,10 @@ public class CreateReviewActivity extends CreateReviewViewImpl {
 
         // TODO: Pass in location ID
         this.reviewController.createReview(1, rating, reviewBody);
+        Toast popUp = Toast.makeText(getApplicationContext(), "Review successfully created!", Toast.LENGTH_SHORT);
+        popUp.show();
+        Intent intent = new Intent(this, MainMenuActivity.class);
+        startActivity(intent);
     }
 
 }
