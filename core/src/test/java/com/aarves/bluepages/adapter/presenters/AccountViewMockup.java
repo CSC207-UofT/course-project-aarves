@@ -1,11 +1,9 @@
 package com.aarves.bluepages.adapter.presenters;
 
 public class AccountViewMockup implements AccountView{
-
     boolean finishActivity;
     boolean startActivity;
     String popUpDisplay;
-
 
     public String getPopUpDisplay(){
         return this.popUpDisplay;

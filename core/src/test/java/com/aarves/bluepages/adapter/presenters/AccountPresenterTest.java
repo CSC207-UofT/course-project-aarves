@@ -1,7 +1,8 @@
 package com.aarves.bluepages.adapter.presenters;
 
-import com.aarves.bluepages.usecase.interactors.LoginResult;
-import com.aarves.bluepages.usecase.interactors.RegisterResult;
+import com.aarves.bluepages.usecase.interactors.account.LoginResult;
+import com.aarves.bluepages.usecase.interactors.account.RegisterResult;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,8 +10,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AccountPresenterTest {
-
-
     AccountPresenter accountPresenter;
     AccountViewMockup accountView;
 
