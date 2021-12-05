@@ -1,13 +1,10 @@
 package com.aarves.bluepages.adapter.presenters;
 
 public class AccountViewMockup implements AccountView{
-    boolean finishActivity;
-    boolean startActivity;
-    String popUpDisplay;
+    private String popUpDisplay;
 
-    public String getPopUpDisplay(){
-        return this.popUpDisplay;
-    }
+    private boolean finishActivity;
+    private boolean startActivity;
 
     @Override
     public void displayPopUp(String message) {
@@ -22,5 +19,17 @@ public class AccountViewMockup implements AccountView{
     @Override
     public void finishActivity() {
         this.finishActivity = true;
+    }
+
+    public String getPopUpDisplay(){
+        return this.popUpDisplay;
+    }
+
+    public boolean isFinishActivity() {
+        return this.finishActivity;
+    }
+
+    public boolean isStartActivity() {
+        return this.startActivity;
     }
 }

@@ -2,11 +2,13 @@ package com.aarves.bluepages.usecase.interactors;
 
 import com.aarves.bluepages.entities.Location;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class LocationMap {
-    public Map<Integer, Location> locationHashMap = new HashMap<>();
+    private final Map<Integer, Location> locationHashMap = new HashMap<>();
 
     /**
      * Return a Location from LocationMap, based off the given Point (which contains coordinates).
@@ -15,6 +17,24 @@ public class LocationMap {
      */
     protected Location getLocation(Integer point) {
         return locationHashMap.get(point);
+    }
+
+    public List<Location> getLocations() {
+        return new ArrayList<>(this.locationHashMap.values());
+    }
+
+    /**
+     * Return a Location from LocationMap, based off the given name. Returns null if the location is not found.
+     * @param name String name of the Location to be searched for.
+     * @return  Location specified for by name.
+     */
+    public Location getLocationByName(String name) {
+        for (Location location: locationHashMap.values()) {
+            if (name.equalsIgnoreCase(location.getName())) {
+                return location;
+            }
+        }
+        return null;
     }
 
     /**
@@ -36,18 +56,8 @@ public class LocationMap {
         return locationHashMap.remove(point);
     }
 
-    /**
-     * Return a Location from LocationMap, based off the given name. Returns null if the location is not found.
-     * @param name String name of the Location to be searched for.
-     * @return  Location specified for by name.
-     */
-    public Location getLocationByName(String name) {
-        for (Location location: locationHashMap.values()) {
-            if (name.equalsIgnoreCase(location.getName())) {
-                return location;
-            }
-        }
-        return null;
+    public int getLocationCount() {
+        return this.locationHashMap.size();
     }
 
     /**
@@ -55,7 +65,7 @@ public class LocationMap {
      * @return String representation of LocationMap.
      */
     public String toString() {
-        if (locationHashMap == null) {
+        if (locationHashMap.isEmpty()) {
             return "There are currently no locations in this Map.";
         }
         StringBuilder locations = new StringBuilder();
