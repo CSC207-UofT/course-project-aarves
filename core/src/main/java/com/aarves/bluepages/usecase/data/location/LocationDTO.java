@@ -1,4 +1,4 @@
-package com.aarves.bluepages.usecase.data;
+package com.aarves.bluepages.usecase.data.location;
 
 public class LocationDTO {
     private final String name;

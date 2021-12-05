@@ -1,4 +1,4 @@
-package com.aarves.bluepages.usecase.data;
+package com.aarves.bluepages.usecase.data.location;
 
 public interface LocationDAO {
     void addLocation(LocationDTO locationDTO);

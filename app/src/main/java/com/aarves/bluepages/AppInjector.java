@@ -9,9 +9,9 @@ import com.aarves.bluepages.database.AppDatabase;
 import com.aarves.bluepages.database.AccountDAOAdapter;
 import com.aarves.bluepages.database.LocationDAOAdapter;
 import com.aarves.bluepages.database.ReviewDAOAdapter;
-import com.aarves.bluepages.usecase.data.AccountDAO;
-import com.aarves.bluepages.usecase.data.LocationDAO;
-import com.aarves.bluepages.usecase.data.ReviewDAO;
+import com.aarves.bluepages.usecase.data.account.AccountDAO;
+import com.aarves.bluepages.usecase.data.location.LocationDAO;
+import com.aarves.bluepages.usecase.data.review.ReviewDAO;
 
 import java.security.NoSuchAlgorithmException;
 

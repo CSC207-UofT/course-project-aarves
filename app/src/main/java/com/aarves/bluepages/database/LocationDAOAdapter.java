@@ -3,8 +3,8 @@ package com.aarves.bluepages.database;
 import com.aarves.bluepages.database.access.LocationDatabaseDAO;
 import com.aarves.bluepages.database.models.LocationDataEntity;
 import com.aarves.bluepages.database.models.LocationDatabaseMapper;
-import com.aarves.bluepages.usecase.data.LocationDAO;
-import com.aarves.bluepages.usecase.data.LocationDTO;
+import com.aarves.bluepages.usecase.data.location.LocationDAO;
+import com.aarves.bluepages.usecase.data.location.LocationDTO;
 
 public class LocationDAOAdapter implements LocationDAO {
     private final LocationDatabaseDAO locationDatabaseDAO;

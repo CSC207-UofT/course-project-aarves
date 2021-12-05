@@ -7,9 +7,9 @@ import com.aarves.bluepages.adapter.presenters.AccountView;
 import com.aarves.bluepages.adapter.presenters.ReviewPresenter;
 import com.aarves.bluepages.adapter.presenters.ReviewView;
 
-import com.aarves.bluepages.usecase.data.AccountDAO;
-import com.aarves.bluepages.usecase.data.LocationDAO;
-import com.aarves.bluepages.usecase.data.ReviewDAO;
+import com.aarves.bluepages.usecase.data.account.AccountDAO;
+import com.aarves.bluepages.usecase.data.location.LocationDAO;
+import com.aarves.bluepages.usecase.data.review.ReviewDAO;
 import com.aarves.bluepages.usecase.interactors.account.AccountManager;
 import com.aarves.bluepages.usecase.interactors.account.AccountUseCaseInjector;
 import com.aarves.bluepages.usecase.interactors.review.ReviewManager;
@@ -27,11 +27,11 @@ public class AdapterInjector {
         this.accountPresenter = new AccountPresenter();
         this.reviewPresenter = new ReviewPresenter();
 
-        AccountUseCaseInjector accountUseCaseInjector = new AccountUseCaseInjector(accountDAO, this.accountPresenter);
-        ReviewUseCaseInjector reviewUseCaseInjector = new ReviewUseCaseInjector(reviewDAO, this.reviewPresenter);
+        AccountUseCaseInjector accountInjector = new AccountUseCaseInjector(accountDAO, this.accountPresenter);
+        ReviewUseCaseInjector reviewInjector = new ReviewUseCaseInjector(reviewDAO, this.reviewPresenter);
 
-        AccountManager accountManager = accountUseCaseInjector.getAccountManager();
-        ReviewManager reviewManager = reviewUseCaseInjector.getReviewManager();
+        AccountManager accountManager = accountInjector.getAccountManager();
+        ReviewManager reviewManager = reviewInjector.getReviewManager();
         accountManager.addObserver(reviewManager);
 
         this.accountController = new AccountController(accountManager);

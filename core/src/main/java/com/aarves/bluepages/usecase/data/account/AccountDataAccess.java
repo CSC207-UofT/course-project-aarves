@@ -1,4 +1,4 @@
-package com.aarves.bluepages.usecase.data;
+package com.aarves.bluepages.usecase.data.account;
 
 import com.aarves.bluepages.usecase.interactors.account.AccountDataBoundary;
 import com.aarves.bluepages.usecase.exceptions.PermissionsFailureException;

@@ -1,4 +1,4 @@
-package com.aarves.bluepages.usecase.data;
+package com.aarves.bluepages.usecase.data.location;
 
 import com.aarves.bluepages.entities.Location;
 import com.aarves.bluepages.usecase.interactors.location.LocationDataBoundary;

@@ -3,8 +3,8 @@ package com.aarves.bluepages.database;
 import com.aarves.bluepages.database.access.ReviewDatabaseDAO;
 import com.aarves.bluepages.database.models.ReviewDataEntity;
 import com.aarves.bluepages.database.models.ReviewDatabaseMapper;
-import com.aarves.bluepages.usecase.data.ReviewDAO;
-import com.aarves.bluepages.usecase.data.ReviewDTO;
+import com.aarves.bluepages.usecase.data.review.ReviewDAO;
+import com.aarves.bluepages.usecase.data.review.ReviewDTO;
 
 import java.util.HashMap;
 import java.util.List;

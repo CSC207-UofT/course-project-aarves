@@ -1,7 +1,7 @@
 package com.aarves.bluepages.usecase.interactors.account;
 
-import com.aarves.bluepages.usecase.data.AccountDAO;
-import com.aarves.bluepages.usecase.data.AccountDataAccess;
+import com.aarves.bluepages.usecase.data.account.AccountDAO;
+import com.aarves.bluepages.usecase.data.account.AccountDataAccess;
 
 import java.security.NoSuchAlgorithmException;
 

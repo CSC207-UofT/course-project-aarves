@@ -1,4 +1,4 @@
-package com.aarves.bluepages.usecase.data;
+package com.aarves.bluepages.usecase.data.location;
 
 import com.aarves.bluepages.entities.FoodLocation;
 import com.aarves.bluepages.entities.Location;
