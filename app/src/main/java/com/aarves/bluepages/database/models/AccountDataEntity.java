@@ -11,6 +11,7 @@ import org.jetbrains.annotations.NotNull;
 public class AccountDataEntity {
     @PrimaryKey
     @NonNull
+    @ColumnInfo(name = "username")
     public String username;
 
     @ColumnInfo(name = "password_hash")
