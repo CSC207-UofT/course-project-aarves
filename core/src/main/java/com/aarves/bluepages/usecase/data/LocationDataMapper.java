@@ -25,7 +25,7 @@ public class LocationDataMapper {
         }
     }
 
-    public static Location locationFactory(LocationDTO locationDTO) {
+    public static Location locationSimpleFactory(LocationDTO locationDTO) {
         switch(locationDTO.getType()) {
             case FOOD:
                 return new FoodLocation(
