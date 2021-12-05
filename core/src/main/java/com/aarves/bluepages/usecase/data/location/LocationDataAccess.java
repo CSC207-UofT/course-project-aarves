@@ -16,6 +16,26 @@ public class LocationDataAccess implements BookmarkDataBoundary, LocationDataBou
     }
 
     @Override
+    public void addBookmark(String username, int locationId, List<Location> bookmarks) {
+        Location location = this.getLocation(locationId);
+
+        if(location != null) {
+            bookmarks.add(location);
+            this.updateBookmarks(username, bookmarks);
+        }
+    }
+
+    @Override
+    public void removeBookmark(String username, int locationId, List<Location> bookmarks) {
+        Location location = this.getLocation(locationId);
+
+        if(location != null) {
+            bookmarks.remove(location);
+            this.updateBookmarks(username, bookmarks);
+        }
+    }
+
+    @Override
     public void updateBookmarks(String username, List<Location> bookmarks) {
         List<Integer> bookmarkIds = new ArrayList<>();
 

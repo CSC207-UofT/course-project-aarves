@@ -23,12 +23,20 @@ public class BookmarkManager implements BookmarkInputBoundary, Observer<User> {
 
     @Override
     public void addBookmark(int locationId) {
+        List<Integer> bookmarkIds = new ArrayList<>();
 
+        for(Location location : this.bookmarks) {
+            bookmarkIds.add(location.getLocationId());
+        }
+
+        if(!bookmarkIds.contains(locationId)) {
+            this.bookmarkData.addBookmark(this.username, locationId, this.bookmarks);
+        }
     }
 
     @Override
     public void removeBookmark(int locationId) {
-
+        this.bookmarkData.removeBookmark(this.username, locationId, this.bookmarks);
     }
 
     @Override
