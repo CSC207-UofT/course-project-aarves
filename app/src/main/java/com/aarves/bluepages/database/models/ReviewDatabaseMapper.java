@@ -1,6 +1,6 @@
 package com.aarves.bluepages.database.models;
 
-import com.aarves.bluepages.usecase.data.ReviewDTO;
+import com.aarves.bluepages.usecase.data.review.ReviewDTO;
 
 public class ReviewDatabaseMapper {
     public static ReviewDataEntity mapToDataEntity(ReviewDTO reviewDTO) {
