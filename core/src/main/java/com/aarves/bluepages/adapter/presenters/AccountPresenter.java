@@ -46,6 +46,9 @@ public class AccountPresenter implements AccountOutputBoundary {
                 case PASSWORD_MISMATCH:
                     message = "Passwords do not match!";
                     break;
+                case BAD_USERNAME_FORMAT:
+                    message = "Bad username format!";
+                    break;
                 default:
                     throw new IllegalStateException("Unexpected value: " + result);
             }

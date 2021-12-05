@@ -81,6 +81,9 @@ public class AccountManager implements AccountInputBoundary, Observable<User> {
         else if(!password.equals(confirmPassword)) {
             result = RegisterResult.PASSWORD_MISMATCH;
         }
+        else if(username.isEmpty()) {
+            result = RegisterResult.BAD_USERNAME_FORMAT;
+        }
         else {
             User user = new User(username, this.hashPassword(password));
             this.accountData.addAccount(user);
