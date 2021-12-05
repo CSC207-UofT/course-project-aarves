@@ -34,9 +34,12 @@ public class AccountMenuActivity extends AccountViewImpl {
         //startActivity(intent);
     }
 
-    // TODO: check if this is working
+    // TODO: this isn't working
     public void signOut(View view) {
-
+        // Below is not working.
+        // String password = getIntent().getExtras().getString("password");
+        // String username = getIntent().getExtras().getString("username");
+        // this.accountController.login(username, password );
         Intent intent = new Intent(this, AccessActivity.class);
         startActivity(intent);
     }
