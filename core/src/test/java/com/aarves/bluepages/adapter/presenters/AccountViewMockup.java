@@ -17,6 +17,11 @@ public class AccountViewMockup implements AccountView{
     }
 
     @Override
+    public void returnToAccessMenu() {
+
+    }
+
+    @Override
     public void finishActivity() {
         this.finishActivity = true;
     }
