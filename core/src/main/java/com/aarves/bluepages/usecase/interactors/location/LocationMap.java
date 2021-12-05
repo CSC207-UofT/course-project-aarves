@@ -1,4 +1,4 @@
-package com.aarves.bluepages.usecase.interactors;
+package com.aarves.bluepages.usecase.interactors.location;
 
 import com.aarves.bluepages.entities.Location;
 
@@ -11,11 +11,11 @@ public class LocationMap {
     private final Map<Integer, Location> locationHashMap = new HashMap<>();
 
     /**
-     * Return a Location from LocationMap, based off the given Point (which contains coordinates).
-     * @param point Point object containing the coordinates of Location.
-     * @return  Location specified for by Point.
+     * Return a Location from LocationMap, based off the given coordinates.
+     * @param point coordinates containing the coordinates of Location.
+     * @return  Location specified for by coordinates.
      */
-    protected Location getLocation(Integer point) {
+    public Location getLocation(Integer point) {
         return locationHashMap.get(point);
     }
 
@@ -38,21 +38,21 @@ public class LocationMap {
     }
 
     /**
-     * Add a new Location to LocationMap, associated with a coordinate given by Point.
-     * @param point Point object containing the coordinates of Location.
+     * Add a new Location to LocationMap, associated with a coordinate given by coordinates.
+     * @param point coordinates containing the coordinates of Location.
      * @param location  Location-to-be-added to LocationMap.
      * @return  Location that was added to LocationMap.
      */
-    protected Location addLocation(Integer point, Location location) {
+    public Location addLocation(Integer point, Location location) {
         return locationHashMap.put(point, location);
     }
 
     /**
      * Removes a Location from LocationMap.
-     * @param point Point of the Location to-be-removed.
+     * @param point coordinates of the Location to-be-removed.
      * @return  Location that was removed from LocationMap.
      */
-    protected Location deleteLocation(Integer point) {
+    public Location deleteLocation(Integer point) {
         return locationHashMap.remove(point);
     }
 

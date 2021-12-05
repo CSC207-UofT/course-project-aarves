@@ -4,6 +4,7 @@ import com.aarves.bluepages.entities.FoodLocation;
 import com.aarves.bluepages.entities.Location;
 import com.aarves.bluepages.entities.StudyLocation;
 
+import com.aarves.bluepages.usecase.interactors.location.LocationMap;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,9 +18,9 @@ class LocationMapTest {
     void setUp() {
         this.locationMap = new LocationMap();
 
-        Location l1 = new StudyLocation("9am-10pm", "Gerstein Library", "145 St.Geroge St", true, true);
-        Location l2 = new StudyLocation("9am- 1pm", "Rm101", "971 Koffler St", true, false);
-        Location l3 = new FoodLocation("11am-3pm", "Freshii", "345 Yonge St", "Soups and salads", true, true, "10-20$");
+        Location l1 = new StudyLocation("Gerstein Library", new double[]{1.0, 1.0});
+        Location l2 = new StudyLocation("Rm101", new double[]{1.0, 1.0});
+        Location l3 = new FoodLocation("Freshii", new double[]{1.0, 1.0});
 
         this.locationMap.addLocation(89, l3);
         this.locationMap.addLocation(234, l2);
@@ -33,7 +34,7 @@ class LocationMapTest {
 
     @Test
     void testGetLocation() {
-        Location loc = new StudyLocation("9am-10pm", "Earth Science Library", "87 St.George St", false, true);
+        Location loc = new StudyLocation("Earth Science Library", new double[]{1.0, 1.0});
         this.locationMap.addLocation(201, loc);
         Location result = this.locationMap.getLocation(201);
 
@@ -50,9 +51,9 @@ class LocationMapTest {
     void testAddLocation() {
         int mapSize = this.locationMap.getLocationCount();
 
-        Location newLocation = new StudyLocation("10am-6pm", "Hart House", "438 Jamle St", true, true);
+        Location newLocation = new StudyLocation("Hart House", new double[]{1.0, 1.0});
         this.locationMap.addLocation(8764, newLocation);
-        Location newLocation2 = new FoodLocation("10am-6pm", "Caffeinds", "42 Queens Park Ave", "coffee and tea", true, true, "1-10$");
+        Location newLocation2 = new FoodLocation("Caffeinds", new double[]{1.0, 1.0});
         this.locationMap.addLocation(324, newLocation2);
         mapSize = mapSize + 2;
 
@@ -63,9 +64,9 @@ class LocationMapTest {
     void testAddDuplicateLocation(){
         int mapSize = this.locationMap.getLocationCount();
 
-        Location newLocation = new StudyLocation("10am-6pm", "Hart House", "438 James St", true, true);
+        Location newLocation = new StudyLocation("Hart House", new double[]{1.0, 1.0});
         this.locationMap.addLocation(8764, newLocation);
-        Location newLocation2 = new StudyLocation("10am-6pm", "Hart House", "438 James St", true, true);
+        Location newLocation2 = new StudyLocation("Hart House", new double[]{1.0, 1.0});
         this.locationMap.addLocation(8764, newLocation2);
         mapSize ++;
 
