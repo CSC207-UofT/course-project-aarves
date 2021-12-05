@@ -4,11 +4,11 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Assertions;
 
 public class AccountControllerTest {
-    AccountInputMockup accountInput;
-    AccountController accountController;
+    private AccountInputMockup accountInput;
+    private AccountController accountController;
 
     @BeforeEach
     public void setUp() {
@@ -27,7 +27,7 @@ public class AccountControllerTest {
         String password = "password";
 
         this.accountController.login(username, password);
-        assertEquals(username, this.accountInput.getUsername());
+        Assertions.assertEquals(username, this.accountInput.getUsername());
     }
 
     @Test
@@ -36,7 +36,7 @@ public class AccountControllerTest {
         String password = "password";
 
         this.accountController.login(username, password);
-        assertEquals(password, this.accountInput.getPassword());
+        Assertions.assertEquals(password, this.accountInput.getPassword());
     }
 
     @Test
@@ -45,11 +45,11 @@ public class AccountControllerTest {
         String password = "password";
 
         this.accountController.login(username, password);
-        assertTrue(this.accountInput.isLoggedIn());
+        Assertions.assertTrue(this.accountInput.isLoggedIn());
     }
 
     @Test
     public void testNotLoggedIn() {
-        assertFalse(this.accountInput.isLoggedIn());
+        Assertions.assertFalse(this.accountInput.isLoggedIn());
     }
 }

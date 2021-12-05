@@ -1,12 +1,13 @@
 package com.aarves.bluepages.adapter.controllers;
 
-import com.aarves.bluepages.entities.User;
 import com.aarves.bluepages.usecase.interactors.account.AccountInputBoundary;
+import com.aarves.bluepages.entities.User;
 
 public class AccountInputMockup implements AccountInputBoundary {
     private String username;
     private String password;
     private String confirmPassword;
+
     private boolean loggedIn;
 
     public String getUsername() {
