@@ -1,128 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                   xmlns:tools="http://schemas.android.com/tools"
-                                                   android:layout_width="match_parent"
-                                                   android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_height="wrap_content"
+              android:layout_width="match_parent"
+              android:orientation="vertical">
 
-    <LinearLayout
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:orientation="vertical"
-            tools:layout_editor_absoluteX="69dp">
-
-        <LinearLayout android:layout_width="match_parent"
-                      android:layout_marginLeft="10dp"
-                      android:layout_height="match_parent"
-                      android:orientation="horizontal">
-        </LinearLayout>
-        <LinearLayout android:layout_width="match_parent"
-                      android:orientation="horizontal"
-                      android:layout_marginLeft="10dp"
-                      android:layout_height="match_parent">
-        </LinearLayout>
-        <LinearLayout android:layout_width="match_parent"
-                      android:layout_height="match_parent"
-                      android:orientation="horizontal">
-        </LinearLayout>
-        <LinearLayout android:layout_width="match_parent"
-                      android:layout_height="match_parent"
-                      android:orientation="horizontal">
-        </LinearLayout>
-
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_marginLeft="10dp"
+                  android:layout_height="match_parent"
+                  android:orientation="horizontal">
+        <ImageView android:layout_width="24dp"
+                   android:layout_height="24dp"
+                   app:srcCompat="@drawable/ic_baseline_menu_book_24">
+        </ImageView>
+        <TextView
+                android:id="@+id/studyLocationName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="Food location name"
+                android:layout_gravity="start"
+                android:paddingLeft="10dp"/>
     </LinearLayout>
-    <Button
-            android:id="@+id/foodLocationBookmark"
+    <TextView
+            android:id="@+id/studyLocationAddress"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:text="Bookmark" tools:layout_editor_absoluteY="231dp" tools:layout_editor_absoluteX="0dp"/>
-    <Button
-            android:id="@+id/foodLocationMap"
-            android:layout_width="140dp"
-            android:layout_height="wrap_content"
-            android:text="View on map" tools:layout_editor_absoluteY="180dp"
-            tools:layout_editor_absoluteX="0dp"/>
-    <Button
-            android:id="@+id/studyLocationReviews"
-            android:layout_width="250dp"
-            android:layout_height="50dp"
-            android:text="Reviews" tools:layout_editor_absoluteY="180dp" app:layout_constraintEnd_toEndOf="parent"/>
-    <TextView
-            android:id="@+id/foodLocationDineIn"
-            android:layout_width="150dp"
+            android:layout_marginLeft="10dp"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            android:text="Indoors? Yes/No"
-            android:layout_gravity="start" tools:layout_editor_absoluteY="141dp"
-            tools:layout_editor_absoluteX="3dp"/>
+            android:text="Address"
+            android:layout_gravity="start"/>
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="horizontal"
+                  android:layout_marginLeft="10dp"
+                  android:layout_height="match_parent">
+        <ImageView android:layout_width="24dp"
+                   android:id="@+id/review_star1"
+                   app:srcCompat="@drawable/ic_baseline_star_border_24"
+                   android:layout_height="24dp">
+        </ImageView>
+        <ImageView android:layout_width="24dp"
+                   android:id="@+id/review_star2"
+                   app:srcCompat="@drawable/ic_baseline_star_border_24"
+                   android:layout_height="24dp">
+        </ImageView>
+        <ImageView android:layout_width="24dp"
+                   android:id="@+id/review_star3"
+                   app:srcCompat="@drawable/ic_baseline_star_border_24"
+                   android:layout_height="24dp">
+        </ImageView>
+        <ImageView android:layout_width="24dp"
+                   android:id="@+id/review_star4"
+                   app:srcCompat="@drawable/ic_baseline_star_border_24"
+                   android:layout_height="24dp">
+        </ImageView>
+        <ImageView android:layout_width="24dp"
+                   android:id="@+id/review_star5"
+                   app:srcCompat="@drawable/ic_baseline_star_border_24"
+                   android:layout_height="24dp">
+        </ImageView>
+    </LinearLayout>
     <TextView
-            android:id="@+id/foodLocationTakeOut"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:text="Quiet? Yes/No"
-            android:layout_gravity="start"
-            android:paddingLeft="10dp" tools:layout_editor_absoluteY="141dp"
-            tools:layout_editor_absoluteX="162dp"/>
-    <TextView
-            android:id="@+id/foodLocationHours"
+            android:id="@+id/studyLocationHours"
+            android:layout_marginLeft="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:text="Hours"
             android:layout_gravity="start"
-            android:layout_alignParentBottom="true" tools:layout_editor_absoluteY="111dp"
-            tools:layout_editor_absoluteX="0dp"/>
-    <ImageView android:layout_width="24dp"
-               android:id="@+id/review_star5"
-               app:srcCompat="@drawable/ic_baseline_star_border_24"
-               android:layout_height="24dp" tools:layout_editor_absoluteY="74dp"
-               tools:layout_editor_absoluteX="96dp">
-    </ImageView>
-    <ImageView android:layout_width="24dp"
-               android:id="@+id/review_star4"
-               app:srcCompat="@drawable/ic_baseline_star_border_24"
-               android:layout_height="24dp" tools:layout_editor_absoluteY="74dp"
-               tools:layout_editor_absoluteX="72dp">
-    </ImageView>
-    <ImageView android:layout_width="24dp"
-               android:id="@+id/review_star3"
-               app:srcCompat="@drawable/ic_baseline_star_border_24"
-               android:layout_height="24dp" tools:layout_editor_absoluteY="74dp"
-               tools:layout_editor_absoluteX="48dp">
-    </ImageView>
-    <ImageView android:layout_width="24dp"
-               android:id="@+id/review_star2"
-               app:srcCompat="@drawable/ic_baseline_star_border_24"
-               android:layout_height="24dp" tools:layout_editor_absoluteY="74dp"
-               tools:layout_editor_absoluteX="24dp">
-    </ImageView>
-    <ImageView android:layout_width="24dp"
-               android:id="@+id/review_star1"
-               app:srcCompat="@drawable/ic_baseline_star_border_24"
-               android:layout_height="24dp" tools:layout_editor_absoluteY="74dp"
-               tools:layout_editor_absoluteX="0dp">
-    </ImageView>
-    <TextView
-            android:id="@+id/locationAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:text="Address"
-            android:layout_gravity="start" tools:layout_editor_absoluteY="46dp"
-            tools:layout_editor_absoluteX="1dp"/>
-    <TextView
-            android:id="@+id/locationName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="Study location name"
-            android:layout_gravity="start"
-            android:paddingLeft="30dp" tools:layout_editor_absoluteY="16dp"
-            tools:layout_editor_absoluteX="1dp"/>
-    <ImageView android:layout_width="0dp"
-               android:layout_height="30dp"
-               app:srcCompat="@drawable/ic_baseline_star_24" tools:layout_editor_absoluteY="16dp"
-               tools:layout_editor_absoluteX="4dp">
-    </ImageView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_alignParentBottom="true"/>
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="horizontal">
+        <TextView
+                android:id="@+id/studyLocationQuiet"
+                android:layout_marginLeft="10dp"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="Quiet? Yes/No"
+                android:layout_gravity="start"/>
+        <TextView
+                android:id="@+id/studyLocationIndoors"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="Indoors? Yes/No"
+                android:layout_gravity="start"
+                android:paddingLeft="10dp"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="horizontal">
+        <Button
+                android:id="@+id/studyLocationMap"
+                android:layout_width="150dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="wrap_content"
+                android:text="View on map"/>
+        <Button
+                android:id="@+id/studyLocationBookmark"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bookmark"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="horizontal">
+        <Button
+                android:id="@+id/studyLocationReviews"
+                android:layout_marginLeft="10dp"
+                android:layout_width="150dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="wrap_content"
+                android:text="Reviews"/>
+        <Button
+                android:id="@+id/studyLocationLeaveReview"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Leave a Review"/>
+    </LinearLayout>
+
+</LinearLayout>

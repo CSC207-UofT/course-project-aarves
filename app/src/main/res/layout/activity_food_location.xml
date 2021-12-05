@@ -14,7 +14,7 @@
                    app:srcCompat="@drawable/ic_baseline_restaurant_24">
         </ImageView>
         <TextView
-                android:id="@+id/locationName"
+                android:id="@+id/foodLocationName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
@@ -23,7 +23,7 @@
                 android:paddingLeft="10dp"/>
     </LinearLayout>
     <TextView
-            android:id="@+id/locationAddress"
+            android:id="@+id/foodLocationAddress"
             android:layout_width="match_parent"
             android:layout_marginLeft="10dp"
             android:layout_height="wrap_content"
@@ -94,25 +94,36 @@
                   android:orientation="horizontal">
         <Button
                 android:id="@+id/foodLocationMap"
-                android:layout_width="130dp"
+                android:layout_width="150dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_height="wrap_content"
                 android:text="View on map"/>
         <Button
-                android:id="@+id/studyLocationReviews"
+                android:id="@+id/foodLocationBookmark"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Reviews"/>
+                android:text="Bookmark"/>
     </LinearLayout>
-    <Button
-            android:id="@+id/foodLocationBookmark"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Bookmark"/>
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="horizontal">
+        <Button
+                android:id="@+id/foodLocationReviews"
+                android:layout_marginLeft="10dp"
+                android:layout_width="150dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="wrap_content"
+                android:text="Reviews"/>
+        <Button
+                android:id="@+id/foodLocationLeaveReview"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Leave a Review"/>
+    </LinearLayout>
 
 </LinearLayout>
