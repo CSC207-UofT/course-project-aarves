@@ -10,6 +10,6 @@ public interface ReviewRepository {
     void deleteReview(Review review);
 
     Review getReview(int reviewId);
-    List<Review> getReviewsByUser(User user);
+    List<Review> getReviewsByUser(String username);
     List<Review> getReviewsByLocation(int locationId);
 }

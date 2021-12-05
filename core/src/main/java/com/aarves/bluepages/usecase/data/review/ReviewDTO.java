@@ -1,4 +1,4 @@
-package com.aarves.bluepages.usecase.data;
+package com.aarves.bluepages.usecase.data.review;
 
 public class ReviewDTO {
     private final String reviewer;
