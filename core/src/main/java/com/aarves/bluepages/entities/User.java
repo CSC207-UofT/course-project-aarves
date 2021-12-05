@@ -51,6 +51,10 @@ public class User {
         this.reviews = new ArrayList<>(reviews);
     }
 
+    public void clearReviews() {
+        this.reviews.clear();
+    }
+
     /**
      * Add a Review to the User.
      * @param review    Review created by the User.

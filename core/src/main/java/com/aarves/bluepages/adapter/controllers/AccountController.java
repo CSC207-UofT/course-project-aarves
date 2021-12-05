@@ -1,6 +1,6 @@
 package com.aarves.bluepages.adapter.controllers;
 
-import com.aarves.bluepages.usecase.interactors.AccountInputBoundary;
+import com.aarves.bluepages.usecase.interactors.account.AccountInputBoundary;
 
 public class AccountController {
     private final AccountInputBoundary accountInput;
@@ -23,5 +23,9 @@ public class AccountController {
         }
 
         this.accountInput.register(username, password, confirmPassword);
+    }
+
+    public String getUsername(){
+        return accountInput.getUser().getUsername();
     }
 }
