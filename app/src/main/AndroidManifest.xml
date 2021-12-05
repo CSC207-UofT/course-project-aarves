@@ -41,6 +41,9 @@
         <activity
             android:name=".gui.ReviewActivity"
             android:exported="false" />
+        <activity
+            android:name=".gui.CreateReviewActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

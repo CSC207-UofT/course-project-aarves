@@ -60,6 +60,7 @@ public class ReviewManager implements ReviewInputBoundary, Observer<User> {
      * @param rating        Integer rating (out of 5) for location as per the User's opinion.
      * @param reviewBody    String information about the User's opinions.
      */
+    @Override
     public void createReview(int locationId, int rating, String reviewBody) throws NotLoggedInException {
         this.checkLoggedIn();
 
