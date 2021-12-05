@@ -3,75 +3,75 @@ package com.aarves.bluepages.usecase.interactors.location;
 import com.aarves.bluepages.entities.Location;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 public class LocationMap {
-    private final Map<Integer, Location> locationHashMap = new HashMap<>();
+    private final LocationDataBoundary locationData;
+    private final Map<List<Long>, Integer> coordinatesMap;
 
-    /**
-     * Return a Location from LocationMap, based off the given coordinates.
-     * @param point coordinates containing the coordinates of Location.
-     * @return  Location specified for by coordinates.
-     */
-    public Location getLocation(Integer point) {
-        return locationHashMap.get(point);
-    }
-
-    public List<Location> getLocations() {
-        return new ArrayList<>(this.locationHashMap.values());
+    public LocationMap(LocationDataBoundary locationData) {
+        this.locationData = locationData;
+        this.coordinatesMap = this.locationData.getCoordinatesMap();
     }
 
     /**
-     * Return a Location from LocationMap, based off the given name. Returns null if the location is not found.
-     * @param name String name of the Location to be searched for.
-     * @return  Location specified for by name.
+     * Return location ID from LocationMap, based off the given coordinates.
+     * @param coordinates   coordinates containing the coordinates of Location.
+     * @return              Location ID specified for by coordinates.
      */
-    public Location getLocationByName(String name) {
-        for (Location location: locationHashMap.values()) {
-            if (name.equalsIgnoreCase(location.getName())) {
-                return location;
-            }
-        }
-        return null;
+    public int getLocationId(Long[] coordinates) {
+        this.checkCoordinates(coordinates);
+
+        List<Long> coordinatesList = Arrays.asList(coordinates);
+        return this.coordinatesMap.get(coordinatesList);
+    }
+
+    public List<Integer> getLocationIds() {
+        return new ArrayList<>(this.coordinatesMap.values());
     }
 
     /**
      * Add a new Location to LocationMap, associated with a coordinate given by coordinates.
-     * @param point coordinates containing the coordinates of Location.
-     * @param location  Location-to-be-added to LocationMap.
-     * @return  Location that was added to LocationMap.
+     * @param coordinates   coordinates containing the coordinates of Location.
+     * @param location      Location-to-be-added to LocationMap.
+     * @return              Location ID that was added to LocationMap.
      */
-    public Location addLocation(Integer point, Location location) {
-        return locationHashMap.put(point, location);
+    public int addLocation(Long[] coordinates, Location location) {
+        this.checkCoordinates(coordinates);
+
+        int newLocationId = this.locationData.addLocation(location);
+        Integer locationId = this.coordinatesMap.put(Arrays.asList(coordinates).subList(0, 2), newLocationId);
+        if(locationId != null) {
+            return locationId;
+        }
+        else {
+            return -1;
+        }
     }
 
     /**
      * Removes a Location from LocationMap.
-     * @param point coordinates of the Location to-be-removed.
-     * @return  Location that was removed from LocationMap.
+     * @param coordinates   coordinates of the Location to-be-removed.
+     * @return              Location ID that was removed from LocationMap.
      */
-    public Location deleteLocation(Integer point) {
-        return locationHashMap.remove(point);
+    public int deleteLocationByCoordinates(Long[] coordinates) {
+        this.checkCoordinates(coordinates);
+
+        Integer locationId = this.coordinatesMap.remove(Arrays.asList(coordinates).subList(0, 2));
+        if(locationId != null) {
+            this.locationData.deleteLocation(locationId);
+            return locationId;
+        }
+        else {
+            return -1;
+        }
     }
 
-    public int getLocationCount() {
-        return this.locationHashMap.size();
-    }
-
-    /**
-     * Returns a string representation of this LocationMap object.
-     * @return String representation of LocationMap.
-     */
-    public String toString() {
-        if (locationHashMap.isEmpty()) {
-            return "There are currently no locations in this Map.";
+    private void checkCoordinates(Long[] coordinates) {
+        if(coordinates.length < 2) {
+            throw new IllegalArgumentException("Length of argument 'coordinates' cannot be shorter than 2");
         }
-        StringBuilder locations = new StringBuilder();
-        for (Integer key: locationHashMap.keySet()) {
-            locations.append(locationHashMap.get(key)).append("\n");
-        }
-        return locations.toString();
     }
 }

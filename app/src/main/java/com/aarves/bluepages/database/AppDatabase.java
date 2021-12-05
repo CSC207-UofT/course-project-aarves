@@ -10,7 +10,7 @@ import com.aarves.bluepages.database.access.ReviewDatabaseDAO;
 import com.aarves.bluepages.database.models.LocationDataEntity;
 import com.aarves.bluepages.database.models.ReviewDataEntity;
 
-@Database(entities = {AccountDataEntity.class, LocationDataEntity.class, ReviewDataEntity.class}, exportSchema = false, version = 1)
+@Database(version = 2, entities = {AccountDataEntity.class, LocationDataEntity.class, ReviewDataEntity.class}, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract AccountDatabaseDAO accountDatabaseDAO();
     public abstract LocationDatabaseDAO locationDatabaseDAO();

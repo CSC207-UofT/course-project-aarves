@@ -24,6 +24,7 @@ public class AppInjector {
         // TODO: Remove later
         database = Room.databaseBuilder(context, AppDatabase.class, "database.db")
                        .setJournalMode(RoomDatabase.JournalMode.TRUNCATE)
+                       .fallbackToDestructiveMigration()
                        .allowMainThreadQueries()
                        .build();
 
