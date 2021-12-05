@@ -1,22 +1,24 @@
 package com.aarves.bluepages.database;
 
+import com.aarves.bluepages.database.access.BookmarkDatabaseDAO;
 import com.aarves.bluepages.database.access.LocationDatabaseDAO;
 import com.aarves.bluepages.database.models.LocationBasicDataTuple;
 import com.aarves.bluepages.database.models.LocationDataEntity;
 import com.aarves.bluepages.database.models.LocationDatabaseMapper;
+
 import com.aarves.bluepages.usecase.data.location.LocationDAO;
 import com.aarves.bluepages.usecase.data.location.LocationDTO;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class LocationDAOAdapter implements LocationDAO {
     private static final int PRECISION = 14;
+
+    private final BookmarkDatabaseDAO bookmarkDatabaseDAO;
     private final LocationDatabaseDAO locationDatabaseDAO;
 
-    public LocationDAOAdapter(LocationDatabaseDAO locationDatabaseDAO) {
+    public LocationDAOAdapter(BookmarkDatabaseDAO bookmarkDatabaseDAO, LocationDatabaseDAO locationDatabaseDAO) {
+        this.bookmarkDatabaseDAO = bookmarkDatabaseDAO;
         this.locationDatabaseDAO = locationDatabaseDAO;
     }
 
@@ -43,6 +45,23 @@ public class LocationDAOAdapter implements LocationDAO {
             return null;
         }
     }
+
+    @Override
+    public List<LocationDTO> getBookmarksData(String username) {
+        List<Integer> bookmarkIds = this.bookmarkDatabaseDAO.getBookmarks(username).bookmarks;
+        List<LocationDTO> bookmarksData = new ArrayList<>();
+
+        for(int bookmarkId : bookmarkIds) {
+            LocationDTO bookmarkData = this.getLocationData(bookmarkId);
+
+            if(bookmarkData != null) {
+                bookmarksData.add(bookmarkData);
+            }
+        }
+
+        return bookmarksData;
+    }
+
 
     @Override
     public Map<List<Long>, Integer> getCoordinatesMap() {

@@ -1,16 +1,31 @@
 package com.aarves.bluepages.usecase.data.location;
 
 import com.aarves.bluepages.entities.Location;
+import com.aarves.bluepages.usecase.interactors.location.BookmarkDataBoundary;
 import com.aarves.bluepages.usecase.interactors.location.LocationDataBoundary;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class LocationDataAccess implements LocationDataBoundary {
+public class LocationDataAccess implements BookmarkDataBoundary, LocationDataBoundary {
     private final LocationDAO locationDAO;
 
     public LocationDataAccess(LocationDAO locationDAO) {
         this.locationDAO = locationDAO;
+    }
+
+    @Override
+    public List<Location> getUserBookmarks(String username) {
+        List<LocationDTO> bookmarksData = this.locationDAO.getBookmarksData(username);
+        List<Location> bookmarks = new ArrayList<>();
+
+        for(LocationDTO bookmarkData : bookmarksData) {
+            Location bookmark = LocationDataMapper.locationFactory(bookmarkData);
+            bookmarks.add(bookmark);
+        }
+
+        return bookmarks;
     }
 
     @Override

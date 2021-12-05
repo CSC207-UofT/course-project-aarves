@@ -8,5 +8,6 @@ public interface LocationDAO {
     void deleteLocation(int locationId);
 
     LocationDTO getLocationData(int locationId);
+    List<LocationDTO> getBookmarksData(String username);
     Map<List<Long>, Integer> getCoordinatesMap();
 }

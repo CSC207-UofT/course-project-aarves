@@ -44,7 +44,7 @@ public class AppInjector {
         */
 
         AccountDAO accountDAO = new AccountDAOAdapter(database.accountDatabaseDAO());
-        LocationDAO locationDAO = new LocationDAOAdapter(database.locationDatabaseDAO());
+        LocationDAO locationDAO = new LocationDAOAdapter(database.bookmarkDatabaseDAO(), database.locationDatabaseDAO());
         ReviewDAO reviewDAO = new ReviewDAOAdapter(database.reviewDatabaseDAO());
 
         this.adapterInjector = new AdapterInjector(accountDAO, locationDAO, reviewDAO);
