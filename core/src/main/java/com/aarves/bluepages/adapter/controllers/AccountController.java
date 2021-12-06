@@ -1,6 +1,6 @@
 package com.aarves.bluepages.adapter.controllers;
 
-import com.aarves.bluepages.usecase.interactors.AccountInputBoundary;
+import com.aarves.bluepages.usecase.interactors.account.AccountInputBoundary;
 
 public class AccountController {
     private final AccountInputBoundary accountInput;
@@ -17,11 +17,19 @@ public class AccountController {
         this.accountInput.login(username, password);
     }
 
+    public void logout() {
+        this.accountInput.logout();
+    }
+
     public void register(String username, String password, String confirmPassword) {
         if(this.accountInput.isLoggedIn()) {
             this.accountInput.logout();
         }
 
         this.accountInput.register(username, password, confirmPassword);
+    }
+
+    public void loadAccountInformation() {
+        this.accountInput.loadInformation();
     }
 }

@@ -1,36 +1,37 @@
 package com.aarves.bluepages.entities;
 
 public class Review {
+    private static final int DEFAULT_ID = 0;
+
+    private final int reviewId;
     private final String reviewer;
     private final int locationId;
 
     private String body;
     private int rating;
 
-    private int reviewId;
-
     /**
-     * Constructs a new Review object which belongs to a given User regarding a specific Location, and
-     * containing a String with information about the User's experience, and an Integer rating out of 5 based
-     * on the User's opinion.
+     * Constructs a new Review object which belongs to a given User regarding a specific Location, and an
+     * Integer rating out of 5 based on the User's opinion.
      *
+     * @param reviewId      Integer representing the Review's key in the database
      * @param reviewer      String representing the username of the User creating the Review.
      * @param locationId    Integer representing the ID of the Location this Review is addressed towards.
      * @param rating        Integer rating (out of 5) for location as per the User's opinion.
-     * @param body          String information about the User's opinions.
      */
-    public Review(String reviewer, int locationId, int rating, String body) {
+    public Review(int reviewId, String reviewer, int locationId, int rating) {
         this.reviewer = reviewer;
         this.locationId = locationId;
         this.rating = rating;
-        this.body = body;
 
-        this.reviewId = -1;
+        this.reviewId = reviewId;
     }
 
     /**
      * Constructs a new Review object which belongs to a given User regarding a specific Location, and an
      * Integer rating out of 5 based on the User's opinion.
+     *
+     * Note that any Review object with DEFAULT_ID should not be in the User's reviews List.
      *
      * @param reviewer      String representing the username of the User creating the Review.
      * @param locationId    Integer representing the ID of the Location this Review is addressed towards.
@@ -41,7 +42,15 @@ public class Review {
         this.locationId = locationId;
         this.rating = rating;
 
-        this.reviewId = -1;
+        this.reviewId = Review.DEFAULT_ID;
+    }
+
+    /**
+     * Return the ID associated with this Review.
+     * @return  Integer representing the ID of the Review.
+     */
+    public int getReviewId() {
+        return this.reviewId;
     }
 
     /**
@@ -82,18 +91,6 @@ public class Review {
 
     public void setBody(String body) {
         this.body = body;
-    }
-
-    /**
-     * Return the ID associated with this Review.
-     * @return  Integer representing the ID of the Review.
-     */
-    public int getReviewId() {
-        return this.reviewId;
-    }
-
-    public void setReviewId(int reviewId) {
-        this.reviewId = reviewId;
     }
 
     @Override

@@ -1,0 +1,19 @@
+# Project Accessibility Report #
+
+## Principle of Universal Design ##
+
+| Principle of Universal Design | Example |
+|-------------------------------|---------|
+| Equitable Use                 | All users, whether registered or not, are able to view all the presentable features (map, locations and their reviews). The user is able to use the built-in Android dark mode to use the app in a way that is more comfortable to them.        |
+| Flexibility in Use            | Buttons are big to ensure they are easy to press for all users. The labels on the buttons are 1-2 words, so they are short and concise to be understood by users with different paces.  |
+| Simple and Intuitive Use      | Pictures are used in place of text for many things to accomodate a wide range of literacy/language skills. The most important information is either bolded, or put at the top of the screen (e.g. titles, names of places, instructions on leaving a review). Appropriate feedback given when user performs an action (e.g. login screen, if the user types in a wrong password/username, "Your username or password was incorrect. Please try again" and logging in: "You have successfully logged in! Welcome back, \<user\>!") |
+| Perceptible Information       | Clickable objects in the UI are shaped like a physical button to ensure that the user knows that they are clickable. Pictures are used to better present what the user should be looking at (e.g., person icon for account/user, stars to represent the place's rating rather than text, an interactive map to view the locations)       |
+| Tolerance for Error           | If an unregistered user tries to login, there would be message that would pop up saying that the username is incorrect.|
+| Low Physical Effort           | The layout and colors of the android app has the right amount of contrast without it being straining to the eyes. The addition of dark mode helps lower eye strain as well.|
+| Size and Space for Approach and Use |  N/A - probably remove this later. |
+
+## Potential Customers for our Project ##
+This project is marketed toward University of Toronto (St. George) students, as this app was designed solely for students to use to find better food places and study areas around the St. George campus. 
+
+## Is our project less likely to be used by a certain demographic? ##
+Yes, people who are not University of Toronto St. George students are not likely to use this app, since they will not need to go to the St. George campus on a near-daily basis.

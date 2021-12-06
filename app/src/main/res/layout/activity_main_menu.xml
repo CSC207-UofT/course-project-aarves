@@ -3,29 +3,27 @@
                                                    xmlns:app="http://schemas.android.com/apk/res-auto"
                                                    xmlns:tools="http://schemas.android.com/tools"
                                                    android:layout_width="match_parent"
-                                                   android:layout_height="match_parent"
-                                                   tools:context=".MainMenuActivity">
-
+                                                   android:layout_height="match_parent">
     <LinearLayout
             android:layout_width="match_parent"
+            android:id="@+id/mainMenuButtons"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
+        <Button
+                android:id="@+id/createReview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Create Review"
+                android:onClick="createReview"/>
 
         <Button
                 android:id="@+id/bookmarksButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Bookmarks" />
-
-        <Button
-                android:id="@+id/reviewsButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Reviews"
-                android:onClick="viewReviews"/>
+                android:text="Bookmarks"/>
 
         <Button
                 android:id="@+id/mapButton"
@@ -34,4 +32,15 @@
                 android:text="Map"
                 android:onClick="viewMap"/>
     </LinearLayout>
+
+    <ImageButton
+            android:src="@drawable/ic_baseline_person_24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/accountButton"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
+            android:layout_marginEnd="347dp" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="16dp"
+            android:layout_marginBottom="528dp" app:layout_constraintBottom_toTopOf="@+id/mainMenuButtons"
+            android:onClick="viewAccount" app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintVertical_bias="0.187"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
