@@ -16,6 +16,7 @@ public class CreateReviewActivity extends AppCompatActivity implements BasicView
     private static final int[] starIds = {R.id.starButton1, R.id.starButton2, R.id.starButton3, R.id.starButton4, R.id.starButton5};
 
     private ReviewController reviewController;
+    private int locationId;
     private int rating;
 
     @Override
@@ -27,6 +28,10 @@ public class CreateReviewActivity extends AppCompatActivity implements BasicView
         MainApplication application = (MainApplication) this.getApplication();
         this.reviewController = application.getAdapters().getReviewController();
         application.setReviewBaseView(this);
+
+        // Get Location ID
+        Bundle extras = this.getIntent().getExtras();
+        this.locationId = extras.getInt(LocationActivity.LOCATION_ID, 0);
     }
 
     @Override
@@ -45,8 +50,7 @@ public class CreateReviewActivity extends AppCompatActivity implements BasicView
         EditText reviewTextBody = this.findViewById(R.id.reviewTextBody);
         String reviewBody = reviewTextBody.getText().toString();
 
-        // TODO: Pass in location ID
-        this.reviewController.createReview(1, this.rating, reviewBody);
+        this.reviewController.createReview(this.locationId, this.rating, reviewBody);
     }
 
     /**

@@ -23,6 +23,16 @@ public class User {
         this.passwordHash = passwordHash;
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if(other instanceof User) {
+            return this.username.equals(((User) other).getUsername());
+        }
+        else {
+            return false;
+        }
+    }
+
     /**
      * Return the username associated with this User.
      * @return  String containing the username.

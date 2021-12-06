@@ -45,6 +45,16 @@ public class Review {
         this.reviewId = Review.DEFAULT_ID;
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if(other instanceof Review) {
+            return this.getReviewId() == ((Review) other).getReviewId();
+        }
+        else {
+            return false;
+        }
+    }
+
     /**
      * Return the ID associated with this Review.
      * @return  Integer representing the ID of the Review.

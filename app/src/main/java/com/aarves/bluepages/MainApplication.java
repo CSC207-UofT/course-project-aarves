@@ -3,10 +3,7 @@ package com.aarves.bluepages;
 import android.app.Application;
 
 import com.aarves.bluepages.adapter.AdapterInjector;
-import com.aarves.bluepages.adapter.presenters.AccountMenuView;
-import com.aarves.bluepages.adapter.presenters.AccountView;
-import com.aarves.bluepages.adapter.presenters.BasicView;
-import com.aarves.bluepages.adapter.presenters.ReviewView;
+import com.aarves.bluepages.adapter.presenters.*;
 
 import java.security.NoSuchAlgorithmException;
 
@@ -34,6 +31,10 @@ public class MainApplication extends Application {
 
     public void setAccountMenuView(AccountMenuView accountMenuView) {
         this.getAdapters().setAccountMenuView(accountMenuView);
+    }
+
+    public void setLocationView(LocationView locationView) {
+        this.getAdapters().setLocationView(locationView);
     }
 
     public void setReviewView(ReviewView reviewView) {
