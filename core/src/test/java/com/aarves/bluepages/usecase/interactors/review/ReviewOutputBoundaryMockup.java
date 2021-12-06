@@ -25,4 +25,9 @@ class ReviewOutputBoundaryMockup implements ReviewOutputBoundary {
         this.presentedReviews = true;
         allReviews.addAll(reviews);
     }
+
+    @Override
+    public void createResult(boolean success) {
+
+    }
 }

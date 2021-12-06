@@ -10,4 +10,14 @@ public class ReviewViewMockup implements ReviewView{
     public void displayReviews(List<ReviewViewModel> reviews) {
         reviewDisplayed = true;
     }
+
+    @Override
+    public void displayPopUp(String message) {
+
+    }
+
+    @Override
+    public void finishActivity() {
+
+    }
 }
