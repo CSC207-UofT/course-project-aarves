@@ -80,6 +80,18 @@ InputGateway.java by following the Interface Injection method of design. i.e, we
 AccountManagerDependency.java and then injected it in the two adapter classes. The benefits of implementing dependency injection include:
 - The InputConroller and InputGateway classes are not responsible for creating an instance of an AccountManager. Instead, an instance of the class in passed into the injectAccountManager method. This adheres better to clean architecture by decoupling the Input classes and AccountManager.
 
+## Accessibility Report ##
+The design accommodates a wide range of individual preferences and abilities.
+
+  |                                        |                         Work since Phase 1               |
+  |----------------------------------------|----------------------------------------------------------|
+  | Equitable Use                          | <ul><li>Anyone can install/use the app<li>There is no "upper hand" in terms of features for any user, it's all equal<li>The app is free, representing no barrier to entry</ul>                                                           |
+  | Flexibility in Use                     | <ul><li>The user can use the dark mode of the app based off their system UI (whether off preference or ease)<li></ul>                                                         |
+  | Simple and Intuitive Use               |                                                          |
+  | Perceptible Information                |                                                          |
+  | Tolerance for Error                    |                                                          |
+  | Low Physical Effort                    |                                                          |
+  | Size and Space for Approach and Use    |                                                          |
 
 ## Use of Github Features ## 
 
