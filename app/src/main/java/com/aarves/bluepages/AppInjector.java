@@ -3,7 +3,6 @@ package com.aarves.bluepages;
 import android.content.Context;
 import androidx.room.Room;
 
-import androidx.room.RoomDatabase;
 import com.aarves.bluepages.adapter.AdapterInjector;
 import com.aarves.bluepages.database.AppDatabase;
 import com.aarves.bluepages.database.AccountDAOAdapter;
@@ -22,14 +21,6 @@ public class AppInjector {
         AppDatabase database;
 
         context.deleteDatabase("database.db"); // TODO: Remove later, currently for testing only
-        // TODO: Remove later
-        database = Room.databaseBuilder(context, AppDatabase.class, "database.db")
-                       .setJournalMode(RoomDatabase.JournalMode.TRUNCATE)
-                       .fallbackToDestructiveMigration()
-                       .allowMainThreadQueries()
-                       .build();
-
-        /*
         if(!context.getDatabasePath("database.db").exists()) {
             database = Room.databaseBuilder(context, AppDatabase.class, "database.db")
                            .createFromAsset("database/sample.db")
@@ -41,7 +32,6 @@ public class AppInjector {
                            .allowMainThreadQueries()
                            .build();
         }
-        */
 
         AccountDAO accountDAO = new AccountDAOAdapter(database.accountDatabaseDAO());
         LocationDAO locationDAO = new LocationDAOAdapter(database.bookmarkDatabaseDAO(), database.locationDatabaseDAO());

@@ -68,8 +68,12 @@ public class ReviewManager implements ReviewInputBoundary, Observer<User> {
         review.setBody(reviewBody);
 
         Review newReview = this.reviewRepository.addReview(review);
-        if(!this.reviews.contains(newReview)) {
+        if(newReview != null && !this.reviews.contains(newReview)) {
             this.reviews.add(newReview);
+            this.reviewOutput.createResult(true);
+        }
+        else {
+            this.reviewOutput.createResult(false);
         }
     }
 
@@ -79,14 +83,19 @@ public class ReviewManager implements ReviewInputBoundary, Observer<User> {
      * @param locationId    Integer representing the ID of the Location this Review is addressed towards.
      * @param rating        Integer rating (out of 5) for location as per the User's opinion.
      */
+    @Override
     public void createReview(int locationId, int rating) throws NotLoggedInException {
         this.checkLoggedIn();
 
         Review review = new Review(this.username, locationId, rating);
         Review newReview = this.reviewRepository.addReview(review);
 
-        if(!this.reviews.contains(newReview)) {
+        if(newReview != null && !this.reviews.contains(newReview)) {
             this.reviews.add(newReview);
+            this.reviewOutput.createResult(true);
+        }
+        else {
+            this.reviewOutput.createResult(false);
         }
     }
 

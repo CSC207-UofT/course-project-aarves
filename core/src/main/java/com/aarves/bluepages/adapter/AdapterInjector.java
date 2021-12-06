@@ -57,4 +57,8 @@ public class AdapterInjector {
     public void setReviewView(ReviewView reviewView) {
         this.reviewPresenter.setReviewView(reviewView);
     }
+
+    public void setReviewBaseView(BasicView baseView) {
+        this.reviewPresenter.setBaseView(baseView);
+    }
 }

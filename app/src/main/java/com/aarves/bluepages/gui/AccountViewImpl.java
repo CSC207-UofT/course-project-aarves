@@ -24,7 +24,7 @@ public class AccountViewImpl extends AppCompatActivity implements AccountView {
 
     @Override
     public void displayPopUp(String message) {
-        Toast popUp = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
+        Toast popUp = Toast.makeText(this.getApplicationContext(), message, Toast.LENGTH_SHORT);
         popUp.show();
     }
 

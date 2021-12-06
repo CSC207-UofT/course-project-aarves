@@ -47,7 +47,7 @@ public class AccountManager implements AccountInputBoundary, Observable<User> {
                 this.user = this.accountData.getUserAccount(username, passwordHash);
                 result = LoginResult.SUCCESS;
             }
-            catch (PermissionsFailureException exception) {
+            catch(PermissionsFailureException exception) {
                 this.user = null;
                 result = LoginResult.FAILURE;
             }
