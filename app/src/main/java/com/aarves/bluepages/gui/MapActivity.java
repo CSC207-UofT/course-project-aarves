@@ -33,6 +33,7 @@ import org.jetbrains.annotations.NotNull;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
@@ -72,21 +73,24 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         LookupController lc = new LookupController();
                         MapboxGateway mg = new MapboxGateway();
                         JSONObject json = lc.lookupLocation(editText.getText().toString(), getResources().getString(R.string.mapbox_access_token));
-                        ArrayList<Location> locationArray = mg.parseInformation(json);
+                        HashMap<Location, String> locationMap = mg.parseInformation(json);
+
+                        // Get all locations from locationMap
+                        ArrayList<Location> locations = new ArrayList<>(locationMap.keySet());
 
                         runOnUiThread(() -> {
                             // Add the points to the map
                             mapboxMap.clear();
-                            for (Location location : locationArray) {
+                            for (Location location : locations) {
                                 mapboxMap.addMarker(new MarkerOptions()
                                         .position(new LatLng(location.getCoordinates()[1], location.getCoordinates()[0]))
                                         .title(location.getName())
-                                        .snippet(location.getAddress()));
+                                        .snippet(locationMap.get(location)));
                             }
 
                             // Zoom camera to first result
-                            if (locationArray.size() > 0) {
-                                mapboxMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(locationArray.get(0).getCoordinates()[1], locationArray.get(0).getCoordinates()[0]), 16));
+                            if (locations.size() > 0) {
+                                mapboxMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(locations.get(0).getCoordinates()[1], locations.get(0).getCoordinates()[0]), 16));
                             }
 
                         });

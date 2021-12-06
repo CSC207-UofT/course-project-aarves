@@ -9,6 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MapboxGateway {
 
@@ -17,7 +18,7 @@ public class MapboxGateway {
      * @param json JSONObject containing the raw response.
      * @return An ArrayList of Locations containing relevant information from json.
      */
-    public ArrayList<Location> parseInformation(JSONObject json) {
+    public HashMap<Location, String> parseInformation(JSONObject json) {
         JSONArray places = new JSONArray();
         try {
             places = json.getJSONArray("features");
@@ -25,7 +26,7 @@ public class MapboxGateway {
             e.printStackTrace();
         }
 
-        ArrayList<Location> placeArray = new ArrayList<>();
+        HashMap<Location, String> placeMap = new HashMap<>();
 
         for (int i = 0; i < places.length(); i++) {
             try {
@@ -38,18 +39,18 @@ public class MapboxGateway {
                 // TODO: More rigorous check to see the type of location
                 // Note: Unable to find information on hours, takeout/dinein, price, indoors, or quiet.
                 if (placeCategory.contains("shop")) {
-                    FoodLocation fl = new FoodLocation("", placeName, placeAddress, coordinates, placeCategory, false, false, "");
-                    placeArray.add(fl);
+                    FoodLocation fl = new FoodLocation(placeName, coordinates);
+                    placeMap.put(fl, placeAddress);
                 } else {
-                    StudyLocation sl = new StudyLocation("", placeName, placeAddress, coordinates, false, false);
-                    placeArray.add(sl);
+                    StudyLocation sl = new StudyLocation(placeName, coordinates);
+                    placeMap.put(sl, placeAddress);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
 
-        return placeArray;
+        return placeMap;
     }
 
     /**

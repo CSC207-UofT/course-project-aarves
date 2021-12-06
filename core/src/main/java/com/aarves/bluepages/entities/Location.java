@@ -1,42 +1,47 @@
 package com.aarves.bluepages.entities;
 
-/**
- * Parent class for FoodLocation and StudyLocation
- *
- */
 public abstract class Location {
+    private static final int DEFAULT_ID = 0;
+
+    private final int locationId;
     protected final String name;
-    protected final String hoursOfService;
-    protected final String address;
     protected final double[] coordinates;
 
     /**
      * Constructs a new Location object
-     * @param hoursOfService hours of service of location
-     * @param name name of location
-     * @param address address of location
+     *
+     * @param locationId    ID of Location
+     * @param name          name of Location
+     * @param coordinates   GPS coordinates of Location
      */
-    public Location(String hoursOfService, String name, String address, double[] coordinates) {
-        this.hoursOfService = hoursOfService;
-        this.address = address;
+    public Location(int locationId, String name, double[] coordinates) {
         this.name = name;
         this.coordinates = coordinates;
+
+        this.locationId = locationId;
     }
 
     /**
+     * Constructs a new Location object. Using DEFAULT_ID indicates that Location is not in database.
      *
-     * @return a String object of the Hours of Service of the Location Object
+     * @param name          name of Location
+     * @param coordinates   GPS coordinates of Location
      */
-    public String getHoursOfService() {
-        return hoursOfService;
+    public Location(String name, double[] coordinates) {
+        this.name = name;
+        this.coordinates = coordinates;
+
+        this.locationId = Location.DEFAULT_ID;
     }
 
+
+
     /**
-     *
-     * @return a String object of the area of the Location object(address)
+     * Return the ID associated with this Location.
+     * @return  Integer representing the ID of the Location.
      */
-    public String getAddress(){
-        return address;
+    public int getLocationId() {
+        return this.locationId;
     }
 
     /**
@@ -44,14 +49,14 @@ public abstract class Location {
      * @return a String object of the name of the Location
      */
     public String getName(){
-        return name;
+        return this.name;
     }
 
     /**
      *
-     * @return a double array of the coordinates of the Location
+     * @return an array of doubles representing the coordinates of the Location object
      */
     public double[] getCoordinates(){
-        return coordinates;
+        return this.coordinates;
     }
 }

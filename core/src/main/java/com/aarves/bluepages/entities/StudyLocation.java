@@ -5,21 +5,28 @@ package com.aarves.bluepages.entities;
  *
  */
 public class StudyLocation extends Location {
-    private final boolean indoors;
-    private final boolean quiet;
+    private boolean indoors;
+    private boolean quiet;
 
     /**
-     * Constructs a new StudyLocation Object
-     * @param hours_of_service hours of service
-     * @param name name of location
-     * @param address address
-     * @param indoors if location is indoors
-     * @param quiet if location is quiet
+     * Constructs a new Location object
+     *
+     * @param locationId    ID of Location
+     * @param name          name of Location
+     * @param coordinates   GPS coordinates of Location
      */
-    public StudyLocation(String hours_of_service, String name, String address, double[] coordinates, boolean indoors, boolean quiet) {
-        super(hours_of_service, name, address, coordinates);
-        this.indoors = indoors;
-        this.quiet = quiet;
+    public StudyLocation(int locationId, String name, double[] coordinates) {
+        super(locationId, name, coordinates);
+    }
+
+    /**
+     * Constructs a new Location object. Using DEFAULT_ID indicates that Location is not in database.
+     *
+     * @param name        name of location
+     * @param coordinates GPS coordinates of location
+     */
+    public StudyLocation(String name, double[] coordinates) {
+        super(name, coordinates);
     }
 
     /**
@@ -38,13 +45,4 @@ public class StudyLocation extends Location {
         return quiet;
     }
 
-    /**
-     *
-     * @return String representation of StudyLocation
-     */
-    @Override
-    public String toString() {
-        return (super.getName() + "\n Address: " + super.getAddress() + "\n Hours of Service: "
-                + super.getHoursOfService() + "\n Indoors: " + isIndoors() + "\n Quiet: " + isQuiet());
-    }
 }
