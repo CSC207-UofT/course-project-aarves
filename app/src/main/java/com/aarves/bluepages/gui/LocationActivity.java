@@ -37,7 +37,7 @@ public class LocationActivity extends AppCompatActivity implements LocationView 
 
         // Check if bookmarked locations or all locations
         Bundle extras = this.getIntent().getExtras();
-        if(extras.getBoolean(LocationActivity.IS_BOOKMARK)) {
+        if(extras != null && extras.getBoolean(LocationActivity.IS_BOOKMARK)) {
             this.locationController.loadBookmarkLocations();
             this.isBookmark = true;
         }
