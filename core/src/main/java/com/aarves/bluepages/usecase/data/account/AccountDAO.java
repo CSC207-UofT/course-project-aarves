@@ -1,4 +1,4 @@
-package com.aarves.bluepages.usecase.data;
+package com.aarves.bluepages.usecase.data.account;
 
 public interface AccountDAO {
     void addAccount(String username, String passwordHash);

@@ -32,16 +32,15 @@ public class MapboxGateway {
                 JSONObject place = places.getJSONObject(i);
                 String placeName = place.getString("text_en");
                 double[] coordinates = {place.getJSONObject("geometry").getJSONArray("coordinates").getDouble(0), place.getJSONObject("geometry").getJSONArray("coordinates").getDouble(1)};
-                String placeAddress = place.getJSONObject("properties").getString("address");
                 String placeCategory = place.getJSONObject("properties").getString("category");
 
                 // TODO: More rigorous check to see the type of location
                 // Note: Unable to find information on hours, takeout/dinein, price, indoors, or quiet.
                 if (placeCategory.contains("shop")) {
-                    FoodLocation fl = new FoodLocation("", placeName, placeAddress, placeCategory, false, false, "");
+                    FoodLocation fl = new FoodLocation(placeName, coordinates);
                     placeArray.add(fl);
                 } else {
-                    StudyLocation sl = new StudyLocation("", placeName, placeAddress, false, false);
+                    StudyLocation sl = new StudyLocation(placeName, coordinates);
                     placeArray.add(sl);
                 }
             } catch (JSONException e) {

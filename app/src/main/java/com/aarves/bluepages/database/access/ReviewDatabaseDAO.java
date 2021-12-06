@@ -18,7 +18,7 @@ public interface ReviewDatabaseDAO {
     @Delete
     void delete(ReviewDataEntity reviewDataEntity);
 
-    @Query("SELECT * FROM reviews WHERE reviewId = :reviewId LIMIT 1")
+    @Query("SELECT * FROM reviews WHERE review_id = :reviewId LIMIT 1")
     ReviewDataEntity getByID(int reviewId);
 
     @Query("SELECT * FROM reviews WHERE username = :username")
