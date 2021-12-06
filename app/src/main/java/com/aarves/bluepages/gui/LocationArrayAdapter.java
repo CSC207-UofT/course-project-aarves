@@ -32,27 +32,25 @@ public class LocationArrayAdapter extends ArrayAdapter<LocationViewModel> {
     @Override
     @SuppressLint("ViewHolder")
     public View getView(int position, View convertView, ViewGroup parent) {
-        String locationType = this.getItem(position).getLocationType();
-        String locationName = this.getItem(position).getLocationName();
-        int locationRating = this.getItem(position).getRating();
+        LocationViewModel location = this.getItem(position);
 
         LayoutInflater inflater = LayoutInflater.from(this.context);
         convertView = inflater.inflate(this.resource, parent, false);
 
         // set the location name
         TextView locationNameText = convertView.findViewById(R.id.locationName);
-        locationNameText.setText(locationName);
+        locationNameText.setText(location.getLocationName());
 
         // Set the location image - food/study
         ImageView locationImage = convertView.findViewById(R.id.locationImage);
-        if (locationType.equals("STUDY")) {
+        if (location.getLocationType().equals("STUDY")) {
             locationImage.setImageResource(R.drawable.ic_baseline_menu_book_24);
         }
         else {
             locationImage.setImageResource(R.drawable.ic_baseline_restaurant_24);
         }
 
-        this.setRating(convertView, locationRating);
+        this.setRating(convertView, location.getRating());
 
         // Set a listener for the review button
         Button locationReviewButton = convertView.findViewById(R.id.locationLeaveReview);
@@ -60,13 +58,13 @@ public class LocationArrayAdapter extends ArrayAdapter<LocationViewModel> {
             // Start activity CreateReviewActivity and pass in the locationID, needed to create the review
             Intent intent = new Intent(context, CreateReviewActivity.class);
             // TODO: Currently using hardcoded location ID
-            intent.putExtra("locationID", 1);
+            intent.putExtra("locationID", location.getLocationId());
             context.startActivity(intent);
         });
 
         // Set a listener for the bookmark button
         Button locationBookmarkButton = convertView.findViewById(R.id.locationBookmark);
-        locationBookmarkButton.setOnClickListener(v -> this.locationController.toggleBookmark(1));
+        locationBookmarkButton.setOnClickListener(v -> this.locationController.toggleBookmark(location.getLocationId()));
 
         return convertView;
     }

@@ -20,6 +20,7 @@ public class LocationOutputMapper {
     public static LocationOutputModel mapToOutputModel(Location location, float rating) {
         if(location instanceof FoodLocation) {
             return new LocationOutputModel(
+                    location.getLocationId(),
                     location.getName(),
                     LocationType.FOOD,
                     rating
@@ -27,6 +28,7 @@ public class LocationOutputMapper {
         }
         else if(location instanceof StudyLocation) {
             return new LocationOutputModel(
+                    location.getLocationId(),
                     location.getName(),
                     LocationType.STUDY,
                     rating
