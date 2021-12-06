@@ -1,7 +1,6 @@
 package com.aarves.bluepages.usecase.interactors.review;
 
 import com.aarves.bluepages.entities.Review;
-import com.aarves.bluepages.entities.User;
 
 import java.util.List;
 

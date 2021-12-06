@@ -3,6 +3,7 @@ package com.aarves.bluepages.usecase.data.location;
 import com.aarves.bluepages.entities.FoodLocation;
 import com.aarves.bluepages.entities.Location;
 import com.aarves.bluepages.entities.StudyLocation;
+import com.aarves.bluepages.usecase.interactors.location.LocationType;
 
 public class LocationDataMapper {
     public static LocationDTO mapToDTO(Location location) {

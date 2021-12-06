@@ -24,7 +24,7 @@ public class LoginActivity extends AccountViewImpl {
         EditText passwordInput = this.findViewById(R.id.loginPassword);
 
         // Get inputted text
-        String username = usernameInput.getText().toString();
+        String username = usernameInput.getText().toString().toLowerCase();
         String password = passwordInput.getText().toString();
 
         // Check if correct login

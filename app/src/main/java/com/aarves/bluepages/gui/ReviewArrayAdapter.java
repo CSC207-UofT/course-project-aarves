@@ -39,18 +39,8 @@ public class ReviewArrayAdapter extends ArrayAdapter<ReviewViewModel> {
         TextView reviewText = convertView.findViewById(R.id.reviewText);
         reviewText.setText(text);
 
-        this.setRating(convertView, rating);
+        RatingHelper.setRating(convertView, rating);
 
         return convertView;
     }
-
-    private void setRating(View convertView, int rating) {
-        int[] starIds = {R.id.review_star1, R.id.review_star2, R.id.review_star3, R.id.review_star4, R.id.review_star5};
-
-        for(int i = 0; i < rating; i++) {
-            ImageView star = convertView.findViewById(starIds[i]);
-            star.setImageResource(R.drawable.ic_baseline_star_24);
-        }
-    }
-
 }
