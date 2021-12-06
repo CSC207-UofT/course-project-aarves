@@ -34,7 +34,13 @@ public abstract class Location {
         this.locationId = Location.DEFAULT_ID;
     }
 
-
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof Location) {
+            return this.locationId == ((Location) other).getLocationId();
+        }
+        return false;
+    }
 
     /**
      * Return the ID associated with this Location.
