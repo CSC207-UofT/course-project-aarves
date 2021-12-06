@@ -18,7 +18,8 @@ public class ReviewController {
         try {
             if (!reviewBody.isEmpty()) {
                 this.reviewInput.createReview(locationId, rating, reviewBody);
-            } else {
+            }
+            else {
                 this.reviewInput.createReview(locationId, rating);
             }
         }
@@ -26,5 +27,4 @@ public class ReviewController {
             exception.printStackTrace();
         }
     }
-
 }

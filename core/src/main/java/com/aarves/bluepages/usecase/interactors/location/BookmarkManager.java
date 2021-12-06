@@ -25,12 +25,7 @@ public class BookmarkManager implements BookmarkInputBoundary, Observer<User> {
     public void addBookmark(int locationId) throws NotLoggedInException {
         this.checkLoggedIn();
 
-        List<Integer> bookmarkIds = new ArrayList<>();
-        for(Location location : this.bookmarks) {
-            bookmarkIds.add(location.getLocationId());
-        }
-
-        if(!bookmarkIds.contains(locationId)) {
+        if(!this.isBookmarked(locationId)) {
             this.bookmarkData.addBookmark(this.username, locationId, this.bookmarks);
         }
     }
@@ -39,6 +34,16 @@ public class BookmarkManager implements BookmarkInputBoundary, Observer<User> {
     public void removeBookmark(int locationId) throws NotLoggedInException {
         this.checkLoggedIn();
         this.bookmarkData.removeBookmark(this.username, locationId, this.bookmarks);
+    }
+
+    @Override
+    public boolean isBookmarked(int locationId) {
+        List<Integer> bookmarkIds = new ArrayList<>();
+        for(Location location : this.bookmarks) {
+            bookmarkIds.add(location.getLocationId());
+        }
+
+        return bookmarkIds.contains(locationId);
     }
 
     @Override

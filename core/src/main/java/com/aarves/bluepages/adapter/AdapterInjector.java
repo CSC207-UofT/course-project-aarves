@@ -21,9 +21,9 @@ import java.security.NoSuchAlgorithmException;
 public class AdapterInjector {
     private final AccountController accountController;
     private final AccountPresenter accountPresenter;
+    private final BookmarkController bookmarkController;
     private final ReviewController reviewController;
     private final ReviewPresenter reviewPresenter;
-    private final BookmarkController bookmarkController;
 
     public AdapterInjector(AccountDAO accountDAO, LocationDAO locationDAO, ReviewDAO reviewDAO) throws NoSuchAlgorithmException {
         this.accountPresenter = new AccountPresenter();
@@ -34,14 +34,15 @@ public class AdapterInjector {
         ReviewUseCaseInjector reviewInjector = new ReviewUseCaseInjector(reviewDAO, this.reviewPresenter);
 
         AccountManager accountManager = accountInjector.getAccountManager();
+        BookmarkManager bookmarkManager = locationInjector.getBookmarkManager();
         ReviewManager reviewManager = reviewInjector.getReviewManager();
+
+        accountManager.addObserver(bookmarkManager);
         accountManager.addObserver(reviewManager);
 
-        BookmarkManager bookmarkManager = locationInjector.getBookmarkManager();
-
         this.accountController = new AccountController(accountManager);
-        this.reviewController = new ReviewController(reviewManager);
         this.bookmarkController = new BookmarkController(bookmarkManager);
+        this.reviewController = new ReviewController(reviewManager);
     }
 
     public AccountController getAccountController() {
@@ -56,12 +57,12 @@ public class AdapterInjector {
         this.accountPresenter.setAccountMenuView(accountMenuView);
     }
 
-    public ReviewController getReviewController() {
-        return this.reviewController;
-    }
-
     public BookmarkController getBookmarkController() {
         return this.bookmarkController;
+    }
+
+    public ReviewController getReviewController() {
+        return this.reviewController;
     }
 
     public void setReviewView(ReviewView reviewView) {

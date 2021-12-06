@@ -15,7 +15,6 @@ import com.aarves.bluepages.R;
 import com.aarves.bluepages.adapter.controllers.BookmarkController;
 import com.aarves.bluepages.adapter.presenters.LocationViewModel;
 import com.aarves.bluepages.usecase.data.location.LocationType;
-import com.aarves.bluepages.usecase.exceptions.NotLoggedInException;
 
 import java.util.ArrayList;
 
@@ -66,12 +65,7 @@ public class LocationArrayAdapter extends ArrayAdapter<LocationViewModel> {
         // Set a listener for the bookmark button
         Button locationBookmarkButton = convertView.findViewById(R.id.locationBookmark);
         locationBookmarkButton.setOnClickListener(v -> {
-            try {
-                // TODO: Currently using hardcoded locationID
-                this.bookmarkController.addBookmark(1);
-            } catch (NotLoggedInException e) {
-                e.printStackTrace();
-            }
+            this.bookmarkController.toggleBookmark(1);
         });
 
         return convertView;

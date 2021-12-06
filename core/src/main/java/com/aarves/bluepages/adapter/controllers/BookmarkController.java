@@ -10,9 +10,17 @@ public class BookmarkController {
         this.bookmarkInput = bookmarkInput;
     }
 
-    public void addBookmark(int locationID) throws NotLoggedInException {
-        this.bookmarkInput.addBookmark(locationID);
+    public void toggleBookmark(int locationID) {
+        try {
+            if(!this.bookmarkInput.isBookmarked(locationID)) {
+                this.bookmarkInput.addBookmark(locationID);
+            }
+            else {
+                this.bookmarkInput.removeBookmark(locationID);
+            }
+        }
+        catch(NotLoggedInException exception) {
+            exception.printStackTrace();
+        }
     }
-
-
 }
