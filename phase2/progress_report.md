@@ -116,7 +116,7 @@ Wednesday!
 
   |              |                         Work since Phase 1               | Link to a Significant Pull Request |
   |--------------|----------------------------------------------------------|------------------------------------|
-  | Ashenafee    |                                                          |                                    |
+  | Ashenafee    | Worked on implementing the 'pinpoint' feature for the map (i.e. being able to display 📍 at locations of interest) as well as displaying the name and address of said POIs.                                                         | https://github.com/CSC207-UofT/course-project-aarves/pull/89                                   |
   | Anthony      |                                                          |                                    |
   | Erica        | Worked on creating AccountMenu for the GUI and testing for everything including presenters and usecases.                                                        | insert use-case check pull request                                   |
   | Rebecca      |                                                          |                                    |
