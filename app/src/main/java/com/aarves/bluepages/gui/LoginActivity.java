@@ -31,9 +31,9 @@ public class LoginActivity extends AccountViewImpl {
         this.accountController.login(username, password);
 
         // Pass data to AccountMenuActivity to allow sign-out functionality
-        Intent i = new Intent(LoginActivity.this, AccountMenuActivity.class);
-        i.putExtra("password", password);
-        i.putExtra("username", username);
+        Intent intent1 = new Intent(LoginActivity.this, AccountMenuActivity.class);
+        intent1.putExtra("password", password);
+        intent1.putExtra("username", username);
 
     }
 

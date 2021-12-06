@@ -12,21 +12,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aarves.bluepages.R;
+import com.aarves.bluepages.adapter.controllers.AccountController;
 import com.aarves.bluepages.adapter.controllers.LocationController;
 import com.aarves.bluepages.adapter.presenters.LocationViewModel;
 
 public class LocationArrayAdapter extends ArrayAdapter<LocationViewModel> {
     private final LocationController locationController;
+    private final AccountController accountController;
     private final Context context;
     private final int resource;
 
-    public LocationArrayAdapter(Context context, int resource, LocationController locationController) {
+    public LocationArrayAdapter(Context context, int resource, LocationController locationController, AccountController accountController) {
         super(context, resource);
 
         this.context = context;
         this.resource = resource;
 
         this.locationController = locationController;
+        this.accountController = accountController;
     }
 
     @Override
@@ -48,6 +51,18 @@ public class LocationArrayAdapter extends ArrayAdapter<LocationViewModel> {
         }
         else {
             locationImage.setImageResource(R.drawable.ic_baseline_restaurant_24);
+        }
+
+        // Set the button visibility - guest/not guest
+        Button bookmarkButton = convertView.findViewById(R.id.locationBookmark);
+        Button reviewButton = convertView.findViewById(R.id.locationLeaveReview);
+        if (accountController.isLoggedIn()) {
+            bookmarkButton.setVisibility(View.VISIBLE);
+            reviewButton.setVisibility(View.VISIBLE);
+        }
+        else {
+            bookmarkButton.setVisibility(View.GONE);
+            reviewButton.setVisibility(View.GONE);
         }
 
         RatingHelper.setRating(convertView, location.getRating());

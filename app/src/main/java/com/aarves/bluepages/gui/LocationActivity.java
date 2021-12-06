@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.aarves.bluepages.R;
 import com.aarves.bluepages.MainApplication;
+import com.aarves.bluepages.adapter.controllers.AccountController;
 import com.aarves.bluepages.adapter.controllers.LocationController;
 import com.aarves.bluepages.adapter.presenters.LocationView;
 import com.aarves.bluepages.adapter.presenters.LocationViewModel;
@@ -15,8 +16,11 @@ import java.util.List;
 public class LocationActivity extends AppCompatActivity implements LocationView {
     public static final String LOCATION_ID = "locationId";
     public static final String IS_BOOKMARK = "isBookmark";
+    public static final String USERNAME = "username";
+    public static final String GUEST = "Guest";
 
     private LocationController locationController;
+    private AccountController accountController;
     private LocationArrayAdapter locationAdapter;
     private boolean isBookmark;
 
@@ -29,10 +33,11 @@ public class LocationActivity extends AppCompatActivity implements LocationView 
         // Set Location controller
         MainApplication application = (MainApplication) this.getApplication();
         this.locationController = application.getAdapters().getLocationController();
+        this.accountController = application.getAdapters().getAccountController();
         application.setLocationView(this);
 
         // Inject the locations into the views
-        this.locationAdapter = new LocationArrayAdapter(this, R.layout.activity_location, locationController);
+        this.locationAdapter = new LocationArrayAdapter(this, R.layout.activity_location, locationController, accountController);
         locationListView.setAdapter(this.locationAdapter);
 
         // Check if bookmarked locations or all locations
