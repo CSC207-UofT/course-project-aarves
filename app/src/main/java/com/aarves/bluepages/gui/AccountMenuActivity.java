@@ -15,9 +15,6 @@ import com.aarves.bluepages.adapter.presenters.AccountMenuView;
 
 import java.util.Objects;
 
-/**
- * Class currently does not work, need to pass the locations in still
- */
 public class AccountMenuActivity extends AppCompatActivity implements AccountMenuView {
     private AccountController accountController;
 

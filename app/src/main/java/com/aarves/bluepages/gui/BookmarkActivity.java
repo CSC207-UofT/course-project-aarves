@@ -12,6 +12,9 @@ import com.aarves.bluepages.adapter.presenters.LocationViewModel;
 
 import java.util.List;
 
+/**
+ * Class currently does not work, need to pass the locations in still
+ */
 public class BookmarkActivity extends AppCompatActivity implements LocationView {
     private LocationController locationController;
     private LocationArrayAdapter locationAdapter;
