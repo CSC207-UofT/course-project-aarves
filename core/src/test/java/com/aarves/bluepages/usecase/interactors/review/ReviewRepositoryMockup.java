@@ -1,9 +1,11 @@
 package com.aarves.bluepages.usecase.interactors.review;
 
+import com.aarves.bluepages.entities.Location;
 import com.aarves.bluepages.entities.Review;
 import com.aarves.bluepages.entities.User;
 import com.aarves.bluepages.usecase.interactors.review.ReviewRepository;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,17 +39,25 @@ public class ReviewRepositoryMockup implements ReviewRepository {
 
     @Override
     public List<Review> getReviewsByUser(User user) {
-        //        for (Review r:reviews){
-//            String reviewer = r.getReviewer();
-//            if (reviewer.equals(user.getUsername())){
-//                return r;
-//            }
-//        }
-        return null;
+
+        return user.getReviews();
+
     }
 
     @Override
     public List<Review> getReviewsByLocation(int locationId) {
-        return null;
+
+        List<Review> location_Reviews = new ArrayList<>();
+
+        for (Review r: reviews) {
+
+            int id = r.getLocationId();
+
+            if (id == locationId) {
+                location_Reviews.add(r);
+            }
+        }
+        return location_Reviews;
+
     }
 }
