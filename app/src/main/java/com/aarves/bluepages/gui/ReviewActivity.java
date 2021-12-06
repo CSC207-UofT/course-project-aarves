@@ -21,7 +21,7 @@ public class ReviewActivity extends AppCompatActivity implements ReviewView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review_view);
-        ListView reviewListView = findViewById(R.id.listView);
+        ListView reviewListView = this.findViewById(R.id.listView);
 
         // TODO: When Location UI is done, all that is needed to be done is to pass the location's array list of reviews into this class, and then into the ReviewArrayAdapter
         // TODO: Same for RegisteredUser.

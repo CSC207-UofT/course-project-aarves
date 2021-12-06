@@ -7,13 +7,29 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class LocationMap {
+public class LocationMap implements LocationInputBoundary {
     private final LocationDataBoundary locationData;
+    private final LocationOutputBoundary locationOutput;
+
     private final Map<List<Long>, Integer> coordinatesMap;
 
-    public LocationMap(LocationDataBoundary locationData) {
+    public LocationMap(LocationDataBoundary locationData, LocationOutputBoundary locationOutput) {
         this.locationData = locationData;
+        this.locationOutput = locationOutput;
+
         this.coordinatesMap = this.locationData.getCoordinatesMap();
+    }
+
+    @Override
+    public void loadLocations() {
+        // TODO: Consider removing in later revisions as not scalable.
+        List<Location> locations = new ArrayList<>();
+        for(int locationId : this.getLocationIds()) {
+            locations.add(this.locationData.getLocation(locationId));
+        }
+
+        List<LocationOutputModel> locationOutputModels = LocationOutputMapper.mapToOutputModels(locations);
+        this.locationOutput.presentLocations(locationOutputModels);
     }
 
     /**

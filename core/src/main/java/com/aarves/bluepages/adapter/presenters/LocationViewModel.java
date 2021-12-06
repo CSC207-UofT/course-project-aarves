@@ -1,12 +1,10 @@
 package com.aarves.bluepages.adapter.presenters;
 
-import com.aarves.bluepages.usecase.data.location.LocationType;
-
 public class LocationViewModel {
     private final String locationName;
-    private final LocationType locationType;
+    private final String locationType;
 
-    public LocationViewModel(String locationName, LocationType locationType) {
+    public LocationViewModel(String locationName, String locationType) {
         this.locationName = locationName;
         this.locationType = locationType;
     }
@@ -15,7 +13,7 @@ public class LocationViewModel {
         return this.locationName;
     }
 
-    public LocationType getLocationType() {
+    public String getLocationType() {
         return this.locationType;
     }
 }

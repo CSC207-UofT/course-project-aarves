@@ -1,5 +1,7 @@
 package com.aarves.bluepages.usecase.data.location;
 
+import com.aarves.bluepages.usecase.interactors.location.LocationType;
+
 public class LocationDTO {
     private final String name;
     private final double[] coordinates;

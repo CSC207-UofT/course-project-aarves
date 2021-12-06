@@ -7,10 +7,10 @@ public class LocationUseCaseInjector {
     private final BookmarkManager bookmarkManager;
     private final LocationMap locationMap;
 
-    public LocationUseCaseInjector(LocationDAO locationDAO) {
+    public LocationUseCaseInjector(LocationDAO locationDAO, LocationOutputBoundary locationOutput) {
         LocationDataAccess locationData = new LocationDataAccess(locationDAO);
         this.bookmarkManager = new BookmarkManager(locationData);
-        this.locationMap = new LocationMap(locationData);
+        this.locationMap = new LocationMap(locationData, locationOutput);
     }
 
     public BookmarkManager getBookmarkManager() {
