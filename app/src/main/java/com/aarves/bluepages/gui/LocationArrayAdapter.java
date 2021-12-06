@@ -50,15 +50,14 @@ public class LocationArrayAdapter extends ArrayAdapter<LocationViewModel> {
             locationImage.setImageResource(R.drawable.ic_baseline_restaurant_24);
         }
 
-        this.setRating(convertView, location.getRating());
+        RatingHelper.setRating(convertView, location.getRating());
 
         // Set a listener for the review button
         Button locationReviewButton = convertView.findViewById(R.id.locationLeaveReview);
         locationReviewButton.setOnClickListener(v -> {
             // Start activity CreateReviewActivity and pass in the locationID, needed to create the review
             Intent intent = new Intent(context, CreateReviewActivity.class);
-            // TODO: Currently using hardcoded location ID
-            intent.putExtra("locationID", location.getLocationId());
+            intent.putExtra(LocationActivity.LOCATION_ID, location.getLocationId());
             context.startActivity(intent);
         });
 
@@ -67,14 +66,5 @@ public class LocationArrayAdapter extends ArrayAdapter<LocationViewModel> {
         locationBookmarkButton.setOnClickListener(v -> this.locationController.toggleBookmark(location.getLocationId()));
 
         return convertView;
-    }
-
-    private void setRating(View convertView, int rating) {
-        int[] starIds = {R.id.review_star1, R.id.review_star2, R.id.review_star3, R.id.review_star4, R.id.review_star5};
-
-        for(int i = 0; i < rating; i++) {
-            ImageView star = convertView.findViewById(starIds[i]);
-            star.setImageResource(R.drawable.ic_baseline_star_24);
-        }
     }
 }

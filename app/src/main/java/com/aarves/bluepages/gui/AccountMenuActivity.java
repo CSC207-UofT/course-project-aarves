@@ -56,7 +56,8 @@ public class AccountMenuActivity extends AppCompatActivity implements AccountMen
     }
 
     public void viewBookmarks(View view) {
-        Intent intent = new Intent(this, BookmarkActivity.class);
+        Intent intent = new Intent(this, LocationActivity.class);
+        intent.putExtra(LocationActivity.IS_BOOKMARK, true);
         startActivity(intent);
     }
 

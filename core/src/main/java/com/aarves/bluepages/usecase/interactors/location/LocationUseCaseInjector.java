@@ -9,7 +9,7 @@ public class LocationUseCaseInjector {
 
     public LocationUseCaseInjector(LocationDAO locationDAO, LocationOutputBoundary locationOutput) {
         LocationDataAccess locationData = new LocationDataAccess(locationDAO);
-        this.bookmarkManager = new BookmarkManager(locationData);
+        this.bookmarkManager = new BookmarkManager(locationData, locationOutput);
         this.locationMap = new LocationMap(locationData, locationOutput);
     }
 

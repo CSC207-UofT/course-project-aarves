@@ -33,8 +33,21 @@ public class LocationController {
         }
     }
 
-    public void loadLocations() {
+    public void loadAllLocations() {
         List<Integer> locationIds = this.locationInput.getLocationIds();
+        this.locationInput.loadLocations(this.getRatings(locationIds));
+    }
+
+    public void loadBookmarkLocations() {
+        List<Integer> locationIds = this.bookmarkInput.getLocationIds();
+        this.bookmarkInput.loadLocations(this.getRatings(locationIds));
+    }
+
+    public void refreshBookmarks() {
+        this.bookmarkInput.refreshBookmarks();
+    }
+
+    private List<Float> getRatings(List<Integer> locationIds) {
         List<Float> ratings = new ArrayList<>();
 
         for(int locationId : locationIds) {
@@ -42,10 +55,6 @@ public class LocationController {
             ratings.add(rating);
         }
 
-        this.locationInput.loadAllLocations(ratings);
-    }
-
-    public void refreshBookmarks() {
-        this.bookmarkInput.refreshBookmarks();
+        return ratings;
     }
 }

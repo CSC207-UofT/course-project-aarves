@@ -10,12 +10,14 @@ import java.util.List;
 
 public class BookmarkManager implements BookmarkInputBoundary, Observer<User> {
     private final BookmarkDataBoundary bookmarkData;
+    private final LocationOutputBoundary locationOutput;
 
     private List<Location> bookmarks;
     private String username;
 
-    public BookmarkManager(BookmarkDataBoundary bookmarkData) {
+    public BookmarkManager(BookmarkDataBoundary bookmarkData, LocationOutputBoundary locationOutput) {
         this.bookmarkData = bookmarkData;
+        this.locationOutput = locationOutput;
 
         this.bookmarks = new ArrayList<>();
         this.username = "";
@@ -52,6 +54,23 @@ public class BookmarkManager implements BookmarkInputBoundary, Observer<User> {
 
         List<Location> bookmarks = this.bookmarkData.getUserBookmarks(this.username);
         this.bookmarks.addAll(bookmarks);
+    }
+
+    @Override
+    public void loadLocations(List<Float> ratings) {
+        List<LocationOutputModel> locationOutputModels = LocationOutputMapper.mapToOutputModels(this.bookmarks, ratings);
+        this.locationOutput.presentLocations(locationOutputModels);
+    }
+
+    @Override
+    public List<Integer> getLocationIds() {
+        List<Integer> locationIds = new ArrayList<>();
+
+        for(Location bookmark : this.bookmarks) {
+            locationIds.add(bookmark.getLocationId());
+        }
+
+        return locationIds;
     }
 
     @Override

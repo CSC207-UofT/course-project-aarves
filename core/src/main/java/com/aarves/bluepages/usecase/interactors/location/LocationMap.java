@@ -21,7 +21,7 @@ public class LocationMap implements LocationInputBoundary {
     }
 
     @Override
-    public void loadAllLocations(List<Float> ratings) {
+    public void loadLocations(List<Float> ratings) {
         // TODO: Consider removing in later revisions as not scalable.
         List<Location> locations = new ArrayList<>();
         for(int locationId : this.getLocationIds()) {

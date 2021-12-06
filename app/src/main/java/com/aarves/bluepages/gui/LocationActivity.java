@@ -13,8 +13,12 @@ import com.aarves.bluepages.adapter.presenters.LocationViewModel;
 import java.util.List;
 
 public class LocationActivity extends AppCompatActivity implements LocationView {
+    public static final String LOCATION_ID = "locationId";
+    public static final String IS_BOOKMARK = "isBookmark";
+
     private LocationController locationController;
     private LocationArrayAdapter locationAdapter;
+    private boolean isBookmark;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +35,16 @@ public class LocationActivity extends AppCompatActivity implements LocationView 
         this.locationAdapter = new LocationArrayAdapter(this, R.layout.activity_location, locationController);
         locationListView.setAdapter(this.locationAdapter);
 
-        this.locationController.loadLocations();
+        // Check if bookmarked locations or all locations
+        Bundle extras = this.getIntent().getExtras();
+        if(extras.getBoolean(LocationActivity.IS_BOOKMARK)) {
+            this.locationController.loadBookmarkLocations();
+            this.isBookmark = true;
+        }
+        else {
+            this.locationController.loadAllLocations();
+            this.isBookmark = false;
+        }
     }
 
     @Override
@@ -42,7 +55,12 @@ public class LocationActivity extends AppCompatActivity implements LocationView 
         MainApplication application = (MainApplication) this.getApplication();
         application.setLocationView(this);
 
-        this.locationController.loadLocations();
+        if(this.isBookmark) {
+            this.locationController.loadBookmarkLocations();
+        }
+        else {
+            this.locationController.loadAllLocations();
+        }
     }
 
     @Override
