@@ -36,11 +36,19 @@ public class ReviewRepositoryMockup implements ReviewRepository {
         return null;
     }
 
-
     @Override
-    public List<Review> getReviewsByUser(User user) {
+    public List<Review> getReviewsByUser(String username) {
 
-        return user.getReviews();
+        List<Review> user_Reviews = new ArrayList<>();
+
+        for (Review r: reviews) {
+            String name = r.getReviewer();
+
+            if (username.equals(name)) {
+                user_Reviews.add(r);
+            }
+        }
+        return user_Reviews;
 
     }
 
