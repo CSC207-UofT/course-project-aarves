@@ -64,12 +64,21 @@ class ReviewManagerTest {
     // TODO: fix last two test cases
     @Test
     void testDeleteReview() throws NotLoggedInException, PermissionsFailureException {
-        Review r = new Review("user", 34, 2);
+
         reviewManager.createReview(34, 2, "bad cookies");
         reviewManager.createReview(56, 4, "great food!");
         reviewManager.createReview(90, 5, "loved the space");
 
-        reviewManager.deleteReview(r);
+        List<Integer> ids = new ArrayList<>();
+
+        for (Review r: reviewRepository.reviews) {
+            if (r.getLocationId() == 34) {
+                ids.add(r.getReviewId());
+            }
+        }
+        Review my_Review = reviewManager.getReview(ids.get(0));
+        reviewManager.deleteReview(my_Review);
+
         Assertions.assertEquals(2, reviewRepository.reviews.size());
 
     }

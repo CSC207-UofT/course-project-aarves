@@ -28,7 +28,7 @@ public class ReviewRepositoryMockup implements ReviewRepository {
     public Review getReview(int reviewId) {
 
         for (Review r:reviews){
-            Integer id = r.getLocationId();
+            Integer id = r.getReviewId();
             if (id.equals(reviewId)){
                 return r;
             }
