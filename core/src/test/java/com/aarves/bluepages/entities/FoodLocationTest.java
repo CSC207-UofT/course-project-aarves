@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FoodLocationTest {
 
-    FoodLocation fl = new FoodLocation(100, "Popeyes", new double[]{43.841970401 - 79.39117270});
+    FoodLocation fl = new FoodLocation(100, "Popeyes", new double[]{43.841970401 -79.39117270});
 
     @BeforeEach
     public void setUp() {
@@ -30,7 +30,7 @@ class FoodLocationTest {
 
     @Test
     void getCoordinates() {
-        double[] expected = new double[]{43.841970401 - 79.39117270};
+        double[] expected = new double[]{43.841970401 -79.39117270};
         double[] actual = fl.getCoordinates();
         assertEquals(expected, actual);
     }
