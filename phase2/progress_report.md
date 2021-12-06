@@ -118,4 +118,4 @@ but we are working on refactoring our code and adding better suited design patte
   | Erica        |                                                          |                                    |
   | Rebecca      |                                                          |                                    |
   | Syed         |                                                          |                                    |
-  | Vaishnavi    |                                                          |                                    |
+  | Vaishnavi    | Helped assist with the GUI by working on some of the xml files need for location previews and cleaning up previously made xml files. Helped create a potential filter for each type of location (food locationa and study location). Helped merge branches and made pull requests.| https://github.com/CSC207-UofT/course-project-aarves/pull/84 https://github.com/CSC207-UofT/course-project-aarves/pull/92                                   |
