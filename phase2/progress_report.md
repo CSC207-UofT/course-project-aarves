@@ -111,11 +111,11 @@ Wednesday!
 
     Across all six of us, we have been ironing out Clean Architecture, but the next goal as a team is to further this use of Clean Archiecture to the UI and Android-specific elements (i.e. Activities).
 
-  |              |                         Work since Phase 1               | Link to a Significant Pull Request |
-  |--------------|----------------------------------------------------------|------------------------------------|
-  | Ashenafee    | Worked on implementing the 'pinpoint' feature for the map (i.e. being able to display 📍 at locations of interest) as well as displaying the name and address of said POIs.                                                         | https://github.com/CSC207-UofT/course-project-aarves/pull/89                                   |
-  | Anthony      |                                                          |                                    |
-  | Erica        | Worked on creating AccountMenu for the GUI and testing for everything including presenters and usecases.                                                        | insert use-case check pull request                                   |
-  | Rebecca      |                                                          |                                    |
-  | Syed         | Worked on testing everything and finding and fixing bugs in testcases. Also, worked on adding markers to the map and trying to set map boundaries. | Not available till use-case check branch is merged |
-  | Vaishnavi    | Helped assist with the GUI by working on some of the xml files need for location previews and cleaning up previously made xml files. Helped create a potential filter for each type of location (food location and study location). Helped merge branches and made pull requests.| https://github.com/CSC207-UofT/course-project-aarves/pull/84 https://github.com/CSC207-UofT/course-project-aarves/pull/92                                   |
+  |              |                         Work since Phase 1               | Link to a Significant Pull Request | Reasoning behind Pull Request |
+  |--------------|----------------------------------------------------------|------------------------------------|--|
+  | Ashenafee    | Worked on implementing the 'pinpoint' feature for the map (i.e. being able to display 📍 at locations of interest) as well as displaying the name and address of said POIs.                                                         | https://github.com/CSC207-UofT/course-project-aarves/pull/89 | Allowing the visual representation of POIs to the user is a fundamental part of **any** map-oriented app. By implementing this, the app fully transitions from the CLI responses to a visual, 'nice-looking' response (in the form of points). |
+  | Anthony      |                                                          |                                    | |
+  | Erica        | Worked on creating AccountMenu for the GUI and testing for everything including presenters and usecases.                                                        | insert use-case check pull request                                   | |
+  | Rebecca      |                                                          |                                    | |
+  | Syed         | Worked on testing everything and finding and fixing bugs in testcases. Also, worked on adding markers to the map and trying to set map boundaries. | Not available till use-case check branch is merged | |
+  | Vaishnavi    | Helped assist with the GUI by working on some of the xml files need for location previews and cleaning up previously made xml files. Helped create a potential filter for each type of location (food location and study location). Helped merge branches and made pull requests.| https://github.com/CSC207-UofT/course-project-aarves/pull/84 https://github.com/CSC207-UofT/course-project-aarves/pull/92                                   | |
