@@ -1,21 +1,18 @@
 package com.aarves.bluepages.adapter.presenters;
 
-import com.aarves.bluepages.usecase.interactors.AccountOutputBoundary;
-import com.aarves.bluepages.usecase.interactors.LoginResult;
-import com.aarves.bluepages.usecase.interactors.RegisterResult;
+import com.aarves.bluepages.usecase.interactors.account.AccountOutputBoundary;
+import com.aarves.bluepages.usecase.interactors.account.LoginResult;
+import com.aarves.bluepages.usecase.interactors.account.RegisterResult;
 
 public class AccountPresenter implements AccountOutputBoundary {
     private AccountView accountView;
-
-    public void setAccountView(AccountView accountView) {
-        this.accountView = accountView;
-    }
+    private AccountMenuView accountMenuView;
 
     @Override
     public void loginResult(LoginResult result, String username) {
-        if(this.verifyDependencies()) {
+        if(this.accountView != null) {
             String message;
-            switch (result) {
+            switch(result) {
                 case SUCCESS:
                     message = "Welcome back " + username + "!";
                     this.accountView.startMainMenu();
@@ -36,9 +33,9 @@ public class AccountPresenter implements AccountOutputBoundary {
 
     @Override
     public void registerResult(RegisterResult result) {
-        if(this.verifyDependencies()) {
+        if(this.accountView != null) {
             String message;
-            switch (result) {
+            switch(result) {
                 case SUCCESS:
                     message = "Account created successfully.";
                     this.accountView.finishActivity();
@@ -49,6 +46,9 @@ public class AccountPresenter implements AccountOutputBoundary {
                 case PASSWORD_MISMATCH:
                     message = "Passwords do not match!";
                     break;
+                case BAD_USERNAME_FORMAT:
+                    message = "Bad username format!";
+                    break;
                 default:
                     throw new IllegalStateException("Unexpected value: " + result);
             }
@@ -56,7 +56,35 @@ public class AccountPresenter implements AccountOutputBoundary {
         }
     }
 
-    private boolean verifyDependencies() {
-        return this.accountView != null;
+    public void displayLogout() {
+        if(this.accountView != null) {
+            this.accountView.displayPopUp("Account logged out successfully.");
+            this.accountView.returnToAccessMenu();
+            this.accountView.finishActivity();
+        }
+        else if(this.accountMenuView != null) {
+            this.accountMenuView.displayPopUp("Account logged out successfully.");
+            this.accountMenuView.finishActivity();
+        }
+    }
+
+    @Override
+    public void displayInformation(String username) {
+        if(this.accountMenuView != null) {
+            if(!username.isEmpty()) {
+                this.accountMenuView.displayAccountInformation(username);
+            }
+            else {
+                this.accountMenuView.displayAccountInformation("Guest User");
+            }
+        }
+    }
+
+    public void setAccountView(AccountView accountView) {
+        this.accountView = accountView;
+    }
+
+    public void setAccountMenuView(AccountMenuView accountMenuView) {
+        this.accountMenuView = accountMenuView;
     }
 }

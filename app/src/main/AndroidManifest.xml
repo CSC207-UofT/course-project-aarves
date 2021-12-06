@@ -13,21 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Bluepages">
-        <activity
-            android:name=".gui.MapActivity"
-            android:exported="false" />
-        <activity
-            android:name=".gui.RegisterActivity"
-            android:exported="false" />
-        <activity
-            android:name=".gui.LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".gui.MainMenuActivity"
-            android:exported="false" />
-        <activity
-            android:name=".gui.ReviewActivity"
-            android:exported="false" />
+
         <activity
             android:name=".gui.AccessActivity"
             android:exported="true">
@@ -37,6 +23,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".gui.AccountMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".gui.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".gui.MainMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".gui.MapActivity"
+            android:exported="false" />
+        <activity
+            android:name=".gui.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".gui.ReviewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".gui.CreateReviewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".gui.LocationActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

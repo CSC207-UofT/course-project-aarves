@@ -1,5 +1,6 @@
 package com.aarves.bluepages.gui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -23,11 +24,17 @@ public class LoginActivity extends AccountViewImpl {
         EditText passwordInput = this.findViewById(R.id.loginPassword);
 
         // Get inputted text
-        String username = usernameInput.getText().toString();
+        String username = usernameInput.getText().toString().toLowerCase();
         String password = passwordInput.getText().toString();
 
         // Check if correct login
         this.accountController.login(username, password);
+
+        // Pass data to AccountMenuActivity to allow sign-out functionality
+        Intent i = new Intent(LoginActivity.this, AccountMenuActivity.class);
+        i.putExtra("password", password);
+        i.putExtra("username", username);
+
     }
 
     /**

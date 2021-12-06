@@ -4,14 +4,16 @@
 
 | Principle of Universal Design | Example |
 |-------------------------------|---------|
-| Equitable Use                 |         |
-| Flexibility in Use            |         |
-| Simple and Intuitive Use      |         |
-| Perceptible Information       |         |
-| Tolerance for Error           |         |
-| Low Physical Effort           |         |
-| Size and Space for Approach and Use |   |
+| Equitable Use                 | All users, whether registered or not, are able to view all the presentable features (map, locations and their reviews). Furthermore, anyone can install and use the app which pairs into its cost - free, representing no barrier to entry.        |
+| Flexibility in Use            | The user can use the dark mode of the app based off their system UI (whether off preference or ease). Additionally, buttons are big to ensure they are easy to press for all users and these buttons have 1-2 word-labels, so they are short and concise to be understood by users with different paces.  |
+| Simple and Intuitive Use      | Pictures are used in place of text for many things to accomodate a wide range of literacy/language skills. The most important information is either bolded, or put at the top of the screen (e.g. titles, names of places, instructions on leaving a review). Appropriate feedback given when user performs an action (e.g. login screen, if the user types in a wrong password/username, "Your username or password was incorrect. Please try again" and logging in: "You have successfully logged in! Welcome back, \<user\>!") |
+| Perceptible Information       | Clickable objects in the UI are shaped like a physical button to ensure that the user knows that they are clickable. Pictures are used to better present what the user should be looking at (e.g., person icon for account/user, stars to represent the place's rating rather than text, an interactive map to view the locations).       |
+| Tolerance for Error           | If an unregistered user tries to login, there would be message that would pop up saying that the username is incorrect. This gives plain and simple feedback to the user so they're not repeatedly trying to login without indication of what's preventing said action. |
+| Low Physical Effort           | The layout and colors of the android app has the right amount of contrast without it being straining to the eyes. The addition of dark mode helps lower eye strain as well. Furthermore, with the larger buttons (mentioned under "Flexibility in Use"), the user does not have to strain their sight to find where to click.|
+| *Size and Space for Approach and Use* | A possible feature which would satisfy this principle would be the addition of means of transportation to arrive at the location-of-interest. As we know, not everyone is equally capable in their mobility and so providing information on multiple means of transport (i.e. TTC, Wheel-Trans, etc.) would work to bridge the gap between people of all mobile-capabilities. |
 
 ## Potential Customers for our Project ##
+This project is marketed toward University of Toronto (St. George) students. The fundamental purpose of this app is for students to find better food places and study areas around the St. George campus. Being a student at the St. George campus is difficult with the hustle and bustle of the Downtown Core. By reducing all the "clutter" on a typical map and reducing it to simply Food/Study-oriented spots, finding that one special place becomes a whole lot more easier (and time efficient as you're no longer sifting through dozens of icons looking for your one niche spot).
 
 ## Is our project less likely to be used by a certain demographic? ##
+Yes, people who are not University of Toronto St. George students are not likely to use this app, since they will not need to go to the St. George campus on a near-daily basis. Additionally, people who do not fit the target demographic might have no need for a clutter-free map app - they could benefit from the extraneous information and possibly have the time to sift through. Despite Bluepages showing most of Toronto on its map, the search functionality only works within the vicinity of campus, hence why non-students at UTSG might not find use for it, especially if they're not in the area.

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User {
-    private List<Review> reviews;
-    private List<Location> bookmarks;
+    private final List<Review> reviews;
+    private final List<Location> bookmarks;
 
     private final String username;
     private String passwordHash;
@@ -21,6 +21,16 @@ public class User {
 
         this.username = username;
         this.passwordHash = passwordHash;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if(other instanceof User) {
+            return this.username.equals(((User) other).getUsername());
+        }
+        else {
+            return false;
+        }
     }
 
     /**
@@ -47,8 +57,8 @@ public class User {
         return this.reviews;
     }
 
-    public void setReviews(List<Review> reviews) {
-        this.reviews = new ArrayList<>(reviews);
+    public void clearReviews() {
+        this.reviews.clear();
     }
 
     /**

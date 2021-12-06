@@ -5,29 +5,30 @@ package com.aarves.bluepages.entities;
  *
  */
 public class FoodLocation extends Location {
-    private final String foodType;
-    private final boolean takeout;
-    private final boolean dineIn;
-    private final String priceRange;
+    private String foodType;
+    private boolean takeout;
+    private boolean dineIn;
+    private String priceRange;
 
     /**
-     * Constructs a new FoodLocation Object
+     * Constructs a new Location object
      *
-     * @param hours_of_service hours of service
-     * @param name name of location
-     * @param address address of location
-     * @param food type of food
-     * @param takeout if location has takeout
-     * @param dineIn if location has dine-in
-     * @param priceRange the price range of the location ($, $$, $$$)
+     * @param locationId    ID of Location
+     * @param name          name of Location
+     * @param coordinates   GPS coordinates of Location
      */
-    public FoodLocation(String hours_of_service, String name, String address, String food,
-                        boolean takeout, boolean dineIn, String priceRange) {
-        super(hours_of_service, name, address);
-        this.foodType = food;
-        this.takeout = takeout;
-        this.dineIn = dineIn;
-        this.priceRange = priceRange;
+    public FoodLocation(int locationId, String name, double[] coordinates) {
+        super(locationId, name, coordinates);
+    }
+
+    /**
+     * Constructs a new Location object. Using DEFAULT_ID indicates that Location is not in database.
+     *
+     * @param name        name of location
+     * @param coordinates GPS coordinates of location
+     */
+    public FoodLocation(String name, double[] coordinates) {
+        super(name, coordinates);
     }
 
     /**
@@ -62,14 +63,4 @@ public class FoodLocation extends Location {
         return priceRange;
     }
 
-    /**
-     *
-     * @return String representation of FoodLocation
-     */
-    @Override
-    public String toString() {
-        return (super.getName() + "\n Address: " + super.getAddress() + "\n Hours of Service: "
-                + super.getHoursOfService() + "\n" + getFoodType() + "\n dine-in: " + isDineIn()
-                + "\n takeout: " + isTakeout() + "\n" + getPriceRange());
-    }
 }
