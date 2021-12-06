@@ -36,7 +36,6 @@ class ReviewRepositoryImplTest {
         Assertions.assertEquals(original + 1, reviewDAO.reviews.size());
     }
 
-    // TODO: concurrent modification error
     @Test
     void testDeleteReview() {
         Review r = new Review("reviewer", 34, 1);
@@ -45,7 +44,6 @@ class ReviewRepositoryImplTest {
         reviewRepository.deleteReview(r);
         size = size - 1;
         assertEquals(size, reviewDAO.reviews.size());
-
     }
 
     // TODO: not passing

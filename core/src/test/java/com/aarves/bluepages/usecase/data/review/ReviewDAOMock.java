@@ -20,19 +20,13 @@ public class ReviewDAOMock implements ReviewDAO{
 
     @Override
     public void deleteReviewData(int reviewId) {
-        for (Review r:reviews){
-            Integer id = r.getReviewId();
-            if (id.equals(reviewId)){
-                reviews.remove(r);
-            }
-        }
+        reviews.removeIf(r -> r.getReviewId() == reviewId);
     }
 
     @Override
     public ReviewDTO getReviewData(int reviewId) {
         for (Review r:reviews){
-            Integer id = r.getReviewId();
-            if (id.equals(reviewId)){
+            if (r.getReviewId() == reviewId) {
                 return new ReviewDTO(r.getReviewer(), r.getLocationId(), r.getRating(), r.getBody());
             }
         }

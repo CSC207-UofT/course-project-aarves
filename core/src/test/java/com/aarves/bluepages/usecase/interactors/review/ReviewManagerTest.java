@@ -61,7 +61,6 @@ class ReviewManagerTest {
 
     }
 
-    // TODO: fix last two test cases
     @Test
     void testDeleteReview() throws NotLoggedInException, PermissionsFailureException {
 
