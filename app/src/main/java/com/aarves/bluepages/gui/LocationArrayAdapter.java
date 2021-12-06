@@ -2,10 +2,12 @@ package com.aarves.bluepages.gui;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -47,6 +49,28 @@ public class LocationArrayAdapter extends ArrayAdapter<LocationViewModel> {
         } else {
             locationImage.setImageResource(R.drawable.ic_baseline_restaurant_24);
         }
+
+        // Set a listener for the review button
+        Button locationReviewButton = convertView.findViewById(R.id.locationLeaveReview);
+        locationReviewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start activity CreateReviewActivity and pass in the locationID, needed to create the review
+                Intent intent = new Intent(context, CreateReviewActivity.class);
+                // TODO: Send an actual location ID
+                intent.putExtra("locationID", 1);
+                context.startActivity(intent);
+            }
+        });
+
+        // Set a listener for the bookmark button
+        Button locationBookmarkButton = convertView.findViewById(R.id.locationBookmark);
+        locationBookmarkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO: On click method
+            }
+        });
 
         return convertView;
 

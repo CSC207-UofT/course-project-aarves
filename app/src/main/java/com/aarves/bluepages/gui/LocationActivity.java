@@ -1,5 +1,7 @@
 package com.aarves.bluepages.gui;
 
+import android.content.Intent;
+import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
