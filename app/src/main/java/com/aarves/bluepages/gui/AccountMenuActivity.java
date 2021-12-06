@@ -38,14 +38,17 @@ public class AccountMenuActivity extends AppCompatActivity implements AccountMen
 
         Button reviewButton = findViewById(R.id.reviewButton);
         Button bookmarkButton = findViewById(R.id.bookmarkButton);
+        Button signOutButton = findViewById(R.id.signOutButton);
 
         if (Objects.equals(userText, "Guest User")) {
             reviewButton.setVisibility(View.INVISIBLE);
             bookmarkButton.setVisibility(View.INVISIBLE);
+            signOutButton.setVisibility(View.INVISIBLE);
         }
         else {
             reviewButton.setVisibility(View.VISIBLE);
             bookmarkButton.setVisibility(View.VISIBLE);
+            signOutButton.setVisibility(View.VISIBLE);
         }
     }
 

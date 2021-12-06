@@ -80,7 +80,6 @@ InputGateway.java by following the Interface Injection method of design. i.e, we
 AccountManagerDependency.java and then injected it in the two adapter classes. The benefits of implementing dependency injection include:
 - The InputConroller and InputGateway classes are not responsible for creating an instance of an AccountManager. Instead, an instance of the class in passed into the injectAccountManager method. This adheres better to clean architecture by decoupling the Input classes and AccountManager.
 
-
 ## Use of Github Features ## 
 
 During our implementation of Phase 1, our team made better use of branching in Github. Instead of each team member
