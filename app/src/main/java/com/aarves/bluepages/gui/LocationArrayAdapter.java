@@ -53,8 +53,17 @@ public class LocationArrayAdapter extends ArrayAdapter<LocationViewModel> {
         RatingHelper.setRating(convertView, location.getRating());
 
         // Set a listener for the review button
-        Button locationReviewButton = convertView.findViewById(R.id.locationLeaveReview);
-        locationReviewButton.setOnClickListener(v -> {
+        Button locationReviewsButton = convertView.findViewById(R.id.locationReviews);
+        locationReviewsButton.setOnClickListener(v -> {
+            // Start activity CreateReviewActivity and pass in the locationID, needed to create the review
+            Intent intent = new Intent(context, ReviewActivity.class);
+            intent.putExtra(ReviewActivity.LOCATION_ID, location.getLocationId());
+            context.startActivity(intent);
+        });
+
+        // Set a listener for the create review button
+        Button locationLeaveReviewButton = convertView.findViewById(R.id.locationLeaveReview);
+        locationLeaveReviewButton.setOnClickListener(v -> {
             // Start activity CreateReviewActivity and pass in the locationID, needed to create the review
             Intent intent = new Intent(context, CreateReviewActivity.class);
             intent.putExtra(LocationActivity.LOCATION_ID, location.getLocationId());
