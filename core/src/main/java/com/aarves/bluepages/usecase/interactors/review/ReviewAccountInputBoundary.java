@@ -8,4 +8,5 @@ public interface ReviewAccountInputBoundary {
 
     void loadUserReviews();
     void refreshUserReviews();
+    void loadLocationReviews(int locationId);
 }

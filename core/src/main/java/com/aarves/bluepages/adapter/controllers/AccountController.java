@@ -17,6 +17,10 @@ public class AccountController {
         this.accountInput.login(username, password);
     }
 
+    public boolean isLoggedIn() {
+        return this.accountInput.isLoggedIn();
+    }
+
     public void logout() {
         this.accountInput.logout();
     }

@@ -14,8 +14,13 @@ import com.aarves.bluepages.adapter.presenters.ReviewViewModel;
 import java.util.List;
 
 public class ReviewActivity extends AppCompatActivity implements ReviewView {
+    public static final String LOCATION_ID = "locationId";
+    public static final String LOCATION_NAME = "locationName";
+    public static final int DEFAULT_ID = 0;
+
     private ReviewController reviewController;
     private ReviewArrayAdapter reviewAdapter;
+    private int locationId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +28,6 @@ public class ReviewActivity extends AppCompatActivity implements ReviewView {
         setContentView(R.layout.activity_review_view);
         ListView reviewListView = this.findViewById(R.id.listView);
 
-        // TODO: When Location UI is done, all that is needed to be done is to pass the location's array list of reviews into this class, and then into the ReviewArrayAdapter
-        // TODO: Same for RegisteredUser.
         this.reviewAdapter = new ReviewArrayAdapter(this, R.layout.activity_review);
         reviewListView.setAdapter(this.reviewAdapter);
 
@@ -32,7 +35,17 @@ public class ReviewActivity extends AppCompatActivity implements ReviewView {
         this.reviewController = application.getAdapters().getReviewController();
         application.setReviewView(this);
 
-        this.reviewController.loadReviews();
+        Bundle extras = this.getIntent().getExtras();
+        if(extras != null) {
+            this.locationId = extras.getInt(ReviewActivity.LOCATION_ID);
+        }
+
+        if(this.locationId == ReviewActivity.DEFAULT_ID) {
+            this.reviewController.loadUserReviews();
+        }
+        else {
+            this.reviewController.loadLocationReviews(this.locationId);
+        }
     }
 
     @Override
@@ -42,7 +55,12 @@ public class ReviewActivity extends AppCompatActivity implements ReviewView {
         MainApplication application = (MainApplication) this.getApplication();
         application.setReviewView(this);
 
-        this.reviewController.loadReviews();
+        if(this.locationId == ReviewActivity.DEFAULT_ID) {
+            this.reviewController.loadUserReviews();
+        }
+        else {
+            this.reviewController.loadLocationReviews(this.locationId);
+        }
     }
 
     @Override

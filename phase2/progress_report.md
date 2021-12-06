@@ -90,9 +90,12 @@ needed our attention.
 
 ## Testing ##
 
-Currently, we have tested AccountManager.java and ReviewManager.java that fall under the Use Case layer of Clean
-Architecture. At this stage, due to the way we have designed our program it is still a bit hard to test serialization,
-but we are working on refactoring our code and adding better suited design patterns to test our serialization classes.
+Due to the intense amount of refactoring and repeated changes to the main part of our program, currently we have 
+finished testing for usecase/data, usecase/interactors/review, and adapter/presenters. However, we are still left 
+with usecase/interactors/account and usecase/interactors/location and adapter/controllers. This should be finished by 
+Wednesday!
+
+(insert test coverage report)
 
 ## Progress Report ##
 
@@ -115,7 +118,7 @@ but we are working on refactoring our code and adding better suited design patte
   |--------------|----------------------------------------------------------|------------------------------------|
   | Ashenafee    |                                                          |                                    |
   | Anthony      |                                                          |                                    |
-  | Erica        |                                                          |                                    |
+  | Erica        | Worked on creating AccountMenu for the GUI and testing for everything including presenters and usecases.                                                        | insert use-case check pull request                                   |
   | Rebecca      |                                                          |                                    |
-  | Syed         |                                                          |                                    |
-  | Vaishnavi    |                                                          |                                    |
+  | Syed         | Worked on testing everything and finding and fixing bugs in testcases. Also, worked on adding markers to the map and trying to set map boundaries. | Not available till use-case check branch is merged |
+  | Vaishnavi    | Helped assist with the GUI by working on some of the xml files need for location previews and cleaning up previously made xml files. Helped create a potential filter for each type of location (food location and study location). Helped merge branches and made pull requests.| https://github.com/CSC207-UofT/course-project-aarves/pull/84 https://github.com/CSC207-UofT/course-project-aarves/pull/92                                   |
