@@ -95,14 +95,11 @@ finished testing for usecase/data, usecase/interactors/review, and adapter/prese
 with usecase/interactors/account and usecase/interactors/location and adapter/controllers. This should be finished by 
 Wednesday!
 
-(insert test coverage report)
-
 ## Progress Report ##
 
 1. Open questions we are struggling with:
-- How to implement serialization so that it best follows clean architecture (see Clean Architecture for more information)
-- How to place points on the MapBox map.
-- Where information on the hours of service/price range of some locations can be obtained (possibly through MapBox).
+- Where information on the hours of service/price range of some locations can be obtained.
+    - What APIs might be useful to fetch this data (MapBox does not provide this information).
 
 2. What worked well so far:
 - Keeping team members updated on progress through active team group chat
