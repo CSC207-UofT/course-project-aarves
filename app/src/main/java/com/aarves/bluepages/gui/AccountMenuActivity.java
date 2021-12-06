@@ -5,17 +5,25 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.aarves.bluepages.MainApplication;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.aarves.bluepages.R;
+import com.aarves.bluepages.MainApplication;
+import com.aarves.bluepages.adapter.controllers.AccountController;
 import com.aarves.bluepages.adapter.presenters.AccountMenuView;
 
-public class AccountMenuActivity extends AccountViewImpl implements AccountMenuView {
+public class AccountMenuActivity extends AppCompatActivity implements AccountMenuView {
+    private AccountController accountController;
+
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_account_menu);
 
-        ((MainApplication) this.getApplication()).setAccountMenuView(this);
+        MainApplication application = (MainApplication) this.getApplication();
+        this.accountController = application.getAdapters().getAccountController();
+        application.setAccountMenuView(this);
+
         this.accountController.loadAccountInformation();
     }
 
