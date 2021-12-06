@@ -46,7 +46,6 @@ class ReviewRepositoryImplTest {
         assertEquals(size, reviewDAO.reviews.size());
     }
 
-    // TODO: not passing
     @Test
     void getReview() {
         Review r = new Review(0,"reviewer", 34, 1);
@@ -77,5 +76,20 @@ class ReviewRepositoryImplTest {
 
     @Test
     void getReviewsByLocation() {
+        Review r = new Review(0,"reviewer", 34, 1);
+        reviewRepository.addReview(r);
+        List<Review> resultList = reviewRepository.getReviewsByLocation(34);
+        List<Review> newList = new ArrayList<>();
+        newList.add(r);
+
+        int id3 = 0;
+        int id4 = 0;
+
+        id3 = resultList.get(0).getLocationId();
+        id4 = newList.get(0).getLocationId();
+
+        assertEquals(id3, id4);
+
+
     }
 }
