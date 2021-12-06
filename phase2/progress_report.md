@@ -95,6 +95,8 @@ finished testing for usecase/data, usecase/interactors/review, and adapter/prese
 with usecase/interactors/account and usecase/interactors/location and adapter/controllers. This should be finished by 
 Wednesday!
 
+(insert test coverage report)
+
 ## Progress Report ##
 
 1. Open questions we are struggling with:
@@ -116,7 +118,7 @@ Wednesday!
   |--------------|----------------------------------------------------------|------------------------------------|
   | Ashenafee    |                                                          |                                    |
   | Anthony      |                                                          |                                    |
-  | Erica        |                                                          |                                    |
+  | Erica        | Worked on creating AccountMenu for the GUI and testing for everything including presenters and usecases.                                                        | insert use-case check pull request                                   |
   | Rebecca      |                                                          |                                    |
   | Syed         | Worked on testing everything and finding and fixing bugs in testcases. Also, worked on adding markers to the map and trying to set map boundaries. | Not available till use-case check branch is merged |
   | Vaishnavi    | Helped assist with the GUI by working on some of the xml files need for location previews and cleaning up previously made xml files. Helped create a potential filter for each type of location (food location and study location). Helped merge branches and made pull requests.| https://github.com/CSC207-UofT/course-project-aarves/pull/84 https://github.com/CSC207-UofT/course-project-aarves/pull/92                                   |
