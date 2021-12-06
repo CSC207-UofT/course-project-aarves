@@ -1,6 +1,7 @@
 package com.aarves.bluepages.adapter;
 
 import com.aarves.bluepages.adapter.controllers.AccountController;
+import com.aarves.bluepages.adapter.controllers.BookmarkController;
 import com.aarves.bluepages.adapter.controllers.ReviewController;
 import com.aarves.bluepages.adapter.presenters.*;
 
@@ -10,6 +11,7 @@ import com.aarves.bluepages.usecase.data.review.ReviewDAO;
 
 import com.aarves.bluepages.usecase.interactors.account.AccountManager;
 import com.aarves.bluepages.usecase.interactors.account.AccountUseCaseInjector;
+import com.aarves.bluepages.usecase.interactors.location.BookmarkManager;
 import com.aarves.bluepages.usecase.interactors.location.LocationUseCaseInjector;
 import com.aarves.bluepages.usecase.interactors.review.ReviewManager;
 import com.aarves.bluepages.usecase.interactors.review.ReviewUseCaseInjector;
@@ -21,6 +23,7 @@ public class AdapterInjector {
     private final AccountPresenter accountPresenter;
     private final ReviewController reviewController;
     private final ReviewPresenter reviewPresenter;
+    private final BookmarkController bookmarkController;
 
     public AdapterInjector(AccountDAO accountDAO, LocationDAO locationDAO, ReviewDAO reviewDAO) throws NoSuchAlgorithmException {
         this.accountPresenter = new AccountPresenter();
@@ -34,8 +37,11 @@ public class AdapterInjector {
         ReviewManager reviewManager = reviewInjector.getReviewManager();
         accountManager.addObserver(reviewManager);
 
+        BookmarkManager bookmarkManager = locationInjector.getBookmarkManager();
+
         this.accountController = new AccountController(accountManager);
         this.reviewController = new ReviewController(reviewManager);
+        this.bookmarkController = new BookmarkController(bookmarkManager);
     }
 
     public AccountController getAccountController() {
@@ -52,6 +58,10 @@ public class AdapterInjector {
 
     public ReviewController getReviewController() {
         return this.reviewController;
+    }
+
+    public BookmarkController getBookmarkController() {
+        return this.bookmarkController;
     }
 
     public void setReviewView(ReviewView reviewView) {

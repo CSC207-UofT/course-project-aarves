@@ -12,21 +12,25 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aarves.bluepages.R;
+import com.aarves.bluepages.adapter.controllers.BookmarkController;
 import com.aarves.bluepages.adapter.presenters.LocationViewModel;
 import com.aarves.bluepages.usecase.data.location.LocationType;
+import com.aarves.bluepages.usecase.exceptions.NotLoggedInException;
 
 import java.util.ArrayList;
 
 public class LocationArrayAdapter extends ArrayAdapter<LocationViewModel> {
     private final Context context;
     private final int resource;
+    private final BookmarkController bookmarkController;
 
     // Temp LocationViewModel call as we don't have a controller yet
-    public LocationArrayAdapter(Context context, int resource, ArrayList<LocationViewModel> locations) {
+    public LocationArrayAdapter(Context context, int resource, ArrayList<LocationViewModel> locations, BookmarkController bookmarkController) {
         super(context, resource, locations);
 
         this.context = context;
         this.resource = resource;
+        this.bookmarkController = bookmarkController;
     }
 
     @Override
@@ -52,23 +56,22 @@ public class LocationArrayAdapter extends ArrayAdapter<LocationViewModel> {
 
         // Set a listener for the review button
         Button locationReviewButton = convertView.findViewById(R.id.locationLeaveReview);
-        locationReviewButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Start activity CreateReviewActivity and pass in the locationID, needed to create the review
-                Intent intent = new Intent(context, CreateReviewActivity.class);
-                // TODO: Send an actual location ID
-                intent.putExtra("locationID", 1);
-                context.startActivity(intent);
-            }
+        locationReviewButton.setOnClickListener(v -> {
+            // Start activity CreateReviewActivity and pass in the locationID, needed to create the review
+            Intent intent = new Intent(context, CreateReviewActivity.class);
+            // TODO: Send an actual location ID
+            intent.putExtra("locationID", 1);
+            context.startActivity(intent);
         });
 
         // Set a listener for the bookmark button
         Button locationBookmarkButton = convertView.findViewById(R.id.locationBookmark);
-        locationBookmarkButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO: On click method
+        locationBookmarkButton.setOnClickListener(v -> {
+            try {
+                // TODO: Use actual review ID
+                this.bookmarkController.addBookmark(1);
+            } catch (NotLoggedInException e) {
+                e.printStackTrace();
             }
         });
 
