@@ -23,6 +23,7 @@ public class Review {
         this.reviewer = reviewer;
         this.locationId = locationId;
         this.rating = rating;
+        this.body = "";
 
         this.reviewId = reviewId;
     }
@@ -41,6 +42,7 @@ public class Review {
         this.reviewer = reviewer;
         this.locationId = locationId;
         this.rating = rating;
+        this.body = "";
 
         this.reviewId = Review.DEFAULT_ID;
     }
