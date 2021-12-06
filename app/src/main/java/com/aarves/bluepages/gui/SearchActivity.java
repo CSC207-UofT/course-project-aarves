@@ -26,6 +26,8 @@ import com.aarves.bluepages.entities.Location;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
 public class SearchActivity extends AppCompatActivity {
 
 
@@ -61,9 +63,10 @@ private void searchConfiguration() {
                     LookupController lc = new LookupController();
                     MapboxGateway mg = new MapboxGateway();
                     JSONObject json = lc.lookupLocation(editText.getText().toString(), getResources().getString(R.string.mapbox_access_token));
-                    ArrayList<Location> locationArray = mg.parseInformation(json);
+                    HashMap<Location, String> locationMap = mg.parseInformation(json);
+                    ArrayList<Location> locations = new ArrayList<>(locationMap.keySet());
 
-                    for (Location loc: locationArray) {
+                    for (Location loc: locations) {
                         System.out.println(loc);
                     }
                 }
