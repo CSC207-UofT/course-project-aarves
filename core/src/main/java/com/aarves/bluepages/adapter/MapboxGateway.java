@@ -52,4 +52,34 @@ public class MapboxGateway {
         return placeArray;
     }
 
+    /**
+     * Get the address of the point of interest.
+     * @param json JSONObject containing the raw response.
+     * @return String containing the address of the point of interest.
+     */
+    public String getPointAddress(JSONObject json) {
+        JSONArray features = new JSONArray();
+        try {
+            features = json.getJSONArray("features");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        if (features.length() > 0) {
+            try {
+                JSONObject place = features.getJSONObject(0);
+                // If 'address' property exists, get address from there
+                if (place.getJSONObject("properties").has("address")) {
+                    return place.getJSONObject("properties").getString("address");
+                } else {
+                    return place.getString("address") + " " + place.getString("text");
+                }
+            }
+            catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return "";
+    }
+
 }

@@ -12,6 +12,7 @@ import com.aarves.bluepages.adapter.controllers.LookupController;
 import com.aarves.bluepages.entities.Location;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.JsonElement;
+import com.mapbox.api.geocoding.v5.MapboxGeocoding;
 import com.mapbox.geojson.BoundingBox;
 import com.mapbox.geojson.Feature;
 import com.mapbox.geojson.Geometry;
@@ -26,6 +27,8 @@ import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
+import com.mapbox.maps.CameraBoundsOptions;
+import com.mapbox.maps.CoordinateBounds;
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONObject;
 
@@ -34,12 +37,11 @@ import java.util.List;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
-    private MapView mapView;
     private @NotNull MapboxMap mapboxMap;
 
     // Set LatLng for bloorBay and collegeSpadina
-    private final LatLng bloorBay = new LatLng(43.67121768976685, -79.38297760120373);
-    private final LatLng collegeSpadina = new LatLng(43.653559622123446, -79.40543276088096);
+    private final LatLng northEast = new LatLng(43.67121768976685, -79.38297760120373);
+    private final LatLng southWest = new LatLng(43.653559622123446, -79.40543276088096);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +51,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_map);
 
         // Bind the map to just the vicinity around campus
-        mapView = findViewById(R.id.mapView);
+        MapView mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
         searchConfiguration();
@@ -62,27 +64,24 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         EditText editText = this.findViewById(R.id.search);
         editText.setOnEditorActionListener((v, actionId, event) -> {
             boolean handled = false;
+            // Listen for the enter key
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 new Thread() {
                     public void run() {
+                        // Take the user's input and search for it
                         LookupController lc = new LookupController();
                         MapboxGateway mg = new MapboxGateway();
                         JSONObject json = lc.lookupLocation(editText.getText().toString(), getResources().getString(R.string.mapbox_access_token));
                         ArrayList<Location> locationArray = mg.parseInformation(json);
 
-                        // Show snackbar on UI thread
                         runOnUiThread(() -> {
-                            if (locationArray.size() > 0) {
-                                Location location = locationArray.get(0);
-                                Snackbar.make(findViewById(R.id.mapView), "First result: " + location.getAddress(), Snackbar.LENGTH_LONG).show();
-                            }
-
                             // Add the points to the map
                             mapboxMap.clear();
                             for (Location location : locationArray) {
                                 mapboxMap.addMarker(new MarkerOptions()
                                         .position(new LatLng(location.getCoordinates()[1], location.getCoordinates()[0]))
-                                        .title(location.getName()));
+                                        .title(location.getName())
+                                        .snippet(location.getAddress()));
                             }
 
                             // Zoom camera to first result
@@ -91,9 +90,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                             }
 
                         });
-                        for (Location loc: locationArray) {
-                            System.out.println(loc);
-                        }
                     }
                 }.start();
                 handled = true;
@@ -115,7 +111,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             List<Feature> features = mapboxMap.queryRenderedFeatures(screenPoint);
             if (!features.isEmpty()) {
 
-                // Get the first feature where geometry is a point
+                // Get the first feature where geometry is a Point
                 for (Feature feature : features) {
                     if (feature.geometry().type().equals("Point")) {
                         // Get latitude and longitude of the feature
@@ -123,33 +119,45 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         double latitude = coordinates.latitude();
                         double longitude = coordinates.longitude();
 
-                        String name = feature.getStringProperty("name");
-                        mapboxMap.addMarker(new MarkerOptions()
-                                .position(new LatLng(latitude, longitude))
-                                .title(name));
-                        Snackbar.make(findViewById(R.id.mapView), "You clicked on " + name, Snackbar.LENGTH_LONG).show();
+                        // Get the address of the feature
+                        new Thread() {
+                            public void run() {
+                                LookupController lc = new LookupController();
+                                JSONObject json = lc.lookupLocation( longitude + "," + latitude, getResources().getString(R.string.mapbox_access_token));
+                                String address = new MapboxGateway().getPointAddress(json);
+
+                                // Return the address to the UI thread
+                                runOnUiThread(() -> {
+                                    String name = feature.getStringProperty("name");
+
+                                    // Display pinpoint graphic with location name and address
+                                    mapboxMap.addMarker(new MarkerOptions()
+                                            .position(new LatLng(latitude, longitude))
+                                            .title(name)
+                                            .snippet(address));
+                                });
+                            }
+                        }.start();
                     }
                 }
             }
             return true;
         });
 
-        // Zoom camera in to bloorBay and collegeSpadina
+        // Zoom camera in to the downtown core
         mapboxMap.setCameraPosition(new CameraPosition.Builder()
-                .target(bloorBay)
-                .target(collegeSpadina)
-                .zoom(15)
+                .zoom(13)
                 .build());
 
-        // Set latlngbounds
+        // Build the bounds of the map
         LatLngBounds latLngBounds = new LatLngBounds.Builder()
-                .include(bloorBay)
-                .include(collegeSpadina)
+                .include(northEast)
+                .include(southWest)
                 .build();
 
         // Set camera bounds
         mapboxMap.setLatLngBoundsForCameraTarget(latLngBounds);
-        mapboxMap.setMinZoomPreference(15);
-        mapboxMap.setMaxZoomPreference(18);
+        mapboxMap.setMinZoomPreference(13);
+        mapboxMap.setMaxZoomPreference(17);
     }
 }

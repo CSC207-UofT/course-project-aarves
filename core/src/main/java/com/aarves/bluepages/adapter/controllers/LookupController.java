@@ -9,8 +9,9 @@ import java.io.IOException;
 
 public class LookupController {
 
-    private static String MAPBOX_PREFIX = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
-    private static String MAPBOX_SUFFIX = ".json?country=ca&bbox=-79.40543276088096%2C43.653559622123446%2C-79.38297760120373%2C43.67121768976685&proximity=-79.39593184050538%2C43.66099799082462&language=en&access_token=";
+    private static final String MAPBOX_PREFIX = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
+    private static final String MAPBOX_SUFFIX = ".json?country=ca&bbox=-79.40543276088096%2C43.653559622123446%2C-79.38297760120373%2C43.67121768976685&proximity=-79.39593184050538%2C43.66099799082462&language=en&access_token=";
+    private static final String MAPBOX_COORD_SUFFIX = ".json?limit=1&access_token=";
 
     /**
      * Lookup a user-inputted location using the MapBox API.
@@ -21,7 +22,12 @@ public class LookupController {
     public JSONObject lookupLocation(String location, String token) {
         Document doc = null;
         try {
-            String mapboxUrl = MAPBOX_PREFIX + location + MAPBOX_SUFFIX + token;
+            String mapboxUrl;
+            if (location.contains(",")) {
+                mapboxUrl = MAPBOX_PREFIX + location + MAPBOX_COORD_SUFFIX + token;
+            } else {
+                mapboxUrl = MAPBOX_PREFIX + location + MAPBOX_SUFFIX + token;
+            }
             doc = Jsoup.connect(mapboxUrl).ignoreContentType(true).get();
         } catch (IOException e) {
             e.printStackTrace();
