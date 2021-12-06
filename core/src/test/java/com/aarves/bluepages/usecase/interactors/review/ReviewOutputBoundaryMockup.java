@@ -1,13 +1,15 @@
 package com.aarves.bluepages.usecase.interactors.review;
 
+import com.aarves.bluepages.entities.Review;
 import com.aarves.bluepages.usecase.interactors.review.ReviewOutputBoundary;
 import com.aarves.bluepages.usecase.interactors.review.ReviewOutputModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 class ReviewOutputBoundaryMockup implements ReviewOutputBoundary {
 
-    List<ReviewOutputModel> allReviews;
+    List<ReviewOutputModel> allReviews = new ArrayList<>();
     boolean presentedReviews;
 
     public void setAllReviews(List<ReviewOutputModel> newReviews){
