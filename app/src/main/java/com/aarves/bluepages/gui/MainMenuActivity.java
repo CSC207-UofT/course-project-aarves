@@ -7,13 +7,25 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.aarves.bluepages.R;
+import com.aarves.bluepages.MainApplication;
+import com.aarves.bluepages.adapter.controllers.AccountController;
 
 public class MainMenuActivity extends AppCompatActivity {
+    private AccountController accountController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+        MainApplication application = (MainApplication) this.getApplication();
+        this.accountController = application.getAdapters().getAccountController();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (!this.accountController.isLoggedIn()) {
+            super.onBackPressed();
+        }
     }
 
     /**
@@ -27,11 +39,6 @@ public class MainMenuActivity extends AppCompatActivity {
 
     public void viewAccount(View view) {
         Intent intent = new Intent(this, AccountMenuActivity.class);
-        startActivity(intent);
-    }
-
-    public void createReview(View view) {
-        Intent intent = new Intent(this, CreateReviewActivity.class);
         startActivity(intent);
     }
 

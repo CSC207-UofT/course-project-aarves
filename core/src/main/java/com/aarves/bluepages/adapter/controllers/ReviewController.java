@@ -10,8 +10,12 @@ public class ReviewController {
         this.reviewInput = reviewInput;
     }
 
-    public void loadReviews() {
+    public void loadUserReviews() {
         this.reviewInput.loadUserReviews();
+    }
+
+    public void loadLocationReviews(int locationId) {
+        this.reviewInput.loadLocationReviews(locationId);
     }
 
     public void createReview(int locationId, int rating, String reviewBody) {

@@ -100,23 +100,23 @@
                 android:layout_height="wrap_content"
                 android:text="View on map"/>
         <Button
-                android:id="@+id/locationBookmark"
+                android:id="@+id/locationReviews"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Bookmark"/>
+                android:text="Reviews"/>
     </LinearLayout>
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="match_parent"
                   android:orientation="horizontal">
         <Button
-                android:id="@+id/locationReviews"
+                android:id="@+id/locationBookmark"
                 android:layout_marginLeft="10dp"
                 android:layout_width="150dp"
                 android:layout_marginRight="10dp"
                 android:layout_height="wrap_content"
-                android:text="Reviews"/>
+                android:text="Bookmarks"/>
         <Button
                 android:id="@+id/locationLeaveReview"
                 android:layout_marginLeft="10dp"

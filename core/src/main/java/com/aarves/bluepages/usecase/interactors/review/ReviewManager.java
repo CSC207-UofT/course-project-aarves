@@ -85,6 +85,13 @@ public class ReviewManager implements ReviewAccountInputBoundary, ReviewLocation
     }
 
     @Override
+    public void loadLocationReviews(int locationId) {
+        List<Review> reviews = this.reviewRepository.getReviewsByLocation(locationId);
+        List<ReviewOutputModel> reviewOutputModels = ReviewOutputMapper.mapToOutputModels(reviews);
+        this.reviewOutput.presentReviews(reviewOutputModels);
+    }
+
+    @Override
     public float getLocationRating(int locationId) {
         List<Review> reviews = this.reviewRepository.getReviewsByLocation(locationId);
         int sum = 0;
@@ -98,13 +105,6 @@ public class ReviewManager implements ReviewAccountInputBoundary, ReviewLocation
         else {
             return 0;
         }
-    }
-
-    @Override
-    public void loadLocationReviews(int locationId) {
-        List<Review> reviews = this.reviewRepository.getReviewsByLocation(locationId);
-        List<ReviewOutputModel> reviewOutputModels = ReviewOutputMapper.mapToOutputModels(reviews);
-        this.reviewOutput.presentReviews(reviewOutputModels);
     }
 
     @Override
