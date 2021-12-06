@@ -34,4 +34,9 @@ public class MainMenuActivity extends AppCompatActivity {
         Intent intent = new Intent(this, CreateReviewActivity.class);
         startActivity(intent);
     }
+
+    public void viewLocations(View view) {
+        Intent intent = new Intent(this, LocationActivity.class);
+        startActivity(intent);
+    }
 }
