@@ -1,9 +1,9 @@
 package com.aarves.bluepages.gui;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.widget.Toast;
 import android.os.Bundle;
 import android.widget.ListView;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.aarves.bluepages.R;
 import com.aarves.bluepages.MainApplication;
@@ -39,5 +39,16 @@ public class ReviewActivity extends AppCompatActivity implements ReviewView {
     public void displayReviews(List<ReviewViewModel> reviews) {
         this.reviewAdapter.clear();
         this.reviewAdapter.addAll(reviews);
+    }
+
+    @Override
+    public void displayPopUp(String message) {
+        Toast popUp = Toast.makeText(this.getApplicationContext(), message, Toast.LENGTH_SHORT);
+        popUp.show();
+    }
+
+    @Override
+    public void finishActivity() {
+        this.finish();
     }
 }

@@ -10,7 +10,7 @@ public class AccountPresenter implements AccountOutputBoundary {
 
     @Override
     public void loginResult(LoginResult result, String username) {
-        if(this.verifyDependencies()) {
+        if(this.accountView != null) {
             String message;
             switch(result) {
                 case SUCCESS:
@@ -33,7 +33,7 @@ public class AccountPresenter implements AccountOutputBoundary {
 
     @Override
     public void registerResult(RegisterResult result) {
-        if(this.verifyDependencies()) {
+        if(this.accountView != null) {
             String message;
             switch(result) {
                 case SUCCESS:
@@ -57,17 +57,20 @@ public class AccountPresenter implements AccountOutputBoundary {
     }
 
     public void displayLogout() {
-        if(this.verifyDependencies()) {
+        if(this.accountView != null) {
             this.accountView.displayPopUp("Account logged out successfully.");
-
             this.accountView.returnToAccessMenu();
             this.accountView.finishActivity();
+        }
+        else if(this.accountMenuView != null) {
+            this.accountMenuView.displayPopUp("Account logged out successfully.");
+            this.accountMenuView.finishActivity();
         }
     }
 
     @Override
     public void displayInformation(String username) {
-        if(this.verifyMenuDependencies()) {
+        if(this.accountMenuView != null) {
             if(!username.isEmpty()) {
                 this.accountMenuView.displayAccountInformation(username);
             }
@@ -83,13 +86,5 @@ public class AccountPresenter implements AccountOutputBoundary {
 
     public void setAccountMenuView(AccountMenuView accountMenuView) {
         this.accountMenuView = accountMenuView;
-    }
-
-    private boolean verifyDependencies() {
-        return this.accountView != null;
-    }
-
-    private boolean verifyMenuDependencies() {
-        return this.accountMenuView != null;
     }
 }

@@ -14,8 +14,17 @@ public class ReviewController {
         this.reviewInput.loadReviews();
     }
 
-    public void createReview(int locationId, int rating, String reviewBody) throws NotLoggedInException {
-        this.reviewInput.createReview(locationId, rating, reviewBody);
+    public void createReview(int locationId, int rating, String reviewBody) {
+        try {
+            if (!reviewBody.isEmpty()) {
+                this.reviewInput.createReview(locationId, rating, reviewBody);
+            } else {
+                this.reviewInput.createReview(locationId, rating);
+            }
+        }
+        catch(NotLoggedInException exception) {
+            exception.printStackTrace();
+        }
     }
 
 }

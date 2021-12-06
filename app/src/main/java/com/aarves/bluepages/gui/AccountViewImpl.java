@@ -1,10 +1,9 @@
 package com.aarves.bluepages.gui;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.aarves.bluepages.MainApplication;
 import com.aarves.bluepages.adapter.controllers.AccountController;
@@ -24,7 +23,7 @@ public class AccountViewImpl extends AppCompatActivity implements AccountView {
 
     @Override
     public void displayPopUp(String message) {
-        Toast popUp = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
+        Toast popUp = Toast.makeText(this.getApplicationContext(), message, Toast.LENGTH_SHORT);
         popUp.show();
     }
 
