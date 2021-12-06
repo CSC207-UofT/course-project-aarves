@@ -9,7 +9,5 @@ public interface AccountInputBoundary {
     void logout();
 
     void register(String username, String password, String confirmPassword);
-
-    // TODO: Fix Later
-    User getUser();
+    void loadInformation();
 }

@@ -46,6 +46,14 @@ public class Review {
     }
 
     /**
+     * Return the ID associated with this Review.
+     * @return  Integer representing the ID of the Review.
+     */
+    public int getReviewId() {
+        return this.reviewId;
+    }
+
+    /**
      * Return the String representing the username of the User who left this Review.
      * @return  String representing the username of the User creating the Review.
      */
@@ -83,14 +91,6 @@ public class Review {
 
     public void setBody(String body) {
         this.body = body;
-    }
-
-    /**
-     * Return the ID associated with this Review.
-     * @return  Integer representing the ID of the Review.
-     */
-    public int getReviewId() {
-        return this.reviewId;
     }
 
     @Override

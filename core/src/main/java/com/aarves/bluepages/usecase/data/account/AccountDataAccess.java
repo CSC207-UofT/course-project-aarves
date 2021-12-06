@@ -1,17 +1,14 @@
-package com.aarves.bluepages.usecase.data;
+package com.aarves.bluepages.usecase.data.account;
 
 import com.aarves.bluepages.usecase.interactors.account.AccountDataBoundary;
-import com.aarves.bluepages.usecase.interactors.review.ReviewRepository;
 import com.aarves.bluepages.usecase.exceptions.PermissionsFailureException;
 import com.aarves.bluepages.entities.User;
 
 public class AccountDataAccess implements AccountDataBoundary {
     private final AccountDAO accountDAO;
-    private final ReviewRepository reviewRepository;
 
-    public AccountDataAccess(AccountDAO accountDAO, ReviewRepository reviewRepository) {
+    public AccountDataAccess(AccountDAO accountDAO) {
         this.accountDAO = accountDAO;
-        this.reviewRepository = reviewRepository;
     }
 
     @Override
@@ -31,10 +28,7 @@ public class AccountDataAccess implements AccountDataBoundary {
         }
 
         if(this.isPasswordMatch(username, passwordHash)) {
-            User user = new User(username, passwordHash);
-            user.setReviews(this.reviewRepository.getReviewsByUser(user));
-
-            return user;
+            return new User(username, passwordHash);
         }
         else {
             throw new PermissionsFailureException();
