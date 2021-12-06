@@ -67,6 +67,7 @@ public class LocationArrayAdapter extends ArrayAdapter<LocationViewModel> {
             // Start activity CreateReviewActivity and pass in the locationID, needed to create the review
             Intent intent = new Intent(context, CreateReviewActivity.class);
             intent.putExtra(LocationActivity.LOCATION_ID, location.getLocationId());
+            intent.putExtra(ReviewActivity.LOCATION_NAME, location.getLocationName());
             context.startActivity(intent);
         });
 

@@ -16,6 +16,7 @@ import java.util.List;
 public class ReviewActivity extends AppCompatActivity implements ReviewView {
     public static final String LOCATION_ID = "locationId";
     public static final int DEFAULT_ID = 0;
+    public static final String LOCATION_NAME = "locationName";
 
     private ReviewController reviewController;
     private ReviewArrayAdapter reviewAdapter;

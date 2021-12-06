@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,6 +33,10 @@ public class CreateReviewActivity extends AppCompatActivity implements BasicView
         // Get Location ID
         Bundle extras = this.getIntent().getExtras();
         this.locationId = extras.getInt(LocationActivity.LOCATION_ID, 0);
+
+        // Get location name and set the title
+        TextView locationName = findViewById(R.id.locationName);
+        locationName.setText(extras.getString(ReviewActivity.LOCATION_NAME, "Location Name"));
     }
 
     @Override
