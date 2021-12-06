@@ -16,8 +16,6 @@ import java.util.List;
 public class LocationActivity extends AppCompatActivity implements LocationView {
     public static final String LOCATION_ID = "locationId";
     public static final String IS_BOOKMARK = "isBookmark";
-    public static final String USERNAME = "username";
-    public static final String GUEST = "Guest";
 
     private LocationController locationController;
     private AccountController accountController;
@@ -37,7 +35,7 @@ public class LocationActivity extends AppCompatActivity implements LocationView 
         application.setLocationView(this);
 
         // Inject the locations into the views
-        this.locationAdapter = new LocationArrayAdapter(this, R.layout.activity_location, locationController, accountController);
+        this.locationAdapter = new LocationArrayAdapter(this, R.layout.activity_location, this.accountController, this.locationController);
         locationListView.setAdapter(this.locationAdapter);
 
         // Check if bookmarked locations or all locations

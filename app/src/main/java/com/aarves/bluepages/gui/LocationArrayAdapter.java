@@ -17,19 +17,19 @@ import com.aarves.bluepages.adapter.controllers.LocationController;
 import com.aarves.bluepages.adapter.presenters.LocationViewModel;
 
 public class LocationArrayAdapter extends ArrayAdapter<LocationViewModel> {
-    private final LocationController locationController;
     private final AccountController accountController;
+    private final LocationController locationController;
     private final Context context;
     private final int resource;
 
-    public LocationArrayAdapter(Context context, int resource, LocationController locationController, AccountController accountController) {
+    public LocationArrayAdapter(Context context, int resource, AccountController accountController, LocationController locationController) {
         super(context, resource);
 
         this.context = context;
         this.resource = resource;
 
-        this.locationController = locationController;
         this.accountController = accountController;
+        this.locationController = locationController;
     }
 
     @Override
@@ -51,18 +51,6 @@ public class LocationArrayAdapter extends ArrayAdapter<LocationViewModel> {
         }
         else {
             locationImage.setImageResource(R.drawable.ic_baseline_restaurant_24);
-        }
-
-        // Set the button visibility - guest/not guest
-        Button bookmarkButton = convertView.findViewById(R.id.locationBookmark);
-        Button reviewButton = convertView.findViewById(R.id.locationLeaveReview);
-        if (accountController.isLoggedIn()) {
-            bookmarkButton.setVisibility(View.VISIBLE);
-            reviewButton.setVisibility(View.VISIBLE);
-        }
-        else {
-            bookmarkButton.setVisibility(View.GONE);
-            reviewButton.setVisibility(View.GONE);
         }
 
         RatingHelper.setRating(convertView, location.getRating());
@@ -95,6 +83,16 @@ public class LocationArrayAdapter extends ArrayAdapter<LocationViewModel> {
 
             this.toggleBookmark(locationBookmarkButton, location.isBookmarked());
         });
+
+        // Set the button visibility - guest/not guest
+        if (accountController.isLoggedIn()) {
+            locationBookmarkButton.setVisibility(View.VISIBLE);
+            locationLeaveReviewButton.setVisibility(View.VISIBLE);
+        }
+        else {
+            locationBookmarkButton.setVisibility(View.GONE);
+            locationLeaveReviewButton.setVisibility(View.GONE);
+        }
 
         return convertView;
     }

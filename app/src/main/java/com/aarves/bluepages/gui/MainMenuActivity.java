@@ -6,10 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.aarves.bluepages.MainApplication;
 import com.aarves.bluepages.R;
+import com.aarves.bluepages.MainApplication;
 import com.aarves.bluepages.adapter.controllers.AccountController;
-import com.aarves.bluepages.adapter.controllers.ReviewController;
 
 public class MainMenuActivity extends AppCompatActivity {
     private AccountController accountController;
@@ -24,7 +23,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (!(this.accountController.isLoggedIn())) {
+        if (!this.accountController.isLoggedIn()) {
             super.onBackPressed();
         }
     }
@@ -40,11 +39,6 @@ public class MainMenuActivity extends AppCompatActivity {
 
     public void viewAccount(View view) {
         Intent intent = new Intent(this, AccountMenuActivity.class);
-        startActivity(intent);
-    }
-
-    public void createReview(View view) {
-        Intent intent = new Intent(this, CreateReviewActivity.class);
         startActivity(intent);
     }
 
