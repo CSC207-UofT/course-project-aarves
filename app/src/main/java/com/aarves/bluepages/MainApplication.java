@@ -5,6 +5,7 @@ import android.app.Application;
 import com.aarves.bluepages.adapter.AdapterInjector;
 import com.aarves.bluepages.adapter.presenters.AccountMenuView;
 import com.aarves.bluepages.adapter.presenters.AccountView;
+import com.aarves.bluepages.adapter.presenters.BasicView;
 import com.aarves.bluepages.adapter.presenters.ReviewView;
 
 import java.security.NoSuchAlgorithmException;
@@ -37,5 +38,9 @@ public class MainApplication extends Application {
 
     public void setReviewView(ReviewView reviewView) {
         this.getAdapters().setReviewView(reviewView);
+    }
+
+    public void setReviewBaseView(BasicView baseView) {
+        this.getAdapters().setReviewBaseView(baseView);
     }
 }

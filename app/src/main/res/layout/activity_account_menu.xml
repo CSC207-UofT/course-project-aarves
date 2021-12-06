@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
 
               android:paddingLeft="16dp"
               android:paddingRight="16dp"
               android:orientation="vertical"
-              android:background="@color/mapbox_blue"
->
+              android:background="@color/mapbox_blue">
 
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="61dp"/>
     <ImageView
             android:layout_width="250dp"
-            android:layout_height="350dp"
+            android:layout_height="250dp"
             android:layout_gravity="center"
             android:background="@drawable/profileimage"
             android:contentDescription="profile image"/>
-
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="16dp"/>
     <TextView
             android:layout_width="match_parent"
 
@@ -24,9 +27,8 @@
             android:id="@+id/usernameText"
             android:text=""
             android:gravity="center"
-            android:textSize="25dp"
+            android:textSize="25sp"
     />
-
 
     <Button
             android:id="@+id/reviewButton"
@@ -47,7 +49,7 @@
             android:onClick="viewBookmarks"
             android:text="Bookmarks"
             android:layout_gravity="center"
-            />
+    />
 
     <Button
             android:id="@+id/signOutButton"
@@ -55,8 +57,8 @@
             android:layout_height="30dp"
             android:layout_marginTop="12dp"
             android:onClick="signOut"
-            android:text="sign out"
+            android:text="Sign Out"
             android:layout_gravity="center"
-            android:textSize="8dp"/>
+            android:textSize="8sp"/>
 
 </LinearLayout>

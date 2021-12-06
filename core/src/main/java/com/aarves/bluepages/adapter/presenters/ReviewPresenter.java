@@ -7,12 +7,26 @@ import java.util.List;
 
 public class ReviewPresenter implements ReviewOutputBoundary {
     private ReviewView reviewView;
+    private BasicView baseView;
 
     @Override
     public void presentReviews(List<ReviewOutputModel> reviews) {
-        if(this.verifyDependencies()) {
+        if(this.reviewView != null) {
             List<ReviewViewModel> reviewViewModels = ReviewModelMapper.mapToViewModels(reviews);
             this.reviewView.displayReviews(reviewViewModels);
+        }
+    }
+
+    @Override
+    public void createResult(boolean success) {
+        if(this.baseView != null) {
+            if(success) {
+                this.baseView.displayPopUp("Review successfully created!");
+                this.baseView.finishActivity();
+            }
+            else {
+                this.baseView.displayPopUp("Review creation failed. Please try again!");
+            }
         }
     }
 
@@ -20,7 +34,7 @@ public class ReviewPresenter implements ReviewOutputBoundary {
         this.reviewView = reviewView;
     }
 
-    private boolean verifyDependencies() {
-        return this.reviewView != null;
+    public void setBaseView(BasicView baseView) {
+        this.baseView = baseView;
     }
 }

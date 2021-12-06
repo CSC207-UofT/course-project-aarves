@@ -29,4 +29,9 @@ public class MainMenuActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AccountMenuActivity.class);
         startActivity(intent);
     }
+
+    public void createReview(View view) {
+        Intent intent = new Intent(this, CreateReviewActivity.class);
+        startActivity(intent);
+    }
 }
