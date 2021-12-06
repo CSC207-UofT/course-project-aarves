@@ -44,4 +44,8 @@ public class LocationController {
 
         this.locationInput.loadAllLocations(ratings);
     }
+
+    public void refreshBookmarks() {
+        this.bookmarkInput.refreshBookmarks();
+    }
 }
