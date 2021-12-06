@@ -36,8 +36,6 @@ public class MapboxGateway {
                 String placeAddress = place.getJSONObject("properties").getString("address");
                 String placeCategory = place.getJSONObject("properties").getString("category");
 
-                // TODO: More rigorous check to see the type of location
-                // Note: Unable to find information on hours, takeout/dinein, price, indoors, or quiet.
                 if (placeCategory.contains("shop")) {
                     FoodLocation fl = new FoodLocation(placeName, coordinates);
                     placeMap.put(fl, placeAddress);

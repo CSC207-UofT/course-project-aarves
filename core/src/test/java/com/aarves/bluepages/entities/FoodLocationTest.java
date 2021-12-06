@@ -8,12 +8,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FoodLocationTest {
 
-    FoodLocation fl = new FoodLocation("9-12", "Popeyes", "267 College Street",
-            new double[]{43.841970401 - 79.39117270}, "Fast Food", true, true, "6-30");
+    FoodLocation fl = new FoodLocation(100, "Popeyes", new double[]{43.841970401 - 79.39117270});
 
     @BeforeEach
     public void setUp() {
-
     }
 
     @AfterEach
@@ -21,30 +19,19 @@ class FoodLocationTest {
     }
 
     @Test
-    void isDineIn() {
-        assertTrue(fl.isDineIn());
+    void getId() {
+        assertEquals(100, fl.getLocationId());
     }
 
     @Test
-    void isTakeout() {
-        assertTrue(fl.isTakeout());
+    void getName() {
+        assertEquals("Popeyes", fl.getName());
     }
 
     @Test
-    void getFoodType() {
-        assertEquals("Fast Food" ,fl.getFoodType());
-    }
-
-    @Test
-    void getPriceRange() {
-        assertEquals("6-30", fl.getPriceRange());
-    }
-
-    @Test
-    void testToString() {
-        assertEquals("Popeyes" + "\n Address: 267 College Street" + "\n Hours of Service: 9-12" +
-                "\n Food Type: Fast Food" + "\n dine-in: true" + "\n takeout: true" + "\n Price Range: 6-30",
-                fl.toString());
-
+    void getCoordinates() {
+        double[] expected = new double[]{43.841970401 - 79.39117270};
+        double[] actual = fl.getCoordinates();
+        assertEquals(expected, actual);
     }
 }

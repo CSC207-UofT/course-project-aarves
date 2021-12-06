@@ -79,16 +79,14 @@ class UserTest {
 
     @Test
     void addBookmark() {
-        FoodLocation fl = new FoodLocation("9-12", "Popeyes", "267 College Street",
-                new double[]{43.841970401 - 79.39117270}, "Fast Food", true, true, "6-30");
+        FoodLocation fl = new FoodLocation(100, "Popeyes", new double[]{43.841970401 - 79.39117270});
         u1.addBookmark(fl);
         assertTrue(u1.getBookmarks().contains(fl));
     }
 
     @Test
     void deleteBookmark() {
-        FoodLocation fl = new FoodLocation("9-12", "Popeyes", "267 College Street",
-                new double[]{43.841970401 - 79.39117270}, "Fast Food", true, true, "6-30");
+        FoodLocation fl = new FoodLocation(100, "Popeyes", new double[]{43.841970401 - 79.39117270});
         u1.addBookmark(fl);
         u1.deleteBookmark(fl);
 
