@@ -13,8 +13,6 @@ import com.aarves.bluepages.MainApplication;
 import com.aarves.bluepages.adapter.controllers.AccountController;
 import com.aarves.bluepages.adapter.presenters.AccountMenuView;
 
-import java.util.Objects;
-
 public class AccountMenuActivity extends AppCompatActivity implements AccountMenuView {
     private AccountController accountController;
 
@@ -40,15 +38,15 @@ public class AccountMenuActivity extends AppCompatActivity implements AccountMen
         Button bookmarkButton = findViewById(R.id.bookmarkButton);
         Button signOutButton = findViewById(R.id.signOutButton);
 
-        if (Objects.equals(userText, "Guest User")) {
-            reviewButton.setVisibility(View.INVISIBLE);
-            bookmarkButton.setVisibility(View.INVISIBLE);
-            signOutButton.setVisibility(View.INVISIBLE);
-        }
-        else {
+        if (this.accountController.isLoggedIn()) {
             reviewButton.setVisibility(View.VISIBLE);
             bookmarkButton.setVisibility(View.VISIBLE);
             signOutButton.setVisibility(View.VISIBLE);
+        }
+        else {
+            reviewButton.setVisibility(View.INVISIBLE);
+            bookmarkButton.setVisibility(View.INVISIBLE);
+            signOutButton.setVisibility(View.INVISIBLE);
         }
     }
 
