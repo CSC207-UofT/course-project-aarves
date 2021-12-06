@@ -1,4 +1,4 @@
-package com.aarves.bluepages.usecase.data;
+package com.aarves.bluepages.usecase.data.account;
 
 import com.aarves.bluepages.entities.User;
 import com.aarves.bluepages.usecase.interactors.review.ReviewRepositoryMockup;
@@ -10,13 +10,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AccountDataAccessTest {
 
-    AccountDataAccess ada;
-    AccountDAO ao;
+
+    /// AccountDataAccess ada;
+    /// AccountDAO ao;
     ReviewRepositoryMockup rpm;
 
     @BeforeEach
     void setUp() {
-        ada = new AccountDataAccess(ao, rpm);
+    ///    ada = new AccountDataAccess(ao, rpm);
     }
 
     @AfterEach
@@ -26,9 +27,9 @@ class AccountDataAccessTest {
     @Test
     void addAccount() {
         User new_user = new User("Natsyy", "M$a%tB1rya*i");
-        ada.addAccount(new_user);
+        ///ada.addAccount(new_user);
 
-        assertEquals();
+        ///assertEquals();
     }
 
     @Test
