@@ -24,7 +24,6 @@ public class LocationArrayAdapter extends ArrayAdapter<LocationViewModel> {
     private final int resource;
     private final BookmarkController bookmarkController;
 
-    // Temp LocationViewModel call as we don't have a controller yet
     public LocationArrayAdapter(Context context, int resource, ArrayList<LocationViewModel> locations, BookmarkController bookmarkController) {
         super(context, resource, locations);
 
@@ -59,7 +58,7 @@ public class LocationArrayAdapter extends ArrayAdapter<LocationViewModel> {
         locationReviewButton.setOnClickListener(v -> {
             // Start activity CreateReviewActivity and pass in the locationID, needed to create the review
             Intent intent = new Intent(context, CreateReviewActivity.class);
-            // TODO: Send an actual location ID
+            // TODO: Currently using hardcoded location ID
             intent.putExtra("locationID", 1);
             context.startActivity(intent);
         });
@@ -68,7 +67,7 @@ public class LocationArrayAdapter extends ArrayAdapter<LocationViewModel> {
         Button locationBookmarkButton = convertView.findViewById(R.id.locationBookmark);
         locationBookmarkButton.setOnClickListener(v -> {
             try {
-                // TODO: Use actual review ID
+                // TODO: Currently using hardcoded locationID
                 this.bookmarkController.addBookmark(1);
             } catch (NotLoggedInException e) {
                 e.printStackTrace();
