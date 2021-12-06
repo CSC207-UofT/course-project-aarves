@@ -8,26 +8,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LocationOutputMapper {
-    public static List<LocationOutputModel> mapToOutputModels(List<Location> locations) {
+    public static List<LocationOutputModel> mapToOutputModels(List<Location> locations, List<Float> ratings) {
         List<LocationOutputModel> locationOutputModels = new ArrayList<>();
-        for(Location location : locations) {
-            locationOutputModels.add(LocationOutputMapper.mapToOutputModel(location));
+        for(int i = 0; i < locations.size(); i++) {
+            locationOutputModels.add(LocationOutputMapper.mapToOutputModel(locations.get(i), ratings.get(i)));
         }
 
         return locationOutputModels;
     }
 
-    public static LocationOutputModel mapToOutputModel(Location location) {
+    public static LocationOutputModel mapToOutputModel(Location location, float rating) {
         if(location instanceof FoodLocation) {
             return new LocationOutputModel(
                     location.getName(),
-                    LocationType.FOOD
+                    LocationType.FOOD,
+                    rating
             );
         }
         else if(location instanceof StudyLocation) {
             return new LocationOutputModel(
                     location.getName(),
-                    LocationType.STUDY
+                    LocationType.STUDY,
+                    rating
             );
         }
         else {

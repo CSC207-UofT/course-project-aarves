@@ -35,6 +35,17 @@ public class LocationActivity extends AppCompatActivity implements LocationView 
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Set Location controller
+        MainApplication application = (MainApplication) this.getApplication();
+        application.setLocationView(this);
+
+        this.locationController.loadLocations();
+    }
+
+    @Override
     public void displayLocations(List<LocationViewModel> locations) {
         this.locationAdapter.clear();
         this.locationAdapter.addAll(locations);

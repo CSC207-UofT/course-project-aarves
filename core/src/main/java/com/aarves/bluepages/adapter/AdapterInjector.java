@@ -45,7 +45,7 @@ public class AdapterInjector {
         accountManager.addObserver(reviewManager);
 
         this.accountController = new AccountController(accountManager);
-        this.locationController = new LocationController(bookmarkManager, locationMap);
+        this.locationController = new LocationController(bookmarkManager, locationMap, reviewManager);
         this.reviewController = new ReviewController(reviewManager);
     }
 

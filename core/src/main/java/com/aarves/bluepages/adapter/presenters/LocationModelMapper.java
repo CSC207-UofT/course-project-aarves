@@ -18,7 +18,8 @@ public class LocationModelMapper {
     public static LocationViewModel mapToViewModel(LocationOutputModel locationOutputModel) {
         return new LocationViewModel(
                 locationOutputModel.getLocationName(),
-                locationOutputModel.getLocationType().name()
+                locationOutputModel.getLocationType().name(),
+                Math.round(locationOutputModel.getRating())
         );
     }
 }

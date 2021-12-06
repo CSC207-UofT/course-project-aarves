@@ -36,6 +36,16 @@ public class ReviewActivity extends AppCompatActivity implements ReviewView {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+        MainApplication application = (MainApplication) this.getApplication();
+        application.setReviewView(this);
+
+        this.reviewController.loadReviews();
+    }
+
+    @Override
     public void displayReviews(List<ReviewViewModel> reviews) {
         this.reviewAdapter.clear();
         this.reviewAdapter.addAll(reviews);

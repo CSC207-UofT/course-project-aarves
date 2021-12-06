@@ -34,6 +34,7 @@ public class LocationArrayAdapter extends ArrayAdapter<LocationViewModel> {
     public View getView(int position, View convertView, ViewGroup parent) {
         String locationType = this.getItem(position).getLocationType();
         String locationName = this.getItem(position).getLocationName();
+        int locationRating = this.getItem(position).getRating();
 
         LayoutInflater inflater = LayoutInflater.from(this.context);
         convertView = inflater.inflate(this.resource, parent, false);
@@ -50,6 +51,8 @@ public class LocationArrayAdapter extends ArrayAdapter<LocationViewModel> {
         else {
             locationImage.setImageResource(R.drawable.ic_baseline_restaurant_24);
         }
+
+        this.setRating(convertView, locationRating);
 
         // Set a listener for the review button
         Button locationReviewButton = convertView.findViewById(R.id.locationLeaveReview);
@@ -68,4 +71,12 @@ public class LocationArrayAdapter extends ArrayAdapter<LocationViewModel> {
         return convertView;
     }
 
+    private void setRating(View convertView, int rating) {
+        int[] starIds = {R.id.review_star1, R.id.review_star2, R.id.review_star3, R.id.review_star4, R.id.review_star5};
+
+        for(int i = 0; i < rating; i++) {
+            ImageView star = convertView.findViewById(starIds[i]);
+            star.setImageResource(R.drawable.ic_baseline_star_24);
+        }
+    }
 }
