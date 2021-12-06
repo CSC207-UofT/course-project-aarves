@@ -12,6 +12,9 @@ import com.aarves.bluepages.MainApplication;
 import com.aarves.bluepages.adapter.controllers.AccountController;
 import com.aarves.bluepages.adapter.presenters.AccountMenuView;
 
+/**
+ * Class currently does not work, need to pass the locations in still
+ */
 public class AccountMenuActivity extends AppCompatActivity implements AccountMenuView {
     private AccountController accountController;
 
@@ -40,11 +43,9 @@ public class AccountMenuActivity extends AppCompatActivity implements AccountMen
         startActivity(intent);
     }
 
-    // Take user to bookmarks
-    // TODO: connect to bookmark UI (when it is completed)
     public void viewBookmarks(View view) {
-        //Intent intent = new Intent(this, );
-        //startActivity(intent);
+        Intent intent = new Intent(this, BookmarkActivity.class);
+        startActivity(intent);
     }
 
     public void signOut(View view) {
