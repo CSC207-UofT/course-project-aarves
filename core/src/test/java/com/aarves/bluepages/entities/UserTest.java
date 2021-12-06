@@ -46,17 +46,17 @@ class UserTest {
 
     @Test
     void setReviews() {
-        List<Review> l1 = new ArrayList<>();
-        Review r1 = new Review("natsyy", 0, 5, "Amazing place to study!");
-        l1.add(r1);
-        u1.setReviews(l1);
+        Review r1 = new Review(1, "natsyy", 0, 5);
+        r1.setBody("Amazing place to study!");
+        u1.getReviews().add(r1);
 
         assertEquals(r1, u1.getReviews().get(0));
     }
 
     @Test
     void addReview() {
-        Review r1 = new Review("natsyy", 0, 5, "Amazing place to study!");
+        Review r1 = new Review(1, "natsyy", 0, 5);
+        r1.setBody("Amazing place to study!");
         u1.addReview(r1);
 
         assertEquals(r1, u1.getReviews().get(0));
@@ -64,7 +64,8 @@ class UserTest {
 
     @Test
     void deleteReview() {
-        Review r1 = new Review("natsyy", 0, 5, "Amazing place to study!");
+        Review r1 = new Review(1, "natsyy", 0, 5);
+        r1.setBody("Amazing place to study!");
         u1.addReview(r1);
         u1.deleteReview(r1);
 

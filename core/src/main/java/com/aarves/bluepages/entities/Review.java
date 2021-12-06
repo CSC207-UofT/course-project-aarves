@@ -77,6 +77,10 @@ public class Review {
         return this.rating;
     }
 
+    /**
+     * Set the rating associated with this Review.
+     * @param rating  Integer representing the rating (out of 5).
+     */
     public void setRating(int rating) {
         this.rating = rating;
     }
@@ -89,6 +93,10 @@ public class Review {
         return this.body;
     }
 
+    /**
+     * Set the written opinion associated with this Review.
+     * @param body  String representing the opinion.
+     */
     public void setBody(String body) {
         this.body = body;
     }

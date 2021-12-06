@@ -8,12 +8,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ReviewTest {
 
-    Review r = new Review("Natsyy", 0, 5, "Scrumptious food and amazing ambiance!");
+    Review r = new Review(1, "Natsyy", 0, 5);
     Review r2 = new Review("NatsyySon", 1, 0);
 
     @BeforeEach
     public void setUp() {
-
+        r.setBody("Scrumptious food and amazing ambiance!");
     }
 
     @AfterEach
@@ -56,13 +56,11 @@ class ReviewTest {
 
     @Test
     void getReviewId() {
-        assertEquals(-1, r.getReviewId());
+        assertEquals(1, r.getReviewId());
     }
 
     @Test
-    void setReviewId() {
-        r.setReviewId(100);
-        assertEquals(100, r.getReviewId());
+    void getDefaultReviewId() {
+        assertEquals(0, r2.getReviewId());
     }
-
 }

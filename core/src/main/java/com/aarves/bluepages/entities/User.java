@@ -31,10 +31,18 @@ public class User {
         return this.username;
     }
 
+    /**
+     * Get the password hash for this user's password.
+     * @return The password hash associated with the user.
+     */
     public String getPasswordHash() {
         return this.passwordHash;
     }
 
+    /**
+     * Set the password hash for this user's password.
+     * @param passwordHash String representing the hash.
+     */
     public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
     }
@@ -47,6 +55,9 @@ public class User {
         return this.reviews;
     }
 
+    /**
+     * Clear all the reviews made by this User.
+     */
     public void clearReviews() {
         this.reviews.clear();
     }
