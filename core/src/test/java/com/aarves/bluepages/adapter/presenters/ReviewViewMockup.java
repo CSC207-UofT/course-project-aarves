@@ -1,3 +1,4 @@
+/*
 package com.aarves.bluepages.adapter.presenters;
 
 import java.util.List;
@@ -11,3 +12,4 @@ public class ReviewViewMockup implements ReviewView{
         reviewDisplayed = true;
     }
 }
+*/
