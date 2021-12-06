@@ -6,6 +6,8 @@ import android.widget.EditText;
 
 import com.aarves.bluepages.R;
 
+import java.util.Locale;
+
 public class RegisterActivity extends AccountViewImpl {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +26,7 @@ public class RegisterActivity extends AccountViewImpl {
         EditText confirmPasswordInput = this.findViewById(R.id.registerConfirm);
 
         // Get inputted text
-        String username = usernameInput.getText().toString();
+        String username = usernameInput.getText().toString().toLowerCase();
         String password = passwordInput.getText().toString();
         String confirmPassword = confirmPasswordInput.getText().toString();
 
