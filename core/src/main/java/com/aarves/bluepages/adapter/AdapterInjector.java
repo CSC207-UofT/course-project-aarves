@@ -1,7 +1,7 @@
 package com.aarves.bluepages.adapter;
 
 import com.aarves.bluepages.adapter.controllers.AccountController;
-import com.aarves.bluepages.adapter.controllers.BookmarkController;
+import com.aarves.bluepages.adapter.controllers.LocationController;
 import com.aarves.bluepages.adapter.controllers.ReviewController;
 import com.aarves.bluepages.adapter.presenters.*;
 
@@ -12,6 +12,7 @@ import com.aarves.bluepages.usecase.data.review.ReviewDAO;
 import com.aarves.bluepages.usecase.interactors.account.AccountManager;
 import com.aarves.bluepages.usecase.interactors.account.AccountUseCaseInjector;
 import com.aarves.bluepages.usecase.interactors.location.BookmarkManager;
+import com.aarves.bluepages.usecase.interactors.location.LocationMap;
 import com.aarves.bluepages.usecase.interactors.location.LocationUseCaseInjector;
 import com.aarves.bluepages.usecase.interactors.review.ReviewManager;
 import com.aarves.bluepages.usecase.interactors.review.ReviewUseCaseInjector;
@@ -21,27 +22,31 @@ import java.security.NoSuchAlgorithmException;
 public class AdapterInjector {
     private final AccountController accountController;
     private final AccountPresenter accountPresenter;
+    private final LocationController locationController;
+    private final LocationPresenter locationPresenter;
     private final ReviewController reviewController;
     private final ReviewPresenter reviewPresenter;
-    private final BookmarkController bookmarkController;
 
     public AdapterInjector(AccountDAO accountDAO, LocationDAO locationDAO, ReviewDAO reviewDAO) throws NoSuchAlgorithmException {
         this.accountPresenter = new AccountPresenter();
+        this.locationPresenter = new LocationPresenter();
         this.reviewPresenter = new ReviewPresenter();
 
         AccountUseCaseInjector accountInjector = new AccountUseCaseInjector(accountDAO, this.accountPresenter);
-        LocationUseCaseInjector locationInjector = new LocationUseCaseInjector(locationDAO);
+        LocationUseCaseInjector locationInjector = new LocationUseCaseInjector(locationDAO, this.locationPresenter);
         ReviewUseCaseInjector reviewInjector = new ReviewUseCaseInjector(reviewDAO, this.reviewPresenter);
 
         AccountManager accountManager = accountInjector.getAccountManager();
+        BookmarkManager bookmarkManager = locationInjector.getBookmarkManager();
+        LocationMap locationMap = locationInjector.getLocationMap();
         ReviewManager reviewManager = reviewInjector.getReviewManager();
+
+        accountManager.addObserver(bookmarkManager);
         accountManager.addObserver(reviewManager);
 
-        BookmarkManager bookmarkManager = locationInjector.getBookmarkManager();
-
         this.accountController = new AccountController(accountManager);
+        this.locationController = new LocationController(bookmarkManager, locationMap, reviewManager);
         this.reviewController = new ReviewController(reviewManager);
-        this.bookmarkController = new BookmarkController(bookmarkManager);
     }
 
     public AccountController getAccountController() {
@@ -56,12 +61,16 @@ public class AdapterInjector {
         this.accountPresenter.setAccountMenuView(accountMenuView);
     }
 
-    public ReviewController getReviewController() {
-        return this.reviewController;
+    public LocationController getLocationController() {
+        return this.locationController;
     }
 
-    public BookmarkController getBookmarkController() {
-        return this.bookmarkController;
+    public void setLocationView(LocationView locationView) {
+        this.locationPresenter.setLocationView(locationView);
+    }
+
+    public ReviewController getReviewController() {
+        return this.reviewController;
     }
 
     public void setReviewView(ReviewView reviewView) {

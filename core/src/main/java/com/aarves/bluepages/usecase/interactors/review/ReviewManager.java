@@ -9,7 +9,7 @@ import com.aarves.bluepages.usecase.interactors.Observer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReviewManager implements ReviewInputBoundary, Observer<User> {
+public class ReviewManager implements ReviewAccountInputBoundary, ReviewLocationInputBoundary, Observer<User> {
     private final ReviewOutputBoundary reviewOutput;
     private final ReviewRepository reviewRepository;
 
@@ -22,35 +22,6 @@ public class ReviewManager implements ReviewInputBoundary, Observer<User> {
 
         this.reviews = new ArrayList<>();
         this.username = "";
-    }
-
-    @Override
-    public void loadReviews() {
-        List<ReviewOutputModel> reviewOutputModels = ReviewOutputMapper.mapToOutputModels(this.reviews);
-        this.reviewOutput.presentReviews(reviewOutputModels);
-    }
-
-    @Override
-    public void refreshReviews() {
-        this.reviews.clear();
-
-        List<Review> reviews = this.reviewRepository.getReviewsByUser(this.username);
-        this.reviews.addAll(reviews);
-    }
-
-    @Override
-    public void update(User arg) {
-        if(arg != null) {
-            this.reviews = arg.getReviews();
-            this.username = arg.getUsername();
-
-            this.refreshReviews();
-        }
-        else {
-            this.reviews = new ArrayList<>();
-            this.username = "";
-        }
-        this.loadReviews();
     }
 
     /**
@@ -97,6 +68,58 @@ public class ReviewManager implements ReviewInputBoundary, Observer<User> {
         else {
             this.reviewOutput.createResult(false);
         }
+    }
+
+    @Override
+    public void loadUserReviews() {
+        List<ReviewOutputModel> reviewOutputModels = ReviewOutputMapper.mapToOutputModels(this.reviews);
+        this.reviewOutput.presentReviews(reviewOutputModels);
+    }
+
+    @Override
+    public void refreshUserReviews() {
+        this.reviews.clear();
+
+        List<Review> reviews = this.reviewRepository.getReviewsByUser(this.username);
+        this.reviews.addAll(reviews);
+    }
+
+    @Override
+    public float getLocationRating(int locationId) {
+        List<Review> reviews = this.reviewRepository.getReviewsByLocation(locationId);
+        int sum = 0;
+        for(Review review : reviews) {
+            sum += review.getRating();
+        }
+
+        if(!reviews.isEmpty()) {
+            return (float) sum / reviews.size();
+        }
+        else {
+            return 0;
+        }
+    }
+
+    @Override
+    public void loadLocationReviews(int locationId) {
+        List<Review> reviews = this.reviewRepository.getReviewsByLocation(locationId);
+        List<ReviewOutputModel> reviewOutputModels = ReviewOutputMapper.mapToOutputModels(reviews);
+        this.reviewOutput.presentReviews(reviewOutputModels);
+    }
+
+    @Override
+    public void update(User arg) {
+        if(arg != null) {
+            this.reviews = arg.getReviews();
+            this.username = arg.getUsername();
+
+            this.refreshUserReviews();
+        }
+        else {
+            this.reviews = new ArrayList<>();
+            this.username = "";
+        }
+        this.loadUserReviews();
     }
 
     /**

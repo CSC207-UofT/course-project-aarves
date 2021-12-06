@@ -59,9 +59,12 @@ public class AccountPresenter implements AccountOutputBoundary {
     public void displayLogout() {
         if(this.accountView != null) {
             this.accountView.displayPopUp("Account logged out successfully.");
-
             this.accountView.returnToAccessMenu();
             this.accountView.finishActivity();
+        }
+        else if(this.accountMenuView != null) {
+            this.accountMenuView.displayPopUp("Account logged out successfully.");
+            this.accountMenuView.finishActivity();
         }
     }
 

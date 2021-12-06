@@ -37,6 +37,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
     public void viewLocations(View view) {
         Intent intent = new Intent(this, LocationActivity.class);
+        intent.putExtra(LocationActivity.IS_BOOKMARK, false);
         startActivity(intent);
     }
 }

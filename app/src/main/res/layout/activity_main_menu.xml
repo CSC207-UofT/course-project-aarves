@@ -18,18 +18,6 @@
                 android:layout_height="wrap_content"
                 android:text="List of Locations"
                 android:onClick="viewLocations"/>
-        <Button
-                android:id="@+id/createReview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Create Review"
-                android:onClick="createReview"/>
-
-        <Button
-                android:id="@+id/bookmarksButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Bookmarks"/>
 
         <Button
                 android:id="@+id/mapButton"

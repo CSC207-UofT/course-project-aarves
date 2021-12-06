@@ -1,9 +1,9 @@
 package com.aarves.bluepages.gui;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.widget.Toast;
 import android.os.Bundle;
 import android.widget.ListView;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.aarves.bluepages.R;
 import com.aarves.bluepages.MainApplication;
@@ -21,7 +21,7 @@ public class ReviewActivity extends AppCompatActivity implements ReviewView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review_view);
-        ListView reviewListView = findViewById(R.id.listView);
+        ListView reviewListView = this.findViewById(R.id.listView);
 
         // TODO: When Location UI is done, all that is needed to be done is to pass the location's array list of reviews into this class, and then into the ReviewArrayAdapter
         // TODO: Same for RegisteredUser.
@@ -36,8 +36,29 @@ public class ReviewActivity extends AppCompatActivity implements ReviewView {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+        MainApplication application = (MainApplication) this.getApplication();
+        application.setReviewView(this);
+
+        this.reviewController.loadReviews();
+    }
+
+    @Override
     public void displayReviews(List<ReviewViewModel> reviews) {
         this.reviewAdapter.clear();
         this.reviewAdapter.addAll(reviews);
+    }
+
+    @Override
+    public void displayPopUp(String message) {
+        Toast popUp = Toast.makeText(this.getApplicationContext(), message, Toast.LENGTH_SHORT);
+        popUp.show();
+    }
+
+    @Override
+    public void finishActivity() {
+        this.finish();
     }
 }

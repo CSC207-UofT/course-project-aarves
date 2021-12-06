@@ -12,70 +12,74 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aarves.bluepages.R;
-import com.aarves.bluepages.adapter.controllers.BookmarkController;
+import com.aarves.bluepages.adapter.controllers.LocationController;
 import com.aarves.bluepages.adapter.presenters.LocationViewModel;
-import com.aarves.bluepages.usecase.data.location.LocationType;
-import com.aarves.bluepages.usecase.exceptions.NotLoggedInException;
-
-import java.util.ArrayList;
 
 public class LocationArrayAdapter extends ArrayAdapter<LocationViewModel> {
+    private final LocationController locationController;
     private final Context context;
     private final int resource;
-    private final BookmarkController bookmarkController;
 
-    public LocationArrayAdapter(Context context, int resource, ArrayList<LocationViewModel> locations, BookmarkController bookmarkController) {
-        super(context, resource, locations);
+    public LocationArrayAdapter(Context context, int resource, LocationController locationController) {
+        super(context, resource);
 
         this.context = context;
         this.resource = resource;
-        this.bookmarkController = bookmarkController;
+
+        this.locationController = locationController;
     }
 
     @Override
     @SuppressLint("ViewHolder")
     public View getView(int position, View convertView, ViewGroup parent) {
-        LocationType locationType = this.getItem(position).getLocationType();
-        String locationName = this.getItem(position).getLocationName();
+        LocationViewModel location = this.getItem(position);
 
         LayoutInflater inflater = LayoutInflater.from(this.context);
         convertView = inflater.inflate(this.resource, parent, false);
 
         // set the location name
         TextView locationNameText = convertView.findViewById(R.id.locationName);
-        locationNameText.setText(locationName);
+        locationNameText.setText(location.getLocationName());
 
         // Set the location image - food/study
         ImageView locationImage = convertView.findViewById(R.id.locationImage);
-        if (locationType==LocationType.STUDY) {
+        if (location.getLocationType().equals("STUDY")) {
             locationImage.setImageResource(R.drawable.ic_baseline_menu_book_24);
-        } else {
+        }
+        else {
             locationImage.setImageResource(R.drawable.ic_baseline_restaurant_24);
         }
+
+        RatingHelper.setRating(convertView, location.getRating());
 
         // Set a listener for the review button
         Button locationReviewButton = convertView.findViewById(R.id.locationLeaveReview);
         locationReviewButton.setOnClickListener(v -> {
             // Start activity CreateReviewActivity and pass in the locationID, needed to create the review
             Intent intent = new Intent(context, CreateReviewActivity.class);
-            // TODO: Currently using hardcoded location ID
-            intent.putExtra("locationID", 1);
+            intent.putExtra(LocationActivity.LOCATION_ID, location.getLocationId());
             context.startActivity(intent);
         });
 
         // Set a listener for the bookmark button
         Button locationBookmarkButton = convertView.findViewById(R.id.locationBookmark);
+        this.toggleBookmark(locationBookmarkButton, location.isBookmarked());
         locationBookmarkButton.setOnClickListener(v -> {
-            try {
-                // TODO: Currently using hardcoded locationID
-                this.bookmarkController.addBookmark(1);
-            } catch (NotLoggedInException e) {
-                e.printStackTrace();
-            }
+            this.locationController.toggleBookmark(location.getLocationId());
+            location.toggleBookmarked();
+
+            this.toggleBookmark(locationBookmarkButton, location.isBookmarked());
         });
 
         return convertView;
-
     }
 
+    private void toggleBookmark(Button button, boolean isBookmarked) {
+        if(isBookmarked) {
+            button.setText(R.string.unbookmark);
+        }
+        else {
+            button.setText(R.string.bookmark);
+        }
+    }
 }
