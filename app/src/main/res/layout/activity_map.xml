@@ -30,7 +30,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
-        <com.mapbox.maps.MapView
+        <com.mapbox.mapboxsdk.maps.MapView
                 android:id="@+id/mapView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -38,7 +38,7 @@
                 app:mapbox_cameraTargetLng="-79.39562778255288"
                 app:mapbox_cameraZoom="9.0">
 
-        </com.mapbox.maps.MapView>
+        </com.mapbox.mapboxsdk.maps.MapView>
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

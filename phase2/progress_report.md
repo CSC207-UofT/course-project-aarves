@@ -95,14 +95,11 @@ finished testing for usecase/data, usecase/interactors/review, and adapter/prese
 with usecase/interactors/account and usecase/interactors/location and adapter/controllers. This should be finished by 
 Wednesday!
 
-(insert test coverage report)
-
 ## Progress Report ##
 
 1. Open questions we are struggling with:
-- How to implement serialization so that it best follows clean architecture (see Clean Architecture for more information)
-- How to place points on the MapBox map.
-- Where information on the hours of service/price range of some locations can be obtained (possibly through MapBox).
+- Where information on the hours of service/price range of some locations can be obtained.
+    - What APIs might be useful to fetch this data (MapBox does not provide this information).
 
 2. What worked well so far:
 - Keeping team members updated on progress through active team group chat
@@ -114,11 +111,11 @@ Wednesday!
 
     Across all six of us, we have been ironing out Clean Architecture, but the next goal as a team is to further this use of Clean Archiecture to the UI and Android-specific elements (i.e. Activities).
 
-  |              |                         Work since Phase 1               | Link to a Significant Pull Request |
-  |--------------|----------------------------------------------------------|------------------------------------|
-  | Ashenafee    | Worked on implementing the 'pinpoint' feature for the map (i.e. being able to display 📍 at locations of interest) as well as displaying the name and address of said POIs.                                                         | https://github.com/CSC207-UofT/course-project-aarves/pull/89                                   |
-  | Anthony      |                                                          |                                    |
-  | Erica        | Worked on creating AccountMenu for the GUI and testing for everything including presenters and usecases.                                                        | insert use-case check pull request                                   |
-  | Rebecca      |                                                          |                                    |
-  | Syed         | Tested everything by creating new test-cases, while simultaneously fixing test-cases for refactored files from phase 1 and phase 2. Helped Erica fix her failing test cases. Also, worked on figuring out how to add markers/pointers to the map and tried setting map boundaries. | https://github.com/CSC207-UofT/course-project-aarves/pull/93 |
-  | Vaishnavi    | Helped assist with the GUI by working on some of the xml files need for location previews and cleaning up previously made xml files. Helped create a potential filter for each type of location (food location and study location). Helped merge branches and made pull requests.| https://github.com/CSC207-UofT/course-project-aarves/pull/84 https://github.com/CSC207-UofT/course-project-aarves/pull/92                                   |
+  |              |                         Work since Phase 1               | Link to a Significant Pull Request | Reasoning behind Pull Request |
+  |--------------|----------------------------------------------------------|------------------------------------|--|
+  | Ashenafee    | Worked on implementing the 'pinpoint' feature for the map (i.e. being able to display 📍 at locations of interest) as well as displaying the name and address of said POIs.                                                         | https://github.com/CSC207-UofT/course-project-aarves/pull/89 | Allowing the visual representation of POIs to the user is a fundamental part of **any** map-oriented app. By implementing this, the app fully transitions from the CLI responses to a visual, 'nice-looking' response (in the form of points). |
+  | Anthony      |                                                          |                                    | |
+  | Erica        | Worked on creating AccountMenu for the GUI and testing for everything including presenters and usecases.                                                        | insert use-case check pull request                                   | |
+  | Rebecca      |                                                          |                                    | |
+  | Syed         | Worked on testing everything and finding and fixing bugs in testcases. Also, worked on adding markers to the map and trying to set map boundaries. | Not available till use-case check branch is merged | |
+  | Vaishnavi    | Helped assist with the GUI by working on some of the xml files need for location previews and cleaning up previously made xml files. Helped create a potential filter for each type of location (food location and study location). Helped merge branches and made pull requests.| https://github.com/CSC207-UofT/course-project-aarves/pull/84 https://github.com/CSC207-UofT/course-project-aarves/pull/92                                   | |

@@ -36,12 +36,10 @@ public abstract class Location {
 
     @Override
     public boolean equals(Object other) {
-        if(other instanceof Location) {
+        if (other instanceof Location) {
             return this.locationId == ((Location) other).getLocationId();
         }
-        else {
-            return false;
-        }
+        return false;
     }
 
     /**
