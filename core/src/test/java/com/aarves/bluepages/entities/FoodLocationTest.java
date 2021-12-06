@@ -32,6 +32,6 @@ class FoodLocationTest {
     void getCoordinates() {
         double[] expected = new double[]{43.841970401 -79.39117270};
         double[] actual = fl.getCoordinates();
-        assertEquals(expected, actual);
+        assertArrayEquals(expected, actual);
     }
 }
