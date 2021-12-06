@@ -9,9 +9,9 @@ public class LocationPresenter implements LocationOutputBoundary {
     private LocationView locationView;
 
     @Override
-    public void presentLocations(List<LocationOutputModel> locations) {
+    public void presentLocations(List<LocationOutputModel> locations, List<Boolean> bookmarked) {
         if(this.locationView != null) {
-            List<LocationViewModel> locationViewModels = LocationModelMapper.mapToViewModels(locations);
+            List<LocationViewModel> locationViewModels = LocationModelMapper.mapToViewModels(locations, bookmarked);
             this.locationView.displayLocations(locationViewModels);
         }
     }

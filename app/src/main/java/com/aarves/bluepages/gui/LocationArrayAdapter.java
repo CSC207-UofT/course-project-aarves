@@ -63,8 +63,23 @@ public class LocationArrayAdapter extends ArrayAdapter<LocationViewModel> {
 
         // Set a listener for the bookmark button
         Button locationBookmarkButton = convertView.findViewById(R.id.locationBookmark);
-        locationBookmarkButton.setOnClickListener(v -> this.locationController.toggleBookmark(location.getLocationId()));
+        this.toggleBookmark(locationBookmarkButton, location.isBookmarked());
+        locationBookmarkButton.setOnClickListener(v -> {
+            this.locationController.toggleBookmark(location.getLocationId());
+            location.toggleBookmarked();
+
+            this.toggleBookmark(locationBookmarkButton, location.isBookmarked());
+        });
 
         return convertView;
+    }
+
+    private void toggleBookmark(Button button, boolean isBookmarked) {
+        if(isBookmarked) {
+            button.setText(R.string.unbookmark);
+        }
+        else {
+            button.setText(R.string.bookmark);
+        }
     }
 }

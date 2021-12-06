@@ -21,7 +21,7 @@ public class LocationMap implements LocationInputBoundary {
     }
 
     @Override
-    public void loadLocations(List<Float> ratings) {
+    public void loadLocations(List<Float> ratings, List<Boolean> bookmarked) {
         // TODO: Consider removing in later revisions as not scalable.
         List<Location> locations = new ArrayList<>();
         for(int locationId : this.getLocationIds()) {
@@ -29,7 +29,7 @@ public class LocationMap implements LocationInputBoundary {
         }
 
         List<LocationOutputModel> locationOutputModels = LocationOutputMapper.mapToOutputModels(locations, ratings);
-        this.locationOutput.presentLocations(locationOutputModels);
+        this.locationOutput.presentLocations(locationOutputModels, bookmarked);
     }
 
     @Override

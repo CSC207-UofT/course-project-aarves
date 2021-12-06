@@ -57,9 +57,9 @@ public class BookmarkManager implements BookmarkInputBoundary, Observer<User> {
     }
 
     @Override
-    public void loadLocations(List<Float> ratings) {
+    public void loadLocations(List<Float> ratings, List<Boolean> bookmarked) {
         List<LocationOutputModel> locationOutputModels = LocationOutputMapper.mapToOutputModels(this.bookmarks, ratings);
-        this.locationOutput.presentLocations(locationOutputModels);
+        this.locationOutput.presentLocations(locationOutputModels, bookmarked);
     }
 
     @Override
