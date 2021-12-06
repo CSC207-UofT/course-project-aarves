@@ -1,7 +1,6 @@
 package com.aarves.bluepages.usecase.data.account;
 
 import com.aarves.bluepages.entities.User;
-import com.aarves.bluepages.usecase.interactors.review.ReviewRepositoryMockup;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,12 +9,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AccountDataAccessTest {
 
-    AccountDAOMockup ao;
-    AccountDataAccess ada;
+    AccountDAOMockup accountDAOMockup;
+    AccountDataAccess accountDataAccess;
 
     @BeforeEach
     void setUp() {
-        ada = new AccountDataAccess(ao);
+        accountDAOMockup = new AccountDAOMockup();
+        accountDataAccess = new AccountDataAccess(accountDAOMockup);
     }
 
     @AfterEach
@@ -25,38 +25,39 @@ class AccountDataAccessTest {
     @Test
     void addAccount() {
         User new_user = new User("Natsyy", "M$a%tB1rya*i");
-        ada.addAccount(new_user);
+        accountDataAccess.addAccount(new_user);
 
-        assertTrue(ao.isExistingAccount("Natsyy"));
+        assertTrue(accountDAOMockup.isExistingAccount("Natsyy"));
     }
 
     @Test
     void deleteAccount() {
         User new_user = new User("Natsyy", "M$a%tB1rya*i");
-        ada.addAccount(new_user);
-        ada.deleteAccount(new_user);
+        accountDataAccess.addAccount(new_user);
+        accountDataAccess.deleteAccount(new_user);
 
-        assertFalse(ao.isExistingAccount("Natsyy"));
+        assertFalse(accountDAOMockup.isExistingAccount("Natsyy"));
     }
 
+    //TODO: Implement this later
     @Test
     void getUserAccount() {
-        // ada.getUserAccount("Natsyy", "$$%%^&8");
+
     }
 
     @Test
     void isExistingAccount() {
         User new_user = new User("Natsyy", "M$a%tB1rya*i");
-        ada.addAccount(new_user);
+        accountDataAccess.addAccount(new_user);
 
-        assertTrue(ada.isExistingAccount("Natsyy"));
+        assertTrue(accountDataAccess.isExistingAccount("Natsyy"));
     }
 
     @Test
     void isPasswordMatch() {
         User new_user = new User("Natsyy", "M$a%tB1rya*i");
-        ada.addAccount(new_user);
+        accountDataAccess.addAccount(new_user);
 
-        assertTrue(ada.isPasswordMatch("Natsyy", "M$a%tB1rya*i"));
+        assertTrue(accountDataAccess.isPasswordMatch("Natsyy", "M$a%tB1rya*i"));
     }
 }

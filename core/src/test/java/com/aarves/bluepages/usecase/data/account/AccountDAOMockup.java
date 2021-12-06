@@ -16,22 +16,22 @@ public class AccountDAOMockup implements AccountDAO{
 
     }
     public void deleteAccount(String username, String passwordHash) {
-        User u1 = new User(username, passwordHash);
-        users.removeIf(u -> u1 == u);
+        users.removeIf(u -> (u.getUsername().equals(username)) & (u.getPasswordHash().equals(passwordHash)));
     }
 
     public boolean isExistingAccount(String username) {
-        for (User u: users) {
-            if (users.contains(u)) {
-                return true;
-            }
+
+        if (users.isEmpty()) {
+            return false;
+        } else for (User u : users) {
+            return ((u.getUsername()).equals(username));
         }
         return false;
     }
     public boolean isPasswordMatch(String username, String passwordHash) {
-        User u1 = new User(username, passwordHash);
+
         for (User u: users) {
-            if ((u1.getPasswordHash()).equals(u.getPasswordHash())){
+            if (u.getPasswordHash().equals(passwordHash)) {
                 return true;
             }
         }
