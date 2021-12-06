@@ -27,6 +27,7 @@ public class LocationController {
             else {
                 this.bookmarkInput.addBookmark(locationID);
             }
+            this.refreshBookmarks();
         }
         catch(NotLoggedInException exception) {
             exception.printStackTrace();

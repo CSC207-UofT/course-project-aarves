@@ -56,6 +56,7 @@ public class LocationActivity extends AppCompatActivity implements LocationView 
         application.setLocationView(this);
 
         if(this.isBookmark) {
+            this.locationController.refreshBookmarks();
             this.locationController.loadBookmarkLocations();
         }
         else {
