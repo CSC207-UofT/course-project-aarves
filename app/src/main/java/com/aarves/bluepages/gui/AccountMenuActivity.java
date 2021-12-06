@@ -3,6 +3,7 @@ package com.aarves.bluepages.gui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +12,8 @@ import com.aarves.bluepages.R;
 import com.aarves.bluepages.MainApplication;
 import com.aarves.bluepages.adapter.controllers.AccountController;
 import com.aarves.bluepages.adapter.presenters.AccountMenuView;
+
+import java.util.Objects;
 
 /**
  * Class currently does not work, need to pass the locations in still
@@ -35,6 +38,18 @@ public class AccountMenuActivity extends AppCompatActivity implements AccountMen
         // Displays the account information
         TextView textView = findViewById(R.id.usernameText);
         textView.setText(userText);
+
+        Button reviewButton = findViewById(R.id.reviewButton);
+        Button bookmarkButton = findViewById(R.id.bookmarkButton);
+
+        if (Objects.equals(userText, "Guest User")) {
+            reviewButton.setVisibility(View.INVISIBLE);
+            bookmarkButton.setVisibility(View.INVISIBLE);
+        }
+        else {
+            reviewButton.setVisibility(View.VISIBLE);
+            bookmarkButton.setVisibility(View.VISIBLE);
+        }
     }
 
     // Take user to reviews
@@ -49,7 +64,7 @@ public class AccountMenuActivity extends AppCompatActivity implements AccountMen
     }
 
     public void signOut(View view) {
-         this.accountController.logout();
+        this.accountController.logout();
     }
 
     @Override
