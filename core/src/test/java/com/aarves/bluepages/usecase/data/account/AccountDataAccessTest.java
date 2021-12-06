@@ -1,6 +1,7 @@
 package com.aarves.bluepages.usecase.data.account;
 
 import com.aarves.bluepages.entities.User;
+import com.aarves.bluepages.usecase.exceptions.PermissionsFailureException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -39,11 +40,32 @@ class AccountDataAccessTest {
         assertFalse(accountDAOMockup.isExistingAccount("Natsyy"));
     }
 
-    //TODO: Implement this later
+    @Test
+    void getUserAccountNull() {
+        try {
+            accountDataAccess.getUserAccount("Natsyy", "M$a%tB1rya*i");
+            assertNull(accountDataAccess.getUserAccount("Natsyy", "M$a%tB1rya*i"));
+        }
+        catch(PermissionsFailureException exception) {
+            exception.printStackTrace();
+        }
+    }
+
     @Test
     void getUserAccount() {
+        try {
+            User new_user = new User("Natsyy", "M$a%tB1rya*i");
+            accountDataAccess.addAccount(new_user);
 
+            assertSame(new_user.getUsername(), accountDataAccess.getUserAccount("Natsyy",
+                    "M$a%tB1rya*i").getUsername());
+
+        }
+        catch(PermissionsFailureException exception) {
+            exception.printStackTrace();
+        }
     }
+
 
     @Test
     void isExistingAccount() {
