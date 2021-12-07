@@ -73,4 +73,8 @@ public class ReviewInputMockup implements ReviewAccountInputBoundary, ReviewLoca
     public boolean isLocationLoaded() {
         return locationLoaded;
     }
+
+    public List<Review> getReviews(){
+        return this.reviews;
+    }
 }

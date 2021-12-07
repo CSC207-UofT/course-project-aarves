@@ -23,18 +23,23 @@ class ReviewControllerTest {
     }
 
     @Test
-    void loadUserReviews() {
+    void testLoadUserReviews() {
+        reviewController.loadUserReviews();
         assertTrue(reviewInput.isUserLoaded());
     }
 
     @Test
-    void loadLocationReviews() {
+    void testLoadLocationReviews() {
+        int locationId = 34;
+        reviewController.loadLocationReviews(locationId);
         assertTrue(reviewInput.isLocationLoaded());
     }
 
-    //TODO
     @Test
-    void createReview() {
+    void testCreateReview() {
+        int originalSize = reviewInput.getReviews().size();
+        reviewController.createReview(89, 3, "Very crowded");
+        assertEquals(originalSize + 1, reviewInput.getReviews().size());
 
     }
 }
