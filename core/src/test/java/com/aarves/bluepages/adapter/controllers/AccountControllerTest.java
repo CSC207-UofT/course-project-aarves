@@ -52,4 +52,37 @@ public class AccountControllerTest {
     public void testNotLoggedIn() {
         Assertions.assertFalse(this.accountInput.isLoggedIn());
     }
+
+    @Test
+    public void testIsLoggedIn() {
+        this.accountController.login("username", "pass");
+        this.accountController.isLoggedIn();
+        Assertions.assertTrue(this.accountInput.isLoggedIn());
+    }
+
+    @Test
+    public void testLogout() {
+        this.accountController.logout();
+        Assertions.assertFalse(this.accountInput.isLoggedIn());
+    }
+
+    @Test
+    public void testRegister() {
+        this.accountController.register("username", "pass", "pass");
+        Assertions.assertEquals(this.accountInput.getUsername(), "username");
+    }
+
+    @Test
+    public void testRegisterActivity() {
+        this.accountController.register("username", "pass", "pass");
+        Assertions.assertFalse(this.accountInput.isLoggedIn());
+    }
+
+    @Test
+    public void testLoadAccInfo() {
+        this.accountController.loadAccountInformation();
+        Assertions.assertTrue(this.accountInput.isLoaded());
+    }
+
+
 }
