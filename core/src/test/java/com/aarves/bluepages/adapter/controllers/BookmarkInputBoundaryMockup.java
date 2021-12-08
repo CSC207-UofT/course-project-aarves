@@ -16,7 +16,6 @@ import java.util.List;
 
 public class BookmarkInputBoundaryMockup implements BookmarkInputBoundary {
 
-    // private final LocationDAOMockup locationDAO = new LocationDAOMockup();
     private List<Location> bookmarks;
     private String username;
     private boolean locationsDisplayed;
@@ -44,7 +43,6 @@ public class BookmarkInputBoundaryMockup implements BookmarkInputBoundary {
             Integer id = l.getLocationId();
             if (id.equals(locationId)){
                 toRemove = l;
-                // bookmarks.remove(l);
             }
         }
         bookmarks.remove(toRemove);
@@ -69,8 +67,6 @@ public class BookmarkInputBoundaryMockup implements BookmarkInputBoundary {
 
     @Override
     public void loadLocations(List<Float> ratings, List<Boolean> bookmarked) {
-        // null pointer error because loadLocations isnt getting passed in the right things from getLocationIds
-
         this.locationsDisplayed = true;
     }
 
