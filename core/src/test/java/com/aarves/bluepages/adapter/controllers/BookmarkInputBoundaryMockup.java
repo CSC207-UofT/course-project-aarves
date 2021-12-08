@@ -1,7 +1,9 @@
 package com.aarves.bluepages.adapter.controllers;
 
 import com.aarves.bluepages.entities.Location;
+import com.aarves.bluepages.entities.StudyLocation;
 import com.aarves.bluepages.usecase.data.location.LocationDAO;
+import com.aarves.bluepages.usecase.data.location.LocationDAOMockup;
 import com.aarves.bluepages.usecase.data.location.LocationDTO;
 import com.aarves.bluepages.usecase.data.location.LocationDataMapper;
 import com.aarves.bluepages.usecase.exceptions.NotLoggedInException;
@@ -14,28 +16,36 @@ import java.util.List;
 
 public class BookmarkInputBoundaryMockup implements BookmarkInputBoundary {
 
-    private LocationDAO locationDAO;
     private List<Location> bookmarks;
     private String username;
     private boolean locationsDisplayed;
     private boolean locationRefreshed;
 
+    public BookmarkInputBoundaryMockup(List<Location> bookmarks, String username){
+        this.bookmarks = bookmarks;
+        this.username = username;
+
+    }
+
     @Override
     public void addBookmark(int locationId) throws NotLoggedInException {
-        LocationDTO locationDTO = this.locationDAO.getLocationData(locationId);
-        Location newLocation = LocationDataMapper.locationFactory(locationDTO, locationId);
-        bookmarks.add(newLocation);
+        double[] coordinates = {45.3, 78.4};
+        Location location = new StudyLocation(locationId, "Gerstein", coordinates);
+        bookmarks.add(location);
 
     }
 
     @Override
     public void removeBookmark(int locationId) throws NotLoggedInException {
+
+        Location toRemove = null;
         for (Location l:bookmarks){
             Integer id = l.getLocationId();
             if (id.equals(locationId)){
-                bookmarks.remove(l);
+                toRemove = l;
             }
         }
+        bookmarks.remove(toRemove);
     }
 
     @Override

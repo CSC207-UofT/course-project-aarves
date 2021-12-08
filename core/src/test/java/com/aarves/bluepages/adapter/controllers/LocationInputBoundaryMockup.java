@@ -11,10 +11,12 @@ public class LocationInputBoundaryMockup implements LocationInputBoundary {
     private List<Location> locations;
     private boolean locationsLoaded;
 
+    public LocationInputBoundaryMockup(List<Location> locations){
+        this.locations = locations;
+    }
     @Override
     public void loadLocations(List<Float> ratings, List<Boolean> bookmarked) {
         this.locationsLoaded = true;
-        // create new location?
     }
 
     @Override
