@@ -26,13 +26,23 @@ Across both types of locations, general information such as name and address are
 | Food          | <ul><li>Food type (i.e. Japanese).</li><li>Whether it's dine-in or takeout.</li><li>Price range.</li></ul>                  |
 | Study         | <ul><li>Whether it's indoors or outdoors.</li><li>Study room availability (if indoors).</li></ul>                  |
 
-## Changes From Phase0 ##
+## Changes From Phase1 ##
 
-From phase 0 to phase 1, we took the command-line interface and built upon it to have an Android app complete with a GUI. With this addition, the user can now use an interactive map to browse locations. Below are demonstrations of the benefits this move to Android has conveyed:
+### Updated from Phase1 ###
 
-| Login | Registration | Map Browsing |
-|--------------|---------------|---------------|
-| ![](assets/gif_login.gif) | ![](assets/gif_registration.gif)      | ![](assets/gif_map.gif) |
+From phase 1 to phase 2, we focused on refining the Android GUI. Despite the login and registration *seeming* unchanged, the backend now allows for account storage in a database which confers **data persistence**. Another change from phase 1 involves browsing the map in that pinpoints can now be placed at POIs, and further information on the point can be obtained by tapping it. Demonstrated below are these three key features in action:
+
+| Login                      | Registration                      | Map Browsing                      |
+|----------------------------|-----------------------------------|-----------------------------------|
+| ![](assets/gifs/login.gif) | ![](assets/gifs/registration.gif) | ![](assets/gifs/map-browsing.gif) |
+
+### New Additions ###
+
+Between phase 1 and phase 2, we also added new functionality to both the front and backend. The account menu allows the user (if logged-on) to browse their reviews and bookmarks in an organized manner. The location list provides a quick means to bookmark, and browse/leave reviews (once again, if logged-on) without needing to use the map. Furthermore, these bookmarks and reviews will **persist** across runs of the application.
+
+| Account Menu                      | Location List                      |
+|-----------------------------------|------------------------------------|
+| ![](assets/gifs/account-menu.gif) | ![](assets/gifs/location-list.gif) |
 
 ## Major decisions made by our group: ##
 - Moving to Android vs. web application: we decided to move our app over to Android, as it better fit our original view of what we wanted to do with this project.
