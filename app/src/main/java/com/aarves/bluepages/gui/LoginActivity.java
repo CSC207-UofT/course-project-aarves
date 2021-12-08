@@ -8,14 +8,9 @@ import android.widget.EditText;
 import com.aarves.bluepages.R;
 
 public class LoginActivity extends AccountViewImpl {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        this.setContentView(R.layout.activity_login);
-    }
 
     /**
-     * Login the user into Bluenotes, should the username and password combination match.
+     * Login the user into Bluepages, should the username and password combination match.
      * @param view View object containing context on what's currently being shown.
      */
     public void loginUser(View view) {
@@ -37,5 +32,11 @@ public class LoginActivity extends AccountViewImpl {
      */
     public void returnToAccessMenu(View view) {
         this.finishActivity();
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        this.setContentView(R.layout.activity_login);
     }
 }

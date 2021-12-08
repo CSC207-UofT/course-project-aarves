@@ -44,55 +44,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private final LatLng southWest = new LatLng(43.653559622123446, -79.40543276088096);
 
     /**
-     * Configure the map once the activity is created.
-     * @param savedInstanceState
-     */
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // Configure Mapbox token
-        Mapbox.getInstance(this, getResources().getString(R.string.mapbox_access_token));
-        setContentView(R.layout.activity_map);
-
-        // Bind the map to just the vicinity around campus
-        MapView mapView = findViewById(R.id.mapView);
-        mapView.onCreate(savedInstanceState);
-        mapView.getMapAsync(this);
-        searchConfiguration();
-    }
-
-    /**
-     * Set the map style and add listeners for user taps.
-     * @param mapboxMap
-     */
-    @Override
-    public void onMapReady(@NonNull @NotNull com.mapbox.mapboxsdk.maps.MapboxMap mapboxMap) {
-        this.mapboxMap = mapboxMap;
-        // Set the map style from URI
-        mapboxMap.setStyle(new Style.Builder().fromUri("mapbox://styles/ashenafee/ckw8c49wi2of616pdbiend57d"));
-
-        // Get rendered features based off the user's tap
-        mapboxMap.addOnMapClickListener(point -> {
-            mapboxMap.clear();
-            PointF screenPoint = mapboxMap.getProjection().toScreenLocation(point);
-            List<Feature> features = mapboxMap.queryRenderedFeatures(screenPoint);
-            if (!features.isEmpty()) {
-
-                // Get the first feature where geometry is a Point
-                for (Feature feature : features) {
-                    if (feature.geometry().type().equals("Point")) {
-                        configurePopup(mapboxMap, feature);
-                    }
-                }
-            }
-            return true;
-        });
-
-        // Configure the camera position
-        configureCameraPosition(mapboxMap);
-    }
-
-    /**
      * Configure the search bar to take the user's input when the enter button is selected.
      */
     private void searchConfiguration() {
@@ -254,5 +205,46 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         locationInfo.setText(info);
 
         popupWindow.showAtLocation(findViewById(R.id.mapView), Gravity.CENTER, 0, 0);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // Configure Mapbox token
+        Mapbox.getInstance(this, getResources().getString(R.string.mapbox_access_token));
+        setContentView(R.layout.activity_map);
+
+        // Bind the map to just the vicinity around campus
+        MapView mapView = findViewById(R.id.mapView);
+        mapView.onCreate(savedInstanceState);
+        mapView.getMapAsync(this);
+        searchConfiguration();
+    }
+
+    @Override
+    public void onMapReady(@NonNull @NotNull com.mapbox.mapboxsdk.maps.MapboxMap mapboxMap) {
+        this.mapboxMap = mapboxMap;
+        // Set the map style from URI
+        mapboxMap.setStyle(new Style.Builder().fromUri("mapbox://styles/ashenafee/ckw8c49wi2of616pdbiend57d"));
+
+        // Get rendered features based off the user's tap
+        mapboxMap.addOnMapClickListener(point -> {
+            mapboxMap.clear();
+            PointF screenPoint = mapboxMap.getProjection().toScreenLocation(point);
+            List<Feature> features = mapboxMap.queryRenderedFeatures(screenPoint);
+            if (!features.isEmpty()) {
+
+                // Get the first feature where geometry is a Point
+                for (Feature feature : features) {
+                    if (feature.geometry().type().equals("Point")) {
+                        configurePopup(mapboxMap, feature);
+                    }
+                }
+            }
+            return true;
+        });
+
+        // Configure the camera position
+        configureCameraPosition(mapboxMap);
     }
 }

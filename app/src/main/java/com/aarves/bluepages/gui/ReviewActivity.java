@@ -14,6 +14,7 @@ import com.aarves.bluepages.adapter.presenters.ReviewViewModel;
 import java.util.List;
 
 public class ReviewActivity extends AppCompatActivity implements ReviewView {
+
     public static final String LOCATION_ID = "locationId";
     public static final String LOCATION_NAME = "locationName";
     public static final int DEFAULT_ID = 0;
@@ -21,6 +22,34 @@ public class ReviewActivity extends AppCompatActivity implements ReviewView {
     private ReviewController reviewController;
     private ReviewArrayAdapter reviewAdapter;
     private int locationId;
+
+    /**
+     * Make sure the adapter is empty and then add all the reviews to-be-displayed.
+     * @param reviews The reviews to be displayed.
+     */
+    @Override
+    public void displayReviews(List<ReviewViewModel> reviews) {
+        this.reviewAdapter.clear();
+        this.reviewAdapter.addAll(reviews);
+    }
+
+    /**
+     * Show a toast message.
+     * @param message The message to show.
+     */
+    @Override
+    public void displayPopUp(String message) {
+        Toast popUp = Toast.makeText(this.getApplicationContext(), message, Toast.LENGTH_SHORT);
+        popUp.show();
+    }
+
+    /**
+     * Finish this activity.
+     */
+    @Override
+    public void finishActivity() {
+        this.finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,22 +90,5 @@ public class ReviewActivity extends AppCompatActivity implements ReviewView {
         else {
             this.reviewController.loadLocationReviews(this.locationId);
         }
-    }
-
-    @Override
-    public void displayReviews(List<ReviewViewModel> reviews) {
-        this.reviewAdapter.clear();
-        this.reviewAdapter.addAll(reviews);
-    }
-
-    @Override
-    public void displayPopUp(String message) {
-        Toast popUp = Toast.makeText(this.getApplicationContext(), message, Toast.LENGTH_SHORT);
-        popUp.show();
-    }
-
-    @Override
-    public void finishActivity() {
-        this.finish();
     }
 }

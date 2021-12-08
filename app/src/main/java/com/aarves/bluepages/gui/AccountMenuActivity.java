@@ -16,18 +16,37 @@ import com.aarves.bluepages.adapter.presenters.AccountMenuView;
 public class AccountMenuActivity extends AppCompatActivity implements AccountMenuView {
     private AccountController accountController;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-        this.setContentView(R.layout.activity_account_menu);
-
-        MainApplication application = (MainApplication) this.getApplication();
-        this.accountController = application.getAdapters().getAccountController();
-        application.setAccountMenuView(this);
-
-        this.accountController.loadAccountInformation();
+    /**
+     * Called when the user clicks the "Review" button. Opens the review activity.
+     * @param view View object containing context on what's currently being shown.
+     */
+    public void viewReviews(View view) {
+        Intent intent = new Intent(this, ReviewActivity.class);
+        startActivity(intent);
     }
 
+    /**
+     * Called when the user clicks the "Bookmark" button. Opens the bookmark activity.
+     * @param view View object containing context on what's currently being shown.
+     */
+    public void viewBookmarks(View view) {
+        Intent intent = new Intent(this, LocationActivity.class);
+        intent.putExtra(LocationActivity.IS_BOOKMARK, true);
+        startActivity(intent);
+    }
+
+    /**
+     * Called when the user clicks the "Sign Out" button. Signs the user out and returns them to the access activity.
+     * @param view View object containing context on what's currently being shown.
+     */
+    public void signOut(View view) {
+        this.accountController.logout();
+    }
+
+    /**
+     * Display relevant information to the user's account, and change button visibility based on the user's account type.
+     * @param userText The username of the user.
+     */
     @Override
     public void displayAccountInformation(String userText) {
         // Displays the account information
@@ -50,30 +69,34 @@ public class AccountMenuActivity extends AppCompatActivity implements AccountMen
         }
     }
 
-    // Take user to reviews
-    public void viewReviews(View view) {
-        Intent intent = new Intent(this, ReviewActivity.class);
-        startActivity(intent);
-    }
-
-    public void viewBookmarks(View view) {
-        Intent intent = new Intent(this, LocationActivity.class);
-        intent.putExtra(LocationActivity.IS_BOOKMARK, true);
-        startActivity(intent);
-    }
-
-    public void signOut(View view) {
-        this.accountController.logout();
-    }
-
+    /**
+     * Show a toast message.
+     * @param message The message to show.
+     */
     @Override
     public void displayPopUp(String message) {
         Toast popUp = Toast.makeText(this.getApplicationContext(), message, Toast.LENGTH_SHORT);
         popUp.show();
     }
 
+    /**
+     * Finish this activity.
+     */
     @Override
     public void finishActivity() {
         this.finish();
     }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        this.setContentView(R.layout.activity_account_menu);
+
+        MainApplication application = (MainApplication) this.getApplication();
+        this.accountController = application.getAdapters().getAccountController();
+        application.setAccountMenuView(this);
+
+        this.accountController.loadAccountInformation();
+    }
+
 }
