@@ -1,6 +1,7 @@
 package com.aarves.bluepages.usecase.interactors.account;
 
 import com.aarves.bluepages.adapter.controllers.AccountInputMockup;
+import com.aarves.bluepages.entities.User;
 import com.aarves.bluepages.usecase.interactors.Observer;
 import com.aarves.bluepages.usecase.interactors.review.ReviewOutputBoundary;
 import org.junit.jupiter.api.AfterEach;
@@ -61,7 +62,35 @@ class AccountManagerTest {
     }
 
     @Test
-    void register() {
+    void registerAlreadyExists() {
+        User user = new User("user", "pass");
+        accountDataBoundary.addAccount(user);
+
+
+    }
+
+    @Test
+    void registerPassMismatch() {
+        User user = new User("user", "pass");
+        accountDataBoundary.addAccount(user);
+
+
+    }
+
+    @Test
+    void registerBadUsername() {
+        User user = new User("user", "pass");
+        accountDataBoundary.addAccount(user);
+
+
+    }
+
+    @Test
+    void registerSuccess() {
+        User user = new User("user", "pass");
+        accountDataBoundary.addAccount(user);
+
+
     }
 
     @Test
