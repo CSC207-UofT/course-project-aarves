@@ -89,10 +89,9 @@ class AccountManagerTest {
     }
 
     @Test
-    void getUser() {
+    void getUser() throws PermissionsFailureException {
         accountManager.register("NainuNoob", "TMPxkabot", "TMPxkabot");
         accountManager.login("NainuNoob", "TMPxkabot");
-        User u = accountDataBoundary.getUserAccount("NainuNoob", "TMPxkabot");
-        assertTrue(accountManager.getUser() == u);
+        assertSame(accountManager.getUser(), accountDataBoundary.getUserAccount("NainuNoob", "TMPxkabot"));
     }
 }
