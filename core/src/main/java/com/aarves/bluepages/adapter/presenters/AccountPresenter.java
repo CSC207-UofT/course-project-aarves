@@ -8,6 +8,12 @@ public class AccountPresenter implements AccountOutputBoundary {
     private AccountView accountView;
     private AccountMenuView accountMenuView;
 
+
+    /**
+     * Provides the AccountView with the display message based on the result of the user's login.
+     * @param result the result of the login based on the information for username/password submitted by the user
+     * @param username the username of the user
+     */
     @Override
     public void loginResult(LoginResult result, String username) {
         if(this.accountView != null) {
@@ -31,6 +37,10 @@ public class AccountPresenter implements AccountOutputBoundary {
         }
     }
 
+    /**
+     * Provides the AccountView with the display message based on the result of the user's registration.
+     * @param result the result of the registration based on the user's inputted username/password
+     */
     @Override
     public void registerResult(RegisterResult result) {
         if(this.accountView != null) {
@@ -56,6 +66,9 @@ public class AccountPresenter implements AccountOutputBoundary {
         }
     }
 
+    /**
+     * Displays the logout message to the user.
+     */
     public void displayLogout() {
         if(this.accountView != null) {
             this.accountView.displayPopUp("Account logged out successfully.");
@@ -68,6 +81,11 @@ public class AccountPresenter implements AccountOutputBoundary {
         }
     }
 
+    /**
+     * Gives the accountMenuView the user's information to display - their username, if they are a registered user,
+     * and "Guest User", if they are not.
+     * @param username the username of the user
+     */
     @Override
     public void displayInformation(String username) {
         if(this.accountMenuView != null) {
@@ -80,10 +98,18 @@ public class AccountPresenter implements AccountOutputBoundary {
         }
     }
 
+    /**
+     * Sets the AccountView interface.
+     * @param accountView the AccountView interface to set.
+     */
     public void setAccountView(AccountView accountView) {
         this.accountView = accountView;
     }
 
+    /**
+     * Sets the AccountMenuView interface for this AccountPresenter.
+     * @param accountMenuView the AccountMenuView interface to set.
+     */
     public void setAccountMenuView(AccountMenuView accountMenuView) {
         this.accountMenuView = accountMenuView;
     }
