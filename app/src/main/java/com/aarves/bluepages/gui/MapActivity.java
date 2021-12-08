@@ -40,10 +40,13 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     private @NotNull MapboxMap mapboxMap;
 
-    // Set LatLng for bloorBay and collegeSpadina
     private final LatLng northEast = new LatLng(43.67121768976685, -79.38297760120373);
     private final LatLng southWest = new LatLng(43.653559622123446, -79.40543276088096);
 
+    /**
+     * Configure the map once the activity is created.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +61,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         searchConfiguration();
     }
 
+    /**
+     * Set the map style and add listeners for user taps.
+     * @param mapboxMap
+     */
     @Override
     public void onMapReady(@NonNull @NotNull com.mapbox.mapboxsdk.maps.MapboxMap mapboxMap) {
         this.mapboxMap = mapboxMap;
