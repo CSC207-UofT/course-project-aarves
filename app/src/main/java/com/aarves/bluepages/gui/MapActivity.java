@@ -2,20 +2,21 @@ package com.aarves.bluepages.gui;
 
 import android.graphics.PointF;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.aarves.bluepages.R;
 import com.aarves.bluepages.adapter.MapboxGateway;
 import com.aarves.bluepages.adapter.controllers.LookupController;
 import com.aarves.bluepages.entities.Location;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.gson.JsonElement;
-import com.mapbox.api.geocoding.v5.MapboxGeocoding;
-import com.mapbox.geojson.BoundingBox;
 import com.mapbox.geojson.Feature;
-import com.mapbox.geojson.Geometry;
 import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
@@ -27,8 +28,6 @@ import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
-import com.mapbox.maps.CameraBoundsOptions;
-import com.mapbox.maps.CoordinateBounds;
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONObject;
 
@@ -58,50 +57,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         searchConfiguration();
     }
 
-    /**
-     * Configure the search bar to take the user's input when the enter button is selected.
-     */
-    private void searchConfiguration() {
-        EditText editText = this.findViewById(R.id.search);
-        editText.setOnEditorActionListener((v, actionId, event) -> {
-            boolean handled = false;
-            // Listen for the enter key
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                new Thread() {
-                    public void run() {
-                        // Take the user's input and search for it
-                        LookupController lc = new LookupController();
-                        MapboxGateway mg = new MapboxGateway();
-                        JSONObject json = lc.lookupLocation(editText.getText().toString(), getResources().getString(R.string.mapbox_access_token));
-                        HashMap<Location, String> locationMap = mg.parseInformation(json);
-
-                        // Get all locations from locationMap
-                        ArrayList<Location> locations = new ArrayList<>(locationMap.keySet());
-
-                        runOnUiThread(() -> {
-                            // Add the points to the map
-                            mapboxMap.clear();
-                            for (Location location : locations) {
-                                mapboxMap.addMarker(new MarkerOptions()
-                                        .position(new LatLng(location.getCoordinates()[1], location.getCoordinates()[0]))
-                                        .title(location.getName())
-                                        .snippet(locationMap.get(location)));
-                            }
-
-                            // Zoom camera to first result
-                            if (locations.size() > 0) {
-                                mapboxMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(locations.get(0).getCoordinates()[1], locations.get(0).getCoordinates()[0]), 16));
-                            }
-
-                        });
-                    }
-                }.start();
-                handled = true;
-            }
-            return handled;
-        });
-    }
-
     @Override
     public void onMapReady(@NonNull @NotNull com.mapbox.mapboxsdk.maps.MapboxMap mapboxMap) {
         this.mapboxMap = mapboxMap;
@@ -118,36 +73,87 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 // Get the first feature where geometry is a Point
                 for (Feature feature : features) {
                     if (feature.geometry().type().equals("Point")) {
-                        // Get latitude and longitude of the feature
-                        Point coordinates = (Point) feature.geometry();
-                        double latitude = coordinates.latitude();
-                        double longitude = coordinates.longitude();
-
-                        // Get the address of the feature
-                        new Thread() {
-                            public void run() {
-                                LookupController lc = new LookupController();
-                                JSONObject json = lc.lookupLocation( longitude + "," + latitude, getResources().getString(R.string.mapbox_access_token));
-                                String address = new MapboxGateway().getPointAddress(json);
-
-                                // Return the address to the UI thread
-                                runOnUiThread(() -> {
-                                    String name = feature.getStringProperty("name");
-
-                                    // Display pinpoint graphic with location name and address
-                                    mapboxMap.addMarker(new MarkerOptions()
-                                            .position(new LatLng(latitude, longitude))
-                                            .title(name)
-                                            .snippet(address));
-                                });
-                            }
-                        }.start();
+                        configurePopup(mapboxMap, feature);
                     }
                 }
             }
             return true;
         });
 
+        // Configure the camera position
+        configureCameraPosition(mapboxMap);
+    }
+
+    /**
+     * Configure the search bar to take the user's input when the enter button is selected.
+     */
+    private void searchConfiguration() {
+        EditText editText = this.findViewById(R.id.search);
+        editText.setOnEditorActionListener((v, actionId, event) -> {
+            boolean handled = false;
+            // Listen for the enter key
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                getSearchResults(editText);
+                handled = true;
+            }
+            return handled;
+        });
+    }
+
+    /**
+     * Get the search results from the MapBox API.
+     * @param editText The EditText that contains the search query.
+     */
+    private void getSearchResults(EditText editText) {
+        new Thread() {
+            public void run() {
+                // Take the user's input and search for it
+                LookupController lc = new LookupController();
+                MapboxGateway mg = new MapboxGateway();
+                JSONObject json = lc.lookupLocation(editText.getText().toString(), getResources().getString(R.string.mapbox_access_token));
+                HashMap<Location, String> locationMap = mg.parseInformation(json);
+
+                // Get all locations from locationMap
+                ArrayList<Location> locations = new ArrayList<>(locationMap.keySet());
+
+                displaySearchResults(locationMap, locations);
+            }
+        }.start();
+    }
+
+    /**
+     * Display the search results on the map.
+     * @param locationMap The HashMap containing the locations and their corresponding information.
+     * @param locations The list of locations to be displayed.
+     */
+    private void displaySearchResults(HashMap<Location, String> locationMap, ArrayList<Location> locations) {
+        runOnUiThread(() -> {
+            // Add the points to the map
+            mapboxMap.clear();
+            for (Location location : locations) {
+                // Create a new marker for each location
+                MarkerOptions markerOptions = new MarkerOptions();
+                markerOptions.position(new LatLng(location.getCoordinates()[1], location.getCoordinates()[0]));
+
+                mapboxMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(location.getCoordinates()[1], location.getCoordinates()[0]))
+                        .title(location.getName())
+                        .snippet(locationMap.get(location)));
+            }
+
+            // Zoom camera to first result
+            if (locations.size() > 0) {
+                mapboxMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(locations.get(0).getCoordinates()[1], locations.get(0).getCoordinates()[0]), 16));
+            }
+
+        });
+    }
+
+    /**
+     * Configure the map zoom and location.
+     * @param mapboxMap The MapBox map.
+     */
+    private void configureCameraPosition(@NotNull MapboxMap mapboxMap) {
         // Zoom camera in to the downtown core
         mapboxMap.setCameraPosition(new CameraPosition.Builder()
                 .zoom(13)
@@ -163,5 +169,66 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mapboxMap.setLatLngBoundsForCameraTarget(latLngBounds);
         mapboxMap.setMinZoomPreference(13);
         mapboxMap.setMaxZoomPreference(17);
+    }
+
+    /**
+     * Configure the pinpoint feature when POIs are clicked.
+     * @param mapboxMap The MapBox map.
+     * @param feature The feature that was clicked.
+     */
+    private void configurePopup(@NotNull MapboxMap mapboxMap, Feature feature) {
+        // Get latitude and longitude of the feature
+        Point coordinates = (Point) feature.geometry();
+        double latitude = coordinates.latitude();
+        double longitude = coordinates.longitude();
+
+        // Get the address of the feature
+        new Thread() {
+            public void run() {
+                LookupController lc = new LookupController();
+                JSONObject json = lc.lookupLocation( longitude + "," + latitude, getResources().getString(R.string.mapbox_access_token));
+                String address = new MapboxGateway().getPointAddress(json);
+
+                // Return the address to the UI thread
+                runOnUiThread(() -> {
+                    String name = feature.getStringProperty("name");
+
+                    // Display pinpoint graphic with location name and address
+                    mapboxMap.addMarker(new MarkerOptions()
+                            .position(new LatLng(latitude, longitude)));
+
+                    // Show the popup window displaying information
+                    showPopup(name, address);
+                });
+            }
+        }.start();
+    }
+
+    /**
+     * Show the popup window displaying information on the location
+     * @param name The name of the location.
+     * @param address The address of the location.
+     */
+    private void showPopup(String name, String address) {
+        // inflate the layout of the popup window
+        LayoutInflater inflater = (LayoutInflater)
+                getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.popup_location, null);
+
+        // create the popup window
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        boolean focusable = true; // lets taps outside the popup also dismiss it
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+
+        // Change the text of the popup window
+        TextView locationInfo = popupView.findViewById(R.id.popupLocInfo);
+        String info = name + "\n" + address;
+        locationInfo.setText(info);
+        System.out.println(info);
+
+        // show the popup window
+        // which view you pass in doesn't matter, it is only used for the window tolken
+        popupWindow.showAtLocation(findViewById(R.id.mapView), Gravity.CENTER, 0, 0);
     }
 }
