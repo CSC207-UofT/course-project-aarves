@@ -38,12 +38,16 @@ public class BookmarkInputBoundaryMockup implements BookmarkInputBoundary {
 
     @Override
     public void removeBookmark(int locationId) throws NotLoggedInException {
+
+        Location toRemove = null;
         for (Location l:bookmarks){
             Integer id = l.getLocationId();
             if (id.equals(locationId)){
-                bookmarks.remove(l);
+                toRemove = l;
+                // bookmarks.remove(l);
             }
         }
+        bookmarks.remove(toRemove);
     }
 
     @Override
