@@ -52,7 +52,6 @@ class LocationControllerTest {
     void tearDown() {
     }
 
-    //TODO: fix null concurrentModificationException
     @Test
     void testToggleBookmark() throws NotLoggedInException {
         this.bookmarkInput.addBookmark(78);

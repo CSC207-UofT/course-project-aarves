@@ -1,6 +1,7 @@
 package com.aarves.bluepages.usecase.interactors.account;
 
 import com.aarves.bluepages.adapter.controllers.AccountInputMockup;
+import com.aarves.bluepages.usecase.exceptions.PermissionsFailureException;
 import com.aarves.bluepages.usecase.interactors.Observer;
 import com.aarves.bluepages.usecase.interactors.review.ReviewOutputBoundary;
 import org.junit.jupiter.api.AfterEach;
@@ -15,7 +16,6 @@ class AccountManagerTest {
 
     AccountManager accountManager;
     AccountInputMockup accountInputMockup;
-    UserObserverMockup observerMockup;
     AccountOutputBoundaryMockup accountOutputBoundary;
     AccountDataBoundaryMockup accountDataBoundary;
 
@@ -32,7 +32,6 @@ class AccountManagerTest {
             exception.printStackTrace();
         }
         accountInputMockup = new AccountInputMockup();
-        observerMockup = new UserObserverMockup();
     }
 
     @AfterEach
@@ -62,37 +61,38 @@ class AccountManagerTest {
 
     @Test
     void register() {
+        accountManager.register("MuizOnNesquik", "AWF1000", "AWF1000");
+        assertSame(accountOutputBoundary.getRegisterResult(), RegisterResult.SUCCESS);
     }
 
     @Test
     void loadInformation() {
-    }
-
-    @Test
-    void addObserver() {
-    }
-
-    @Test
-    void deleteObserver() {
-    }
-
-    @Test
-    void clearObservers() {
-    }
-
-    @Test
-    void notifyObservers() {
+        accountManager.register("KELA", "BaaPAyA", "BaaPAyA");
+        accountManager.login("KELA", "BaaPAyA");
+        accountOutputBoundary.displayInformation("KELA");
+        assertTrue(accountOutputBoundary.isDisplayInformation);
     }
 
     @Test
     void deleteUser() {
+        accountManager.register("MuizOnNesquik", "AWF1000", "AWF1000");
+        accountManager.login("MuizOnNesquik", "AWF1000");
+        accountManager.deleteUser();
+        assertNull(accountManager.getUser());
     }
 
     @Test
     void isExistingAccount() {
+        accountManager.register("MuizOnNesquik", "AWF1000", "AWF1000");
+        boolean result = accountManager.isExistingAccount("MuizOnNesquik");
+        assertTrue(result);
     }
 
     @Test
     void getUser() {
+        accountManager.register("NainuNoob", "TMPxkabot", "TMPxkabot");
+        accountManager.login("NainuNoob", "TMPxkabot");
+        User u = accountDataBoundary.getUserAccount("NainuNoob", "TMPxkabot");
+        assertTrue(accountManager.getUser() == u);
     }
 }

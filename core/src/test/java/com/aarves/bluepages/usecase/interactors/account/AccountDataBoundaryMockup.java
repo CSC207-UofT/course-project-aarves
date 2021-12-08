@@ -20,7 +20,7 @@ public class AccountDataBoundaryMockup implements AccountDataBoundary{
 
     public User getUserAccount(String username, String passwordHash) throws PermissionsFailureException {
         for (User u: users) {
-            if ((u.getUsername().equals(username)) & (u.getPasswordHash().equals(passwordHash))) {
+            if ((u.getUsername().equals(username))) {
                 return u;
             }
         }
