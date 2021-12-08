@@ -1,4 +1,4 @@
-package com.aarves.bluepages.usecase.data.location;
+package com.aarves.bluepages.usecase.interactors.location;
 
 import com.aarves.bluepages.usecase.interactors.location.LocationOutputBoundary;
 import com.aarves.bluepages.usecase.interactors.location.LocationOutputModel;
