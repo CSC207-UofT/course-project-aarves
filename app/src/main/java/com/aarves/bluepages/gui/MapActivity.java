@@ -6,20 +6,20 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
-import android.widget.TextView;
+import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 import com.aarves.bluepages.R;
 import com.aarves.bluepages.adapter.MapboxGateway;
 import com.aarves.bluepages.adapter.controllers.LookupController;
+import com.aarves.bluepages.adapter.presenters.LocationViewModel;
+import com.aarves.bluepages.entities.FoodLocation;
 import com.aarves.bluepages.entities.Location;
+import com.aarves.bluepages.usecase.interactors.location.LocationMap;
 import com.mapbox.geojson.Feature;
 import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.Mapbox;
-import com.mapbox.mapboxsdk.annotations.Marker;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
@@ -237,25 +237,22 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
      * @param address The address of the location.
      */
     private void showPopup(String name, String address) {
-        // inflate the layout of the popup window
+        // Inflate the layout of the popup window
         LayoutInflater inflater = (LayoutInflater)
                 getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.popup_location, null);
 
-        // create the popup window
+        // Create the popup window
         int width = LinearLayout.LayoutParams.WRAP_CONTENT;
         int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-        boolean focusable = true; // lets taps outside the popup also dismiss it
+        boolean focusable = true;
         final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
 
         // Change the text of the popup window
         TextView locationInfo = popupView.findViewById(R.id.popupLocInfo);
         String info = name + "\n" + address;
         locationInfo.setText(info);
-        System.out.println(info);
 
-        // show the popup window
-        // which view you pass in doesn't matter, it is only used for the window tolken
         popupWindow.showAtLocation(findViewById(R.id.mapView), Gravity.CENTER, 0, 0);
     }
 }
