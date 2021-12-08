@@ -5,6 +5,7 @@ package com.aarves.bluepages.entities;
  *
  */
 public class FoodLocation extends Location {
+
     /**
      * Constructs a new Location object
      *

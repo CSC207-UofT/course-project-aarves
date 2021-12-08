@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User {
+
     private final List<Review> reviews;
     private final List<Location> bookmarks;
 
@@ -21,16 +22,6 @@ public class User {
 
         this.username = username;
         this.passwordHash = passwordHash;
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if(other instanceof User) {
-            return this.username.equals(((User) other).getUsername());
-        }
-        else {
-            return false;
-        }
     }
 
     /**
@@ -115,4 +106,15 @@ public class User {
     public void deleteBookmark(Location location) {
         this.bookmarks.remove(location);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if(other instanceof User) {
+            return this.username.equals(((User) other).getUsername());
+        }
+        else {
+            return false;
+        }
+    }
+
 }
