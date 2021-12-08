@@ -51,7 +51,7 @@ public class AccountDAOAdapter implements AccountDAO {
     }
 
     /**
-     * Returns whether account with given username exists.
+     * Returns whether account with given username exists using Room data access dependency.
      * @param username the username to be checked
      * @return whether account with given username exists
      */
@@ -63,7 +63,7 @@ public class AccountDAOAdapter implements AccountDAO {
     }
 
     /**
-     * Returns whether password hash matches with that of account with given username.
+     * Returns whether password hash matches with that of account with given username using Room data access dependency.
      * @param username the username of the account to be compared with
      * @param passwordHash the password hash to be compared
      * @return whether password hash matches

@@ -110,9 +110,9 @@ public class LocationDAOAdapter implements LocationDAO {
     }
 
     /**
-     * Retrieves a mapping between the coordinates of each location and their IDs.
+     * Retrieves a mapping between the coordinates of each location and their IDs using the Room data access dependency.
      * The key will be a list of size 2 with the first element being longitude and the second being latitude.
-     * @return a mapping between the coordinates as a list of doubles and their IDs
+     * @return a mapping between the coordinates as a list of longs and their IDs
      */
     @Override
     public Map<List<Long>, Integer> getCoordinatesMap() {
