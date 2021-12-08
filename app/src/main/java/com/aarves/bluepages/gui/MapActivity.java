@@ -19,6 +19,7 @@ import com.aarves.bluepages.entities.Location;
 import com.mapbox.geojson.Feature;
 import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.annotations.Marker;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
@@ -131,14 +132,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             // Add the points to the map
             mapboxMap.clear();
             for (Location location : locations) {
-                // Create a new marker for each location
-                MarkerOptions markerOptions = new MarkerOptions();
-                markerOptions.position(new LatLng(location.getCoordinates()[1], location.getCoordinates()[0]));
-
-                mapboxMap.addMarker(new MarkerOptions()
-                        .position(new LatLng(location.getCoordinates()[1], location.getCoordinates()[0]))
-                        .title(location.getName())
-                        .snippet(locationMap.get(location)));
+                createResultPoints(location, locationMap);
             }
 
             // Zoom camera to first result
@@ -146,6 +140,32 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 mapboxMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(locations.get(0).getCoordinates()[1], locations.get(0).getCoordinates()[0]), 16));
             }
 
+        });
+    }
+
+    /**
+     * Create points for each search result.
+     * @param location The location to be displayed.
+     */
+    private void createResultPoints(Location location, HashMap<Location, String> locationMap) {
+        // Create a new marker for each location
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(new LatLng(location.getCoordinates()[1], location.getCoordinates()[0]));
+
+        mapboxMap.addMarker(new MarkerOptions()
+                .position(new LatLng(location.getCoordinates()[1], location.getCoordinates()[0]))
+                .title(location.getName())
+                .snippet(locationMap.get(location)));
+
+        // Set on marker click listener
+        mapboxMap.setOnMarkerClickListener(marker1 -> {
+            // Get the marker's information
+            String locationName = marker1.getTitle();
+            String locationAddress = marker1.getSnippet();
+
+            // Create a new popup window
+            showPopup(locationName, locationAddress);
+            return true;
         });
     }
 
