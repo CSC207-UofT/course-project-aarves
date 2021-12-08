@@ -33,9 +33,28 @@ class ReviewManagerTest {
     }
 
     @Test
+    void testCreateReview() throws NotLoggedInException {
+        reviewManager.createReview(123, 5, "best study spot on campus");
+        Assertions.assertEquals(1, reviewRepository.reviews.size());
+    }
+
+    @Test
+    void testCreateReviewNoBody() throws NotLoggedInException {
+        reviewManager.createReview(123, 5);
+        Assertions.assertEquals(1, reviewRepository.reviews.size());
+    }
+
+
+    @Test
+    void testLoadUserReviews(){
+        reviewManager.loadUserReviews();
+        Assertions.assertTrue(reviewOutputBoundary.presentedReviews);
+    }
+
+    @Test
     void testLoadReviews() {
-        // reviewManager.loadReviews();
-        // Assertions.assertTrue(reviewOutputBoundary.presentedReviews);
+        reviewManager.loadUserReviews();
+        Assertions.assertTrue(reviewOutputBoundary.presentedReviews);
     }
 
     @Test
@@ -44,12 +63,6 @@ class ReviewManagerTest {
         User user = new User("user", "pass");
         reviewManager.update(user);
         Assertions.assertTrue(reviewOutputBoundary.presentedReviews);
-    }
-
-    @Test
-    void testCreateReview() throws NotLoggedInException {
-        reviewManager.createReview(123, 5, "best study spot on campus");
-        Assertions.assertEquals(1, reviewRepository.reviews.size());
     }
 
 
