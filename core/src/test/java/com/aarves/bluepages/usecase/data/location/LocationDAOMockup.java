@@ -20,7 +20,6 @@ public class LocationDAOMockup implements LocationDAO {
                 locations.remove(l);
             }
         }
-
     }
 
     public void updateBookmarks(String username, List<Integer> bookmarkIds) {
