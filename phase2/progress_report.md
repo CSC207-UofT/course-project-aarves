@@ -19,12 +19,12 @@ Bluepages is a location-browser app tailored to UofT students looking for places
 
 ### Locations ###
 
-Across both types of locations, general information such as name and address are provided. See the major decisions section for
+Across both types of locations, general information such as name and address are provided. However, future iterations of Bluepages looks to implement more specific info based off the location-type. See the major decisions section for
 details of the final implementation.
 
-| Location-type | Information-shown                                                                                          |
+| Location-type | Future Iterations                                                                                          |
 |---------------|------------------------------------------------------------------------------------------------------------|
-| Food          | <ul><li>Food type (i.e. Japanese).</li><li>Whether it's dine-in or takeout.</li><li>Price range.</li></ul> |
+| Food          | <ul><li>Food type (i.e. Japanese).</li><li>Whether it's dine-in or takeout.</li><li>Price range.</li></ul> | 
 | Study         | <ul><li>Whether it's indoors or outdoors.</li><li>Study room availability (if indoors).</li></ul>          |
 
 ## Changes From Phase1 ##
