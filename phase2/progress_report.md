@@ -6,25 +6,25 @@ Bluepages is a location-browser app tailored to UofT students looking for places
 
 - To browse the app, users can either create an account, login, or continue as a guest (no account).
 
-| Light Mode | Dark Mode |
-|----------|------------|
-| ![](assets/access_light.png)      |  ![](assets/access_dark.png)       |
+| Light Mode                   | Dark Mode                   |
+|------------------------------|-----------------------------|
+| ![](assets/access_light.png) | ![](assets/access_dark.png) |
 
 ### Permissions based off login-type
 
-| User-type  | Permissions |
-|------------|-------------|
-| Guest users can...     | <ul><li>View a randomly selected food and study spot of the day.</li><li>Search for locations, and further tune their search using filters.</li><li>Use the interactive map to browse locations in their vicinity.</li></ul>            |
-| Registered users can... | <ul><li>Do everything a guest user can do.</li><li>Bookmark locations for easy access in the future.</li><li>Leave reviews and a rating for locations.</li></ul>            |
+| User-type               | Permissions                                                                                                                                                      |
+|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Guest users can...      | <ul><li>Search for locations.</li><li>Use the interactive map to browse locations in their vicinity.</li></ul>                                                   |
+| Registered users can... | <ul><li>Do everything a guest user can do.</li><li>Bookmark locations for easy access in the future.</li><li>Leave reviews and a rating for locations.</li></ul> |
 
 ### Locations ###
 
 Across both types of locations, general information such as name and address are provided.
 
-| Location-type | Information-shown |
-|---------------|-------------------|
-| Food          | <ul><li>Food type (i.e. Japanese).</li><li>Whether it's dine-in or takeout.</li><li>Price range.</li></ul>                  |
-| Study         | <ul><li>Whether it's indoors or outdoors.</li><li>Study room availability (if indoors).</li></ul>                  |
+| Location-type | Information-shown                                                                                          |
+|---------------|------------------------------------------------------------------------------------------------------------|
+| Food          | <ul><li>Food type (i.e. Japanese).</li><li>Whether it's dine-in or takeout.</li><li>Price range.</li></ul> |
+| Study         | <ul><li>Whether it's indoors or outdoors.</li><li>Study room availability (if indoors).</li></ul>          |
 
 ## Changes From Phase1 ##
 
@@ -59,7 +59,7 @@ If **MAP** is selected, the user is presented with a map bound to Toronto, with 
 
 If **LIST OF LOCATIONS** is selected, a list of locations is presented to the user. These locations can be bookmarked, have their reviews accessed, or even have reviews left for them by the user. Both the user's bookmarks and reviews they've left appear under their account menu.
 
-The **account menu** is accessed by the profile picture at the top left, and from it the bookmarks and reviews of a *logged in user* can be viewed.
+The **account menu** is accessed by the profile picture at the top left, and from it the bookmarks and reviews of a *logged-in user* can be viewed.
 
 ## Clean Architecture
 **_How does our project adhere to Clean Architecture?_**
@@ -69,11 +69,11 @@ The **account menu** is accessed by the profile picture at the top left, and fro
 ## Solid Principles
 _**How is our project consistent with the SOLID design principles?**_
 
-| SOLID Principle       | Example |
-|-----------------------|---------|
-| Single responsibility | Examining `AccountList` and `AccountManager`, the two are separate classes to hold in line with the SRP. Originally we had combined the responsibility of account storage and account creation/deletion in one class. In that case, should an actor want to change the process in how an account is created, then it would have also affected the storage of said account. With these two classes, if said actor were to change the process of account creation, the only changes made would be in `AccountManager`, because we still have `RegisteredUser` being stored in `AccountList`, the only difference is how the `RegisteredUser` is made in `AccountManager`.        |
-| Interface segregation | Our Serializer and AccountManagerDependency interfaces are kept small, only defining the crucial methods needed         |
-| Dependency inversion  | In general, our entities such as a RegisteredUser do not know about for example the Android UI, any use cases or controllers. Instead, the CommandLine generates an instance of the InputController and InputGateway. The InputController and InputGateways then generate instances of an AccountManager and an AccountManager is able to instantiate a new RegisteredUser. This flow illustrates how our code only points inwards, consistent with the dependency rule        |
+| SOLID Principle       | Example                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+|-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Single responsibility | Examining `AccountList` and `AccountManager`, the two are separate classes to hold in line with the SRP. Originally we had combined the responsibility of account storage and account creation/deletion in one class. In that case, should an actor want to change the process in how an account is created, then it would have also affected the storage of said account. With these two classes, if said actor were to change the process of account creation, the only changes made would be in `AccountManager`, because we still have `RegisteredUser` being stored in `AccountList`, the only difference is how the `RegisteredUser` is made in `AccountManager`. |
+| Interface segregation | Our Serializer and AccountManagerDependency interfaces are kept small, only defining the crucial methods needed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Dependency inversion  | In general, our entities such as a RegisteredUser do not know about for example the Android UI, any use cases or controllers. Instead, the CommandLine generates an instance of the InputController and InputGateway. The InputController and InputGateways then generate instances of an AccountManager and an AccountManager is able to instantiate a new RegisteredUser. This flow illustrates how our code only points inwards, consistent with the dependency rule                                                                                                                                                                                                 |
 
 ## Packaging ##
 
@@ -81,7 +81,7 @@ _**Which packaging strategies did we consider? Which did we end up using, and wh
 
 During our refactoring process, we first considered packaging by feature. However,
 this proved to be difficult since there were a lot of files that shared similar attributes.
-We ended up packaging by the layers of clean architecture(enities, use cases, controllers) because it was more efficient
+We ended up packaging by the layers of clean architecture(entities, use cases, controllers) because it was more efficient
 (used the crc cards and report from phase 0 for reference), and it can keep us all in check of fulfilling the clean
 architecture model. We are currently unsure about how to organize our serializer files(the Interface, AccountSerializer,
 ReviewSerializer), because it does not cleanly meet any of the actual layers of clean architecture without a violation.
@@ -93,7 +93,7 @@ Dependency Injection Design Pattern:
 To better demonstrate Clean Architecture, we added the Dependency Injection Design Pattern in InputController.java and
 InputGateway.java by following the Interface Injection method of design. i.e, we created an interface called
 AccountManagerDependency.java and then injected it in the two adapter classes. The benefits of implementing dependency injection include:
-- The InputConroller and InputGateway classes are not responsible for creating an instance of an AccountManager. Instead, an instance of the class in passed into the injectAccountManager method. This adheres better to clean architecture by decoupling the Input classes and AccountManager.
+- The InputController and InputGateway classes are not responsible for creating an instance of an AccountManager. Instead, an instance of the class in passed into the injectAccountManager method. This adheres better to clean architecture by decoupling the Input classes and AccountManager.
 
 ## Use of Github Features ## 
 
@@ -105,8 +105,8 @@ needed our attention.
 
 ## Testing ##
 
-During Phase 2, we have worked to improve our test coverage from just testing two classes in the usecase layer to now testing most classes in all layers of Clean Architecture. Due to the intense amount of refactoring and repeated changes to the main part of our program, currently we have 
-finished testing for adapters, entities and usecases.
+During Phase 2, we have worked to improve our test coverage from just testing two classes in the use case layer to now testing most classes in all layers of Clean Architecture. Due to the intense amount of refactoring and repeated changes to the main part of our program, currently we have 
+finished testing for adapters, entities and use cases.
 ![image](https://user-images.githubusercontent.com/78867159/145317838-83b606f7-7f4a-4d10-8572-1a9a1c40d326.png)
 
 
@@ -126,11 +126,11 @@ finished testing for adapters, entities and usecases.
 
     Across all six of us, we have been ironing out Clean Architecture, but the next goal as a team is to further this use of Clean Archiecture to the UI and Android-specific elements (i.e. Activities).
 
-  |              |                         Work since Phase 1               | Link to a Significant Pull Request | Reasoning behind Pull Request |
-  |--------------|----------------------------------------------------------|------------------------------------|--|
-  | Ashenafee    | Worked on implementing the 'pinpoint' feature for the map (i.e. being able to display 📍 at locations of interest) as well as displaying the name and address of said POIs.                                                         | https://github.com/CSC207-UofT/course-project-aarves/pull/89 | Allowing the visual representation of POIs to the user is a fundamental part of **any** map-oriented app. By implementing this, the app fully transitions from the CLI responses to a visual, 'nice-looking' response (in the form of points). |
-| Anthony      | Implemented database and connected database into use case interactors and user interface. | https://github.com/CSC207-UofT/course-project-aarves/pull/58 https://github.com/CSC207-UofT/course-project-aarves/pull/67 https://github.com/CSC207-UofT/course-project-aarves/pull/81 | Needed a method of data persistence which complies with Clean Architecture, and needed to connect it to the other systems. |
-  | Erica        | Worked on creating AccountMenu for the GUI and testing for everything including presenters, interactors and usecases.                                                        | https://github.com/CSC207-UofT/course-project-aarves/pull/94                              |As shown in this pull request, the majority of classes are now tested, covering all layers of clean architecture which was one of our main feedbacks from Phase 1 where only 2 classes in the usecase layer were tested. |
-  | Rebecca      | Created GUI for locations, reviews, create reviews, bookmarks, main menu, and adapters to display information. Cleaned up GUI interface and features.     |  https://github.com/CSC207-UofT/course-project-aarves/pull/86  https://github.com/CSC207-UofT/course-project-aarves/pull/87 https://github.com/CSC207-UofT/course-project-aarves/pull/88 https://github.com/CSC207-UofT/course-project-aarves/pull/91                        | The bulk of the front end and display logic are in these pull requests. |
-  | Syed         | Tested everything by creating new test-cases, while simultaneously fixing test-cases for refactored files from phase 1 and phase 2. Helped Erica fix her failing test cases. Also, worked on figuring out how to add markers/pointers to the map and tried setting map boundaries. | https://github.com/CSC207-UofT/course-project-aarves/pull/93 |  Contains all the test cases for Use-Case files and refactored files, contains commits for fixing buggy test cases |
-  | Vaishnavi    | Helped assist with the GUI by working on some of the xml files need for location previews and cleaning up previously made xml files. Helped create a potential filter for each type of location (food location and study location). Helped merge branches and made pull requests.| https://github.com/CSC207-UofT/course-project-aarves/pull/84 https://github.com/CSC207-UofT/course-project-aarves/pull/92| The first pull request was for the previews of the locations, so the general xml files that is shown in our app. The second pull request was for the search filters regarding locations.|
+|           | Work since Phase 1                                                                                                                                                                                                                                                                 | Link to a Significant Pull Request                                                                                                                                                                                                                   | Reasoning behind Pull Request                                                                                                                                                                                                                  |
+|-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Ashenafee | Worked on implementing the 'pinpoint' feature for the map (i.e. being able to display 📍 at locations of interest) as well as displaying the name and address of said POIs.                                                                                                        | https://github.com/CSC207-UofT/course-project-aarves/pull/89                                                                                                                                                                                         | Allowing the visual representation of POIs to the user is a fundamental part of **any** map-oriented app. By implementing this, the app fully transitions from the CLI responses to a visual, 'nice-looking' response (in the form of points). |
+| Anthony   | Implemented database and connected database into use case interactors and user interface.                                                                                                                                                                                          | https://github.com/CSC207-UofT/course-project-aarves/pull/58 https://github.com/CSC207-UofT/course-project-aarves/pull/67 https://github.com/CSC207-UofT/course-project-aarves/pull/81                                                               | Needed a method of data persistence which complies with Clean Architecture, and needed to connect it to the other systems.                                                                                                                     |
+| Erica     | Worked on creating AccountMenu for the GUI and testing for everything including presenters, interactors and usecases.                                                                                                                                                              | https://github.com/CSC207-UofT/course-project-aarves/pull/94                                                                                                                                                                                         | As shown in this pull request, the majority of classes are now tested, covering all layers of clean architecture which was one of our main feedbacks from Phase 1 where only 2 classes in the usecase layer were tested.                       |
+| Rebecca   | Created GUI for locations, reviews, create reviews, bookmarks, main menu, and adapters to display information. Cleaned up GUI interface and features.                                                                                                                              | https://github.com/CSC207-UofT/course-project-aarves/pull/86  https://github.com/CSC207-UofT/course-project-aarves/pull/87 https://github.com/CSC207-UofT/course-project-aarves/pull/88 https://github.com/CSC207-UofT/course-project-aarves/pull/91 | The bulk of the front end and display logic are in these pull requests.                                                                                                                                                                        |
+| Syed      | Tested everything by creating new test-cases, while simultaneously fixing test-cases for refactored files from phase 1 and phase 2. Helped Erica fix her failing test cases. Also, worked on figuring out how to add markers/pointers to the map and tried setting map boundaries. | https://github.com/CSC207-UofT/course-project-aarves/pull/93                                                                                                                                                                                         | Contains all the test cases for Use-Case files and refactored files, contains commits for fixing buggy test cases                                                                                                                              |
+| Vaishnavi | Helped assist with the GUI by working on some of the xml files need for location previews and cleaning up previously made xml files. Helped create a potential filter for each type of location (food location and study location). Helped merge branches and made pull requests.  | https://github.com/CSC207-UofT/course-project-aarves/pull/84 https://github.com/CSC207-UofT/course-project-aarves/pull/92                                                                                                                            | The first pull request was for the previews of the locations, so the general xml files that is shown in our app. The second pull request was for the search filters regarding locations.                                                       |
