@@ -142,7 +142,7 @@ for classes to be tested isolated from its dependencies, relying on simple mocku
 to test the GUI and database packages as they are dependent on an instance of Android running which made it hard to test, rather we used
 the humble object pattern and tested the data (access) package and presenters package instead.
 
-![image](https://user-images.githubusercontent.com/78867159/145317838-83b606f7-7f4a-4d10-8572-1a9a1c40d326.png)
+![image](https://user-images.githubusercontent.com/78867159/145332538-e0f1cd30-0a5a-4c11-b3a1-0db83ec141fe.png)
 
 
 ## Progress Report ##
