@@ -42,17 +42,7 @@ public class LocationDAOMockup implements LocationDAO {
         return this.dtoMap;
     }
 
-
     public Map<List<Long>, Integer> getCoordinatesMap() {
-
-        List<Long> longList = new ArrayList<>();
-
-        for (LocationDTO ld: dtoMap.values()) {
-            double[] longCo = ld.getCoordinates();
-
-            //TODO: add longitude to longList and then create map
-        }
-        // this is a place holder to fix errors
         return null;
     }
 }
