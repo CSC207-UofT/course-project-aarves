@@ -37,14 +37,6 @@ class LocationDataAccessTest {
     }
 
     @Test
-    void removeBookmark() {
-    }
-
-    @Test
-    void updateBookmarks() {
-    }
-
-    @Test
     void getUserBookmarks() {
         assertEquals(0, locationDataAccess.getUserBookmarks("Natsyy").size());
     }

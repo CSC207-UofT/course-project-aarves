@@ -14,10 +14,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LocationOutputMapperTest {
 
-    LocationOutputMapper locationOutputMapper;
+
     @BeforeEach
     void setUp() {
-        locationOutputMapper = new LocationOutputMapper();
+
     }
 
     @AfterEach
@@ -36,7 +36,7 @@ class LocationOutputMapperTest {
         Location foodLocation = new FoodLocation(45, "Starbucks", coordinate2);
         locationList.add(studyLocation);
         locationList.add(foodLocation);
-        List<LocationOutputModel> locationOutputModels = locationOutputMapper.mapToOutputModels(locationList, ratingsList);
+        List<LocationOutputModel> locationOutputModels = LocationOutputMapper.mapToOutputModels(locationList, ratingsList);
         assertEquals(2, locationOutputModels.size());
     }
 
@@ -44,7 +44,7 @@ class LocationOutputMapperTest {
     void mapToOutputModelsStudyLocation() {
         double[] coordinate= {34.4, 23.4};
         Location location = new StudyLocation("Robarts", coordinate);
-        LocationOutputModel result = locationOutputMapper.mapToOutputModel(location, 4);
+        LocationOutputModel result = LocationOutputMapper.mapToOutputModel(location, 4);
         assertEquals("Robarts", result.getLocationName());
 
     }
@@ -53,7 +53,7 @@ class LocationOutputMapperTest {
     void mapToOutputModelsFoodLocation() {
         double[] coordinate= {34.4, 23.4};
         Location location = new FoodLocation(45, "Starbucks", coordinate);
-        LocationOutputModel result = locationOutputMapper.mapToOutputModel(location, 3);
+        LocationOutputModel result = LocationOutputMapper.mapToOutputModel(location, 3);
         assertEquals("Starbucks", result.getLocationName());
     }
 

@@ -10,11 +10,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ReviewDataMapperTest {
 
-    ReviewDataMapper reviewDataMapper;
-
     @BeforeEach
     void setUp() {
-        reviewDataMapper = new ReviewDataMapper();
+
     }
 
     @AfterEach
@@ -25,7 +23,7 @@ class ReviewDataMapperTest {
     void testMapToDTO() {
         Review r = new Review(64,"reviewer1", 145, 3);
         r.setBody("Too noisy");
-        ReviewDTO reviewDTOResult = reviewDataMapper.mapToDTO(r);
+        ReviewDTO reviewDTOResult = ReviewDataMapper.mapToDTO(r);
         Assertions.assertEquals(145, reviewDTOResult.getLocationId());
 
     }
@@ -35,7 +33,7 @@ class ReviewDataMapperTest {
         ReviewDTO reviewDTO = new ReviewDTO("reviewer", 90, 5, "best sandwiches");
         Review review = new Review(800,"reviewer", 90, 5);
         review.setBody("best sandwiches");
-        Review result = reviewDataMapper.mapToReview(reviewDTO, 800);
+        Review result = ReviewDataMapper.mapToReview(reviewDTO, 800);
         Assertions.assertEquals(review.getReviewId(), result.getReviewId());
 
     }

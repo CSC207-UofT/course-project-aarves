@@ -12,11 +12,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ReviewOutputMapperTest {
 
-    ReviewOutputMapper reviewOutputMapper;
-
     @BeforeEach
     void setUp() {
-        reviewOutputMapper = new ReviewOutputMapper();
     }
 
     @AfterEach
@@ -32,14 +29,14 @@ class ReviewOutputMapperTest {
         reviewList.add(review3);
         reviewList.add(review2);
         reviewList.add(review);
-        List<ReviewOutputModel> result = reviewOutputMapper.mapToOutputModels(reviewList);
+        List<ReviewOutputModel> result = ReviewOutputMapper.mapToOutputModels(reviewList);
         assertEquals(3, result.size());
     }
 
     @Test
     void testMapToOutputModel() {
         Review review = new Review("reviewer", 89, 4);
-        ReviewOutputModel result = reviewOutputMapper.mapToOutputModel(review);
+        ReviewOutputModel result = ReviewOutputMapper.mapToOutputModel(review);
         assertEquals(review.getReviewer(), result.getReviewer());
     }
 }
