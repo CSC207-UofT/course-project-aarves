@@ -3,17 +3,9 @@ package com.aarves.bluepages.gui;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-
 import com.aarves.bluepages.R;
 
-import java.util.Locale;
-
 public class RegisterActivity extends AccountViewImpl {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        this.setContentView(R.layout.activity_register);
-    }
 
     /**
      * Register the user for Bluenotes, given a combination of username and password.
@@ -40,5 +32,11 @@ public class RegisterActivity extends AccountViewImpl {
      */
     public void returnToAccessMenu(View view) {
         this.finishActivity();
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        this.setContentView(R.layout.activity_register);
     }
 }

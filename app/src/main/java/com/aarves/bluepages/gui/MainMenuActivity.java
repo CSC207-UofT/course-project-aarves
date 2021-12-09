@@ -11,7 +11,36 @@ import com.aarves.bluepages.MainApplication;
 import com.aarves.bluepages.adapter.controllers.AccountController;
 
 public class MainMenuActivity extends AppCompatActivity {
+
     private AccountController accountController;
+
+    /**
+     * Navigate to a new activity containing the map to-be-browsed.
+     * @param view View object containing context on what's currently being shown.
+     */
+    public void viewMap(View view) {
+        Intent intent = new Intent(this, MapActivity.class);
+        startActivity(intent);
+    }
+
+    /**
+     * Navigate to a new activity containing the account menu.
+     * @param view View object containing context on what's currently being shown.
+     */
+    public void viewAccount(View view) {
+        Intent intent = new Intent(this, AccountMenuActivity.class);
+        startActivity(intent);
+    }
+
+    /**
+     * Navigate to a new activity containing the list of locations.
+     * @param view View object containing context on what's currently being shown.
+     */
+    public void viewLocations(View view) {
+        Intent intent = new Intent(this, LocationActivity.class);
+        intent.putExtra(LocationActivity.IS_BOOKMARK, false);
+        startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,25 +55,5 @@ public class MainMenuActivity extends AppCompatActivity {
         if (!this.accountController.isLoggedIn()) {
             super.onBackPressed();
         }
-    }
-
-    /**
-     * Navigate to a new activity containing the map to-be-browsed.
-     * @param view View object containing context on what's currently being shown.
-     */
-    public void viewMap(View view) {
-        Intent intent = new Intent(this, MapActivity.class);
-        startActivity(intent);
-    }
-
-    public void viewAccount(View view) {
-        Intent intent = new Intent(this, AccountMenuActivity.class);
-        startActivity(intent);
-    }
-
-    public void viewLocations(View view) {
-        Intent intent = new Intent(this, LocationActivity.class);
-        intent.putExtra(LocationActivity.IS_BOOKMARK, false);
-        startActivity(intent);
     }
 }

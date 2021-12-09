@@ -22,6 +22,16 @@ public class LocationActivity extends AppCompatActivity implements LocationView 
     private LocationArrayAdapter locationAdapter;
     private boolean isBookmark;
 
+    /**
+     * Display the locations found in the list of LocationViewModel.
+     * @param locations A list of LocationViewModel.
+     */
+    @Override
+    public void displayLocations(List<LocationViewModel> locations) {
+        this.locationAdapter.clear();
+        this.locationAdapter.addAll(locations);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,9 +77,4 @@ public class LocationActivity extends AppCompatActivity implements LocationView 
         }
     }
 
-    @Override
-    public void displayLocations(List<LocationViewModel> locations) {
-        this.locationAdapter.clear();
-        this.locationAdapter.addAll(locations);
-    }
 }

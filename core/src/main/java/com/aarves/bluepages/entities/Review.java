@@ -1,6 +1,7 @@
 package com.aarves.bluepages.entities;
 
 public class Review {
+
     private static final int DEFAULT_ID = 0;
 
     private final int reviewId;
@@ -45,16 +46,6 @@ public class Review {
         this.body = "";
 
         this.reviewId = Review.DEFAULT_ID;
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if(other instanceof Review) {
-            return this.getReviewId() == ((Review) other).getReviewId();
-        }
-        else {
-            return false;
-        }
     }
 
     /**
@@ -121,5 +112,15 @@ public class Review {
                 this.rating,
                 this.body
         );
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if(other instanceof Review) {
+            return this.getReviewId() == ((Review) other).getReviewId();
+        }
+        else {
+            return false;
+        }
     }
 }

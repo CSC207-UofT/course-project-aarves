@@ -1,6 +1,7 @@
 package com.aarves.bluepages.entities;
 
 public abstract class Location {
+
     private static final int DEFAULT_ID = 0;
 
     private final int locationId;
@@ -34,14 +35,6 @@ public abstract class Location {
         this.locationId = Location.DEFAULT_ID;
     }
 
-    @Override
-    public boolean equals(Object other) {
-        if (other instanceof Location) {
-            return this.locationId == ((Location) other).getLocationId();
-        }
-        return false;
-    }
-
     /**
      * Return the ID associated with this Location.
      * @return  Integer representing the ID of the Location.
@@ -51,7 +44,7 @@ public abstract class Location {
     }
 
     /**
-     *
+     * Get the name of the Location.
      * @return a String object of the name of the Location
      */
     public String getName(){
@@ -59,10 +52,18 @@ public abstract class Location {
     }
 
     /**
-     *
+     * Get the coordinates of the Location.
      * @return an array of doubles representing the coordinates of the Location object
      */
     public double[] getCoordinates(){
         return this.coordinates;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof Location) {
+            return this.locationId == ((Location) other).getLocationId();
+        }
+        return false;
     }
 }

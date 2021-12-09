@@ -20,36 +20,10 @@ public class CreateReviewActivity extends AppCompatActivity implements BasicView
     private int locationId;
     private int rating;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_review);
-        this.rating = 0;
-
-        MainApplication application = (MainApplication) this.getApplication();
-        this.reviewController = application.getAdapters().getReviewController();
-        application.setReviewBaseView(this);
-
-        // Get Location ID
-        Bundle extras = this.getIntent().getExtras();
-        this.locationId = extras.getInt(LocationActivity.LOCATION_ID, 0);
-
-        // Get location name and set the title
-        TextView locationName = findViewById(R.id.locationName);
-        locationName.setText(extras.getString(ReviewActivity.LOCATION_NAME, "Location Name"));
-    }
-
-    @Override
-    public void displayPopUp(String message) {
-        Toast popUp = Toast.makeText(this.getApplicationContext(), message, Toast.LENGTH_SHORT);
-        popUp.show();
-    }
-
-    @Override
-    public void finishActivity() {
-        this.finish();
-    }
-
+    /**
+     * Creates a review based on the user input.
+     * @param view View object containing context on what's currently being shown.
+     */
     public void submitReview(View view) {
         // Get the text of the review
         EditText reviewTextBody = this.findViewById(R.id.reviewTextBody);
@@ -59,8 +33,8 @@ public class CreateReviewActivity extends AppCompatActivity implements BasicView
     }
 
     /**
-     * Sets the rating of the review
-     * @param view The current view
+     * Sets the rating of the review.
+     * @param view View object containing context on what's currently being shown.
      */
     public void setRating(View view) {
         // Get the new rating of the review
@@ -81,7 +55,7 @@ public class CreateReviewActivity extends AppCompatActivity implements BasicView
 
     /**
      * Gets the rating of the review based on the number of stars the user has clicked.
-     * @param view The current view
+     * @param view View object containing context on what's currently being shown.
      */
     public void updateRating(View view) {
         // Reset the rating
@@ -94,4 +68,42 @@ public class CreateReviewActivity extends AppCompatActivity implements BasicView
             }
         }
     }
+
+    /**
+     * Show a toast message.
+     * @param message The message to show.
+     */
+    @Override
+    public void displayPopUp(String message) {
+        Toast popUp = Toast.makeText(this.getApplicationContext(), message, Toast.LENGTH_SHORT);
+        popUp.show();
+    }
+
+    /**
+     * Finish this activity.
+     */
+    @Override
+    public void finishActivity() {
+        this.finish();
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_create_review);
+        this.rating = 0;
+
+        MainApplication application = (MainApplication) this.getApplication();
+        this.reviewController = application.getAdapters().getReviewController();
+        application.setReviewBaseView(this);
+
+        // Get Location ID
+        Bundle extras = this.getIntent().getExtras();
+        this.locationId = extras.getInt(LocationActivity.LOCATION_ID, 0);
+
+        // Get location name and set the title
+        TextView locationName = findViewById(R.id.locationName);
+        locationName.setText(extras.getString(ReviewActivity.LOCATION_NAME, "Location Name"));
+    }
+
 }

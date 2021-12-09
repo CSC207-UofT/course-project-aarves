@@ -22,6 +22,13 @@ public class LocationArrayAdapter extends ArrayAdapter<LocationViewModel> {
     private final Context context;
     private final int resource;
 
+    /**
+     * Construct a new LocationArrayAdapter.
+     * @param context The current context.
+     * @param resource The view resource ID.
+     * @param accountController The account controller.
+     * @param locationController The location controller.
+     */
     public LocationArrayAdapter(Context context, int resource, AccountController accountController, LocationController locationController) {
         super(context, resource);
 
@@ -30,6 +37,20 @@ public class LocationArrayAdapter extends ArrayAdapter<LocationViewModel> {
 
         this.accountController = accountController;
         this.locationController = locationController;
+    }
+
+    /**
+     * Toggle the bookmark button.
+     * @param button The button to toggle.
+     * @param isBookmarked Whether the location is bookmarked.
+     */
+    private void toggleBookmark(Button button, boolean isBookmarked) {
+        if(isBookmarked) {
+            button.setText(R.string.unbookmark);
+        }
+        else {
+            button.setText(R.string.bookmark);
+        }
     }
 
     @Override
@@ -97,12 +118,4 @@ public class LocationArrayAdapter extends ArrayAdapter<LocationViewModel> {
         return convertView;
     }
 
-    private void toggleBookmark(Button button, boolean isBookmarked) {
-        if(isBookmarked) {
-            button.setText(R.string.unbookmark);
-        }
-        else {
-            button.setText(R.string.bookmark);
-        }
-    }
 }

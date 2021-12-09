@@ -13,9 +13,15 @@ import com.aarves.bluepages.R;
 import com.aarves.bluepages.adapter.presenters.ReviewViewModel;
 
 public class ReviewArrayAdapter extends ArrayAdapter<ReviewViewModel> {
+
     private final Context context;
     private final int resource;
 
+    /**
+     * Construct a new ReviewArrayAdapter.
+     * @param context The context of the application.
+     * @param resource The resource ID of the layout to use.
+     */
     public ReviewArrayAdapter(Context context, int resource) {
         super(context, resource);
 
