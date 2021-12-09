@@ -2,8 +2,6 @@ package com.aarves.bluepages.usecase.interactors.account;
 
 import com.aarves.bluepages.adapter.controllers.AccountInputMockup;
 import com.aarves.bluepages.usecase.exceptions.PermissionsFailureException;
-import com.aarves.bluepages.usecase.interactors.Observer;
-import com.aarves.bluepages.usecase.interactors.review.ReviewOutputBoundary;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
