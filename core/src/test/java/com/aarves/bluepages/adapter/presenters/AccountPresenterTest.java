@@ -12,11 +12,14 @@ import org.junit.jupiter.api.Assertions;
 class AccountPresenterTest {
     private AccountPresenter accountPresenter;
     private AccountViewMockup accountView;
+    private AccountMenuViewMockup accountMenuViewMockup;
 
     @BeforeEach
     void setUp() {
         this.accountView = new AccountViewMockup();
         this.accountPresenter = new AccountPresenter();
+        this.accountMenuViewMockup = new AccountMenuViewMockup();
+        this.accountPresenter.setAccountMenuView(accountMenuViewMockup);
         this.accountPresenter.setAccountView(accountView);
     }
 
@@ -89,4 +92,40 @@ class AccountPresenterTest {
         this.accountPresenter.registerResult(RegisterResult.PASSWORD_MISMATCH);
         Assertions.assertEquals("Passwords do not match!", this.accountView.getPopUpDisplay());
     }
+
+    @Test
+    void testDisplayLogoutDisplay() {
+        this.accountPresenter.displayLogout();
+        Assertions.assertEquals(this.accountView.getPopUpDisplay(), "Account logged out successfully.");
+    }
+
+
+    @Test
+    void testDisplayLogoutActivity() {
+        this.accountPresenter.displayLogout();
+        Assertions.assertTrue(this.accountView.isReturnedToAccessMenu());
+        Assertions.assertTrue(this.accountView.isFinishActivity());
+    }
+
+    @Test
+    void testDisplayLogoutDisplayNoAccMenu() {
+        this.accountPresenter.setAccountView(null);
+        this.accountPresenter.displayLogout();
+        Assertions.assertEquals(this.accountMenuViewMockup.popUpDisplay, "Account logged out successfully.");
+    }
+
+
+    @Test
+    void testDisplayLogoutActivityNoAccMenu() {
+        this.accountPresenter.setAccountView(null);
+        this.accountPresenter.displayLogout();
+        Assertions.assertTrue(this.accountMenuViewMockup.activityFinished);
+    }
+
+    @Test
+    void testDisplayInfo() {
+        this.accountPresenter.displayInformation("username");
+        Assertions.assertEquals(this.accountMenuViewMockup.accountInfoDisplay, "username");
+    }
+
 }
