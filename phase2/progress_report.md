@@ -49,13 +49,13 @@ Between phase 1 and phase 2, we also added new functionality to both the front a
 - Settling for basic location information (i.e. name, address, coordinates) rather than in-depth pieces because MapBox's API did not provide said in-depth pieces of information. The project would have extended past the deadline if a search for another API provider (whether to replace MapBox or to work alongside it) was done.
 
 ## Scenario walk-through 
-Upon opening Bluepages, the user is greeted with an access menu from which three options are available; guest, login, and register. If the user is new to the app and wants extra functionality, they would select "REGISTER".
+Upon opening Bluepages, the user is greeted with an access menu from which three options are available; guest, login, and register. If the user is new to the app and wants extra functionality, they would select **REGISTER**.
 
 They are now presented with a registration menu where they can enter their information. After validating the entered information (i.e. username and password), they are returned to the main menu where they can select the login option.
 
-From here, the user selects "LOGIN", and enters the info which they used to sign up for Bluepages. Upon successful login, the user is brought to the main menu where they can view the food/study spot of the day, access bookmarks/reviews, and view the map.
+From here, the user selects **LOGIN**, and enters the info which they used to sign up for Bluepages. Upon successful login, the user is brought to the main menu where they can view an organized list of locations, access their profile, and view the map.
 
-If "MAP" is selected, the user is presented with a map bound to the vicinity of the St. George Campus, and within these bounds the map is freely pannable and zoomable. Should manual browsing not be the user's go-to, they can use the search bar to look-up nearby locations, presented as a command-line output.
+If **MAP** is selected, the user is presented with a map bound to Toronto, with a visible boundary around the vicinity of the St. George Campus. Within these bounds the map is freely pannable and zoomable, with food locations and study locations being easily tappable for more information. Should manual browsing not be the user's go-to, they can use the search bar to look-up nearby locations, presented as a pop-up menu with the location name and address displayed.
 
 ## Clean Architecture
 **_How does our project adhere to Clean Architecture?_**
