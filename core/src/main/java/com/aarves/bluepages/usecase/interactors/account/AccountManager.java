@@ -19,6 +19,12 @@ public class AccountManager implements AccountInputBoundary, Observable<User> {
     private final List<Observer<User>> observers;
     private User user;
 
+    /**
+     * Creates an AccountManager object.
+     * @param accountData the AccountDataBoundary to inject to this AccountManager
+     * @param accountOutput the AccountOutputBoundary to inject to this AccountManager
+     * @throws NoSuchAlgorithmException
+     */
     public AccountManager(AccountDataBoundary accountData, AccountOutputBoundary accountOutput) throws NoSuchAlgorithmException {
         this.passwordDigest = MessageDigest.getInstance("SHA-256");
         this.accountData = accountData;
@@ -27,6 +33,10 @@ public class AccountManager implements AccountInputBoundary, Observable<User> {
         this.observers = new ArrayList<>();
     }
 
+    /**
+     * Returns whether the user is currently logged in or not.
+     * @return true if the user is currently logged in, false otherwise.
+     */
     @Override
     public boolean isLoggedIn() {
         return this.user != null;
@@ -59,6 +69,9 @@ public class AccountManager implements AccountInputBoundary, Observable<User> {
         this.notifyObservers();
     }
 
+    /**
+     * Logs the user out of the application.
+     */
     @Override
     public void logout() {
         this.user = null;
@@ -92,6 +105,9 @@ public class AccountManager implements AccountInputBoundary, Observable<User> {
         this.accountOutput.registerResult(result);
     }
 
+    /**
+     * Loads the user's username to display and displays through the AccountPresenter.
+     */
     @Override
     public void loadInformation() {
         if(this.isLoggedIn()) {
@@ -102,21 +118,36 @@ public class AccountManager implements AccountInputBoundary, Observable<User> {
         }
     }
 
+    /**
+     * Adds a user to be observed for the observer design pattern
+     * @param observer the observer to be added
+     */
     @Override
     public void addObserver(Observer<User> observer) {
         this.observers.add(observer);
     }
 
+    /**
+     * Removes a user to be observed for the observer design pattern
+     * @param observer the observer to be deleted
+     */
     @Override
     public void deleteObserver(Observer<User> observer) {
         this.observers.remove(observer);
     }
 
+    /**
+     * Removes all observers of this class.
+     */
     @Override
     public void clearObservers() {
         this.observers.clear();
     }
 
+    /**
+     * Notifies the observers (for the observer design pattern) that a change has been made, and calls their update
+     * method.
+     */
     @Override
     public void notifyObservers() {
         for(Observer<User> observer : this.observers) {
@@ -150,6 +181,11 @@ public class AccountManager implements AccountInputBoundary, Observable<User> {
         return this.user;
     }
 
+    /**
+     * Uses MessageDigest to hash the password string.
+     * @param password the password to be hashed.
+     * @return the string representation of the message digest object.
+     */
     private String hashPassword(String password) {
         byte[] hash = this.passwordDigest.digest(password.getBytes(StandardCharsets.UTF_8));
         return new String(hash, StandardCharsets.UTF_8);

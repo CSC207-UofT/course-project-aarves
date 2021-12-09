@@ -8,6 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LocationOutputMapper {
+    /**
+     * Maps the list of Locations and the corresponding list of ratings to a LocationOutputModel
+     * @param locations the list of locations to be mapped
+     * @param ratings the list of ratings to be mapped
+     * @return the LocationOutputModels of the locations and their ratings.
+     */
     public static List<LocationOutputModel> mapToOutputModels(List<Location> locations, List<Float> ratings) {
         List<LocationOutputModel> locationOutputModels = new ArrayList<>();
         for(int i = 0; i < locations.size(); i++) {
@@ -17,6 +23,12 @@ public class LocationOutputMapper {
         return locationOutputModels;
     }
 
+    /**
+     * Maps a Location and it's corresponding rating to a LocationOutputModel
+     * @param location the location to be mapped
+     * @param rating the list of ratings to be mapped
+     * @return the LocationOutputModel of the location
+     */
     public static LocationOutputModel mapToOutputModel(Location location, float rating) {
         if(location instanceof FoodLocation) {
             return new LocationOutputModel(
