@@ -45,7 +45,8 @@ Between phase 1 and phase 2, we also added new functionality to both the front a
 | ![](assets/gifs/account-menu.gif) | ![](assets/gifs/location-list.gif) |
 
 ## Major decisions made by our group: ##
-- Moving to Android vs. web application: we decided to move our app over to Android, as it better fit our original view of what we wanted to do with this project.
+- Removing the plan for a food/study spot of the day. There were difficulties in how to get these spots, especially since location data is grabbed dynamically rather than all stored at once.
+- Settling for basic location information (i.e. name, address, coordinates) rather than in-depth pieces because MapBox's API did not provide said in-depth pieces of information. The project would have extended past the deadline if a search for another API provider (whether to replace MapBox or to work alongside it) was done.
 
 ## Scenario walk-through 
 Upon opening Bluepages, the user is greeted with an access menu from which three options are available; guest, login, and register. If the user is new to the app and wants extra functionality, they would select "REGISTER".
