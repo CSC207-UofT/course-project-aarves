@@ -100,10 +100,10 @@ needed our attention.
 
 ## Testing ##
 
-Due to the intense amount of refactoring and repeated changes to the main part of our program, currently we have 
-finished testing for usecase/data, usecase/interactors/review, and adapter/presenters. However, we are still left 
-with usecase/interactors/account and usecase/interactors/location and adapter/controllers. This should be finished by 
-Wednesday!
+During Phase 2, we have worked to improve our test coverage from just testing two classes in the usecase layer to now testing most classes in all layers of Clean Architecture. Due to the intense amount of refactoring and repeated changes to the main part of our program, currently we have 
+finished testing for adapters, entities and usecases.
+![image](https://user-images.githubusercontent.com/78867159/145317838-83b606f7-7f4a-4d10-8572-1a9a1c40d326.png)
+
 
 ## Progress Report ##
 
