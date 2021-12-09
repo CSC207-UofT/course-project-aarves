@@ -134,6 +134,8 @@ branch dedicated to Serialization and upon second thought, the Serialization bra
 for each entity that was serialized. We also used the issues feature in Github which made it easy to highlight what
 needed our attention.
 
+Furthermore, throughout Phase 2 we made more use of the GitHub autograder while using branches. Before making any pull requests to main, we looked to see whether the autograder passed its checks. If so, the PR is good to be made. If not, we used the detailed report to examine where it went wrong, and made changes to the code accordingly to satisfy the autograder. In a way, this autograder system worked similarly to PyTA in CSC148 with MarkUs assignments, giving us a guideline of what to do before submitting a final copy.
+
 ## Testing ##
 
 During Phase 2, we have worked to improve our test coverage from just testing two classes in the use case layer to now testing most classes in all layers of Clean Architecture. Due to the intense amount of refactoring and repeated changes to the main part of our program, currently we have 
