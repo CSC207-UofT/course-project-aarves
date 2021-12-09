@@ -5,6 +5,7 @@ public class AccountViewMockup implements AccountView{
 
     private boolean finishActivity;
     private boolean startActivity;
+    private boolean returnedToAccessMenu;
 
     @Override
     public void displayPopUp(String message) {
@@ -18,6 +19,7 @@ public class AccountViewMockup implements AccountView{
 
     @Override
     public void returnToAccessMenu() {
+        this.returnedToAccessMenu = true;
 
     }
 
@@ -36,5 +38,9 @@ public class AccountViewMockup implements AccountView{
 
     public boolean isStartActivity() {
         return this.startActivity;
+    }
+
+    public boolean isReturnedToAccessMenu(){
+        return this.returnedToAccessMenu;
     }
 }

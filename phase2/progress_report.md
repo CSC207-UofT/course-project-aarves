@@ -26,25 +26,36 @@ Across both types of locations, general information such as name and address are
 | Food          | <ul><li>Food type (i.e. Japanese).</li><li>Whether it's dine-in or takeout.</li><li>Price range.</li></ul>                  |
 | Study         | <ul><li>Whether it's indoors or outdoors.</li><li>Study room availability (if indoors).</li></ul>                  |
 
-## Changes From Phase0 ##
+## Changes From Phase1 ##
 
-From phase 0 to phase 1, we took the command-line interface and built upon it to have an Android app complete with a GUI. With this addition, the user can now use an interactive map to browse locations. Below are demonstrations of the benefits this move to Android has conveyed:
+### Updated from Phase1 ###
 
-| Login | Registration | Map Browsing |
-|--------------|---------------|---------------|
-| ![](assets/gif_login.gif) | ![](assets/gif_registration.gif)      | ![](assets/gif_map.gif) |
+From phase 1 to phase 2, we focused on refining the Android GUI. Despite the login and registration *seeming* unchanged, the backend now allows for account storage in a database which confers **data persistence**. Another change from phase 1 involves browsing the map in that pinpoints can now be placed at POIs, and further information on the point can be obtained by tapping it. Demonstrated below are these three key features in action:
+
+| Login                      | Registration                      | Map Browsing                      |
+|----------------------------|-----------------------------------|-----------------------------------|
+| ![](assets/gifs/login.gif) | ![](assets/gifs/registration.gif) | ![](assets/gifs/map-browsing.gif) |
+
+### New Additions ###
+
+Between phase 1 and phase 2, we also added new functionality to both the front and backend. The account menu allows the user (if logged-on) to browse their reviews and bookmarks in an organized manner. The location list provides a quick means to bookmark, and browse/leave reviews (once again, if logged-on) without needing to use the map. Furthermore, these bookmarks and reviews will **persist** across runs of the application.
+
+| Account Menu                      | Location List                      |
+|-----------------------------------|------------------------------------|
+| ![](assets/gifs/account-menu.gif) | ![](assets/gifs/location-list.gif) |
 
 ## Major decisions made by our group: ##
-- Moving to Android vs. web application: we decided to move our app over to Android, as it better fit our original view of what we wanted to do with this project.
+- Removing the plan for a food/study spot of the day. There were difficulties in how to get these spots, especially since location data is grabbed dynamically rather than all stored at once.
+- Settling for basic location information (i.e. name, address, coordinates) rather than in-depth pieces because MapBox's API did not provide said in-depth pieces of information. The project would have extended past the deadline if a search for another API provider (whether to replace MapBox or to work alongside it) was done.
 
 ## Scenario walk-through 
-Upon opening Bluepages, the user is greeted with an access menu from which three options are available; guest, login, and register. If the user is new to the app and wants extra functionality, they would select "REGISTER".
+Upon opening Bluepages, the user is greeted with an access menu from which three options are available; guest, login, and register. If the user is new to the app and wants extra functionality, they would select **REGISTER**.
 
 They are now presented with a registration menu where they can enter their information. After validating the entered information (i.e. username and password), they are returned to the main menu where they can select the login option.
 
-From here, the user selects "LOGIN", and enters the info which they used to sign up for Bluepages. Upon successful login, the user is brought to the main menu where they can view the food/study spot of the day, access bookmarks/reviews, and view the map.
+From here, the user selects **LOGIN**, and enters the info which they used to sign up for Bluepages. Upon successful login, the user is brought to the main menu where they can view an organized list of locations, access their profile, and view the map.
 
-If "MAP" is selected, the user is presented with a map bound to the vicinity of the St. George Campus, and within these bounds the map is freely pannable and zoomable. Should manual browsing not be the user's go-to, they can use the search bar to look-up nearby locations, presented as a command-line output.
+If **MAP** is selected, the user is presented with a map bound to Toronto, with a visible boundary around the vicinity of the St. George Campus. Within these bounds the map is freely pannable and zoomable, with food locations and study locations being easily tappable for more information. Should manual browsing not be the user's go-to, they can use the search bar to look-up nearby locations, presented as a pop-up menu with the location name and address displayed.
 
 ## Clean Architecture
 **_How does our project adhere to Clean Architecture?_**
@@ -90,10 +101,10 @@ needed our attention.
 
 ## Testing ##
 
-Due to the intense amount of refactoring and repeated changes to the main part of our program, currently we have 
-finished testing for usecase/data, usecase/interactors/review, and adapter/presenters. However, we are still left 
-with usecase/interactors/account and usecase/interactors/location and adapter/controllers. This should be finished by 
-Wednesday!
+During Phase 2, we have worked to improve our test coverage from just testing two classes in the usecase layer to now testing most classes in all layers of Clean Architecture. Due to the intense amount of refactoring and repeated changes to the main part of our program, currently we have 
+finished testing for adapters, entities and usecases.
+![image](https://user-images.githubusercontent.com/78867159/145317838-83b606f7-7f4a-4d10-8572-1a9a1c40d326.png)
+
 
 ## Progress Report ##
 
@@ -115,7 +126,7 @@ Wednesday!
   |--------------|----------------------------------------------------------|------------------------------------|--|
   | Ashenafee    | Worked on implementing the 'pinpoint' feature for the map (i.e. being able to display 📍 at locations of interest) as well as displaying the name and address of said POIs.                                                         | https://github.com/CSC207-UofT/course-project-aarves/pull/89 | Allowing the visual representation of POIs to the user is a fundamental part of **any** map-oriented app. By implementing this, the app fully transitions from the CLI responses to a visual, 'nice-looking' response (in the form of points). |
 | Anthony      | Implemented database and connected database into use case interactors and user interface. | https://github.com/CSC207-UofT/course-project-aarves/pull/58 https://github.com/CSC207-UofT/course-project-aarves/pull/67 https://github.com/CSC207-UofT/course-project-aarves/pull/81 | Needed a method of data persistence which complies with Clean Architecture, and needed to connect it to the other systems. |
-  | Erica        | Worked on creating AccountMenu for the GUI and testing for everything including presenters and usecases.                                                        | https://github.com/CSC207-UofT/course-project-aarves/pull/93                               |As shown in this pull request, the majority of classes are now tested, covering all layers of clean architecture which was one of our feedbacks from Phase 1 where only 2 classes in the usecase layer were tested. |
+  | Erica        | Worked on creating AccountMenu for the GUI and testing for everything including presenters, interactors and usecases.                                                        | https://github.com/CSC207-UofT/course-project-aarves/pull/94                              |As shown in this pull request, the majority of classes are now tested, covering all layers of clean architecture which was one of our main feedbacks from Phase 1 where only 2 classes in the usecase layer were tested. |
   | Rebecca      | Created GUI for locations, reviews, create reviews, bookmarks, main menu, and adapters to display information. Cleaned up GUI interface and features.     |  https://github.com/CSC207-UofT/course-project-aarves/pull/86  https://github.com/CSC207-UofT/course-project-aarves/pull/87 https://github.com/CSC207-UofT/course-project-aarves/pull/88 https://github.com/CSC207-UofT/course-project-aarves/pull/91                        | The bulk of the front end and display logic are in these pull requests. |
   | Syed         | Tested everything by creating new test-cases, while simultaneously fixing test-cases for refactored files from phase 1 and phase 2. Helped Erica fix her failing test cases. Also, worked on figuring out how to add markers/pointers to the map and tried setting map boundaries. | https://github.com/CSC207-UofT/course-project-aarves/pull/93 |  Contains all the test cases for Use-Case files and refactored files, contains commits for fixing buggy test cases |
   | Vaishnavi    | Helped assist with the GUI by working on some of the xml files need for location previews and cleaning up previously made xml files. Helped create a potential filter for each type of location (food location and study location). Helped merge branches and made pull requests.| https://github.com/CSC207-UofT/course-project-aarves/pull/84 https://github.com/CSC207-UofT/course-project-aarves/pull/92| The first pull request was for the previews of the locations, so the general xml files that is shown in our app. The second pull request was for the search filters regarding locations.|

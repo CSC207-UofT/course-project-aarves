@@ -35,7 +35,7 @@ class ReviewPresenterTest {
         reviewOutputModelList.add(r1);
         reviewOutputModelList.add(r2);
         reviewPresenter.presentReviews(reviewOutputModelList);
-        Assertions.assertTrue(reviewView.reviewDisplayed);
+        Assertions.assertTrue(reviewView.isReviewDisplayed());
     }
 
 }

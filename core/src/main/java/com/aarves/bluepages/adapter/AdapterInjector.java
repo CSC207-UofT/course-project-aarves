@@ -19,6 +19,9 @@ import com.aarves.bluepages.usecase.interactors.review.ReviewUseCaseInjector;
 
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * The injector class for all dependencies on the interface adapters layer.
+ */
 public class AdapterInjector {
     private final AccountController accountController;
     private final AccountPresenter accountPresenter;
@@ -28,22 +31,27 @@ public class AdapterInjector {
     private final ReviewPresenter reviewPresenter;
 
     public AdapterInjector(AccountDAO accountDAO, LocationDAO locationDAO, ReviewDAO reviewDAO) throws NoSuchAlgorithmException {
+        // Creates output boundaries / presenters
         this.accountPresenter = new AccountPresenter();
         this.locationPresenter = new LocationPresenter();
         this.reviewPresenter = new ReviewPresenter();
 
+        // Injects into the domain injectors
         AccountUseCaseInjector accountInjector = new AccountUseCaseInjector(accountDAO, this.accountPresenter);
         LocationUseCaseInjector locationInjector = new LocationUseCaseInjector(locationDAO, this.locationPresenter);
         ReviewUseCaseInjector reviewInjector = new ReviewUseCaseInjector(reviewDAO, this.reviewPresenter);
 
+        // Retrieves input boundaries from the domain injectors
         AccountManager accountManager = accountInjector.getAccountManager();
         BookmarkManager bookmarkManager = locationInjector.getBookmarkManager();
         LocationMap locationMap = locationInjector.getLocationMap();
         ReviewManager reviewManager = reviewInjector.getReviewManager();
 
+        // Injects observers for observer design pattern
         accountManager.addObserver(bookmarkManager);
         accountManager.addObserver(reviewManager);
 
+        // Injects input boundaries into the controllers
         this.accountController = new AccountController(accountManager);
         this.locationController = new LocationController(bookmarkManager, locationMap, reviewManager);
         this.reviewController = new ReviewController(reviewManager);

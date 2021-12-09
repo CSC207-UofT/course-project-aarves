@@ -4,6 +4,9 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+/**
+ * Data entity for a record in the locations table, used by Room.
+ */
 @Entity(tableName = "locations")
 public class LocationDataEntity {
     @PrimaryKey(autoGenerate = true)
@@ -22,6 +25,13 @@ public class LocationDataEntity {
     @ColumnInfo(name = "location_type")
     public String type;
 
+    /**
+     * Constructs a data entity corresponding to a location with given name, coordinates, and type.
+     * @param name the name of the location
+     * @param longitude the longitude coordinate of the location
+     * @param latitude the latitude coordinate of the location
+     * @param type the type of location, either "FOOD" or "STUDY"
+     */
     public LocationDataEntity(String name, double longitude, double latitude, String type) {
         this.name = name;
         this.longitude = longitude;

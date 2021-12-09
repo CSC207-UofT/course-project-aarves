@@ -9,6 +9,10 @@ public class ReviewPresenter implements ReviewOutputBoundary {
     private ReviewView reviewView;
     private BasicView baseView;
 
+    /**
+     * Converts the reviews from their ReviewOutputModels to ReviewViewModels to present.
+     * @param reviews the ReviewOutputModels of the reviews to present.
+     */
     @Override
     public void presentReviews(List<ReviewOutputModel> reviews) {
         if(this.reviewView != null) {
@@ -17,6 +21,10 @@ public class ReviewPresenter implements ReviewOutputBoundary {
         }
     }
 
+    /**
+     * Displays the result of the review creation.
+     * @param success whether the review creation process was successful or not.
+     */
     @Override
     public void createResult(boolean success) {
         if(this.baseView != null) {
@@ -30,10 +38,18 @@ public class ReviewPresenter implements ReviewOutputBoundary {
         }
     }
 
+    /**
+     * Sets the ReviewView interface.
+     * @param reviewView the ReviewView interface to set.
+     */
     public void setReviewView(ReviewView reviewView) {
         this.reviewView = reviewView;
     }
 
+    /**
+     * Sets the BasicView interface.
+     * @param baseView the BasicView interface to set.
+     */
     public void setBaseView(BasicView baseView) {
         this.baseView = baseView;
     }
