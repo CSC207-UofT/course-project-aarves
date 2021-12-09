@@ -22,7 +22,7 @@ public class ReviewPresenter implements ReviewOutputBoundary {
     }
 
     /**
-     * Creates the result of the review creation to display.
+     * Displays the result of the review creation.
      * @param success whether the review creation process was successful or not.
      */
     @Override

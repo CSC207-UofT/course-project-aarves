@@ -1,8 +1,8 @@
 package com.aarves.bluepages.usecase.interactors.account;
 
-import com.aarves.bluepages.adapter.controllers.AccountController;
-import com.aarves.bluepages.entities.User;
-
+/**
+ * Interface for inputting account related data to use cases.
+ */
 public interface AccountInputBoundary {
     boolean isLoggedIn();
     void login(String username, String password);
