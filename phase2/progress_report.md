@@ -19,7 +19,8 @@ Bluepages is a location-browser app tailored to UofT students looking for places
 
 ### Locations ###
 
-Across both types of locations, general information such as name and address are provided.
+Across both types of locations, general information such as name and address are provided. See the major decisions section for
+details of the final implementation.
 
 | Location-type | Information-shown                                                                                          |
 |---------------|------------------------------------------------------------------------------------------------------------|
@@ -63,17 +64,19 @@ The **account menu** is accessed by the profile picture at the top left, and fro
 
 ## Clean Architecture
 **_How does our project adhere to Clean Architecture?_**
-- The code is independent of the Android UI, and external agency and of the database
 - The code follows the dependency rule (see dependency inversion under SOLID principles for more info)
+- Interfaces are used as boundaries between layers to allow for dependency injection
+- Data transfer objects and models are passed between layers rather than entities, as required by Clean Architecture
 
 ## Solid Principles
 _**How is our project consistent with the SOLID design principles?**_
 
-| SOLID Principle       | Example                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-|-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Single responsibility | Examining `AccountList` and `AccountManager`, the two are separate classes to hold in line with the SRP. Originally we had combined the responsibility of account storage and account creation/deletion in one class. In that case, should an actor want to change the process in how an account is created, then it would have also affected the storage of said account. With these two classes, if said actor were to change the process of account creation, the only changes made would be in `AccountManager`, because we still have `RegisteredUser` being stored in `AccountList`, the only difference is how the `RegisteredUser` is made in `AccountManager`. |
-| Interface segregation | Our Serializer and AccountManagerDependency interfaces are kept small, only defining the crucial methods needed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| Dependency inversion  | In general, our entities such as a RegisteredUser do not know about for example the Android UI, any use cases or controllers. Instead, the CommandLine generates an instance of the InputController and InputGateway. The InputController and InputGateways then generate instances of an AccountManager and an AccountManager is able to instantiate a new RegisteredUser. This flow illustrates how our code only points inwards, consistent with the dependency rule                                                                                                                                                                                                 |
+| SOLID Principle       | Explanations and Examples                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+|-----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Single responsibility | Examining `BookmarkManager` and `LocationMap`, the two are separate classes to hold in line with the SRP. Originally we had combined the responsibility of bookmarking locations and managing the map of locations in one class. In that case, should an actor want to change the process in how a bookmark is added, then it would have also affected the storage of locations in the map. With these two classes, if said actor were to change the process of bookmarking, the only changes made would be in `BookmarkManager`, because we still have `LocationMap` storing `Location`s separate. |
+| Open / Closed         | By using interfaces between layers, we make our program much more open to extension while being closed for modification. This can be seen by our testing, where we were able to switch out dependencies for mockups to test in isolation with great ease due to the use of interfaces, showing how easy it is to extend functionality. More examples are discussed in the design patterns section.                                                                                                                                                                                                  |
+| Interface segregation | We initially had larger `ReviewInputBoundary`, but this resulting in classes relying on interfaces with methods they don't use. As such, we refactored into the role interfaces of `ReviewAccountInputBoundary` and `ReviewLocationInputBoundary`.                                                                                                                                                                                                                                                                                                                                                  |
+| Dependency inversion  | Dependency inversion was used throughout in order to maintain the dependency rule of Clean Architecture while keeping the correct flow of control. Between the layers of Clean Architecture, we made sure to use interface as boundaries, and thus both classes involved would depend on abstractions, following the DIP. For example, `AccountManager` uses the `AccountOutputBoundary` interface, which is implemented by `AccountPresenter`. The concretion is injected into `AccountManager`'s constructor, thus inverting dependency.                                                          |
 
 ## Packaging ##
 
@@ -81,19 +84,47 @@ _**Which packaging strategies did we consider? Which did we end up using, and wh
 
 During our refactoring process, we first considered packaging by feature. However,
 this proved to be difficult since there were a lot of files that shared similar attributes.
-We ended up packaging by the layers of clean architecture(entities, use cases, controllers) because it was more efficient
-(used the crc cards and report from phase 0 for reference), and it can keep us all in check of fulfilling the clean
-architecture model. We are currently unsure about how to organize our serializer files(the Interface, AccountSerializer,
-ReviewSerializer), because it does not cleanly meet any of the actual layers of clean architecture without a violation.
+We ended up packaging by the layers of clean architecture (entities, use cases, adapters) because it was more efficient
+(used the CRC cards and report from phase 0 for reference), and it can keep us all in check of fulfilling the clean
+architecture model. As we created more classes, some packages got subpackages based on the domain the classes were related to
+(accounts, locations, reviews).
 
 ## Design Patterns ##
 
-Dependency Injection Design Pattern:
+_**Dependency Injection Design Pattern:**_
 
-To better demonstrate Clean Architecture, we added the Dependency Injection Design Pattern in InputController.java and
-InputGateway.java by following the Interface Injection method of design. i.e, we created an interface called
-AccountManagerDependency.java and then injected it in the two adapter classes. The benefits of implementing dependency injection include:
-- The InputController and InputGateway classes are not responsible for creating an instance of an AccountManager. Instead, an instance of the class in passed into the injectAccountManager method. This adheres better to clean architecture by decoupling the Input classes and AccountManager.
+To better demonstrate Clean Architecture, we added the Dependency Injection Design Pattern throughout the code, as seen in the 
+various injector classes at each layer. When the app starts, `AppInjector` is called to inject app dependencies into the 
+framework layer, then it calls `AdapterInjector` which injects dependencies for the interface adapter layer of Clean Architecture.
+Then, an injector is called to inject dependencies for each domain of the use cases layer (accounts, locations, reviews).
+
+_**Observer Design Pattern:**_
+
+We used an observer design pattern so that whenever the user logs in, the observable `AccountManager` notifies both the 
+`ReviewManager` and `BookmarkManager` observers about the new user and retrieves the user's reviews and bookmarks. Previously,
+the `AccountManager` would directly call the managers, which led to increase coupling between use cases. This way, it is much
+more decoupled and open to extension, as if a new manager for another aspect were to be made, it would simply need to be injected
+as another observer.
+
+_**Adapter Design Pattern**_
+
+The adapter design pattern was used in `AccountDAOAdapter`, `LocationDAOAdapter`, and `ReviewDAOAdapter` to adapt between 
+the Room database's automatically implemented data access objects / data entities, which were specific to the Room database's
+implementation, and our data access code. This would allow for us to easily switch out to another type of database by simply creating
+new adapters for the new database, and also allows for easier testing as we can have a simple in-memory implementation for testing
+purposes. We ended up doing so, which is explained more in the testing section.
+
+_**Repository Design Pattern**_
+
+The repository pattern was used to provide a collection-like interface for `Review`s to be added, removed, and retrieved. This
+allowed for the use case interactors to be ignorant of the persistence mechanisms and encapsulated the data access logic. Since
+the repository pattern is supposed to interact with domain level objects (i.e. entities in the Clean Architecture case), this
+meant the use case interactors did not have to deal with data transfer objects, instead using `Review` entities only.
+
+_**Simple Factory Design Pattern:**_
+
+A simple factory design pattern is used in `LocationDataMapper`, which creates differing subclasses of `Location` based on the
+type of location according to the database record.
 
 ## Use of Github Features ## 
 
@@ -106,7 +137,11 @@ needed our attention.
 ## Testing ##
 
 During Phase 2, we have worked to improve our test coverage from just testing two classes in the use case layer to now testing most classes in all layers of Clean Architecture. Due to the intense amount of refactoring and repeated changes to the main part of our program, currently we have 
-finished testing for adapters, entities and use cases.
+finished testing for adapters, entities and use cases. Testing was made easier as the use of interfaces and dependency injection allowed
+for classes to be tested isolated from its dependencies, relying on simple mockups on the dependencies instead. We decided not
+to test the GUI and database packages as they are dependent on an instance of Android running which made it hard to test, rather we used
+the humble object pattern and tested the data (access) package and presenters package instead.
+
 ![image](https://user-images.githubusercontent.com/78867159/145317838-83b606f7-7f4a-4d10-8572-1a9a1c40d326.png)
 
 
@@ -129,7 +164,7 @@ finished testing for adapters, entities and use cases.
 |           | Work since Phase 1                                                                                                                                                                                                                                                                 | Link to a Significant Pull Request                                                                                                                                                                                                                   | Reasoning behind Pull Request                                                                                                                                                                                                                  |
 |-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Ashenafee | Worked on implementing the 'pinpoint' feature for the map (i.e. being able to display 📍 at locations of interest) as well as displaying the name and address of said POIs.                                                                                                        | https://github.com/CSC207-UofT/course-project-aarves/pull/89                                                                                                                                                                                         | Allowing the visual representation of POIs to the user is a fundamental part of **any** map-oriented app. By implementing this, the app fully transitions from the CLI responses to a visual, 'nice-looking' response (in the form of points). |
-| Anthony   | Implemented database and connected database into use case interactors and user interface.                                                                                                                                                                                          | https://github.com/CSC207-UofT/course-project-aarves/pull/58 https://github.com/CSC207-UofT/course-project-aarves/pull/67 https://github.com/CSC207-UofT/course-project-aarves/pull/81                                                               | Needed a method of data persistence which complies with Clean Architecture, and needed to connect it to the other systems.                                                                                                                     |
+| Anthony   | Implemented database and connected database into use case interactors and user interface. Refactored and changed packaging of files (including refactoring Android project to be at root), which is the reason for large amount of line changes.                                   | https://github.com/CSC207-UofT/course-project-aarves/pull/58 https://github.com/CSC207-UofT/course-project-aarves/pull/67 https://github.com/CSC207-UofT/course-project-aarves/pull/81                                                               | Needed a method of data persistence which complies with Clean Architecture, and needed to connect it to the other systems.                                                                                                                     |
 | Erica     | Worked on creating AccountMenu for the GUI and testing for everything including presenters, interactors and usecases.                                                                                                                                                              | https://github.com/CSC207-UofT/course-project-aarves/pull/94                                                                                                                                                                                         | As shown in this pull request, the majority of classes are now tested, covering all layers of clean architecture which was one of our main feedbacks from Phase 1 where only 2 classes in the usecase layer were tested.                       |
 | Rebecca   | Created GUI for locations, reviews, create reviews, bookmarks, main menu, and adapters to display information. Cleaned up GUI interface and features.                                                                                                                              | https://github.com/CSC207-UofT/course-project-aarves/pull/86  https://github.com/CSC207-UofT/course-project-aarves/pull/87 https://github.com/CSC207-UofT/course-project-aarves/pull/88 https://github.com/CSC207-UofT/course-project-aarves/pull/91 | The bulk of the front end and display logic are in these pull requests.                                                                                                                                                                        |
 | Syed      | Tested everything by creating new test-cases, while simultaneously fixing test-cases for refactored files from phase 1 and phase 2. Helped Erica fix her failing test cases. Also, worked on figuring out how to add markers/pointers to the map and tried setting map boundaries. | https://github.com/CSC207-UofT/course-project-aarves/pull/93                                                                                                                                                                                         | Contains all the test cases for Use-Case files and refactored files, contains commits for fixing buggy test cases                                                                                                                              |
