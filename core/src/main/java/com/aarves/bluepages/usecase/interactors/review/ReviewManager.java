@@ -16,6 +16,11 @@ public class ReviewManager implements ReviewAccountInputBoundary, ReviewLocation
     private List<Review> reviews;
     private String username;
 
+    /**
+     * Creates a ReviewManager object
+     * @param reviewRepository the ReviewRepository to inject
+     * @param reviewOutput the ReviewOutputoundary to inject.
+     */
     public ReviewManager(ReviewRepository reviewRepository, ReviewOutputBoundary reviewOutput) {
         this.reviewRepository = reviewRepository;
         this.reviewOutput = reviewOutput;
@@ -70,12 +75,18 @@ public class ReviewManager implements ReviewAccountInputBoundary, ReviewLocation
         }
     }
 
+    /**
+     * Loads all of a user's reviews, converting them to their ReviewOutputModels.
+     */
     @Override
     public void loadUserReviews() {
         List<ReviewOutputModel> reviewOutputModels = ReviewOutputMapper.mapToOutputModels(this.reviews);
         this.reviewOutput.presentReviews(reviewOutputModels);
     }
 
+    /**
+     * Refreshes the user's reviews to ensure that they have the current data.
+     */
     @Override
     public void refreshUserReviews() {
         this.reviews.clear();
@@ -84,6 +95,10 @@ public class ReviewManager implements ReviewAccountInputBoundary, ReviewLocation
         this.reviews.addAll(reviews);
     }
 
+    /**
+     * Loads all of the reviews for the location, converting them to ReviewOutputModels
+     * @param locationId the ID of the location to load the reviews for
+     */
     @Override
     public void loadLocationReviews(int locationId) {
         List<Review> reviews = this.reviewRepository.getReviewsByLocation(locationId);
@@ -91,6 +106,11 @@ public class ReviewManager implements ReviewAccountInputBoundary, ReviewLocation
         this.reviewOutput.presentReviews(reviewOutputModels);
     }
 
+    /**
+     * Get the rating of the location
+     * @param locationId the ID of the location
+     * @return the rating of the location
+     */
     @Override
     public float getLocationRating(int locationId) {
         List<Review> reviews = this.reviewRepository.getReviewsByLocation(locationId);
@@ -107,6 +127,10 @@ public class ReviewManager implements ReviewAccountInputBoundary, ReviewLocation
         }
     }
 
+    /**
+     * Update the user's information so that any change made to reviews is updated here.
+     * @param arg the argument related to the changed state of the observable
+     */
     @Override
     public void update(User arg) {
         if(arg != null) {

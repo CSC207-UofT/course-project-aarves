@@ -10,6 +10,11 @@ public class LocationUseCaseInjector {
     private final BookmarkManager bookmarkManager;
     private final LocationMap locationMap;
 
+    /**
+     * Creates a LocationUseCaseInjector object
+     * @param locationDAO the LocationDAO to be injected
+     * @param locationOutput the LocationOutputBoundary to be injected
+     */
     public LocationUseCaseInjector(LocationDAO locationDAO, LocationOutputBoundary locationOutput) {
         // Creates new data access class with adapter dependency
         LocationDataAccess locationData = new LocationDataAccess(locationDAO);
@@ -18,10 +23,18 @@ public class LocationUseCaseInjector {
         this.locationMap = new LocationMap(locationData, locationOutput);
     }
 
+    /**
+     * Gets the BookmarkManager for this LocationUseCaseInjector
+     * @return the BookmarkManager for this LocationUseCaseInjector
+     */
     public BookmarkManager getBookmarkManager() {
         return this.bookmarkManager;
     }
 
+    /**
+     * Gets the LocationMap for this LocationUseCaseInjector
+     * @return the LocationMap for this LocationUseCaseInjector
+     */
     public LocationMap getLocationMap() {
         return this.locationMap;
     }

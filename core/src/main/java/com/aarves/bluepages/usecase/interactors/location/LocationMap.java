@@ -13,6 +13,11 @@ public class LocationMap implements LocationInputBoundary {
 
     private final Map<List<Long>, Integer> coordinatesMap;
 
+    /**
+     * Creates a LocationMap object.
+     * @param locationData the LocationDataBoundary object to inject
+     * @param locationOutput the LocationOutputBoundary object to inject
+     */
     public LocationMap(LocationDataBoundary locationData, LocationOutputBoundary locationOutput) {
         this.locationData = locationData;
         this.locationOutput = locationOutput;
@@ -20,6 +25,11 @@ public class LocationMap implements LocationInputBoundary {
         this.coordinatesMap = this.locationData.getCoordinatesMap();
     }
 
+    /**
+     * Load all the ratings and bookmark status to the locations, and map the locations to LocationOutputModels.
+     * @param ratings a list of ratings of the locations
+     * @param bookmarked a list of the bookmark status of the location
+     */
     @Override
     public void loadLocations(List<Float> ratings, List<Boolean> bookmarked) {
         // TODO: Consider removing in later revisions as not scalable.
