@@ -19,8 +19,7 @@ Bluepages is a location-browser app tailored to UofT students looking for places
 
 ### Locations ###
 
-Across both types of locations, general information such as name and address are provided. However, future iterations of Bluepages looks to implement more specific info based off the location-type. See the major decisions section for
-details of the final implementation.
+Across both types of locations, general information such as name and address are provided. However, future iterations of Bluepages looks to implement more specific info based off the location-type. See the [major decisions section](https://github.com/CSC207-UofT/course-project-aarves/blob/main/phase2/progress_report.md#major-decisions-made-by-our-group) for details on difficulties faced regarding the final implementation.
 
 | Location-type | Future Iterations                                                                                          |
 |---------------|------------------------------------------------------------------------------------------------------------|
