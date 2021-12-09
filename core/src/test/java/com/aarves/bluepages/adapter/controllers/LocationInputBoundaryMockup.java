@@ -17,7 +17,6 @@ public class LocationInputBoundaryMockup implements LocationInputBoundary {
     @Override
     public void loadLocations(List<Float> ratings, List<Boolean> bookmarked) {
         this.locationsLoaded = true;
-        // create new location?
     }
 
     @Override

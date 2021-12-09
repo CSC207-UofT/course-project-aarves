@@ -1,44 +1,45 @@
 package com.aarves.bluepages.usecase.data.location;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class LocationDAOMockup implements LocationDAO {
 
-    List<LocationDTO> locations = new ArrayList<>();
+    private int id = 0;
+    private final Map<Integer, LocationDTO> dtoMap = new HashMap<>();
+    private List<Integer> bookmark = new ArrayList<>();
 
     public int addLocation(LocationDTO locationDTO) {
 
-        locations.add(locationDTO);
-        return locations.indexOf(locationDTO);
-
+        dtoMap.put(this.id, locationDTO);
+        int currentId = this.id;
+        this.id += 1;
+        return currentId;
     }
     public void deleteLocation(int locationId) {
-        for (LocationDTO l: locations) {
-            if (locations.indexOf(l) == locationId) {
-                locations.remove(l);
-            }
-        }
-
+        dtoMap.remove(locationId);
     }
 
     public void updateBookmarks(String username, List<Integer> bookmarkIds) {
 
+        List<Integer> idList = new ArrayList<>();
+
+        for (int i: bookmarkIds) {
+            if (i == this.id) {
+                idList.add(i);
+            }
+        }
+        this.bookmark = idList;
     }
 
     public LocationDTO getLocationData(int locationId) {
-        for (LocationDTO l: locations) {
-            if (locations.indexOf(l) == locationId) {
-                return l;
-            }
-        }
-        return null;
+        return dtoMap.get(locationId);
     }
 
-
     public Map<Integer, LocationDTO> getBookmarksData(String username) {
-        return null;
+        return this.dtoMap;
     }
 
     public Map<List<Long>, Integer> getCoordinatesMap() {
