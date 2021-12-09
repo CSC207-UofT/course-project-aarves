@@ -1,7 +1,7 @@
 package com.aarves.bluepages.usecase.interactors.account;
 
 import com.aarves.bluepages.adapter.controllers.AccountInputMockup;
-import com.aarves.bluepages.entities.User;
+import com.aarves.bluepages.usecase.exceptions.PermissionsFailureException;
 import com.aarves.bluepages.usecase.interactors.Observer;
 import com.aarves.bluepages.usecase.interactors.review.ReviewOutputBoundary;
 import org.junit.jupiter.api.AfterEach;
@@ -16,7 +16,6 @@ class AccountManagerTest {
 
     AccountManager accountManager;
     AccountInputMockup accountInputMockup;
-    UserObserverMockup observerMockup;
     AccountOutputBoundaryMockup accountOutputBoundary;
     AccountDataBoundaryMockup accountDataBoundary;
 
@@ -33,7 +32,6 @@ class AccountManagerTest {
             exception.printStackTrace();
         }
         accountInputMockup = new AccountInputMockup();
-        observerMockup = new UserObserverMockup();
     }
 
     @AfterEach
@@ -62,66 +60,38 @@ class AccountManagerTest {
     }
 
     @Test
-    void registerAlreadyExists() {
-        User user = new User("user", "pass");
-        accountDataBoundary.addAccount(user);
-
-
-    }
-
-    @Test
-    void registerPassMismatch() {
-        User user = new User("user", "pass");
-        accountDataBoundary.addAccount(user);
-
-
-    }
-
-    @Test
-    void registerBadUsername() {
-        User user = new User("user", "pass");
-        accountDataBoundary.addAccount(user);
-
-
-    }
-
-    @Test
-    void registerSuccess() {
-        User user = new User("user", "pass");
-        accountDataBoundary.addAccount(user);
-
-
+    void register() {
+        accountManager.register("MuizOnNesquik", "AWF1000", "AWF1000");
+        assertSame(accountOutputBoundary.getRegisterResult(), RegisterResult.SUCCESS);
     }
 
     @Test
     void loadInformation() {
-    }
-
-    @Test
-    void addObserver() {
-    }
-
-    @Test
-    void deleteObserver() {
-    }
-
-    @Test
-    void clearObservers() {
-    }
-
-    @Test
-    void notifyObservers() {
+        accountManager.register("KELA", "BaaPAyA", "BaaPAyA");
+        accountManager.login("KELA", "BaaPAyA");
+        accountOutputBoundary.displayInformation("KELA");
+        assertTrue(accountOutputBoundary.isDisplayInformation);
     }
 
     @Test
     void deleteUser() {
+        accountManager.register("MuizOnNesquik", "AWF1000", "AWF1000");
+        accountManager.login("MuizOnNesquik", "AWF1000");
+        accountManager.deleteUser();
+        assertNull(accountManager.getUser());
     }
 
     @Test
     void isExistingAccount() {
+        accountManager.register("MuizOnNesquik", "AWF1000", "AWF1000");
+        boolean result = accountManager.isExistingAccount("MuizOnNesquik");
+        assertTrue(result);
     }
 
     @Test
-    void getUser() {
+    void getUser() throws PermissionsFailureException {
+        accountManager.register("NainuNoob", "TMPxkabot", "TMPxkabot");
+        accountManager.login("NainuNoob", "TMPxkabot");
+        assertSame(accountManager.getUser(), accountDataBoundary.getUserAccount("NainuNoob", "TMPxkabot"));
     }
 }
