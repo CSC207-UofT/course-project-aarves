@@ -57,6 +57,10 @@ From here, the user selects **LOGIN**, and enters the info which they used to si
 
 If **MAP** is selected, the user is presented with a map bound to Toronto, with a visible boundary around the vicinity of the St. George Campus. Within these bounds the map is freely pannable and zoomable, with food locations and study locations being easily tappable for more information. Should manual browsing not be the user's go-to, they can use the search bar to look-up nearby locations, presented as a pop-up menu with the location name and address displayed.
 
+If **LIST OF LOCATIONS** is selected, a list of locations is presented to the user. These locations can be bookmarked, have their reviews accessed, or even have reviews left for them by the user. Both the user's bookmarks and reviews they've left appear under their account menu.
+
+The **account menu** is accessed by the profile picture at the top left, and from it the bookmarks and reviews of a *logged in user* can be viewed.
+
 ## Clean Architecture
 **_How does our project adhere to Clean Architecture?_**
 - The code is independent of the Android UI, and external agency and of the database
