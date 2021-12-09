@@ -40,12 +40,7 @@ class LocationMapTest {
     }
 
     @Test
-    void loadLocations() {
-
-    }
-
-    @Test
-    void getLocationIds() {
+    void testLoadLocations() {
         List<Float> ratings = new ArrayList<>();
         ratings.add(4.6f);
         ratings.add(3.2f);
@@ -58,18 +53,11 @@ class LocationMapTest {
 
         locationMap.loadLocations(ratings, bookmarkedList);
         Assertions.assertTrue(this.locationOutputBoundary.isLocationsPresented());
+
     }
 
     @Test
-    void getLocation() {
-    }
-
-    @Test
-    void getLocationId() {
-    }
-
-    @Test
-    void addLocation() {
+    void testAddLocation() {
         double[] coordinates = {4.5, 3.4};
         Location location = new StudyLocation(5, "Freshii", coordinates);
         Long[] coordinate = {490000L, 4652421L};
@@ -77,7 +65,4 @@ class LocationMapTest {
 
     }
 
-    @Test
-    void deleteLocationByCoordinates() {
-    }
 }
