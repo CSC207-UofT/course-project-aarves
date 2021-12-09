@@ -1,12 +1,15 @@
 package com.aarves.bluepages.usecase.data.location;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class LocationDAOMockup implements LocationDAO {
 
     List<LocationDTO> locations = new ArrayList<>();
+    Map<Integer, LocationDTO> dtoMap = new HashMap<Integer, LocationDTO>();
+    List<Integer> bookmark = new ArrayList<>();
 
     public int addLocation(LocationDTO locationDTO) {
 
@@ -37,7 +40,7 @@ public class LocationDAOMockup implements LocationDAO {
 
 
     public Map<Integer, LocationDTO> getBookmarksData(String username) {
-        return null;
+        return this.dtoMap;
     }
 
     public Map<List<Long>, Integer> getCoordinatesMap() {

@@ -18,20 +18,12 @@ public class LocationDataBoundaryMockup implements LocationDataBoundary {
     @Override
     public Location addLocation(Location location) {
         locationList.add(location);
-        // TODO: correct return statement??
         return location;
     }
 
     @Override
     public void deleteLocation(int locationId) {
-        Location toDelete = null;
-        for (Location l:locationList){
-            Integer id = l.getLocationId();
-            if (id.equals(locationId)){
-                toDelete = l;
-            }
-        }
-        locationList.remove(toDelete);
+        locationList.removeIf(l -> l.getLocationId() == locationId);
     }
 
     @Override

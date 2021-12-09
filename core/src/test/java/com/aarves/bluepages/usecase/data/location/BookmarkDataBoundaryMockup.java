@@ -16,13 +16,10 @@ public class BookmarkDataBoundaryMockup implements BookmarkDataBoundary {
         List<Integer> bookmarkIds = new ArrayList<>();
 
         for (Location l: bookmarks) {
-            for (Location l2: locations) {
-                if (l2.getLocationId() == locationId) {
-                    bookmarkIds.add(l.getLocationId());
-                }
+            if (l.getLocationId() == locationId) {
+
             }
         }
-        locationBookmarks = bookmarkIds;
     }
 
     public void removeBookmark(String username, int locationId, List<Location> bookmarks) {
